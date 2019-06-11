@@ -23,12 +23,12 @@
                     <div class="col-lg-4">
                         <div class="card text-white bg-primary">
                             <div class="card-header text-center h4"> Informații cursă </div>
-                            <div class="card-body">    
+                            <div class="card-body">
                                 <div class="form-row mb-2">
                                     <div class="form-group col-lg-6">
-                                        <script type="application/javascript"> 
+                                        <script type="application/javascript">
                                             orasPlecareVechi={!! json_encode(old('oras_plecare', $rezervari->cursa->plecare_id)) !!}
-                                        </script>       
+                                        </script>
                                         <label for="oras_plecare" class="mb-0">Plecare din:</label>
                                             <select class="custom-select-sm custom-select {{ $errors->has('oras_plecare') ? 'is-invalid' : '' }}"
                                                 name="oras_plecare"
@@ -36,8 +36,8 @@
                                                 v-if="oras_plecare.id = 8"
                                             @change='getOraseSosire()'>
                                                     <optgroup label="Oraș">
-                                                        <option v-for='oras_plecare in orase_plecare'                                
-                                                        :value='oras_plecare.id'                                       
+                                                        <option v-for='oras_plecare in orase_plecare'
+                                                        :value='oras_plecare.id'
                                                         >@{{oras_plecare.nume}}</option>
                                                     </optgroup>
                                                     <optgroup label="Aeroport">
@@ -298,6 +298,10 @@
                                 </div>   --}}
                                 <div class="form-row mb-0">
                                     <div class="form-group col-lg-6">
+                                        {{ $rezervari->pret_total }}
+                                        <script type="application/javascript"> 
+                                            pretTotal={!! json_encode(old('pret_total', $rezervari->pret_total)) !!}
+                                        </script>  
                                         <label for="pret_total" class="mb-0">Preț total:</label>
                                         <input 
                                             type="text" 
@@ -306,8 +310,7 @@
                                             v-model="pret_total" 
                                             placeholder="0" 
                                             value="{{ old('pret_total') == '' ? $rezervari->pret_total : old('pret_total') }}"
-                                            required
-                                            readonly> 
+                                            required> 
                                     </div>  
                                     <div class="form-group col-lg-6">
                                         <label for="comision_agentie" class="mb-0">Comision agenție:</label>

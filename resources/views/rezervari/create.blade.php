@@ -231,6 +231,9 @@
                                 </div>
                             </div>                      
                             <div class="form-group col-lg-2 mb-0 border-top border-left">
+                                <script type="application/javascript"> 
+                                    pretTotal={!! json_encode(old('pret_total', "0")) !!}
+                                </script>
                                 <label for="pret_total" class="mb-0">Preț total:</label>
                                 <input 
                                     type="text" 
@@ -251,112 +254,117 @@
                 
 
                         
-                <div v-show="retur" class="form-row mb-0 justify-content-center"> 
-                    <div class="form-group col-lg-8"> 
-                        <div class="form-row">
-                            <div class="form-group col-lg-12"> 
-                                <h2>Retur</h2>
+                <div v-show="retur" class="form-row mb-0 justify-content-center">
+                    <div class="form-group col-sm-auto card shadow-sm bg-dark text-white px-0 justify-content-center">
+                            <h5 class="mx-0" style="writing-mode: vertical-rl; text-orientation: upright;">
+                                RETUR
+                            </h5>
+                    </div>
+                    <div class="form-group col-lg-4 border card shadow-sm px-0"> 
+                        <div class="form-group row mb-0 bg-primary text-white mx-0">
+                            <div class="form-group col-lg-6">      
+                                <label for="ora_id" class="mb-0">Ora îmbarcare:</label>
+                                    <select class="custom-select custom-select-sm {{ $errors->has('retur_ora_plecare') ? 'is-invalid' : '' }}"
+                                        name="retur_ora_id"
+                                        v-model="retur_ora_plecare"
+                                    @change='getReturOraSosire()'>
+                                        <option v-for='retur_ora_plecare in retur_ore_plecare'                                
+                                            :value='retur_ora_plecare.id'                                       
+                                            >
+                                            @{{retur_ora_plecare.ora}}
+                                        </option>
+                                    </select>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label for="retur_ora_sosire" class="mb-0">Ora debarcare:</label>
+                                <input 
+                                    type="text" 
+                                    class="form-control form-control-sm {{ $errors->has('retur_ora_sosire') ? 'is-invalid' : '' }}" 
+                                    name="retur_ora_sosire" 
+                                    placeholder="" 
+                                        v-model="retur_ora_sosire"
+                                    required
+                                    disabled
+                                    >  
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="form-group col-lg-6 border card shadow-sm px-0"> 
-                                <div class="form-group row mb-0 bg-primary text-white mx-0">
-                                    <div class="form-group col-lg-6">      
-                                        <label for="ora_id" class="mb-0">Ora îmbarcare:</label>
-                                            <select class="custom-select custom-select-sm {{ $errors->has('retur_ora_plecare') ? 'is-invalid' : '' }}"
-                                                name="retur_ora_id"
-                                                v-model="retur_ora_plecare"
-                                            @change='getReturOraSosire()'>
-                                                <option v-for='retur_ora_plecare in retur_ore_plecare'                                
-                                                    :value='retur_ora_plecare.id'                                       
-                                                    >
-                                                    @{{retur_ora_plecare.ora}}
-                                                </option>
-                                            </select>
-                                    </div>
-                                    <div class="form-group col-lg-6">
-                                        <label for="retur_ora_sosire" class="mb-0">Ora debarcare:</label>
-                                        <input 
-                                            type="text" 
-                                            class="form-control form-control-sm {{ $errors->has('retur_ora_sosire') ? 'is-invalid' : '' }}" 
-                                            name="retur_ora_sosire" 
-                                            placeholder="" 
-                                                v-model="retur_ora_sosire"
-                                            required
-                                            disabled
-                                            >  
-                                    </div>
-                                </div>
-                                <div class="form-group row mb-0 mb-0 bg-success text-white mx-0">
-                                    <div class="form-group col-lg-12">
-                                        <label for="nume" class="mb-0">Statie îmbarcare retur:</label>
-                                        <input 
-                                            type="text" 
-                                            class="form-control form-control-sm {{ $errors->has('retur_statie_imbarcare') ? 'is-invalid' : '' }}" 
-                                            name="retur_statie_imbarcare" 
-                                            placeholder="Statie imbarcare retur" 
-                                            value="{{ old('retur_statie_imbarcare') }}"
-                                            required> 
-                                    </div>
-                                </div>
-                            </div>                    
+                        <div class="form-group row mb-0 mb-0 bg-success text-white mx-0">
+                            <div class="form-group col-lg-12">
+                                <label for="nume" class="mb-0">Statie îmbarcare retur:</label>
+                                <input 
+                                    type="text" 
+                                    class="form-control form-control-sm {{ $errors->has('retur_statie_imbarcare') ? 'is-invalid' : '' }}" 
+                                    name="retur_statie_imbarcare" 
+                                    placeholder="Statie imbarcare retur" 
+                                    value="{{ old('retur_statie_imbarcare') }}"
+                                    required> 
+                            </div>
+                        </div>
+                    </div>                    
 
-                            <div class="form-group col-lg-6 border card bg-warning text-dark shadow-sm px-2">
-                                <div class="form-row mb-0 d-flex justify-content-center">
-                                    <div class="form-group col-lg-6 mb-0 ">
-                                        <label for="retur_data_cursa" class="mb-0">Data plecării:</label>
-                                        <vue2-datepicker
-                                            data-veche="{{ old('retur_data_cursa') }}"
-                                            nume-camp-db="retur_data_cursa"
-                                            tip="date"
-                                            latime="150"
-                                        ></vue2-datepicker> 
-                                    </div>
-                                    <div class="form-group col-lg-6">
-                                        <label for="retur_zbor_ora_decolare" class="mb-0">Oră decolare:</label>
-                                        <input 
-                                            type="text" 
-                                            class="form-control form-control-sm {{ $errors->has('retur_zbor_ora_decolare') ? 'is-invalid' : '' }}" 
-                                            name="retur_zbor_ora_decolare" 
-                                            placeholder="00:00" 
-                                            value="{{ old('retur_zbor_ora_decolare') }}"
-                                            required>
-                                    </div>
-                                </div>
-                                <div class="form-row mb-0 d-flex justify-content-center">
-                                    <div class="form-group col-lg-6">
-                                        <label for="retur_zbor_oras_decolare" class="mb-0">Oraș decolare avion:</label>
-                                        <input 
-                                            type="text" 
-                                            class="form-control form-control-sm {{ $errors->has('retur_zbor_oras_decolare') ? 'is-invalid' : '' }}" 
-                                            name="retur_zbor_oras_decolare" 
-                                            placeholder="" 
-                                            value="{{ old('retur_zbor_oras_decolare') }}"
-                                            required>  
-                                    </div>
-                                    <div class="form-group col-lg-6">
-                                        <label for="retur_zbor_ora_aterizare" class="mb-0">Ora aterizare:</label>
-                                        <input 
-                                            type="text" 
-                                            class="form-control form-control-sm {{ $errors->has('retur_zbor_ora_aterizare') ? 'is-invalid' : '' }}" 
-                                            name="retur_zbor_ora_aterizare" 
-                                            placeholder="00:00" 
-                                            value="{{ old('retur_zbor_ora_aterizare') }}"
-                                            required>  
-                                    </div>
-                                </div>
+                    <div class="form-group col-lg-4 border card bg-warning text-dark shadow-sm px-2">
+                        <div class="form-row mb-0 d-flex justify-content-center">
+                            <div class="form-group col-lg-6 mb-0 ">
+                                <label for="retur_data_cursa" class="mb-0">Data plecării:</label>
+                                <vue2-datepicker
+                                    data-veche="{{ old('retur_data_cursa') }}"
+                                    nume-camp-db="retur_data_cursa"
+                                    tip="date"
+                                    latime="150"
+                                ></vue2-datepicker> 
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label for="retur_zbor_ora_decolare" class="mb-0">Oră decolare:</label>
+                                <input 
+                                    type="text" 
+                                    class="form-control form-control-sm {{ $errors->has('retur_zbor_ora_decolare') ? 'is-invalid' : '' }}" 
+                                    name="retur_zbor_ora_decolare" 
+                                    placeholder="00:00" 
+                                    value="{{ old('retur_zbor_ora_decolare') }}"
+                                    required>
                             </div>
                         </div>
+                        <div class="form-row mb-0 d-flex justify-content-center">
+                            <div class="form-group col-lg-6">
+                                <label for="retur_zbor_oras_decolare" class="mb-0">Oraș decolare avion:</label>
+                                <input 
+                                    type="text" 
+                                    class="form-control form-control-sm {{ $errors->has('retur_zbor_oras_decolare') ? 'is-invalid' : '' }}" 
+                                    name="retur_zbor_oras_decolare" 
+                                    placeholder="" 
+                                    value="{{ old('retur_zbor_oras_decolare') }}"
+                                    required>  
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label for="retur_zbor_ora_aterizare" class="mb-0">Ora aterizare:</label>
+                                <input 
+                                    type="text" 
+                                    class="form-control form-control-sm {{ $errors->has('retur_zbor_ora_aterizare') ? 'is-invalid' : '' }}" 
+                                    name="retur_zbor_ora_aterizare" 
+                                    placeholder="00:00" 
+                                    value="{{ old('retur_zbor_ora_aterizare') }}"
+                                    required>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-auto card shadow-sm bg-dark text-white px-0 justify-content-center">
+                            <h5 class="mx-0" style="writing-mode: vertical-rl; text-orientation: upright;">
+                                RETUR
+                            </h5>
                     </div>
                 </div>
                 
                 <div class="form-row">
                     <div class="col-lg-12 d-flex justify-content-center">                        
                         <button type="submit" class="btn btn-primary mr-4">Adaugă Rezervare</button> 
-                        <button type="button" class="btn btn-dark ml-4" v-on:click="retur = !retur">Retur</button> 
+                        <button type="button" class="btn btn-dark ml-4" v-on:click="retur = !retur">Retur</button>                           
+                            <input
+                                type="hidden"
+                                name="retur"
+                                v-model="retur">
                     </div>
                 </div> 
-                
+                    
             </form>
         </div>
     </div>

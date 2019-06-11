@@ -27,6 +27,12 @@
         </div>
     </div>
 
+    @if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+    @endif
+
     <div class="container-fluid px-0 table-responsive-lg">
         <table class="table table-sm" style="border:1px solid #333; width:100%;"> 
             <thead>

@@ -255,30 +255,59 @@ class RezervareController extends Controller
      */
     public function store(Request $request)
     {
-        $rezervari = Rezervare::make($this->validateRequest());
-        $rezervari->user_id = auth()->user()->id;
+        $rezervare_tur = Rezervare::make($this->validateRequest());
+        $rezervare_retur = Rezervare::make($this->validateRequest());
+
+        // stergerea oraselor din request, se foloseste id-ul cursei in DB
+        // stergerea ore_plecare din request, se foloseste ora_id orei in DB
+        // stergerea datelor de retur
+        unset($rezervare_tur['oras_plecare'], $rezervare_tur['oras_sosire'], $rezervare_tur['ora_plecare'],
+            $rezervare_tur['retur'], $rezervare_tur['retur_ora_id'], $rezervare_tur['retur_data_cursa'], $rezervare_tur['retur_zbor_oras_decolare'], $rezervare_tur['retur_zbor_ora_decolare'], $rezervare_tur['retur_zbor_ora_aterizare']);
+        unset($rezervare_retur['oras_plecare'], $rezervare_retur['oras_sosire'], $rezervare_retur['ora_plecare'],
+            $rezervare_retur['retur'], $rezervare_retur['retur_ora_id'], $rezervare_retur['retur_data_cursa'], $rezervare_retur['retur_zbor_oras_decolare'], $rezervare_retur['retur_zbor_ora_decolare'], $rezervare_retur['retur_zbor_ora_aterizare']);
         
-        $this->authorize('update', $rezervari);
+        $rezervare_tur->user_id = auth()->user()->id;
+        $rezervare_retur->user_id = auth()->user()->id;
+        
+        $this->authorize('update', $rezervare_tur);
+        $this->authorize('update', $rezervare_retur);
+        
+        // $rezervare_tur->ora_id = $request->ora_id;
+
+        $rezervare_retur->ora_id = $request->retur_ora_id;
+        $rezervare_retur->data_cursa = $request->retur_data_cursa;
+        $rezervare_retur->zbor_oras_decolare = $request->retur_zbor_oras_decolare;
+        $rezervare_retur->zbor_ora_decolare = $request->retur_zbor_ora_decolare;
+        $rezervare_retur->zbor_ora_aterizare = $request->retur_zbor_ora_aterizare;
 
         // aflarea id-ului cursei in functie de orasele introduse
-        $cursa_id = Cursa::select('id')
+        $cursa_id_tur = Cursa::select('id')
             ->where([
                 ['plecare_id', $request->oras_plecare],
                 ['sosire_id', $request->oras_sosire]
             ])
             ->first();
-        
+        $cursa_id_retur = Cursa::select('id')
+            ->where([
+                ['plecare_id', $request->oras_sosire],
+                ['sosire_id', $request->oras_plecare]
+            ])
+            ->first();
         // setarea id-ului cursei in functie de orasele introduse
-        $rezervari->cursa_id = $cursa_id->id;
-        // $rezervari->ora_id = $rezervari->ora_plecare;
+        $rezervare_tur->cursa_id = $cursa_id_tur->id;
+        $rezervare_retur->cursa_id = $cursa_id_retur->id;
+        
+        // dd($request, $rezervare_tur, $rezervare_retur);
 
-        // stergerea oraselor din request, se foloseste id-ul cursei in DB
-        // stergerea ore_plecare din request, se foloseste ora_id orei in DB
-        unset($rezervari['oras_plecare'], $rezervari['oras_sosire'], $rezervari['ora_plecare']);
+        if ($request->retur == "false") {
+            $rezervare_tur->save();
+            return redirect($rezervare_tur->path())->with('status', 'Rezervarea pentru clientul "' . $rezervare_tur->nume . '" a fost adăugată cu succes!');
+        } else {
+            $rezervare_tur->save();
+            $rezervare_retur->save();
+            return redirect('/rezervari')->with('status', 'Rezervările tur si retur pentru clientul "' . $rezervare_tur->nume . '" au fost adăugate cu succes!');
+        }
 
-        $rezervari->save();
-
-        return redirect($rezervari->path())->with('status', 'Rezervarea pentru clientul "' . $rezervari->nume . '" a fost adăugată cu succes!');
     }
 
     /**
@@ -378,6 +407,7 @@ class RezervareController extends Controller
             'oras_plecare' => [ 'required', 'numeric', 'max:999'],
             'oras_sosire' => [ 'required', 'nullable', 'numeric', 'max:999'],
             'statie_id' => ['nullable', 'numeric', 'max:999'],
+            'statie_imbarcare' => ['nullable'],
             'data_cursa' => [ 'required', 'max:50'],
             'ora_id' =>[ 'required', 'nullable', 'max:99'],
             'zbor_oras_decolare' => ['max:50'],
@@ -392,6 +422,12 @@ class RezervareController extends Controller
             'observatii' => ['max:10000'],
             'comision_agentie' => [ 'nullable', 'numeric', 'max:999999'],
             // 'tip_plata_id' => [''],
+            'retur' => [''],
+            'retur_ora_id' =>[ 'required_if:retur,true', 'nullable', 'max:99'],
+            'retur_data_cursa' => [ 'required_if:retur,true', 'max:50'],
+            'retur_zbor_oras_decolare' => ['max:50'],
+            'retur_zbor_ora_decolare' => ['max:50'],
+            'retur_zbor_ora_aterizare' => ['max:50'],
             'order_id' => [''],
             'user_id' => [''],
             'status' => ['']

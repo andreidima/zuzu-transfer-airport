@@ -57,7 +57,7 @@ if (document.querySelector('#orase-ore-plecare')) {
             // preturile per adult si per copil pentru curse            
             pret_adult: 0,
             pret_copil: 0,
-            pret_total: 0,
+            pret_total: pretTotal,
 
             retur: false
         },
@@ -144,7 +144,7 @@ if (document.querySelector('#orase-ore-plecare')) {
                         app2.ore_plecare = response.data.raspuns;
                         app2.pret_adult = response.data.pret_adult;
                         app2.pret_copil = response.data.pret_copil;
-                        app2.getPretTotal();
+                        // app2.getPretTotal();
                     });
             },
             getOrePlecare: function () {

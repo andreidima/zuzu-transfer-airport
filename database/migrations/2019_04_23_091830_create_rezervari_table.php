@@ -17,6 +17,7 @@ class CreateRezervariTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('cursa_id')->nullable();
             $table->unsignedBigInteger('statie_id')->nullable();
+            $table->string('statie_imbarcare')->nullable();
             $table->date('data_cursa')->nullable();
             $table->unsignedBigInteger('ora_id')->nullable();
             $table->string('zbor_oras_decolare')->nullable();
