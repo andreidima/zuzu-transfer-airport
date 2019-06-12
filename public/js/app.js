@@ -1773,7 +1773,7 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     DatePicker: vue2_datepicker__WEBPACK_IMPORTED_MODULE_0___default.a
   },
-  props: ['dataVeche', 'numeCampDb', 'tip', 'latime'],
+  props: ['dataVeche', 'numeCampDb', 'tip', 'latime', 'notBefore'],
   data: function data() {
     var _this = this;
 
@@ -1808,9 +1808,8 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    if (this.dataVeche == "") {
-      this.time2 = new Date();
-      this.dataNoua = moment__WEBPACK_IMPORTED_MODULE_1___default()(this.time2, 'DD.MM.YYYY, HH:mm').format('YYYY-MM-DD');
+    if (this.dataVeche == "") {// this.time2 = new Date()
+      // this.dataNoua = moment(this.time2, 'DD.MM.YYYY, HH:mm'). format('YYYY-MM-DD')
     } else {
       this.time2 = this.dataVeche, this.dataNoua = this.dataVeche;
     }
@@ -54793,6 +54792,7 @@ var render = function() {
       _c("date-picker", {
         attrs: {
           type: _vm.tip,
+          "not-before": _vm.notBefore,
           format: _vm.format,
           width: _vm.latime,
           height: 10,

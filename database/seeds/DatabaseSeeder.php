@@ -25,6 +25,6 @@ class DatabaseSeeder extends Seeder
             // TipPlataSeeder::class,
         ]);
 
-        factory('App\Rezervare', 1500)->create();
+        factory('App\Rezervare', 2000)->create();
     }
 }

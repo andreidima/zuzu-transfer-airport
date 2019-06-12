@@ -4,7 +4,7 @@ import moment from 'moment';
  
 export default {
   components: { DatePicker },
-  props: ['dataVeche', 'numeCampDb', 'tip', 'latime'],
+  props: ['dataVeche', 'numeCampDb', 'tip', 'latime', 'notBefore'],
   data() {
     return {
       time1: '',
@@ -40,8 +40,8 @@ export default {
   },
     created() {
         if (this.dataVeche == "") {
-            this.time2 = new Date()
-            this.dataNoua = moment(this.time2, 'DD.MM.YYYY, HH:mm'). format('YYYY-MM-DD')
+            // this.time2 = new Date()
+            // this.dataNoua = moment(this.time2, 'DD.MM.YYYY, HH:mm'). format('YYYY-MM-DD')
         }
         else {
           this.time2 = this.dataVeche,
@@ -85,6 +85,7 @@ export default {
     <date-picker 
       v-model="time2"
       :type=tip
+      :not-before="notBefore"
       :format="format"
       :width="latime"
       :height="10"

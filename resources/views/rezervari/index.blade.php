@@ -151,7 +151,9 @@
                         </td>
                         <td align="center" style="text-align:left;">
                             <span title="Cod bilet: RO{{ $rezervare->id }}">
-                                {{ $rezervare->nume }}
+                                <a href="{{ $rezervare->path() }}" class="text-dark">
+                                    {{ $rezervare->nume }}
+                                </a>
                             </span>
                         </td>
                         <td align="center" style="text-align:left;">

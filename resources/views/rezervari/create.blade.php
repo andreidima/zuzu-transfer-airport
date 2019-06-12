@@ -18,10 +18,10 @@
             <form  class="needs-validation" novalidate method="POST" action="/rezervari">
                 @csrf      
 
-                <div class="form-row mb-2 d-flex justify-content-center">   
-                    <div class="form-group col-lg-4 card bg-primary text-white shadow-sm px-2 mr-4">
-                        <div class="form-row mb-0 d-flex justify-content-center">
-                            <div class="form-group col-lg-6">
+                <div class="form-row mb-0 d-flex justify-content-center">   
+                    <div class="form-group col-lg-6 card bg-primary text-white shadow-sm px-2 mb-0">
+                        <div class="form-row mb-0 d-flex justify-content-between">
+                            <div class="form-group col-lg-5">
                                 <script type="application/javascript"> 
                                     orasPlecareVechi={!! json_encode(old('oras_plecare', "0")) !!}
                                     statieImbarcareVeche = 0
@@ -44,7 +44,7 @@
                                             </optgroup>
                                     </select>
                             </div>
-                            <div class="form-group col-lg-6">
+                            <div class="form-group col-lg-5">
                                 <script type="application/javascript"> 
                                     orasSosireVechi={!! json_encode(old('oras_sosire', "0")) !!}
                                 </script>        
@@ -59,8 +59,8 @@
                                     </select>
                             </div>
                         </div>
-                        <div class="form-row mb-0 d-flex justify-content-center">
-                            <div class="form-group col-lg-6">
+                        <div class="form-row mb-0 d-flex justify-content-between">
+                            <div class="form-group col-lg-5">
                                 <script type="application/javascript"> 
                                     oraPlecareVeche={!! json_encode(old('ora_plecare', "0")) !!}
                                 </script>        
@@ -76,7 +76,7 @@
                                         </option>
                                     </select>
                             </div>
-                            <div class="form-group col-lg-6">
+                            <div class="form-group col-lg-5">
                                 <label for="ora_sosire" class="mb-0">Ora sosire:</label>
                                 <input 
                                     type="text" 
@@ -90,19 +90,22 @@
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="form-group col-lg-4 border card bg-warning text-dark shadow-sm px-2">
-                        <div class="form-row mb-0 d-flex justify-content-center">
-                            <div class="form-group col-lg-6 mb-0 ">
+                <div class="form-row mb-0 d-flex justify-content-center">
+                    <div class="form-group col-lg-6 border card bg-warning text-dark shadow-sm px-2 mb-0">
+                        <div class="form-row mb-0 d-flex justify-content-between">
+                            <div class="form-group col-lg-5 mb-0 ">
                                 <label for="data_cursa" class="mb-0">Data plecării:</label>
                                 <vue2-datepicker
-                                    data-veche="{{ old('data_cursa') }}"
+                                    data-veche="{{ old('data_cursa') == '' ? '' : old('data_cursa') }}"
                                     nume-camp-db="data_cursa"
                                     tip="date"
                                     latime="150"
+                                    not-before="{{ \Carbon\Carbon::today() }}"
                                 ></vue2-datepicker> 
                             </div>
-                            <div class="form-group col-lg-6">
+                            <div class="form-group col-lg-5">
                                 <label for="zbor_ora_decolare" class="mb-0">Oră decolare:</label>
                                 <input 
                                     type="text" 
@@ -113,8 +116,8 @@
                                     required>
                             </div>
                         </div>
-                        <div class="form-row mb-0 d-flex justify-content-center">
-                            <div class="form-group col-lg-6">
+                        <div class="form-row mb-0 d-flex justify-content-between">
+                            <div class="form-group col-lg-5">
                                 <label for="zbor_oras_decolare" class="mb-0">Oraș decolare avion:</label>
                                 <input 
                                     type="text" 
@@ -124,7 +127,7 @@
                                     value="{{ old('zbor_oras_decolare') }}"
                                     required>  
                             </div>
-                            <div class="form-group col-lg-6">
+                            <div class="form-group col-lg-5">
                                 <label for="zbor_ora_aterizare" class="mb-0">Ora aterizare:</label>
                                 <input 
                                     type="text" 
@@ -140,9 +143,9 @@
 
 
                 <div class="form-row mb-2 d-flex justify-content-center">   
-                    <div class="form-group col-lg-10 card bg-success text-white shadow-sm px-3"> 
+                    <div class="form-group col-lg-6 card bg-success text-white shadow-sm px-2 mb-0"> 
                         <div class="form-group row mb-0">
-                            <div class="form-group col-lg-6">
+                            <div class="form-group col-lg-12">
                                 <label for="nume" class="mb-0">Nume client:</label>
                                 <input 
                                     type="text" 
@@ -152,7 +155,7 @@
                                     value="{{ old('nume') }}"
                                     required> 
                             </div>
-                            <div class="form-group col-lg-3">
+                            <div class="form-group col-lg-12">
                                 <label for="telefon" class="mb-0">Telefon:</label>
                                 <input 
                                     type="text" 
@@ -162,7 +165,7 @@
                                     value="{{ old('telefon') }}"
                                     required> 
                             </div>  
-                            <div class="form-group col-lg-3">
+                            <div class="form-group col-lg-12">
                                 <label for="email" class="mb-0">E-mail:</label>
                                 <input 
                                     type="text" 
@@ -172,24 +175,22 @@
                                     value="{{ old('email') }}"
                                     required> 
                             </div> 
-                        </div>
-                        <div class="form-group row mb-0 border-top"> 
-                            <div class="form-group col-lg-5 mb-0 border-top border-right">
+                            <div class="form-group col-lg-12">
                                 <label for="nume" class="mb-0">Statie îmbarcare:</label>
                                 <input 
                                     type="text" 
                                     class="form-control form-control-sm {{ $errors->has('statie_imbarcare') ? 'is-invalid' : '' }}" 
                                     name="statie_imbarcare" 
-                                    placeholder="Nume" 
+                                    placeholder="" 
                                     value="{{ old('statie_imbarcare') }}"
                                     required> 
                             </div>
-                            <div class="form-group col-lg-5 mb-0 border border-bottom-0">
+                            <div class="form-group col-lg-12 mb-0 border-top border-bottom">
                                     <label for="nume" class="mb-0">Număr de locuri rezervate:</label> 
                                 <div class="form-group row mb-0">                                
                                         <div class="form-group col-lg-5 mb-0 d-flex">
                                                 <script type="application/javascript"> 
-                                                    nrAdultiVechi={!! json_encode(old('nr_adulti', "0")) !!}
+                                                    nrAdultiVechi={!! json_encode(old('nr_adulti', " ")) !!}
                                                 </script>  
                                                 <label for="nr_adulti" class="col-form-label pr-0">Adulți:</label>
                                                     <div class="pl-0">
@@ -208,7 +209,7 @@
                                         </div>  
                                         <div class="form-group col-lg-7 mb-0 d-flex">
                                             <script type="application/javascript"> 
-                                                nrCopiiVechi={!! json_encode(old('nr_copii', "0")) !!}
+                                                nrCopiiVechi={!! json_encode(old('nr_copii', " ")) !!}
                                             </script>  
                                             <label for="nr_copii" class="col-form-label pr-0">Copii:</label>
                                                 <div class="px-0">
@@ -230,11 +231,22 @@
                                         </div>
                                 </div>
                             </div>                      
-                            <div class="form-group col-lg-2 mb-0 border-top border-left">
+                            <div class="form-group col-lg-3 mb-2">
                                 <script type="application/javascript"> 
                                     pretTotal={!! json_encode(old('pret_total', "0")) !!}
                                 </script>
                                 <label for="pret_total" class="mb-0">Preț total:</label>
+                                <input 
+                                    type="text" 
+                                    class="form-control form-control-sm {{ $errors->has('pret_total') ? 'is-invalid' : '' }}" 
+                                    name="pret_total"
+                                    v-model="pret_total" 
+                                    placeholder="0" 
+                                    value="{{ old('pret_total') }}"
+                                    required> 
+                            </div>                    
+                            <div class="form-group col-lg-6 mb-2">
+                                <label for="pret_total" class="mb-0">Comision agentie:</label>
                                 <input 
                                     type="text" 
                                     class="form-control form-control-sm {{ $errors->has('pret_total') ? 'is-invalid' : '' }}" 
@@ -295,7 +307,7 @@
                                     type="text" 
                                     class="form-control form-control-sm {{ $errors->has('retur_statie_imbarcare') ? 'is-invalid' : '' }}" 
                                     name="retur_statie_imbarcare" 
-                                    placeholder="Statie imbarcare retur" 
+                                    placeholder="" 
                                     value="{{ old('retur_statie_imbarcare') }}"
                                     required> 
                             </div>
@@ -307,10 +319,11 @@
                             <div class="form-group col-lg-6 mb-0 ">
                                 <label for="retur_data_cursa" class="mb-0">Data plecării:</label>
                                 <vue2-datepicker
-                                    data-veche="{{ old('retur_data_cursa') }}"
+                                    data-veche="{{ old('retur_data_cursa') == '' ? '' : old('retur_data_cursa') }}"
                                     nume-camp-db="retur_data_cursa"
                                     tip="date"
                                     latime="150"
+                                    not-before="{{ \Carbon\Carbon::today() }}"
                                 ></vue2-datepicker> 
                             </div>
                             <div class="form-group col-lg-6">
