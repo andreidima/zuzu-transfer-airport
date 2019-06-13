@@ -67076,6 +67076,7 @@ if (document.querySelector('#orase-ore-plecare')) {
       pret_adult: 0,
       pret_copil: 0,
       pret_total: pretTotal,
+      comision_agentie: 0,
       retur: false
     },
     created: function created() {
@@ -67231,6 +67232,9 @@ if (document.querySelector('#orase-ore-plecare')) {
         }).then(function (response) {
           app2.retur_ora_sosire = response.data.raspuns;
         });
+      },
+      plata_integrala: function plata_integrala() {
+        this.comision_agentie = this.pret_total;
       }
     }
   });

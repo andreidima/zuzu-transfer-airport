@@ -231,33 +231,53 @@
                                         </div>
                                 </div>
                             </div>                      
-                            <div class="form-group col-lg-3 mb-2">
+                            <div class="form-group col-lg-4 mb-0 mt-2 d-flex">
                                 <script type="application/javascript"> 
                                     pretTotal={!! json_encode(old('pret_total', "0")) !!}
                                 </script>
-                                <label for="pret_total" class="mb-0">Preț total:</label>
-                                <input 
-                                    type="text" 
-                                    class="form-control form-control-sm {{ $errors->has('pret_total') ? 'is-invalid' : '' }}" 
-                                    name="pret_total"
-                                    v-model="pret_total" 
-                                    placeholder="0" 
-                                    value="{{ old('pret_total') }}"
-                                    required> 
-                            </div>                    
-                            <div class="form-group col-lg-6 mb-2">
-                                <label for="pret_total" class="mb-0">Comision agentie:</label>
-                                <input 
-                                    type="text" 
-                                    class="form-control form-control-sm {{ $errors->has('pret_total') ? 'is-invalid' : '' }}" 
-                                    name="pret_total"
-                                    v-model="pret_total" 
-                                    placeholder="0" 
-                                    value="{{ old('pret_total') }}"
-                                    required> 
-                            </div> 
-                                       
-                    
+                                <label for="pret_total" class="col-form-label mb-0">Preț total:</label>
+                                <div style="width:80px">
+                                    <input 
+                                        type="text" 
+                                        class="form-control form-control-sm {{ $errors->has('pret_total') ? 'is-invalid' : '' }}" 
+                                        name="pret_total"
+                                        v-model="pret_total" 
+                                        placeholder="0" 
+                                        value="{{ old('pret_total') }}"
+                                        required> 
+                                </div> 
+                            </div>                      
+                            {{-- <div class="form-group col-lg-8 mb-0 mt-2">                        
+                                <button type="button" class="btn btn-sm btn-primary ml-4"
+                                    @click='plata_integrala'>Plata se face integral la agenție</button> 
+                            </div>                      --}}
+                            <div class="form-group col-lg-12 mb-0 pt-2 border-top d-flex">
+                                <div class="form-group row mb-0">
+                                    <div class="form-group col-lg-12 mb-0 d-flex">
+                                        <label class="col-form-label mb-0 pb-0">
+                                            Completați doar dacă încasați o sumă de la client:
+                                        </label>
+                                        <div class="px-1 mb-0" style="width:80px">
+                                            <input 
+                                                type="text" 
+                                                class="form-control form-control-sm {{ $errors->has('comision_agentie') ? 'is-invalid' : '' }}"
+                                                name="comision_agentie"
+                                                v-model="comision_agentie"
+                                                placeholder="0"
+                                                value="{{ old('comision_agentie') }}"
+                                                >
+                                        </div>
+                                        <label class="col-form-label mb-0 pb-0">
+                                            lei
+                                        </label>
+                                    </div>
+                                    <div class="form-group col-lg-12 mb-0 d-flex">
+                                        <label class="col-form-label pt-0">
+                                             Puteți încasa comisionul agenției, sau plata integrala!
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -265,107 +285,113 @@
 
                 
 
-                        
-                <div v-show="retur" class="form-row mb-0 justify-content-center">
-                    <div class="form-group col-sm-auto card shadow-sm bg-dark text-white px-0 justify-content-center">
-                            <h5 class="mx-0" style="writing-mode: vertical-rl; text-orientation: upright;">
-                                RETUR
-                            </h5>
+            <div v-show="retur" class="mb-2">    
+                <div class="form-row justify-content-center">   
+                    <div class="col-md-auto card bg-dark text-white justify-content-center px-0"> 
+                        <h4 style="width:16px; word-wrap: break-word; white-space:pre-wrap;">
+                            RETUR
+                        </h4>
                     </div>
-                    <div class="form-group col-lg-4 border card shadow-sm px-0"> 
-                        <div class="form-group row mb-0 bg-primary text-white mx-0">
-                            <div class="form-group col-lg-6">      
-                                <label for="ora_id" class="mb-0">Ora îmbarcare:</label>
-                                    <select class="custom-select custom-select-sm {{ $errors->has('retur_ora_plecare') ? 'is-invalid' : '' }}"
-                                        name="retur_ora_id"
-                                        v-model="retur_ora_plecare"
-                                    @change='getReturOraSosire()'>
-                                        <option v-for='retur_ora_plecare in retur_ore_plecare'                                
-                                            :value='retur_ora_plecare.id'                                       
-                                            >
-                                            @{{retur_ora_plecare.ora}}
-                                        </option>
-                                    </select>
-                            </div>
-                            <div class="form-group col-lg-6">
-                                <label for="retur_ora_sosire" class="mb-0">Ora debarcare:</label>
-                                <input 
-                                    type="text" 
-                                    class="form-control form-control-sm {{ $errors->has('retur_ora_sosire') ? 'is-invalid' : '' }}" 
-                                    name="retur_ora_sosire" 
-                                    placeholder="" 
-                                        v-model="retur_ora_sosire"
-                                    required
-                                    disabled
-                                    >  
-                            </div>
-                        </div>
-                        <div class="form-group row mb-0 mb-0 bg-success text-white mx-0">
-                            <div class="form-group col-lg-12">
-                                <label for="nume" class="mb-0">Statie îmbarcare retur:</label>
-                                <input 
-                                    type="text" 
-                                    class="form-control form-control-sm {{ $errors->has('retur_statie_imbarcare') ? 'is-invalid' : '' }}" 
-                                    name="retur_statie_imbarcare" 
-                                    placeholder="" 
-                                    value="{{ old('retur_statie_imbarcare') }}"
-                                    required> 
+                    <div class="col-lg-6">   
+                        <div class="form-row mb-0 justify-content-center">
+                            <div class="form-group col-lg-12 card bg-primary text-white shadow-sm px-2 mb-0">
+                                <div class="form-row mb-0 d-flex justify-content-between">
+                                    <div class="form-group col-lg-5">     
+                                        <label for="ora_id" class="mb-0">Ora îmbarcare:</label>
+                                            <select class="custom-select custom-select-sm {{ $errors->has('retur_ora_plecare') ? 'is-invalid' : '' }}"
+                                                name="retur_ora_id"
+                                                v-model="retur_ora_plecare"
+                                            @change='getReturOraSosire()'>
+                                                <option v-for='retur_ora_plecare in retur_ore_plecare'                                
+                                                    :value='retur_ora_plecare.id'                                       
+                                                    >
+                                                    @{{retur_ora_plecare.ora}}
+                                                </option>
+                                            </select>
+                                    </div>
+                                    <div class="form-group col-lg-5">
+                                        <label for="retur_ora_sosire" class="mb-0">Ora debarcare:</label>
+                                        <input 
+                                            type="text" 
+                                            class="form-control form-control-sm {{ $errors->has('retur_ora_sosire') ? 'is-invalid' : '' }}" 
+                                            name="retur_ora_sosire" 
+                                            placeholder="" 
+                                                v-model="retur_ora_sosire"
+                                            required
+                                            disabled
+                                            >  
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>                    
-
-                    <div class="form-group col-lg-4 border card bg-warning text-dark shadow-sm px-2">
-                        <div class="form-row mb-0 d-flex justify-content-center">
-                            <div class="form-group col-lg-6 mb-0 ">
-                                <label for="retur_data_cursa" class="mb-0">Data plecării:</label>
-                                <vue2-datepicker
-                                    data-veche="{{ old('retur_data_cursa') == '' ? '' : old('retur_data_cursa') }}"
-                                    nume-camp-db="retur_data_cursa"
-                                    tip="date"
-                                    latime="150"
-                                    not-before="{{ \Carbon\Carbon::today() }}"
-                                ></vue2-datepicker> 
+                        <div class="form-row mb-0 justify-content-center">
+                            <div class="form-group col-lg-12 card bg-warning shadow-sm px-2 mb-0">
+                                <div class="form-row mb-0 d-flex justify-content-between">
+                                    <div class="form-group col-lg-5 mb-2">  
+                                        <label for="retur_data_cursa" class="mb-0">Data plecării:</label>
+                                        <vue2-datepicker
+                                            data-veche="{{ old('retur_data_cursa') == '' ? '' : old('retur_data_cursa') }}"
+                                            nume-camp-db="retur_data_cursa"
+                                            tip="date"
+                                            latime="150"
+                                            not-before="{{ \Carbon\Carbon::today() }}"
+                                        ></vue2-datepicker> 
+                                    </div>
+                                    <div class="form-group col-lg-5 mb-2">
+                                        <label for="retur_zbor_ora_decolare" class="mb-0">Oră decolare:</label>
+                                        <input 
+                                            type="text" 
+                                            class="form-control form-control-sm {{ $errors->has('retur_zbor_ora_decolare') ? 'is-invalid' : '' }}" 
+                                            name="retur_zbor_ora_decolare" 
+                                            placeholder="00:00" 
+                                            value="{{ old('retur_zbor_ora_decolare') }}"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="form-row mb-0 d-flex justify-content-between">
+                                    <div class="form-group col-lg-5">
+                                        <label for="retur_zbor_oras_decolare" class="mb-0">Oraș decolare avion:</label>
+                                        <input 
+                                            type="text" 
+                                            class="form-control form-control-sm {{ $errors->has('retur_zbor_oras_decolare') ? 'is-invalid' : '' }}" 
+                                            name="retur_zbor_oras_decolare" 
+                                            placeholder="" 
+                                            value="{{ old('retur_zbor_oras_decolare') }}"
+                                            required>  
+                                    </div>
+                                    <div class="form-group col-lg-5">
+                                        <label for="retur_zbor_ora_aterizare" class="mb-0">Ora aterizare:</label>
+                                        <input 
+                                            type="text" 
+                                            class="form-control form-control-sm {{ $errors->has('retur_zbor_ora_aterizare') ? 'is-invalid' : '' }}" 
+                                            name="retur_zbor_ora_aterizare" 
+                                            placeholder="00:00" 
+                                            value="{{ old('retur_zbor_ora_aterizare') }}"
+                                            required>  
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group col-lg-6">
-                                <label for="retur_zbor_ora_decolare" class="mb-0">Oră decolare:</label>
-                                <input 
-                                    type="text" 
-                                    class="form-control form-control-sm {{ $errors->has('retur_zbor_ora_decolare') ? 'is-invalid' : '' }}" 
-                                    name="retur_zbor_ora_decolare" 
-                                    placeholder="00:00" 
-                                    value="{{ old('retur_zbor_ora_decolare') }}"
-                                    required>
-                            </div>
-                        </div>
-                        <div class="form-row mb-0 d-flex justify-content-center">
-                            <div class="form-group col-lg-6">
-                                <label for="retur_zbor_oras_decolare" class="mb-0">Oraș decolare avion:</label>
-                                <input 
-                                    type="text" 
-                                    class="form-control form-control-sm {{ $errors->has('retur_zbor_oras_decolare') ? 'is-invalid' : '' }}" 
-                                    name="retur_zbor_oras_decolare" 
-                                    placeholder="" 
-                                    value="{{ old('retur_zbor_oras_decolare') }}"
-                                    required>  
-                            </div>
-                            <div class="form-group col-lg-6">
-                                <label for="retur_zbor_ora_aterizare" class="mb-0">Ora aterizare:</label>
-                                <input 
-                                    type="text" 
-                                    class="form-control form-control-sm {{ $errors->has('retur_zbor_ora_aterizare') ? 'is-invalid' : '' }}" 
-                                    name="retur_zbor_ora_aterizare" 
-                                    placeholder="00:00" 
-                                    value="{{ old('retur_zbor_ora_aterizare') }}"
-                                    required>  
+                        </div>                            
+                        <div class="form-row mb-0 justify-content-center">
+                            <div class="form-group col-lg-12 card bg-success text-white shadow-sm px-2 mb-0 pb-2">
+                                        <label for="nume" class="mb-0">Statie îmbarcare retur:</label>
+                                        <input 
+                                            type="text" 
+                                            class="form-control form-control-sm {{ $errors->has('retur_statie_imbarcare') ? 'is-invalid' : '' }}" 
+                                            name="retur_statie_imbarcare" 
+                                            placeholder="" 
+                                            value="{{ old('retur_statie_imbarcare') }}"
+                                            required> 
                             </div>
                         </div>
                     </div>
-                    <div class="form-group col-sm-auto card shadow-sm bg-dark text-white px-0 justify-content-center">
-                            <h5 class="mx-0" style="writing-mode: vertical-rl; text-orientation: upright;">
-                                RETUR
-                            </h5>
+                    <div class="col-md-auto card bg-dark text-white justify-content-center px-0"> 
+                        <h4 style="width:16px; word-wrap: break-word; white-space:pre-wrap;">
+                            RETUR
+                        </h4>
                     </div>
                 </div>
+            </div>
                 
                 <div class="form-row">
                     <div class="col-lg-12 d-flex justify-content-center">                        
@@ -376,7 +402,7 @@
                                 name="retur"
                                 v-model="retur">
                     </div>
-                </div> 
+                </div>
                     
             </form>
         </div>
