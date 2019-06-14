@@ -78,6 +78,7 @@
                                     @if(!empty($rezervari->statie)) 
                                         {{ $rezervari->statie->nume }}
                                     @endif
+                                    {{ $rezervari->statie_imbarcare }}
                                 </td>
                             </tr>
                             <tr>

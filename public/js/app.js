@@ -67066,7 +67066,7 @@ if (document.querySelector('#orase-ore-plecare')) {
       ora_plecare: oraPlecareVeche,
       ore_plecare: '',
       ora_sosire: '',
-      retur_ora_plecare: 0,
+      retur_ora_plecare: returOraPlecareVeche,
       retur_ore_plecare: '',
       retur_ora_sosire: '',
       // numarul de adulti si copii
@@ -67077,13 +67077,14 @@ if (document.querySelector('#orase-ore-plecare')) {
       pret_copil: 0,
       pret_total: pretTotal,
       comision_agentie: 0,
-      retur: false
+      retur: returVechi
     },
     created: function created() {
       this.getOrasePlecareInitial();
       this.getOraseSosireInitial();
       this.getOrePlecareInitial();
       this.getOraSosireInitial();
+      this.getReturOrePlecare();
     },
     methods: {
       getOrasePlecareInitial: function getOrasePlecareInitial() {
@@ -67130,8 +67131,8 @@ if (document.querySelector('#orase-ore-plecare')) {
         }).then(function (response) {
           app2.statii_imbarcare = '', app2.statie_id = 0, app2.orase_sosire = '';
           app2.oras_sosire = 0;
-          app2.ore_plecare = '';
-          app2.ora_plecare = 0;
+          app2.ore_plecare = ''; // app2.ora_plecare = 0;
+
           app2.ora_sosire = '';
           app2.pret_adult = 0;
           app2.pret_copil = 0;
@@ -67161,8 +67162,8 @@ if (document.querySelector('#orase-ore-plecare')) {
             oras_sosire: this.oras_sosire
           }
         }).then(function (response) {
-          app2.ore_plecare = '';
-          app2.ora_plecare = 0;
+          app2.ore_plecare = ''; // app2.ora_plecare = 0;
+
           app2.ora_sosire = '';
           app2.ore_plecare = response.data.raspuns;
           app2.pret_adult = response.data.pret_adult;
@@ -67215,8 +67216,8 @@ if (document.querySelector('#orase-ore-plecare')) {
             oras_sosire: this.oras_sosire
           }
         }).then(function (response) {
-          app2.retur_ore_plecare = '';
-          app2.retur_ora_plecare = 0;
+          app2.retur_ore_plecare = ''; // app2.retur_ora_plecare = 0;
+
           app2.retur_ora_sosire = '';
           app2.retur_ore_plecare = response.data.raspuns;
         });

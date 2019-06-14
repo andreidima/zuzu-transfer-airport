@@ -233,7 +233,41 @@
                                     </div>
                                 </div>
 
-                            @else
+                            @elseif(!empty($rezervare->statie_imbarcare))
+                                <!-- Button to Open the Modal -->
+                                <button type="button" 
+                                    class="btn btn-white btn-sm" 
+                                    data-toggle="modal" 
+                                    data-target="#rezervareStatie{{ $rezervare->id }}"
+                                    title="{{ $rezervare->statie_imbarcare }}">
+                                    {{-- <i class="fas fa-info-circle"></i> --}}
+                                    <img src="{{ asset('images/icon-details.png') }}" height="">
+                                </button>
+
+                                <!-- The Modal -->
+                                <div class="modal" id="rezervareStatie{{ $rezervare->id }}" >
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h6 class="modal-title">Client: {{ $rezervare->nume }}</h6>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                            <h6 class="modal-title">Îmbarcare: {{ $rezervare->statie_imbarcare }}</h6>
+                                        </div>
+
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        </div>
+
+                                        </div>
+                                    </div>
+                                </div>
                                 -
                             @endif
                         </td>

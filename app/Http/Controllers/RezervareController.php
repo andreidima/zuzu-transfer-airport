@@ -279,6 +279,7 @@ class RezervareController extends Controller
         $rezervare_retur->zbor_oras_decolare = $request->retur_zbor_oras_decolare;
         $rezervare_retur->zbor_ora_decolare = $request->retur_zbor_ora_decolare;
         $rezervare_retur->zbor_ora_aterizare = $request->retur_zbor_ora_aterizare;
+        $rezervare_retur->statie_imbarcare = $request->retur_statie_imbarcare;
 
         // aflarea id-ului cursei in functie de orasele introduse
         $cursa_id_tur = Cursa::select('id')
@@ -410,12 +411,13 @@ class RezervareController extends Controller
             'statie_imbarcare' => ['nullable'],
             'data_cursa' => [ 'required', 'max:50'],
             'ora_id' =>[ 'required', 'nullable', 'max:99'],
-            'zbor_oras_decolare' => ['max:50'],
-            'zbor_ora_decolare' => ['max:50'],
-            'zbor_ora_aterizare' => ['max:50'],
+            // 'ora_plecare' => [''] // pastrata pentru old(ora_plecare) in formular
+            'zbor_oras_decolare' => ['max:100'],
+            'zbor_ora_decolare' => ['max:100'],
+            'zbor_ora_aterizare' => ['max:100'],
             'nume' => ['required', 'max:100'],
-            'telefon' => [ 'required', 'max:20'],
-            'email' => ['max:50'],
+            'telefon' => [ 'required', 'max:100'],
+            'email' => ['max:100'],
             'nr_adulti' => [ 'nullable', 'numeric', 'max:99'],
             'nr_copii' => [ 'nullable', 'numeric', 'max:99'],
             'pret_total' => ['nullable', 'numeric', 'max:999999'],
@@ -425,9 +427,9 @@ class RezervareController extends Controller
             'retur' => [''],
             'retur_ora_id' =>[ 'required_if:retur,true', 'nullable', 'max:99'],
             'retur_data_cursa' => [ 'required_if:retur,true', 'max:50'],
-            'retur_zbor_oras_decolare' => ['max:50'],
-            'retur_zbor_ora_decolare' => ['max:50'],
-            'retur_zbor_ora_aterizare' => ['max:50'],
+            'retur_zbor_oras_decolare' => ['max:100'],
+            'retur_zbor_ora_decolare' => ['max:100'],
+            'retur_zbor_ora_aterizare' => ['max:100'],
             'order_id' => [''],
             'user_id' => [''],
             'status' => ['']

@@ -35,8 +35,8 @@
                                         v-if="oras_plecare.id = 8"
                                     @change='getOraseSosire()'>
                                             <optgroup label="Oraș">
-                                                <option v-for='oras_plecare in orase_plecare'                                
-                                                :value='oras_plecare.id'                                       
+                                                <option v-for='oras_plecare in orase_plecare'
+                                                :value='oras_plecare.id'                  
                                                 >@{{oras_plecare.nume}}</option>
                                             </optgroup>
                                             <optgroup label="Aeroport">
@@ -62,10 +62,10 @@
                         <div class="form-row mb-0 d-flex justify-content-between">
                             <div class="form-group col-lg-5">
                                 <script type="application/javascript"> 
-                                    oraPlecareVeche={!! json_encode(old('ora_plecare', "0")) !!}
+                                    oraPlecareVeche={!! json_encode(old('ora_id', "0")) !!}
                                 </script>        
                                 <label for="ora_id" class="mb-0">Ora de plecare:</label>
-                                    <select class="custom-select custom-select-sm {{ $errors->has('ora_plecare') ? 'is-invalid' : '' }}"
+                                    <select class="custom-select custom-select-sm {{ $errors->has('ora_id') ? 'is-invalid' : '' }}"
                                         name="ora_id"
                                         v-model="ora_plecare"
                                     @change='getOraSosire()'>
@@ -284,6 +284,10 @@
                 
 
                 
+    
+            <script type="application/javascript"> 
+                returVechi={!! json_encode(old('retur', false)) !!}
+            </script>
 
             <div v-show="retur" class="mb-2">    
                 <div class="form-row justify-content-center">   
@@ -297,8 +301,11 @@
                             <div class="form-group col-lg-12 card bg-primary text-white shadow-sm px-2 mb-0">
                                 <div class="form-row mb-0 d-flex justify-content-between">
                                     <div class="form-group col-lg-5">     
+                                        <script type="application/javascript"> 
+                                            returOraPlecareVeche={!! json_encode(old('retur_ora_id', "0")) !!}
+                                        </script>     
                                         <label for="ora_id" class="mb-0">Ora îmbarcare:</label>
-                                            <select class="custom-select custom-select-sm {{ $errors->has('retur_ora_plecare') ? 'is-invalid' : '' }}"
+                                            <select class="custom-select custom-select-sm {{ $errors->has('retur_ora_id') ? 'is-invalid' : '' }}"
                                                 name="retur_ora_id"
                                                 v-model="retur_ora_plecare"
                                             @change='getReturOraSosire()'>
