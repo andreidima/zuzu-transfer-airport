@@ -61,7 +61,7 @@ if (document.querySelector('#orase-ore-plecare')) {
 
             comision_agentie: 0,
 
-            retur: returVechi
+            retur: false
         },
         created: function () {
             this.getOrasePlecareInitial()

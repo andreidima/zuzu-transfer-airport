@@ -268,6 +268,10 @@ class RezervareController extends Controller
         
         $rezervare_tur->user_id = auth()->user()->id;
         $rezervare_retur->user_id = auth()->user()->id;
+
+        $rezervare_tur->nume = strtoupper($rezervare_tur->nume);
+        $rezervare_retur->nume = strtoupper($rezervare_retur->nume);
+
         
         $this->authorize('update', $rezervare_tur);
         $this->authorize('update', $rezervare_retur);
@@ -423,7 +427,7 @@ class RezervareController extends Controller
             'pret_total' => ['nullable', 'numeric', 'max:999999'],
             'observatii' => ['max:10000'],
             'comision_agentie' => [ 'nullable', 'numeric', 'max:999999'],
-            // 'tip_plata_id' => [''],
+            'tip_plata_id' => [''],
             'retur' => [''],
             'retur_ora_id' =>[ 'required_if:retur,true', 'nullable', 'max:99'],
             'retur_data_cursa' => [ 'required_if:retur,true', 'max:50'],

@@ -2,19 +2,19 @@
 
 @section('content')
 <div>
-    <div class="container card px-0" id="orase-ore-plecare"> 
-        <div class="d-flex justify-content-between card-header mb-1">
+    <div class="container p-0" id="orase-ore-plecare"> 
+        {{-- <div class="d-flex justify-content-between card-header mb-1">
             <div class="flex flex-vertical-center">
                 <h4 class="mt-2"><a href="/rezervari"><i class="fas fa-file-alt mr-1"></i>Rezervări</a> - Adaugă o rezervare nouă</h4>
             </div>
             <div>
                 <a class="btn btn-secondary" href="/rezervari" role="button">Renunță</a>
             </div>
-        </div>
+        </div> --}}
 
         @include ('errors')
         
-        <div class="card-body">
+        <div class="">
             <form  class="needs-validation" novalidate method="POST" action="/rezervari">
                 @csrf      
 
@@ -153,6 +153,7 @@
                                     name="nume" 
                                     placeholder="Nume" 
                                     value="{{ old('nume') }}"
+                                    style="text-transform:uppercase"
                                     required> 
                             </div>
                             <div class="form-group col-lg-12">
@@ -230,32 +231,23 @@
                                             </label>
                                         </div>
                                 </div>
-                            </div>                      
-                            <div class="form-group col-lg-4 mb-0 mt-2 d-flex">
-                                <script type="application/javascript"> 
-                                    pretTotal={!! json_encode(old('pret_total', "0")) !!}
-                                </script>
-                                <label for="pret_total" class="col-form-label mb-0">Preț total:</label>
-                                <div style="width:80px">
-                                    <input 
-                                        type="text" 
-                                        class="form-control form-control-sm {{ $errors->has('pret_total') ? 'is-invalid' : '' }}" 
-                                        name="pret_total"
-                                        v-model="pret_total" 
-                                        placeholder="0" 
-                                        value="{{ old('pret_total') }}"
-                                        required> 
-                                </div> 
-                            </div>                      
-                            {{-- <div class="form-group col-lg-8 mb-0 mt-2">                        
-                                <button type="button" class="btn btn-sm btn-primary ml-4"
-                                    @click='plata_integrala'>Plata se face integral la agenție</button> 
-                            </div>                      --}}
-                            <div class="form-group col-lg-12 mb-0 pt-2 border-top d-flex">
-                                <div class="form-group row mb-0">
+                            </div>                        
+                            <div class="form-group col-lg-12 mb-0 mt-3 d-flex"> 
+                                <label class="mr-2">Preț total:</label>
+                                <div class="form-check mr-4">
+                                    <input type="checkbox" class="form-check-input" name="tip_plata_id" value="1">
+                                    <label class="form-check-label" for="tip_plata_id">La șofer</label>
+                                </div>
+                                <div class="form-check ml-4">
+                                    <input type="checkbox" class="form-check-input" name="tip_plata_id" value="2">
+                                    <label class="form-check-label" for="tip_plata_id">La agenție</label>
+                                </div>
+                            </div>                     
+                            <div class="form-group col-lg-12 mb-0 pt-2 border-top border-bottom d-flex">
+                                <div class="form-group row mb-1">
                                     <div class="form-group col-lg-12 mb-0 d-flex">
                                         <label class="col-form-label mb-0 pb-0">
-                                            Completați doar dacă încasați o sumă de la client:
+                                            Completați doar dacă încasați comisionul agenției:
                                         </label>
                                         <div class="px-1 mb-0" style="width:80px">
                                             <input 
@@ -271,13 +263,24 @@
                                             lei
                                         </label>
                                     </div>
-                                    <div class="form-group col-lg-12 mb-0 d-flex">
-                                        <label class="col-form-label pt-0">
-                                             Puteți încasa comisionul agenției, sau plata integrala!
-                                        </label>
-                                    </div>
                                 </div>
-                            </div>
+                            </div>                   
+                            <div class="form-group col-lg-4 mb-0 mt-2 d-flex">
+                                <script type="application/javascript"> 
+                                    pretTotal={!! json_encode(old('pret_total', "0")) !!}
+                                </script>
+                                <label for="pret_total" class="col-form-label mb-0">Preț total:</label>
+                                <div style="width:80px">
+                                    <input 
+                                        type="text" 
+                                        class="form-control form-control-sm {{ $errors->has('pret_total') ? 'is-invalid' : '' }}" 
+                                        name="pret_total"
+                                        v-model="pret_total" 
+                                        placeholder="0" 
+                                        value="{{ old('pret_total') }}"
+                                        required> 
+                                </div> 
+                            </div> 
                         </div>
                     </div>
                 </div>
@@ -285,9 +288,9 @@
 
                 
     
-            <script type="application/javascript"> 
+            {{-- <script type="application/javascript"> 
                 returVechi={!! json_encode(old('retur', false)) !!}
-            </script>
+            </script> --}}
 
             <div v-show="retur" class="mb-2">    
                 <div class="form-row justify-content-center">   

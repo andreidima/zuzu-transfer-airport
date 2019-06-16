@@ -62,9 +62,6 @@
                                 </div> 
                                 <div class="form-row mb-2">
                                     <div class="form-group col-lg-6">
-                                        {{-- @php
-                                            dd($rezervari->ora->id)
-                                        @endphp --}}
                                         <script type="application/javascript"> 
                                             oraPlecareVeche={!! json_encode(old('ora_plecare', $rezervari->ora->id)) !!}
                                         </script>        
@@ -348,6 +345,12 @@
             </form>
         </div>  
     </div>
-
+  
+                                        <script type="application/javascript"> 
+                                            returOraPlecareVeche={!! json_encode(old('ora_id', "0")) !!}
+                                        </script>  
+                                        <script type="application/javascript"> 
+                                            returVechi=false
+                                        </script>    
    
 @endsection
