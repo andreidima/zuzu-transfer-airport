@@ -39,7 +39,12 @@ class RezervareController extends Controller
             $rezervari = auth()->user()->rezervari()
                 ->join('curse_ore', 'ora_id', '=', 'curse_ore.id')
                 ->select('rezervari.*', 'curse_ore.ora')
-                ->where('nume', 'like', '%' . $search . '%')
+                ->where('nume', 'like', '%' . $search_nume . '%')
+                ->where('telefon', 'like', '%' . $search_telefon . '%')
+                ->when($search_cod_bilet, function ($query, $search_cod_bilet) {
+                    return $query->where('rezervari.id', $search_cod_bilet);
+                })
+                // ->where('rezervari.id', 'like', '%' . $search_cod_bilet . '%')
                 ->latest('rezervari.created_at')
                 ->paginate(100);
         }
@@ -272,6 +277,9 @@ class RezervareController extends Controller
         $rezervare_tur->nume = strtoupper($rezervare_tur->nume);
         $rezervare_retur->nume = strtoupper($rezervare_retur->nume);
 
+        $rezervare_tur->zbor_oras_decolare = strtoupper($rezervare_tur->zbor_oras_decolare);
+        $rezervare_retur->zbor_oras_decolare = strtoupper($rezervare_retur->zbor_oras_decolare);
+
         
         $this->authorize('update', $rezervare_tur);
         $this->authorize('update', $rezervare_retur);
@@ -366,11 +374,15 @@ class RezervareController extends Controller
         $rezervari->cursa_id = $cursa_id->id;
         // $rezervari->ora_id = $request->ora_plecare;
 
-        // $facturi->incasata = 0; // automat nu se trimite nici o valoare daca checkboxul este debifat
-        // dd( $rezervari, $request->except('oras_plecare'), $this->validateRequest());
-        // dd($request);
-        $rezervari->update( $request->except(['oras_plecare', 'oras_sosire', 'ora_plecare', 'date']));
+        // $rezervari->nume = strtoupper( $rezervari->nume);
+        // $rezervari->zbor_oras_decolare = strtoupper($rezervari->zbor_oras_decolare);
 
+        $rezervari->update( $request->except(['oras_plecare', 'oras_sosire', 'ora_plecare', 'date', 'retur', 'retur_ora_id',
+            'retur_data_cursa', 'retur_zbor_oras_decolare', 'retur_zbor_ora_decolare', 'retur_zbor_ora_aterizare']));
+
+        $rezervari->nume = strtoupper($rezervari->nume);
+        $rezervari->zbor_oras_decolare = strtoupper($rezervari->zbor_oras_decolare);
+        $rezervari->update();
         return redirect($rezervari->path())->with('status', 'Rezervarea pentru clientul "' . $rezervari->nume . '" a fost modificată cu succes!');
     }
 
@@ -422,12 +434,12 @@ class RezervareController extends Controller
             'nume' => ['required', 'max:100'],
             'telefon' => [ 'required', 'max:100'],
             'email' => ['max:100'],
-            'nr_adulti' => [ 'nullable', 'numeric', 'max:99'],
+            'nr_adulti' => [ 'required', 'numeric', 'max:99'],
             'nr_copii' => [ 'nullable', 'numeric', 'max:99'],
             'pret_total' => ['nullable', 'numeric', 'max:999999'],
             'observatii' => ['max:10000'],
             'comision_agentie' => [ 'nullable', 'numeric', 'max:999999'],
-            'tip_plata_id' => [''],
+            'tip_plata_id' => ['required'],
             'retur' => [''],
             'retur_ora_id' =>[ 'required_if:retur,true', 'nullable', 'max:99'],
             'retur_data_cursa' => [ 'required_if:retur,true', 'max:50'],

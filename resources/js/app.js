@@ -59,8 +59,6 @@ if (document.querySelector('#orase-ore-plecare')) {
             pret_copil: 0,
             pret_total: pretTotal,
 
-            comision_agentie: 0,
-
             retur: false
         },
         created: function () {

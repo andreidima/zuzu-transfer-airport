@@ -28,7 +28,7 @@
                                     nrAdultiVechi = 0
                                     nrCopiiVechi = 0
                                 </script>       
-                                <label for="oras_plecare" class="mb-0">Plecare din:</label>
+                                <label for="oras_plecare" class="mb-0">Plecare din:<span class="text-danger">*</span></label>
                                     <select class="custom-select-sm custom-select {{ $errors->has('oras_plecare') ? 'is-invalid' : '' }}"
                                         name="oras_plecare"
                                         v-model="oras_plecare"
@@ -48,7 +48,7 @@
                                 <script type="application/javascript"> 
                                     orasSosireVechi={!! json_encode(old('oras_sosire', "0")) !!}
                                 </script>        
-                                <label for="oras_sosire" class="mb-0">Sosire la:</label>
+                                <label for="oras_sosire" class="mb-0">Sosire la:<span class="text-danger">*</span></label>
                                     <select class="custom-select-sm custom-select {{ $errors->has('oras_sosire') ? 'is-invalid' : '' }}"
                                         name="oras_sosire"
                                         v-model="oras_sosire"
@@ -64,7 +64,7 @@
                                 <script type="application/javascript"> 
                                     oraPlecareVeche={!! json_encode(old('ora_id', "0")) !!}
                                 </script>        
-                                <label for="ora_id" class="mb-0">Ora de plecare:</label>
+                                <label for="ora_id" class="mb-0">Ora de plecare:<span class="text-danger">*</span></label>
                                     <select class="custom-select custom-select-sm {{ $errors->has('ora_id') ? 'is-invalid' : '' }}"
                                         name="ora_id"
                                         v-model="ora_plecare"
@@ -96,7 +96,7 @@
                     <div class="form-group col-lg-6 border card bg-warning text-dark shadow-sm px-2 mb-0">
                         <div class="form-row mb-0 d-flex justify-content-between">
                             <div class="form-group col-lg-5 mb-0 ">
-                                <label for="data_cursa" class="mb-0">Data plecării:</label>
+                                <label for="data_cursa" class="mb-0">Data plecării:<span class="text-danger">*</span></label>
                                 <vue2-datepicker
                                     data-veche="{{ old('data_cursa') == '' ? '' : old('data_cursa') }}"
                                     nume-camp-db="data_cursa"
@@ -125,6 +125,7 @@
                                     name="zbor_oras_decolare" 
                                     placeholder="" 
                                     value="{{ old('zbor_oras_decolare') }}"
+                                    style="text-transform:uppercase"
                                     required>  
                             </div>
                             <div class="form-group col-lg-5">
@@ -146,7 +147,7 @@
                     <div class="form-group col-lg-6 card bg-success text-white shadow-sm px-2 mb-0"> 
                         <div class="form-group row mb-0">
                             <div class="form-group col-lg-12">
-                                <label for="nume" class="mb-0">Nume client:</label>
+                                <label for="nume" class="mb-0">Nume client:<span class="text-danger">*</span></label>
                                 <input 
                                     type="text" 
                                     class="form-control form-control-sm {{ $errors->has('nume') ? 'is-invalid' : '' }}" 
@@ -157,7 +158,7 @@
                                     required> 
                             </div>
                             <div class="form-group col-lg-12">
-                                <label for="telefon" class="mb-0">Telefon:</label>
+                                <label for="telefon" class="mb-0">Telefon:<span class="text-danger">*</span></label>
                                 <input 
                                     type="text" 
                                     class="form-control form-control-sm {{ $errors->has('telefon') ? 'is-invalid' : '' }}" 
@@ -174,7 +175,7 @@
                                     name="email" 
                                     placeholder="E-mail" 
                                     value="{{ old('email') }}"
-                                    required> 
+                                    > 
                             </div> 
                             <div class="form-group col-lg-12">
                                 <label for="nume" class="mb-0">Statie îmbarcare:</label>
@@ -193,7 +194,7 @@
                                                 <script type="application/javascript"> 
                                                     nrAdultiVechi={!! json_encode(old('nr_adulti', " ")) !!}
                                                 </script>  
-                                                <label for="nr_adulti" class="col-form-label pr-0">Adulți:</label>
+                                                <label for="nr_adulti" class="col-form-label pr-0">Adulți:<span class="text-danger">*</span></label>
                                                     <div class="pl-0">
                                                     <input 
                                                         type="number"
@@ -233,13 +234,15 @@
                                 </div>
                             </div>                        
                             <div class="form-group col-lg-12 mb-0 mt-3 d-flex"> 
-                                <label class="mr-2">Preț total:</label>
+                                <label class="mr-2">Preț total:<span class="text-danger">*</span></label>
                                 <div class="form-check mr-4">
-                                    <input type="checkbox" class="form-check-input" name="tip_plata_id" value="1">
+                                    <input type="checkbox" class="form-check-input" name="tip_plata_id" value="1"
+                                    {{ old('tip_plata_id') == '1' ? 'checked' : '' }}>
                                     <label class="form-check-label" for="tip_plata_id">La șofer</label>
                                 </div>
                                 <div class="form-check ml-4">
-                                    <input type="checkbox" class="form-check-input" name="tip_plata_id" value="2">
+                                    <input type="checkbox" class="form-check-input" name="tip_plata_id" value="2"
+                                    {{ old('tip_plata_id') == '2' ? 'checked' : '' }}>
                                     <label class="form-check-label" for="tip_plata_id">La agenție</label>
                                 </div>
                             </div>                     
@@ -254,7 +257,6 @@
                                                 type="text" 
                                                 class="form-control form-control-sm {{ $errors->has('comision_agentie') ? 'is-invalid' : '' }}"
                                                 name="comision_agentie"
-                                                v-model="comision_agentie"
                                                 placeholder="0"
                                                 value="{{ old('comision_agentie') }}"
                                                 >
@@ -307,7 +309,7 @@
                                         <script type="application/javascript"> 
                                             returOraPlecareVeche={!! json_encode(old('retur_ora_id', "0")) !!}
                                         </script>     
-                                        <label for="ora_id" class="mb-0">Ora îmbarcare:</label>
+                                        <label for="ora_id" class="mb-0">Ora îmbarcare:<span class="text-danger">*</span></label>
                                             <select class="custom-select custom-select-sm {{ $errors->has('retur_ora_id') ? 'is-invalid' : '' }}"
                                                 name="retur_ora_id"
                                                 v-model="retur_ora_plecare"
@@ -338,7 +340,7 @@
                             <div class="form-group col-lg-12 card bg-warning shadow-sm px-2 mb-0">
                                 <div class="form-row mb-0 d-flex justify-content-between">
                                     <div class="form-group col-lg-5 mb-2">  
-                                        <label for="retur_data_cursa" class="mb-0">Data plecării:</label>
+                                        <label for="retur_data_cursa" class="mb-0">Data plecării:<span class="text-danger">*</span></label>
                                         <vue2-datepicker
                                             data-veche="{{ old('retur_data_cursa') == '' ? '' : old('retur_data_cursa') }}"
                                             nume-camp-db="retur_data_cursa"

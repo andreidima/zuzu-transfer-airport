@@ -170,7 +170,10 @@
                         <div class="col-lg-10 text-center">
                             <hr>
                             <a class="btn btn-sm btn-primary mr-2" href="/rezervari/adauga" role="button">Adaugă o nouă Rezervare</a>
-                            <a class="btn btn-sm btn-primary" href="{{ $rezervari->path() }}/modifica" role="button">Modifică Rezervarea</a>
+                            
+                            @if (auth()->user()->isDispecer())
+                                <a class="btn btn-sm btn-primary" href="{{ $rezervari->path() }}/modifica" role="button">Modifică Rezervarea</a>
+                            @endif
                             <hr>
                         </div>
                     </div>

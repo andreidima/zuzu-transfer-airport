@@ -51,4 +51,12 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Rezervare', 'user_id');
     }
+
+    public function isDispecer()
+    {
+        if (auth()->user()->firma->id == 1) {
+                return true;
+        }
+        return false;
+    }
 }
