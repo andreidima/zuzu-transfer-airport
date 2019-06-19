@@ -432,7 +432,7 @@ class RezervareController extends Controller
             'zbor_ora_decolare' => ['max:100'],
             'zbor_ora_aterizare' => ['max:100'],
             'nume' => ['required', 'max:100'],
-            'telefon' => [ 'required', 'max:100'],
+            'telefon' => auth()->user()->isDispecer() ? [ 'required', 'max:100'] : [ 'required ', 'regex:/^[0-9 ]+$/', 'max: 100'],
             'email' => ['max:100'],
             'nr_adulti' => [ 'required', 'numeric', 'max:99'],
             'nr_copii' => [ 'nullable', 'numeric', 'max:99'],
@@ -449,7 +449,11 @@ class RezervareController extends Controller
             'order_id' => [''],
             'user_id' => [''],
             'status' => ['']
-        ]);
+        ],
+        [
+            'telefon.regex' => 'Câmpul telefon poate conține doar cifre și spații'
+        ]
+        );
     }
 
     public function pdfexport(Request $request, Rezervare $rezervari)

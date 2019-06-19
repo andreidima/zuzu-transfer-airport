@@ -171,9 +171,9 @@
                             <hr>
                             <a class="btn btn-sm btn-primary mr-2" href="/rezervari/adauga" role="button">Adaugă o nouă Rezervare</a>
                             
-                            @if (auth()->user()->isDispecer())
+                            {{-- @if (auth()->user()->isDispecer()) --}}
                                 <a class="btn btn-sm btn-primary" href="{{ $rezervari->path() }}/modifica" role="button">Modifică Rezervarea</a>
-                            @endif
+                            {{-- @endif --}}
                             <hr>
                         </div>
                     </div>

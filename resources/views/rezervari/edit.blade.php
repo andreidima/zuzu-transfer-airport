@@ -41,6 +41,7 @@
                                         name="oras_plecare"
                                         v-model="oras_plecare"
                                         v-if="oras_plecare.id = 8"
+                                        {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
                                     @change='getOraseSosire()'>
                                             <optgroup label="Oraș">
                                                 <option v-for='oras_plecare in orase_plecare'
@@ -51,6 +52,18 @@
                                                 <option :value='8'>Otopeni</option>
                                             </optgroup>
                                     </select>
+                                    @if (!auth()->user()->isDispecer())
+                                        <input 
+                                            type="text" 
+                                            class="form-control form-control-sm {{ $errors->has('oras_plecare') ? 'is-invalid' : '' }}" 
+                                            name="oras_plecare" 
+                                            v-model="oras_plecare"
+                                            placeholder="" 
+                                            value="{{ old('oras_plecare') == '' ? $rezervari->oras_plecare : old('oras_plecare') }}"
+                                            style="text-transform:uppercase"
+                                            hidden
+                                            required>
+                                    @endif
                             </div>
                             <div class="form-group col-lg-5">
                                 <script type="application/javascript"> 
@@ -134,6 +147,7 @@
                                     placeholder="" 
                                     value="{{ old('zbor_oras_decolare') == '' ? $rezervari->zbor_oras_decolare : old('zbor_oras_decolare') }}"
                                     style="text-transform:uppercase"
+                                    {{ auth()->user()->isDispecer() ? '' : 'readonly'}}
                                     required>  
                             </div>
                             <div class="form-group col-lg-5">
