@@ -68,6 +68,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('trasee', 'TraseuController');
 
 
+    
+    Route::resource('agentii', 'UserFirmaController');
+
+
 
     Route::get('/acasa', 'AcasaController@index')->name('acasa');
 

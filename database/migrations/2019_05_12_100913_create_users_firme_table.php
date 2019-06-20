@@ -16,7 +16,7 @@ class CreateUsersFirmeTable extends Migration
         Schema::create('users_firme', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nume')->nullable();
-            $table->string('punc_lucru')->nullable();
+            $table->string('punct_lucru')->nullable();
             $table->string('cif')->nullable();
             $table->string('nr_orc')->nullable();
             $table->string('persoana_contact')->nullable();

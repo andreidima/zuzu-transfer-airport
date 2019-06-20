@@ -14,7 +14,9 @@ class UserFirmaController extends Controller
      */
     public function index()
     {
-        //
+        $agentii = UserFirma::all();
+        
+        return view('agentii.index', compact('agentii'));
     }
 
     /**
@@ -80,6 +82,8 @@ class UserFirmaController extends Controller
      */
     public function destroy(UserFirma $userFirma)
     {
-        //
+        $this->authorize('update', $userFirma);
+        $userFirma->delete();
+        return redirect('/agentii');
     }
 }

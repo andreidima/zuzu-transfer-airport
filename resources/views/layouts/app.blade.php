@@ -71,7 +71,7 @@
                                 </a>
                             </li> --}}
                             <li class="nav-item active ml-4">
-                                <a class="nav-link disabled" href="#">
+                                <a class="nav-link" href="/agentii">
                                     <i class="fas fa-handshake mr-1"></i>Agenții
                                 </a>
                             </li>
