@@ -86,7 +86,7 @@
                                                             @method('DELETE')  
                                                             @csrf   
                                                             <button 
-                                                                type="submit" 
+                                                                type="submit"
                                                                 class="btn btn-danger"  
                                                                 >
                                                                 Șterge Agentie

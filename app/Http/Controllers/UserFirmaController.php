@@ -80,11 +80,10 @@ class UserFirmaController extends Controller
      * @param  \App\UserFirma  $userFirma
      * @return \Illuminate\Http\Response
      */
-    public function destroy(UserFirma $userFirma)
+    public function destroy(UserFirma $agentii)
     {
-        $this->authorize('update', $userFirma);
-        $userFirma->delete();
+        $this->authorize('update', $agentii);
+        $agentii->delete();
         return redirect('/agentii');
-        dd();
     }
 }
