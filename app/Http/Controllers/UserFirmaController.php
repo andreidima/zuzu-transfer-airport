@@ -85,5 +85,6 @@ class UserFirmaController extends Controller
         $this->authorize('update', $userFirma);
         $userFirma->delete();
         return redirect('/agentii');
+        dd();
     }
 }
