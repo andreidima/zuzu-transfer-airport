@@ -18,4 +18,9 @@ class UserFirma extends Model
     {
         return $this->hasMany('App\User', 'user_firma_id');
     }
+
+    public function rezervari()
+    {
+        return $this->hasManyThrough('App\Rezervare', 'App\User', 'user_firma_id', 'user_id');
+    }
 }

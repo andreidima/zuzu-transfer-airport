@@ -70,6 +70,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     
     Route::resource('agentii', 'UserFirmaController');
+    Route::get('agentii/{agentii}/rezervari', 'UserFirmaController@rezervari');
+
 
 
 

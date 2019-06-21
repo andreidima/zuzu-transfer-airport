@@ -56,8 +56,23 @@
                                 <td class="text-center">
                                     {{ $agentie->telefon }}
                                 </td>
-                                <td>
-                                    <div style="min-width:90px;">
+                                <td style="min-width:105px;">
+                                    <div style="float:left;">
+                                        <a href="{{ $agentie->path() }}/rezervari"
+                                        class="btn btn-success btn-sm"
+                                        title="Vezi Bilete"
+                                            >
+                                            <i class="fas fa-ticket-alt"></i>
+                                        </a>
+                                    </div>
+                                    <div style="float:left;" class="mx-1">
+                                        <a href="{{ $agentie->path() }}"
+                                        title="Detalii Agenție"
+                                            >
+                                            <img src="{{ asset('images/icon-details.png') }}">
+                                        </a>
+                                    </div>
+                                    <div style="float:left;">
                                         <a class="btn btn-danger btn-sm" 
                                             href="#" 
                                             role="button"

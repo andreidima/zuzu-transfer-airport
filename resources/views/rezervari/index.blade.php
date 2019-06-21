@@ -235,9 +235,9 @@
 
                             @elseif(!empty($rezervare->statie_imbarcare))
                                 <!-- Button to Open the Modal -->
-                                <button type="button" 
-                                    class="btn btn-white btn-sm" 
-                                    data-toggle="modal" 
+                                <button type="button"
+                                    class="btn btn-white btn-sm"
+                                    data-toggle="modal"
                                     data-target="#rezervareStatie{{ $rezervare->id }}"
                                     title="{{ $rezervare->statie_imbarcare }}">
                                     {{-- <i class="fas fa-info-circle"></i> --}}
@@ -268,6 +268,7 @@
                                         </div>
                                     </div>
                                 </div>
+                            @else
                                 -
                             @endif
                         </td>
@@ -288,7 +289,7 @@
                         <td align="center" style="border-right:#333 1px solid;" class="px-0">   
                             <div style="min-width:90px;">
                                 <div style="float:right; ">  
-                                    @if ($rezervare->activa == 1) 
+                                    @if ($rezervare->activa == 1)  
                                         <a class="btn btn-dark btn-sm" 
                                             href="#" 
                                             role="button"

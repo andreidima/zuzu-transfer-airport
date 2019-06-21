@@ -46,9 +46,12 @@ class UserFirmaController extends Controller
      * @param  \App\UserFirma  $userFirma
      * @return \Illuminate\Http\Response
      */
-    public function show(UserFirma $userFirma)
+    public function show(UserFirma $agentii)
     {
-        //
+        if (!auth()->user()->isDispecer()) {
+            abort(403);
+        }
+        return view('agentii.show', compact('agentii'));
     }
 
     /**
@@ -85,5 +88,20 @@ class UserFirmaController extends Controller
         $this->authorize('update', $agentii);
         $agentii->delete();
         return redirect('/agentii');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\UserFirma  $userFirma
+     * @return \Illuminate\Http\Response
+     */
+    public function rezervari(UserFirma $agentii)
+    {        
+            $rezervari = $agentii->rezervari()
+                ->latest()
+                ->paginate(100);
+
+        return view('agentii.rezervari', compact('agentii', 'rezervari'));
     }
 }
