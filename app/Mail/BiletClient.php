@@ -31,7 +31,7 @@ class BiletClient extends Mailable
     public function build()
     {
         // return $this->view('view.name');
-        return $this->from('bilet@zuzu-transfer-aeroport.ro')
-            ->markdown('mail.bilet-client');
+        // return $this->from('bilet@zuzu-transfer-aeroport.ro')
+        return $this->markdown('mail.bilet-client');
     }
 }
