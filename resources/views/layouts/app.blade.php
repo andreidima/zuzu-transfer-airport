@@ -70,8 +70,13 @@
                                     <i class="fas fa-route mr-1"></i>Trasee
                                 </a>
                             </li> --}}
-                            <li class="nav-item active ml-4">
+                            {{-- <li class="nav-item active ml-4">
                                 <a class="nav-link" href="/agentii">
+                                    <i class="fas fa-handshake mr-1"></i>Agenții
+                                </a>
+                            </li> --}}
+                            <li class="nav-item active ml-4">
+                                <a class="nav-link disabled" href="#">
                                     <i class="fas fa-handshake mr-1"></i>Agenții
                                 </a>
                             </li>

@@ -84,10 +84,12 @@
                                         {{ $rezervare->data_cursa }}
                                     </td>
                                     <td class="text-center">
-                                        {{ \Carbon\Carbon::parse($rezervare->ora->ora)->format('H:i') }}
+                                        @if (!empty($rezervare->ora))
+                                            {{ \Carbon\Carbon::parse($rezervare->ora->ora)->format('H:i') }}
+                                        @endif
                                     </td>
                                     <td class="text-center">                                
-                                        @if (!empty($rezervare->ora->ora && $rezervare->cursa->durata))
+                                        @if (!empty($rezervare->ora->ora) && !empty($rezervare->cursa->durata))
                                             {{ \Carbon\Carbon::parse($rezervare->ora->ora)
                                                 ->addHours(\Carbon\Carbon::parse($rezervare->cursa->durata)->hour)
                                                 ->addMinutes(\Carbon\Carbon::parse($rezervare->cursa->durata)->minute)

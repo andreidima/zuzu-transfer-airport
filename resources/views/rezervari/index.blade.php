@@ -44,7 +44,7 @@
                 <th>Plecare</th>
                 <th>Sosire</th>
                 <th>
-                    <div style="min-width:80px;">
+                    <div style="min-width:90px;">
                         Data<br />plecare
                     </div>
                 </th>
