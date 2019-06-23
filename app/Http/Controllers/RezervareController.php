@@ -385,11 +385,12 @@ class RezervareController extends Controller
         $rezervari->zbor_oras_decolare = strtoupper($rezervari->zbor_oras_decolare);
         $rezervari->update();
 
-        if (!empty($rezervari->email)) {
-            \Mail::to($rezervari->email)->send(
-                new BiletClient($rezervari)
-            );
-        }
+        // Trimitere email
+        // if (!empty($rezervari->email)) {
+        //     \Mail::to($rezervari->email)->send(
+        //         new BiletClient($rezervari)
+        //     );
+        // }
 
         return redirect($rezervari->path())->with('status', 'Rezervarea pentru clientul "' . $rezervari->nume . '" a fost modificată cu succes!');
     }
