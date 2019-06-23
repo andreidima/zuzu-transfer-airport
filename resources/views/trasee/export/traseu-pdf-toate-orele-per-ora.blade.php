@@ -140,8 +140,12 @@
                                             {{$cursa_ora->cursa->oras_plecare->nume}}
                                         </td>
                                         <td>
-                                            @if(!empty($rezervare->statie->nume))                                        
-                                                {{ $rezervare->statie->nume}} 
+                                            @if(!empty($rezervare->statie))
+                                                {{ $rezervare->statie->nume }}
+                                            @elseif(!empty($rezervare->statie_imbarcare))
+                                                {{ $rezervare->statie_imbarcare }}
+                                            @else
+                                                -
                                             @endif
                                         </td>
                                         <td>
@@ -447,8 +451,12 @@
                                             {{$cursa_ora->cursa->oras_plecare->nume}}
                                         </td>
                                         <td>
-                                            @if(!empty($rezervare->statie->nume))                                        
-                                                {{ $rezervare->statie->nume}} 
+                                            @if(!empty($rezervare->statie))
+                                                {{ $rezervare->statie->nume }}
+                                            @elseif(!empty($rezervare->statie_imbarcare))
+                                                {{ $rezervare->statie_imbarcare }}
+                                            @else
+                                                -
                                             @endif
                                         </td>
                                         <td>
