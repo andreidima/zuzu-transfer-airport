@@ -32,6 +32,12 @@ class BiletClient extends Mailable
     {
         // return $this->view('view.name');
         // return $this->from('bilet@zuzu-transfer-aeroport.ro')
-        return $this->markdown('mail.bilet-client');
+        $rezervari = $this->rezervari;
+        // dd($rezervari);
+        $pdf = \PDF::loadView('rezervari.export.rezervare-pdf', compact('rezervari'))
+            ->setPaper('a4');
+
+        return $this->markdown('mail.bilet-client')
+            ->attachData($pdf->output(), 'Rezervare Zuzu Transfer Aeroport.pdf');
     }
 }

@@ -11,8 +11,8 @@
         }
 
         body { 
-            font-family: 'Times New Roman', Times, serif !important;
-            font-size: 14px;
+            font-family: DejaVu Sans, sans-serif;
+            font-size: 12px;
             margin: 0px;
         }
 
@@ -122,7 +122,11 @@
                             </span>
                             <br>
                             <span style="font-size:1.2rem;">
-                                {{ $rezervari->statie->nume }}
+                                @if (!empty($rezervari->statie))
+                                    {{ $rezervari->statie->nume }}
+                                @else
+                                    {{ $rezervari->statie_imbarcare }}
+                                @endif
                             </span>
                             @endif
                         @endif

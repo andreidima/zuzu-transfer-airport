@@ -469,7 +469,8 @@ class RezervareController extends Controller
         } elseif ($request->view_type === 'rezervare-pdf') {
             $pdf = \PDF::loadView('rezervari.export.rezervare-pdf', compact('rezervari'))
                 ->setPaper('a4');
-                    return $pdf->stream('Rezervare ' . $rezervari->nume . '.pdf');
+                    // return $pdf->stream('Rezervare ' . $rezervari->nume . '.pdf');
+                    return $pdf->download('Rezervare ' . $rezervari->nume . '.pdf');
         }
         // elseif($request->view_type === 'fisa-de-date-a-imobilului-pdf'){
         //     $pdf = PDF::loadView('registru.export.pdf-fisa-de-date-a-imobilului', ['registre' => $registre]) ->setPaper('a4');

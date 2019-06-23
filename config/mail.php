@@ -133,13 +133,4 @@ return [
 
     'log_channel' => env('MAIL_LOG_CHANNEL'),
 
-    // Setari pentru acceptare SSL
-    'stream' => [
-        'ssl' => [
-            'allow_self_signed' => true,
-            'verify_peer' => false,
-            'verify_peer_name' => false,
-        ],
-    ],
-
 ];
