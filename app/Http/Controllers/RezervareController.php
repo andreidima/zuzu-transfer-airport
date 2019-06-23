@@ -390,7 +390,7 @@ class RezervareController extends Controller
                 new BiletClient($rezervari)
             );
         }
-        
+
         return redirect($rezervari->path())->with('status', 'Rezervarea pentru clientul "' . $rezervari->nume . '" a fost modificată cu succes!');
     }
 
@@ -441,7 +441,7 @@ class RezervareController extends Controller
             'zbor_ora_aterizare' => ['max:100'],
             'nume' => ['required', 'max:100'],
             'telefon' => auth()->user()->isDispecer() ? [ 'required', 'max:100'] : [ 'required ', 'regex:/^[0-9 ]+$/', 'max: 100'],
-            'email' => ['max:100'],
+            'email' => ['email', 'max:100'],
             'nr_adulti' => [ 'required', 'numeric', 'max:99'],
             'nr_copii' => [ 'nullable', 'numeric', 'max:99'],
             'pret_total' => ['nullable', 'numeric', 'max:999999'],

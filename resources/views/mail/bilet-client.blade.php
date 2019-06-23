@@ -1,11 +1,12 @@
 @component('mail::message')
-# Rezervare noua: {{ $rezervari->nume }}
+# Buna ziua {{ $rezervari->nume }},
 
-{{ $rezervari->pret_total }}
+### Va trimitem atasat biletul rezervarii
 
-@component('mail::button', ['url' => url( $rezervari->path() . '/export/rezervare-pdf')])
+
+{{-- @component('mail::button', ['url' => url( $rezervari->path() . '/export/rezervare-pdf')])
 Descarcă biletul
-@endcomponent
+@endcomponent --}}
 
 
 Multumim,<br>
