@@ -307,11 +307,34 @@ class RezervareController extends Controller
                 ['sosire_id', $request->oras_plecare]
             ])
             ->first();
+
         // setarea id-ului cursei in functie de orasele introduse
         $rezervare_tur->cursa_id = $cursa_id_tur->id;
         $rezervare_retur->cursa_id = $cursa_id_retur->id;
         
-        // dd($request, $rezervare_tur, $rezervare_retur);
+        // Calcularea pretului total
+        $pret_total = 0;
+        $cursa = Cursa::select('id', 'pret_adult', 'pret_copil')
+                    ->where('id', $cursa_id_tur->id)
+                    ->first();
+        if(!empty($cursa)){
+            if(is_numeric($request->nr_adulti) && ($request->nr_adulti > 0)){
+                $pret_total += $request->nr_adulti * $cursa->pret_adult;
+            }
+            if(is_numeric($request->nr_copii) && ($request->nr_copii > 0)){
+                $pret_total += $request->nr_copii * $cursa->pret_copil;
+            }
+        }
+        $rezervare_tur->pret_total = $pret_total;
+        $rezervare_retur->pret_total = $pret_total;
+        // dd($cursa_id_tur, $cursa, $request->nr_adulti, $request->nr_copii, $pret_total);
+
+        // daca se bifeaza plata la agentie, automat comision = pret_tatal
+        // daca se introduce comision, automat se bifeaza plata la agentie
+        if($request->tip_plata_id == 2){
+            $rezervare_tur->comision_agentie = $pret_total;
+            $rezervare_retur->comision_agentie = $pret_total;
+        }
 
         if ($request->retur == "false") {
             $rezervare_tur->save();
@@ -321,7 +344,6 @@ class RezervareController extends Controller
             $rezervare_retur->save();
             return redirect('/rezervari')->with('status', 'Rezervările tur si retur pentru clientul "' . $rezervare_tur->nume . '" au fost adăugate cu succes!');
         }
-
     }
 
     /**
@@ -442,13 +464,13 @@ class RezervareController extends Controller
             'zbor_ora_aterizare' => ['max:100'],
             'nume' => ['required', 'max:100'],
             'telefon' => auth()->user()->isDispecer() ? [ 'required', 'max:100'] : [ 'required ', 'regex:/^[0-9 ]+$/', 'max: 100'],
-            'email' => ['email', 'max:100'],
-            'nr_adulti' => [ 'required', 'numeric', 'max:99'],
-            'nr_copii' => [ 'nullable', 'numeric', 'max:99'],
+            'email' => ['nullable', 'email', 'max:100'],
+            'nr_adulti' => [ 'required', 'integer', 'between:1,99'],
+            'nr_copii' => [ 'nullable', 'integer', 'between:1,99'],
             'pret_total' => ['nullable', 'numeric', 'max:999999'],
             'observatii' => ['max:10000'],
             'comision_agentie' => [ 'nullable', 'numeric', 'max:999999'],
-            'tip_plata_id' => ['required'],
+            'tip_plata_id' => [''],
             'retur' => [''],
             'retur_ora_id' =>[ 'required_if:retur,true', 'nullable', 'max:99'],
             'retur_data_cursa' => [ 'required_if:retur,true', 'max:50'],

@@ -11,12 +11,6 @@
                 <a class="btn btn-danger" href="#" role="button" data-toggle="modal" data-target="#stergeRezervare">Șterge Rezervare</a>
             </div>
         </div> --}}
-        
-        @if (session('status'))
-        <div class="alert alert-success">
-            {{ session('status') }}
-        </div>
-        @endif
     
 
     <!-- Modal pentru stergere rezervare-->
@@ -54,44 +48,30 @@
         <div class="">
             <div class="row justify-content-center">
                 <div class="col-lg-7 bg-light border">
+        
+                    @if (session('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                    @endif
+
                     {{ $rezervari->nume }}
                     <br>
                     {{ $rezervari->telefon }} 
                     <hr class="">          
-                    <div class="row justify-content-between">
-                        <div class="col-lg-4">
+                    <div class="row justify-content-between mb-3">
+                        <div class="col-lg-6">
                             Imbarcare
-                            <br>
-                            <h5>
+                            <h5 class="d-inline">
                                 <span class="badge badge-danger"> 
                                     @if(!empty($rezervari->cursa)) 
                                         {{ $rezervari->cursa->oras_plecare->nume }}
                                     @endif
                                 </span>
                             </h5>
-                        </div>
-                        <div class="col-lg-4 text-center">
-                            Plecare
                             <br>
-                            <h5 class="mb-0">
-                                <span class="badge badge-primary">
-                                    @if(!empty($rezervari->data_cursa)) 
-                                        Ora: {{ \Carbon\Carbon::parse($rezervari->ora->ora)->format('H:i') }}
-                                    @endif
-                                </span>
-                            </h5>
-                            <h5>
-                                <span class="badge badge-primary">
-                                    @if(!empty($rezervari->ora_id)) 
-                                        Data: {{ \Carbon\Carbon::parse($rezervari->data_cursa)->format('d.m.Y') }}
-                                    @endif
-                                </span>
-                            </h5>
-                        </div>
-                        <div class="col-lg-4 text-right">
                             Debarcare
-                            <br>
-                            <h5>
+                            <h5 class="d-inline">
                                 <span class="badge badge-danger">
                                     @if(!empty($rezervari->cursa)) 
                                         {{ $rezervari->cursa->oras_sosire->nume }}
@@ -99,22 +79,43 @@
                                 </span>
                             </h5>
                         </div>
+                        <div class="col-lg-6 text-center">
+                            Data: 
+                            <h5 class="d-inline">
+                                <span class="badge badge-primary">
+                                    @if(!empty($rezervari->ora_id)) 
+                                        {{ \Carbon\Carbon::parse($rezervari->data_cursa)->format('d.m.Y') }}
+                                    @endif
+                                </span>
+                            </h5>
+                            <br>
+                            Plecare
+                            <h5 class="d-inline">
+                                <span class="badge badge-primary">
+                                    @if(!empty($rezervari->data_cursa)) 
+                                        Ora: {{ \Carbon\Carbon::parse($rezervari->ora->ora)->format('H:i') }}
+                                    @endif
+                                </span>
+                            </h5>
+                        </div>
                     </div>
 
                     <div class="row justify-content-between">
-                        <div class="col-lg-4">
+                        <div class="col-lg-12">
+                            Stație îmbarcare:
                             @if(!empty($rezervari->statie)) 
                                 {{ $rezervari->statie->nume }}
                             @endif
                             {{ $rezervari->statie_imbarcare }}
-                        </div>
-                        <div class="col-lg-4 text-center">
-                            {{ $rezervari->zbor_oras_decolare}}
-                        </div>
-                        <div class="col-lg-4 text-right">
+                            
+                            <br>
+
+                            Detalii zbor:
                             {{ $rezervari->zbor_ora_decolare }}
                             -
                             {{ $rezervari->zbor_ora_aterizare }}
+                            /
+                            {{ $rezervari->zbor_oras_decolare}}
                         </div>
                         <div class="col-lg-12">
                             <hr>
@@ -122,44 +123,38 @@
                     </div>
 
                     <div class="row justify-content-center">
-                        <div class="col-lg-10">
+                        <div class="col-lg-4">
                             <h5 class="mb-0">
                             <small>Nr. persoane:</small>
                                 <span class="badge badge-primary">
                                     {{ $rezervari->nr_adulti + $rezervari->nr_copii }}
                                 </span>
                             </h5>
-                            <hr>
                         </div>
-                    </div>
-                    
-                    <div class="row justify-content-center">
-                        <div class="col-lg-2 mt-1">
-                            <h3>
-                                <span class="badge badge-success">
-                                    {{ $rezervari->pret_total }} lei
-                                </span>
-                            </h3>
-                        </div>
-                        <div class="col-lg-8 text-center">
-                            <h5 class="mb-0">
+
+                        <div class="col-lg-6 text-right">
+                            <h5 class="mb-0 mr-0">
                                 <small>Total plata acum:</small>
                                 <span class="badge badge-success">
-                                    @if ($rezervari->tip_plata_id == 2)
+                                    {{-- @if ($rezervari->tip_plata_id == 2)
                                         {{ $rezervari->pret_total }}
                                     @else 
                                         {{ $rezervari->comision_agentie - 0}}
-                                    @endif
+                                    @endif --}}
+                                    {{ $rezervari->comision_agentie }}
                                     lei
                                 </span>
                                 <br>
+                            </h5>
+                            <h5 class="mb-0 mr-2">
                                 <small>Total plata la imbarcare:</small>
                                 <span class="badge badge-success">
-                                    @if ($rezervari->tip_plata_id == 2)
+                                    {{-- @if ($rezervari->tip_plata_id == 2)
                                         0
                                     @else 
                                         {{ $rezervari->pret_total - $rezervari->comision_agentie }}
-                                    @endif
+                                    @endif --}}
+                                    {{ $rezervari->pret_total - $rezervari->comision_agentie }}
                                     lei
                                 </span>
                             </h5>

@@ -234,12 +234,12 @@
                                 </div>
                             </div>                        
                             <div class="form-group col-lg-12 mb-0 mt-3 d-flex"> 
-                                <label class="mr-2">Preț total:<span class="text-danger">*</span></label>
-                                <div class="form-check mr-4">
+                                <label class="mr-2">Preț total:</label>
+                                {{-- <div class="form-check mr-4">
                                     <input type="checkbox" class="form-check-input" name="tip_plata_id" value="1"
                                     {{ old('tip_plata_id') == '1' ? 'checked' : '' }}>
                                     <label class="form-check-label" for="tip_plata_id">La șofer</label>
-                                </div>
+                                </div> --}}
                                 <div class="form-check ml-4">
                                     <input type="checkbox" class="form-check-input" name="tip_plata_id" value="2"
                                     {{ old('tip_plata_id') == '2' ? 'checked' : '' }}>
@@ -267,11 +267,11 @@
                                     </div>
                                 </div>
                             </div>                   
-                            <div class="form-group col-lg-4 mb-0 mt-2 d-flex">
+                            {{-- <div class="form-group col-lg-4 mb-0 mt-2 d-flex"> --}}
                                 <script type="application/javascript"> 
                                     pretTotal={!! json_encode(old('pret_total', "0")) !!}
                                 </script>
-                                <label for="pret_total" class="col-form-label mb-0">Preț total:</label>
+                                {{-- <label for="pret_total" class="col-form-label mb-0">Preț total:</label>
                                 <div style="width:80px">
                                     <input 
                                         type="text" 
@@ -282,7 +282,7 @@
                                         value="{{ old('pret_total') }}"
                                         required> 
                                 </div> 
-                            </div> 
+                            </div>  --}}
                         </div>
                     </div>
                 </div>
@@ -408,6 +408,7 @@
                 <div class="form-row">
                     <div class="col-lg-12 d-flex justify-content-center">                        
                         <button type="submit" class="btn btn-primary mr-4">Adaugă Rezervare</button> 
+                        
                         <button type="button" class="btn btn-dark ml-4" v-on:click="retur = !retur">Retur</button>                           
                             <input
                                 type="hidden"
@@ -417,6 +418,8 @@
                 </div>
                     
             </form>
+
+
         </div>
     </div>
 </div>
