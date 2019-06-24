@@ -150,14 +150,18 @@
                             @endif
                         </td>
                         <td align="center" style="text-align:left;">
-                            <span title="Cod bilet: RO{{ $rezervare->id }}">
-                                <a href="{{ $rezervare->path() }}" class="text-dark">
-                                    {{ $rezervare->nume }}
-                                </a>
-                            </span>
+                            {{-- <div style="max-width:200px; word-wrap: break-word; white-space: normal;"> --}}
+                                <span title="Cod bilet: RO{{ $rezervare->id }}">
+                                    <a href="{{ $rezervare->path() }}" class="text-dark">
+                                        {{ $rezervare->nume }}
+                                    </a>
+                                </span>
+                            {{-- </div> --}}
                         </td>
                         <td align="center" style="text-align:left;">
-                            {{ $rezervare->telefon }}
+                            {{-- <div style="max-width:100px; word-wrap: break-word; white-space: normal;"> --}}
+                                {{ $rezervare->telefon }}
+                            {{-- </div> --}}
                         </td>
                         <td align="center">
                             @if (!empty($rezervare->cursa->oras_plecare))
