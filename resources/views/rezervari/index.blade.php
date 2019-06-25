@@ -149,7 +149,7 @@
                                 </div>
                             @endif
                         </td>
-                        <td align="center" style="text-align:left;">
+                        <td align="center" style="text-align:left; word-break: break-word;">
                             {{-- <div style="max-width:200px; word-wrap: break-word; white-space: normal;"> --}}
                                 <span title="Cod bilet: RO{{ $rezervare->id }}">
                                     <a href="{{ $rezervare->path() }}" class="text-dark">
@@ -158,7 +158,7 @@
                                 </span>
                             {{-- </div> --}}
                         </td>
-                        <td align="center" style="text-align:left;">
+                        <td align="center" style="text-align:left; word-break: break-word;">
                             {{-- <div style="max-width:100px; word-wrap: break-word; white-space: normal;"> --}}
                                 {{ $rezervare->telefon }}
                             {{-- </div> --}}

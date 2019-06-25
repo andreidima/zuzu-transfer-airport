@@ -23,13 +23,17 @@
             margin-top: 0px;
             border-style: solid;
             border-width:0px;
-            width: 100%;
+            width: 100%; 
+            word-wrap:break-word;
+            /* word-break: break-all; */
+            /* table-layout: fixed; */
         }
         
         th, td {
             padding: 1px 1px;
             border-width:1px;
             border-style: solid;
+            table-layout:fixed;
             
         }
         tr {
@@ -110,16 +114,16 @@
                         
                         <table style="">
                             <tr style="background-color:#e7d790">
-                                <td>Nr. crt.</td>
-                                <td>Nume si prenume</td>
-                                <td>Telefon</td>
-                                <td>Plecare</td>
-                                <td>Statie imbarcare</td>
-                                <td>Ora decolare</td>
-                                <td>Observatii</td>
-                                <td>Suma</td>
-                                <td>Plata</td>
-                                <td>Nr. pers.</td>
+                                <th style="width:4%">Nr. crt.</th>
+                                <th style="width:26%">Nume si prenume</th>
+                                <th style="width:15%">Telefon</th>
+                                <th style="width:8%">Plecare</th>
+                                <th style="width:10%">Statie imbarcare</th>
+                                <th style="width:8%">Ora decolare</th>
+                                <th style="width:10%">Observatii</th>
+                                <th style="width:7%">Suma</th>
+                                <th style="width:7%">Plata</th>
+                                <th style="width:5%">Nr. pers.</th>
                             </tr>
                             @php 
                                 ($nrcrt = 1) 

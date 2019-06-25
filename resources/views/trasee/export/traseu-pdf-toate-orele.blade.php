@@ -125,10 +125,10 @@
                                     <td>
                                         {{ $nrcrt++ }}
                                     </td>
-                                    <td>
+                                    <td style="word-break: break-word;">
                                         {{ $rezervare->nume }}
                                     </td>
-                                    <td>
+                                    <td style="word-break: break-word;">
                                         {{ $rezervare->telefon }}
                                     </td>
                                     <td>
@@ -136,7 +136,7 @@
                                             {{$cursa_ora->cursa->oras_plecare->nume}}
                                         @endif
                                     </td>
-                                    <td>
+                                    <td style="word-break: break-word;">
                                         @if(!empty($rezervare->statie))
                                             {{ $rezervare->statie->nume }}
                                         @elseif(!empty($rezervare->statie_imbarcare))

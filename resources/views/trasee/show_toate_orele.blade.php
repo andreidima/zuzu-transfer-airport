@@ -134,10 +134,10 @@
                                             </div>
                                         @endif
                                     </td>
-                                    <td align="center" style="text-align:left;">
+                                    <td align="center" style="text-align:left; word-break: break-word;">
                                         {{ $rezervare->nume }}
                                     </td>
-                                    <td align="center" style="text-align:left;">
+                                    <td align="center" style="text-align:left; word-break: break-word;">
                                         {{ $rezervare->telefon }}
                                     </td>
                                     <td align="center">
@@ -176,7 +176,7 @@
                                     <td align="center">
                                         {{ $rezervare->nr_adulti + $rezervare->nr_copii}}</a>
                                     </td>
-                                    <td align="center">
+                                    <td align="center" style="word-break: break-word;">
                                         @if(!empty($rezervare->statie))
                                             {{ $rezervare->statie->nume }}
                                         @elseif(!empty($rezervare->statie_imbarcare))
