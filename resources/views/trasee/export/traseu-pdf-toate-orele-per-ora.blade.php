@@ -117,7 +117,7 @@
                                 <th style="width:4%">Nr. crt.</th>
                                 <th style="width:26%">Nume si prenume</th>
                                 <th style="width:15%">Telefon</th>
-                                <th style="width:8%">Plecare</th>
+                                <th style="width:9%">Plecare</th>
                                 <th style="width:10%">Statie imbarcare</th>
                                 <th style="width:8%">Ora decolare</th>
                                 <th style="width:10%">Observatii</th>

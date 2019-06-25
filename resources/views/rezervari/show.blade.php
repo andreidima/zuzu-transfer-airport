@@ -136,12 +136,11 @@
                             <h5 class="mb-0 mr-0">
                                 <small>Total plata acum:</small>
                                 <span class="badge badge-success">
-                                    {{-- @if ($rezervari->tip_plata_id == 2)
+                                    @if (($rezervari->comision_agentie == 0) && ($rezervari->tip_plata_id == 2))
                                         {{ $rezervari->pret_total }}
                                     @else 
-                                        {{ $rezervari->comision_agentie - 0}}
-                                    @endif --}}
-                                    {{ $rezervari->comision_agentie }}
+                                        {{ $rezervari->comision_agentie }}
+                                    @endif
                                     lei
                                 </span>
                                 <br>
@@ -149,12 +148,11 @@
                             <h5 class="mb-0 mr-2">
                                 <small>Total plata la imbarcare:</small>
                                 <span class="badge badge-success">
-                                    {{-- @if ($rezervari->tip_plata_id == 2)
+                                    @if (($rezervari->comision_agentie == 0) && ($rezervari->tip_plata_id == 2))
                                         0
                                     @else 
                                         {{ $rezervari->pret_total - $rezervari->comision_agentie }}
-                                    @endif --}}
-                                    {{ $rezervari->pret_total - $rezervari->comision_agentie }}
+                                    @endif
                                     lei
                                 </span>
                             </h5>

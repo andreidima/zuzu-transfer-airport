@@ -240,7 +240,7 @@
                                     {{ old('tip_plata_id') == '1' ? 'checked' : '' }}>
                                     <label class="form-check-label" for="tip_plata_id">La șofer</label>
                                 </div> --}}
-                                <div class="form-check ml-4">
+                                <div class="form-check">
                                     <input type="checkbox" class="form-check-input" name="tip_plata_id" value="2"
                                     {{ old('tip_plata_id') == '2' ? 'checked' : '' }}>
                                     <label class="form-check-label" for="tip_plata_id">La agenție</label>
@@ -406,8 +406,41 @@
             </div>
                 
                 <div class="form-row">
-                    <div class="col-lg-12 d-flex justify-content-center">                        
-                        <button type="submit" class="btn btn-primary mr-4">Adaugă Rezervare</button> 
+                    <div class="col-lg-12 d-flex justify-content-center">               
+                        @if (auth()->user()->isDispecer())
+                            <button type="submit" class="btn btn-primary mr-4">Adaugă Rezervare</button> 
+                        @else
+                            <!-- Button to Open the Modal -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                                Adaugă Rezervare
+                            </button>
+
+                            <!-- The Modal -->
+                            <div class="modal" id="myModal">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+
+                                <!-- Modal Header -->
+                                <div class="modal-header bg-warning">
+                                    <h4 class="modal-title">Ai verificat cu atenție datele înregistrării?</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    Odata adaugată înregistrarea, vei mai putea modifica doar câmpurile <b>Stație de îmbarcare</b> și <b>telefon</b>.
+                                </div>
+
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary mr-4">Adaugă Rezervare</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Reverifică datele</button>
+                                </div>
+
+                                </div>
+                            </div>
+                            </div>
+                        @endif
                         
                         <button type="button" class="btn btn-dark ml-4" v-on:click="retur = !retur">Retur</button>                           
                             <input

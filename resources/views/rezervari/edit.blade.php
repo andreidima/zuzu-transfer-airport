@@ -52,18 +52,6 @@
                                                 <option :value='8'>Otopeni</option>
                                             </optgroup>
                                     </select>
-                                    @if (!auth()->user()->isDispecer())
-                                        <input 
-                                            type="text" 
-                                            class="form-control form-control-sm {{ $errors->has('oras_plecare') ? 'is-invalid' : '' }}" 
-                                            name="oras_plecare" 
-                                            v-model="oras_plecare"
-                                            placeholder="" 
-                                            value="{{ old('oras_plecare') == '' ? $rezervari->oras_plecare : old('oras_plecare') }}"
-                                            style="text-transform:uppercase"
-                                            hidden
-                                            required>
-                                    @endif
                             </div>
                             <div class="form-group col-lg-5">
                                 <script type="application/javascript"> 
@@ -73,6 +61,7 @@
                                     <select class="custom-select-sm custom-select {{ $errors->has('oras_sosire') ? 'is-invalid' : '' }}"
                                         name="oras_sosire"
                                         v-model="oras_sosire"
+                                        {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
                                     @change='getOrePlecare();getReturOrePlecare();'>
                                             <option v-for='oras_sosire in orase_sosire'                                
                                             :value='oras_sosire.id'                                       
@@ -89,6 +78,7 @@
                                     <select class="custom-select custom-select-sm {{ $errors->has('ora_id') ? 'is-invalid' : '' }}"
                                         name="ora_id"
                                         v-model="ora_plecare"
+                                        {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
                                     @change='getOraSosire()'>
                                         <option v-for='ora_plecare in ore_plecare'                                
                                             :value='ora_plecare.id'                                       
@@ -124,6 +114,7 @@
                                     tip="date"
                                     latime="150"
                                     not-before="{{ \Carbon\Carbon::today() }}"
+                                    {{ auth()->user()->isDispecer() ? '' : 'disabled-date'}}
                                 ></vue2-datepicker> 
                             </div>
                             <div class="form-group col-lg-5">
@@ -134,6 +125,7 @@
                                     name="zbor_ora_decolare" 
                                     placeholder="00:00" 
                                     value="{{ old('zbor_ora_decolare') == '' ? $rezervari->zbor_ora_decolare : old('zbor_ora_decolare') }}"
+                                    {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
                                     required>
                             </div>
                         </div>
@@ -147,7 +139,7 @@
                                     placeholder="" 
                                     value="{{ old('zbor_oras_decolare') == '' ? $rezervari->zbor_oras_decolare : old('zbor_oras_decolare') }}"
                                     style="text-transform:uppercase"
-                                    {{ auth()->user()->isDispecer() ? '' : 'readonly'}}
+                                    {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
                                     required>  
                             </div>
                             <div class="form-group col-lg-5">
@@ -158,6 +150,7 @@
                                     name="zbor_ora_aterizare" 
                                     placeholder="00:00" 
                                     value="{{ old('zbor_ora_aterizare') == '' ? $rezervari->zbor_ora_aterizare : old('zbor_ora_aterizare') }}"
+                                    {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
                                     required>  
                             </div>
                         </div>
@@ -177,6 +170,7 @@
                                     placeholder="Nume" 
                                     value="{{ old('nume') == '' ? $rezervari->nume : old('nume') }}"
                                     style="text-transform:uppercase"
+                                    {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
                                     required> 
                             </div>
                             <div class="form-group col-lg-12">
@@ -197,6 +191,7 @@
                                     name="email" 
                                     placeholder="E-mail" 
                                     value="{{ old('email') == '' ? $rezervari->email : old('email') }}"
+                                    {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
                                     required> 
                             </div> 
                             <div class="form-group col-lg-12">
@@ -228,6 +223,7 @@
                                                         value="{{ old('nr_adulti') }}"
                                                         required
                                                         v-on:input='getPretTotal()'
+                                                        {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
                                                         > 
                                                     </div>                                       
                                         </div>  
@@ -247,6 +243,7 @@
                                                     value="{{ old('nr_copii') }}"
                                                     required
                                                     v-on:input='getPretTotal()'
+                                                    {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
                                                     >
                                                 </div>
                                             <label id="" class="col-form-label pl-1 text-white align-bottom">
@@ -264,7 +261,9 @@
                                 </div> --}}
                                 <div class="form-check ml-4">
                                     <input type="checkbox" class="form-check-input" name="tip_plata_id" value="2"
-                                    {{ old('tip_plata_id', $rezervari->tip_plata_id) == '2' ? 'checked' : '' }}>
+                                    {{ old('tip_plata_id', $rezervari->tip_plata_id) == '2' ? 'checked' : '' }}
+                                    {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
+                                    >
                                     <label class="form-check-label" for="tip_plata_id">La agenție</label>
                                 </div>
                             </div>                     
@@ -281,6 +280,7 @@
                                                 name="comision_agentie"
                                                 placeholder="0"
                                                 value="{{ old('comision_agentie') == '' ? $rezervari->comision_agentie : old('comision_agentie') }}"
+                                                {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
                                                 {{-- {{ old('statie_imbarcare') == '' ? $rezervari->statie_imbarcare : old('statie_imbarcare') }} --}}
                                                 >
                                         </div>

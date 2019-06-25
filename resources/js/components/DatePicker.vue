@@ -4,7 +4,7 @@ import moment from 'moment';
  
 export default {
   components: { DatePicker },
-  props: ['dataVeche', 'numeCampDb', 'tip', 'latime', 'notBefore'],
+  props: ['dataVeche', 'numeCampDb', 'tip', 'latime', 'notBefore', 'disabledDate'],
   data() {
     return {
       time1: '',
@@ -92,7 +92,9 @@ export default {
       :clearable=true
       :first-day-of-week="1"
       :lang="lang"
-      :time-picker-options="timePickerOptions">
+      :time-picker-options="timePickerOptions"
+      :disabled=disabledDate
+      >
     </date-picker>
     <!-- <date-picker v-model="time3" range :shortcuts="shortcuts"></date-picker> -->
     <!-- <date-picker v-model="value" :lang="lang"></date-picker> -->

@@ -327,13 +327,12 @@ class RezervareController extends Controller
         }
         $rezervare_tur->pret_total = $pret_total;
         $rezervare_retur->pret_total = $pret_total;
-        // dd($cursa_id_tur, $cursa, $request->nr_adulti, $request->nr_copii, $pret_total);
 
         // daca se bifeaza plata la agentie, automat comision = pret_tatal
-        // daca se introduce comision, automat se bifeaza plata la agentie
-        if($request->tip_plata_id == 2){
-            $rezervare_tur->comision_agentie = $pret_total;
-            $rezervare_retur->comision_agentie = $pret_total;
+        // daca se introduce comision, automat se bifeaza plata la agentie        
+        if (is_numeric($request->comision_agentie) && ($request->comision_agentie > 0)) {
+            $rezervare_tur->tip_plata_id = 2;
+            $rezervare_retur->tip_plata_id = 2;
         }
 
         if ($request->retur == "false") {
@@ -379,33 +378,43 @@ class RezervareController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Rezervare $rezervari)
-    { 
-        $this->validateRequest();
-        $this->authorize('update', $rezervari);      
-        
-        // dd($rezervari, $request->ora_id);
+    {
+        if (auth()->user()->isDispecer()){ 
+            $this->validateRequest();
+            $this->authorize('update', $rezervari);    
 
-        // aflarea id-ului cursei in functie de orasele introduse
-        $cursa_id = Cursa::select('id')
-            ->where([
-                ['plecare_id', $request->oras_plecare],
-                ['sosire_id', $request->oras_sosire]
-            ])
-            ->first();
+            // aflarea id-ului cursei in functie de orasele introduse
+            $cursa_id = Cursa::select('id')
+                ->where([
+                    ['plecare_id', $request->oras_plecare],
+                    ['sosire_id', $request->oras_sosire]
+                ])
+                ->first();
 
-        // setarea id-ului cursei in functie de orasele introduse
-        $rezervari->cursa_id = $cursa_id->id;
-        // $rezervari->ora_id = $request->ora_plecare;
+            // setarea id-ului cursei in functie de orasele introduse
+            $rezervari->cursa_id = $cursa_id->id;
 
-        // $rezervari->nume = strtoupper( $rezervari->nume);
-        // $rezervari->zbor_oras_decolare = strtoupper($rezervari->zbor_oras_decolare);
+            $rezervari->update( $request->except(['oras_plecare', 'oras_sosire', 'ora_plecare', 'date', 'retur', 'retur_ora_id',
+                'retur_data_cursa', 'retur_zbor_oras_decolare', 'retur_zbor_ora_decolare', 'retur_zbor_ora_aterizare']));
 
-        $rezervari->update( $request->except(['oras_plecare', 'oras_sosire', 'ora_plecare', 'date', 'retur', 'retur_ora_id',
-            'retur_data_cursa', 'retur_zbor_oras_decolare', 'retur_zbor_ora_decolare', 'retur_zbor_ora_aterizare']));
+            $rezervari->nume = strtoupper($rezervari->nume);
+            $rezervari->zbor_oras_decolare = strtoupper($rezervari->zbor_oras_decolare);
+            $rezervari->update();
+        }
+        else{
+            $validatedData = $request->validate([
+                'telefon' => auth()->user()->isDispecer() ? [ 'required', 'max:100'] : [ 'required ', 'regex:/^[0-9 ]+$/', 'max: 100'],
+                'statie_imbarcare' => 'nullable',
+            ],
+            [
+                'telefon.regex' => 'Câmpul telefon poate conține doar cifre și spații'
+            ]
+            );
 
-        $rezervari->nume = strtoupper($rezervari->nume);
-        $rezervari->zbor_oras_decolare = strtoupper($rezervari->zbor_oras_decolare);
-        $rezervari->update();
+            $this->authorize('update', $rezervari);
+            
+            $rezervari->update( $request->only(['telefon', 'statie_imbarcare']));
+        }
 
         // Trimitere email
         // if (!empty($rezervari->email)) {
