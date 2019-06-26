@@ -282,7 +282,7 @@
                         </a>
                     </div>
                 @break
-            @case(4)   
+            @case(4)
                 <table class="table table-sm" style="border:1px solid #333; width:100%;"> 
                     <thead>
                         <tr style="height:35px; background-color:#336699; text-align:center; color:white;">

@@ -152,9 +152,9 @@
                         <td align="center" style="text-align:left; word-break: break-word;">
                             {{-- <div style="max-width:200px; word-wrap: break-word; white-space: normal;"> --}}
                                 <span title="Cod bilet: RO{{ $rezervare->id }}">
-                                    <a href="{{ $rezervare->path() }}" class="text-dark">
+                                    {{-- <a href="{{ $rezervare->path() }}" class="text-dark"> --}}
                                         {{ $rezervare->nume }}
-                                    </a>
+                                    {{-- </a> --}}
                                 </span>
                             {{-- </div> --}}
                         </td>

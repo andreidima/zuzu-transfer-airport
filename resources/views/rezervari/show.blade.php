@@ -139,7 +139,7 @@
                                     @if (($rezervari->comision_agentie == 0) && ($rezervari->tip_plata_id == 2))
                                         {{ $rezervari->pret_total }}
                                     @else 
-                                        {{ $rezervari->comision_agentie }}
+                                        {{ $rezervari->comision_agentie - 0}}
                                     @endif
                                     lei
                                 </span>
