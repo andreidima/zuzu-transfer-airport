@@ -47,7 +47,7 @@
 
         <div class="">
             <div class="row justify-content-center">
-                <div class="col-lg-7 bg-light border">
+                <div class="col-lg-7 bg-light border" style="word-break: break-word;">
         
                     @if (session('status'))
                     <div class="alert alert-success">

@@ -36,7 +36,7 @@
     <div class="container-fluid px-0 table-responsive-lg">
         <table class="table table-sm" style="border:1px solid #333; width:100%;"> 
             <thead>
-                <tr style="height:35px; background-color:#336699; text-align:center; color:white;">
+                <tr style="height:35px; background-color:#336699; text-align:center; color:white; font-size:0.7rem">
                 <th class="px-0">Nr.<br>crt.</th>
                 <th class="px-0">User</th>
                 <th>Nume</th>
@@ -416,7 +416,7 @@
         </table>
                 <nav>
                     <ul class="pagination justify-content-center">
-                        {{$rezervari->links('vendor.pagination.bootstrap-4')}}
+                        {{$rezervari->links()}}
                     </ul>
                 </nav> 
 
