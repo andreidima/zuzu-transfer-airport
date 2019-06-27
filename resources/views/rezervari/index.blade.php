@@ -54,7 +54,7 @@
                 <th class="px-0">Nr.<br />pers.</th>
                 <th align="center" class="px-0">Statie<br />imbarcare</th>
                 <th class="px-0">Bilet</th>
-                <th colspan="3">Diverse</th>
+                <th class="px-0" colspan="3">Diverse</th>
                 </tr>
             </thead>
             <tbody>               
@@ -190,7 +190,7 @@
                         <td align="center">                                
                             {{ \Carbon\Carbon::parse($rezervare->ora)->format('H:i') }}
                         </td>
-                        <td align="center">
+                        <td class="px-0" align="center">
                             @if(!empty($rezervare->tip_plata))
                                 {{ $rezervare->tip_plata->nume }}
                             @else
@@ -276,7 +276,7 @@
                                 -
                             @endif
                         </td>
-                        <td align="center">
+                        <td class="px-0" align="center">
                             <div style="width:25px; height:25px;" class="bg-success mt-1">
                                 <a href="{{ $rezervare->path() }}/export/rezervare-pdf"
                                     {{-- class="btn btn-success"

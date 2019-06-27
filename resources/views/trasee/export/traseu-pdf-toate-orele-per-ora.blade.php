@@ -7,8 +7,8 @@
     <title>Raport</title>
     <style>
         body { 
-            font-family: 'Times New Roman', Times, serif !important; 
-            font-size: 14px;
+            font-family: DejaVu Sans, sans-serif; 
+            font-size: 11px;
         }
 
         * {
@@ -69,7 +69,7 @@
                         <table style="">
                             <tr style="">
                                 <td style="border-width:0px; padding:0rem; width:40%">
-                                        <img src="{{ asset('images/logo-zuzu.png') }}" width="250px">
+                                        <img src="{{ asset('images/logo-zuzu.png') }}" width="150px">
                                 </td>
                                 <td style="border-width:0px; padding:0rem; width:60%; text-align:center; font-size:16px">
                                     Tip traseu: TUR
@@ -92,7 +92,10 @@
                                         @elseif ($cursa_ora->cursa->oras_plecare->nume == "Buzau")
                                             BZ:
                                         @endif
-                                        @if($loop->last)
+                                        @if ($cursa_ora->cursa->oras_plecare->nume == "Marasesti")
+                                            {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}}
+                                            <br>
+                                        @elseif($loop->last)
                                             {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}}
                                         @else($loop->last)
                                             {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}},
@@ -115,15 +118,15 @@
                         <table style="">
                             <tr style="background-color:#e7d790">
                                 <th style="width:4%">Nr. crt.</th>
-                                <th style="width:26%">Nume si prenume</th>
-                                <th style="width:15%">Telefon</th>
+                                <th style="width:15%">Nume si prenume</th>
+                                <th style="width:13%">Telefon</th>
                                 <th style="width:9%">Plecare</th>
-                                <th style="width:10%">Statie imbarcare</th>
-                                <th style="width:8%">Ora decolare</th>
+                                <th style="width:21%">Statie imbarcare</th>
+                                <th style="width:9%">Ora decolare</th>
                                 <th style="width:10%">Observatii</th>
                                 <th style="width:7%">Suma</th>
                                 <th style="width:7%">Plata</th>
-                                <th style="width:5%">Nr. pers.</th>
+                                <th style="width:5%">Nr. pers</th>
                             </tr>
                             @php 
                                 ($nrcrt = 1) 
@@ -169,7 +172,12 @@
                                             @endif
                                         </td>
                                         <td>
-                                            {{ $rezervare->pret_total - $rezervare->comision_agentie - $rezervare->plata_avans }} lei
+                                            @if (($rezervare->comision_agentie == 0) && ($rezervare->tip_plata_id == 2))
+                                                0
+                                            @else 
+                                                {{ $rezervare->pret_total - $rezervare->comision_agentie }}
+                                            @endif
+                                            lei
                                         </td>
                                         <td>
                                             @if ($rezervare->tip_plata->nume == "Sofer")
@@ -198,17 +206,16 @@
                                         $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sum('nr_adulti') +
                                         $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sum('nr_copii');     
                                     $suma = $suma + $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sum('pret_total') -
-                                        $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sum('comision_agentie');
+                                        $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sum('comision_agentie') - 
+                                        $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)
+                                            ->where('tip_plata_id', 2)->where('comision_agentie', 0)->sum('pret_total');
                                 @endphp
                             @empty
                             @endforelse
 
                             <tr>
-                                <td colspan="7" style="text-align:right;">
-                                    Total:
-                                </td>
-                                <td>
-                                    {{ $suma }} lei
+                                <td colspan="8" style="text-align:right;">
+                                    Total: {{ $suma }} lei
                                 </td>
                                 <td>
                                     Nr. pers.

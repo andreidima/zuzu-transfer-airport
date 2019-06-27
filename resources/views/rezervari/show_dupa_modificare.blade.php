@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div class="form-row mb-0 d-flex justify-content-center"> 
-                    <div class="form-group col-lg-6 card bg-light text-dark shadow-sm px-2 mb-0">
+                    <div class="form-group col-lg-6 card bg-secondary text-white shadow-sm px-2 mb-0">
                         <div class="form-row mb-0 d-flex justify-content-between">
                             <div class="form-group col-lg-5 mb-0">
                                 <script type="application/javascript"> 
@@ -41,7 +41,7 @@
                                         name="oras_plecare"
                                         v-model="oras_plecare"
                                         v-if="oras_plecare.id = 8"
-                                        {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
+                                        disabled
                                     @change='getOraseSosire()'>
                                             <optgroup label="Oraș">
                                                 <option v-for='oras_plecare in orase_plecare'
@@ -61,7 +61,7 @@
                                     <select class="custom-select-sm custom-select {{ $errors->has('oras_sosire') ? 'is-invalid' : '' }}"
                                         name="oras_sosire"
                                         v-model="oras_sosire"
-                                        {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
+                                        disabled
                                     @change='getOrePlecare();getReturOrePlecare();'>
                                             <option v-for='oras_sosire in orase_sosire'                                
                                             :value='oras_sosire.id'                                       
@@ -78,7 +78,7 @@
                                     <select class="custom-select custom-select-sm {{ $errors->has('ora_id') ? 'is-invalid' : '' }}"
                                         name="ora_id"
                                         v-model="ora_plecare"
-                                        {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
+                                        disabled
                                     @change='getOraSosire()'>
                                         <option v-for='ora_plecare in ore_plecare'                                
                                             :value='ora_plecare.id'                                       
@@ -104,7 +104,7 @@
                 </div>
 
                 <div class="form-row mb-0 d-flex justify-content-center">
-                    <div class="form-group col-lg-6 border card bg-light text-dark shadow-sm px-2 mb-0">
+                    <div class="form-group col-lg-6 border card bg-secondary text-white shadow-sm px-2 mb-0">
                         <div class="form-row mb-0 d-flex justify-content-between">
                             <div class="form-group col-lg-5 mb-0 ">
                                 <label for="data_cursa" class="mb-0">Data plecării:<span class="text-danger">*</span></label>
@@ -114,7 +114,7 @@
                                     tip="date"
                                     latime="150"
                                     not-before="{{ \Carbon\Carbon::today() }}"
-                                    {{ auth()->user()->isDispecer() ? '' : 'disabled-date'}}
+                                    disabled-date
                                 ></vue2-datepicker> 
                             </div>
                             <div class="form-group col-lg-5 mb-0">
@@ -125,7 +125,7 @@
                                     name="zbor_ora_decolare" 
                                     placeholder="00:00" 
                                     value="{{ old('zbor_ora_decolare') == '' ? $rezervari->zbor_ora_decolare : old('zbor_ora_decolare') }}"
-                                    {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
+                                    disabled
                                     required>
                             </div>
                         </div>
@@ -139,7 +139,7 @@
                                     placeholder="" 
                                     value="{{ old('zbor_oras_decolare') == '' ? $rezervari->zbor_oras_decolare : old('zbor_oras_decolare') }}"
                                     style="text-transform:uppercase"
-                                    {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
+                                    disabled
                                     required>  
                             </div>
                             <div class="form-group col-lg-5 mb-0">
@@ -150,7 +150,7 @@
                                     name="zbor_ora_aterizare" 
                                     placeholder="00:00" 
                                     value="{{ old('zbor_ora_aterizare') == '' ? $rezervari->zbor_ora_aterizare : old('zbor_ora_aterizare') }}"
-                                    {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
+                                    disabled
                                     required>  
                             </div>
                         </div>
@@ -159,7 +159,7 @@
 
 
                 <div class="form-row mb-2 d-flex justify-content-center">   
-                    <div class="form-group col-lg-6 card bg-light text-dark shadow-sm px-2 mb-0"> 
+                    <div class="form-group col-lg-6 card bg-secondary text-white shadow-sm px-2 mb-0"> 
                         <div class="form-group row mb-0">
                             <div class="form-group col-lg-12 my-2">
                                 {{-- <label for="nume" class="mb-0">Nume client:<span class="text-danger">*</span></label> --}}
@@ -170,7 +170,7 @@
                                     placeholder="Nume client" 
                                     value="{{ old('nume') == '' ? $rezervari->nume : old('nume') }}"
                                     style="text-transform:uppercase"
-                                    {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
+                                    disabled
                                     required> 
                             </div>
                             <div class="form-group col-lg-12 mb-2">
@@ -181,6 +181,7 @@
                                     name="telefon" 
                                     placeholder="Telefon" 
                                     value="{{ old('telefon') == '' ? $rezervari->telefon : old('telefon') }}"
+                                    disabled
                                     required> 
                             </div>  
                             <div class="form-group col-lg-12 mb-1">
@@ -191,7 +192,7 @@
                                     name="email" 
                                     placeholder="E-mail" 
                                     value="{{ old('email') == '' ? $rezervari->email : old('email') }}"
-                                    {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
+                                    disabled
                                     required> 
                             </div> 
                             <div class="form-group col-lg-12 mb-1">
@@ -202,6 +203,7 @@
                                     name="statie_imbarcare" 
                                     placeholder="" 
                                     value="{{ old('statie_imbarcare') == '' ? $rezervari->statie_imbarcare : old('statie_imbarcare') }}"
+                                    disabled
                                     required> 
                             </div>
                             <div class="form-group col-lg-12 mb-0 pt-1 border-top border-bottom">
@@ -213,18 +215,18 @@
                                                     nrAdultiVechi={!! json_encode(old('nr_adulti', $rezervari->nr_adulti)) !!}
                                                 </script>  
                                                 <label for="nr_adulti" class="col-form-label pr-0">Număr de locuri:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Adulți:<span class="text-danger">*</span></label>
-                                                    <div class="pl-0" style="width:80px">
+                                                    <div class="pl-0" style="width:60px">
                                                     <input 
                                                         type="number"
                                                         min="0"
-                                                        max="20" 
+                                                        max="99" 
                                                         class="form-control form-control-sm {{ $errors->has('nr_adulti') ? 'is-invalid' : '' }}" 
                                                         name="nr_adulti" 
                                                         v-model="nr_adulti" 
                                                         value="{{ old('nr_adulti') }}"
                                                         required
                                                         v-on:input='getPretTotal()'
-                                                        {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
+                                                        disabled
                                                         > 
                                                     </div>                                       
                                         </div>  
@@ -233,18 +235,18 @@
                                                 nrCopiiVechi={!! json_encode(old('nr_copii', $rezervari->nr_copii)) !!}
                                             </script>  
                                             <label for="nr_copii" class="col-form-label pr-0">Copii:</label>
-                                                <div class="px-0" style="width:80px">
+                                                <div class="px-0" style="width:60px">
                                                 <input 
                                                     type="number"
                                                     min="0"
-                                                    max="10" 
+                                                    max="99" 
                                                     class="form-control form-control-sm {{ $errors->has('nr_copii') ? 'is-invalid' : '' }}" 
                                                     name="nr_copii" 
                                                     v-model="nr_copii" 
                                                     value="{{ old('nr_copii') }}"
                                                     required
                                                     v-on:input='getPretTotal()'
-                                                    {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
+                                                    disabled
                                                     >
                                                 </div>
                                             <label id="" class="col-form-label pl-1 text-white align-bottom">
@@ -266,7 +268,7 @@
                                                 name="comision_agentie"
                                                 placeholder="0"
                                                 value="{{ old('comision_agentie') == '' ? $rezervari->comision_agentie : old('comision_agentie') }}"
-                                                {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
+                                                disabled
                                                 {{-- {{ old('statie_imbarcare') == '' ? $rezervari->statie_imbarcare : old('statie_imbarcare') }} --}}
                                                 >
                                         </div>
@@ -281,16 +283,16 @@
                                 <div class="form-check mr-4">
                                     <input type="checkbox" class="form-check-input" name="tip_plata_id" value="1"
                                     {{ old('tip_plata_id', $rezervari->tip_plata_id) == '1' ? 'checked' : '' }}
-                                    {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
+                                    disabled
                                     >
-                                    <label class="form-check-label" for="tip_plata_id">La șofer</label>
+                                    <label class="form-check-label text-white" for="tip_plata_id">La șofer</label>
                                 </div>
                                 <div class="form-check ml-4">
                                     <input type="checkbox" class="form-check-input" name="tip_plata_id" value="2"
                                     {{ old('tip_plata_id', $rezervari->tip_plata_id) == '2' ? 'checked' : '' }}
-                                    {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
+                                    disabled
                                     >
-                                    <label class="form-check-label" for="tip_plata_id">La agenție</label>
+                                    <label class="form-check-label text-white" for="tip_plata_id">La agenție</label>
                                 </div>
                             </div>                     
                             <div class="form-group col-lg-12 mb-0 mt-1 d-flex border-bottom">
@@ -306,7 +308,7 @@
                                         placeholder="0" 
                                         value="{{ old('pret_total') == '' ? $rezervari->pret_total : old('pret_total') }}"
                                         required
-                                        {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
+                                        disabled
                                         > 
                                 </div> 
                                 <label class="col-form-label mb-0 pb-0">
@@ -334,11 +336,11 @@
                     </div>
                 </div> 
 
-                <div class="form-row justify-content-center">
+                {{-- <div class="form-row justify-content-center">
                     <div class="col-lg-6">                        
                         <button type="submit" class="btn btn-primary" style="width: 100%; height:100%; white-space: normal;">Salvare modificare</button> 
                     </div>
-                </div>                    
+                </div>                     --}}
             </form>
         </div>
     </div>

@@ -334,6 +334,10 @@ class RezervareController extends Controller
             $rezervare_tur->tip_plata_id = 2;
             $rezervare_retur->tip_plata_id = 2;
         }
+        else if(empty($request->tip_plata_id)){
+            $rezervare_tur->tip_plata_id = 1;
+            $rezervare_retur->tip_plata_id = 1;            
+        }
 
         if ($request->retur == "false") {
             $rezervare_tur->save();
@@ -358,6 +362,13 @@ class RezervareController extends Controller
         }
         return view('rezervari.show', compact('rezervari'));
     }
+    public function show_dupa_modificare(Rezervare $rezervari)
+    {
+        if (auth()->user()->isNot($rezervari->user) && (auth()->user()->firma->id != 1)) {
+            abort(403);
+        }
+        return view('rezervari.show_dupa_modificare', compact('rezervari'));
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -367,6 +378,9 @@ class RezervareController extends Controller
      */
     public function edit(Rezervare $rezervari)
     {
+        // if (auth()->user()->isNot($rezervari->user) && (auth()->user()->firma->id != 1)) {
+        //     abort(403);
+        // }
         return view('rezervari.edit', compact('rezervari'));
     }
 
@@ -423,7 +437,7 @@ class RezervareController extends Controller
         //     );
         // }
 
-        return redirect($rezervari->path())->with('status', 'Rezervarea pentru clientul "' . $rezervari->nume . '" a fost modificată cu succes!');
+        return redirect($rezervari->path().'/rezervare_modificata')->with('status', 'Rezervarea pentru clientul "' . $rezervari->nume . '" a fost modificată cu succes!');
     }
 
     public function update_activa(Request $request, Rezervare $rezervari)
@@ -474,8 +488,8 @@ class RezervareController extends Controller
             'nume' => ['required', 'max:100'],
             'telefon' => auth()->user()->isDispecer() ? [ 'required', 'max:100'] : [ 'required ', 'regex:/^[0-9 ]+$/', 'max: 100'],
             'email' => ['nullable', 'email', 'max:100'],
-            'nr_adulti' => [ 'required', 'integer', 'between:1,99'],
-            'nr_copii' => [ 'nullable', 'integer', 'between:1,99'],
+            'nr_adulti' => [ 'required', 'integer', 'between:0,20'],
+            'nr_copii' => [ 'nullable', 'integer', 'between:0,10'],
             'pret_total' => ['nullable', 'numeric', 'max:999999'],
             'observatii' => ['max:10000'],
             'comision_agentie' => [ 'nullable', 'numeric', 'max:999999'],

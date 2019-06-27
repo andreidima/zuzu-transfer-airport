@@ -196,11 +196,11 @@
                                                     nrAdultiVechi={!! json_encode(old('nr_adulti', " ")) !!}
                                                 </script>  
                                                 <label for="nr_adulti" class="col-form-label pr-0">Număr de locuri:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Adulți:<span class="text-danger">*</span></label>
-                                                    <div class="pl-0" style="width:60px">
+                                                    <div class="pl-0" style="width:80px">
                                                     <input 
                                                         type="number"
                                                         min="0"
-                                                        max="99" 
+                                                        max="20" 
                                                         class="form-control form-control-sm {{ $errors->has('nr_adulti') ? 'is-invalid' : '' }}" 
                                                         name="nr_adulti" 
                                                         v-model="nr_adulti" 
@@ -215,11 +215,11 @@
                                                 nrCopiiVechi={!! json_encode(old('nr_copii', " ")) !!}
                                             </script>  
                                             <label for="nr_copii" class="col-form-label pr-0">Copii:</label>
-                                                <div class="px-0" style="width:60px">
+                                                <div class="px-0" style="width:80px">
                                                 <input 
                                                     type="number"
                                                     min="0"
-                                                    max="99" 
+                                                    max="10" 
                                                     class="form-control form-control-sm {{ $errors->has('nr_copii') ? 'is-invalid' : '' }}" 
                                                     name="nr_copii" 
                                                     v-model="nr_copii" 
