@@ -2,7 +2,7 @@
 
 @section('content')
 <div>
-    <div class="container p-0" id="orase-ore-plecare"> 
+    <div class="container p-0 " id="orase-ore-plecare"> 
         {{-- <div class="d-flex justify-content-between card-header mb-1">
             <div class="flex flex-vertical-center">
                 <h4 class="mt-2"><a href="/rezervari"><i class="fas fa-file-alt mr-1"></i>Rezervări</a> - Adaugă o rezervare nouă</h4>
@@ -15,10 +15,10 @@
         @include ('errors')
         
         <div class="">
-            <form  class="needs-validation" novalidate method="POST" action="/rezervari">
-                @csrf      
+            <form  class="needs-validation" novalidate method="POST" action="/rezervari" style="font-size:0.8rem">
+                @csrf
 
-                <div class="form-row mb-0 d-flex justify-content-center">   
+                <div class="form-row mb-0 d-flex justify-content-center">
                     <div class="form-group col-lg-6 card bg-primary text-white shadow-sm px-2 mb-0">
                         <div class="form-row mb-0 d-flex justify-content-between">
                             <div class="form-group col-lg-5 m-0">

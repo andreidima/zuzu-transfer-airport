@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div class="form-row mb-0 d-flex justify-content-center"> 
-                    <div class="form-group col-lg-6 card bg-light text-dark shadow-sm px-2 mb-0">
+                    <div class="form-group col-lg-6 card text-dark shadow-sm px-2 mb-0" style="background-color:#c3c3c3">
                         <div class="form-row mb-0 d-flex justify-content-between">
                             <div class="form-group col-lg-5 mb-0">
                                 <script type="application/javascript"> 
@@ -104,7 +104,7 @@
                 </div>
 
                 <div class="form-row mb-0 d-flex justify-content-center">
-                    <div class="form-group col-lg-6 border card bg-light text-dark shadow-sm px-2 mb-0">
+                    <div class="form-group col-lg-6 border card text-dark shadow-sm px-2 mb-0" style="background-color:#c3c3c3">
                         <div class="form-row mb-0 d-flex justify-content-between">
                             <div class="form-group col-lg-5 mb-0 ">
                                 <label for="data_cursa" class="mb-0">Data plecării:<span class="text-danger">*</span></label>
@@ -159,7 +159,7 @@
 
 
                 <div class="form-row mb-2 d-flex justify-content-center">   
-                    <div class="form-group col-lg-6 card bg-light text-dark shadow-sm px-2 mb-0"> 
+                    <div class="form-group col-lg-6 card text-dark shadow-sm px-2 mb-0" style="background-color:#c3c3c3"> 
                         <div class="form-group row mb-0">
                             <div class="form-group col-lg-12 my-2">
                                 {{-- <label for="nume" class="mb-0">Nume client:<span class="text-danger">*</span></label> --}}
