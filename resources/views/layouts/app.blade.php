@@ -25,25 +25,24 @@
 </head>
 <body>
     <div>
-        <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary py-0" style="font-size:1rem">
             <div class="container">
-                @guest
+                {{-- @guest
                 @else
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{-- {{ config('app.name', 'Zuzu') }} --}}
-                    Zuzu
+                    {{ config('app.name', 'Zuzu') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                @endguest
+                @endguest --}}
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto nav-fill ml-4 pt-1">
+                    <ul class="navbar-nav mr-auto nav-fill mr-4">
                         @guest
                         @else
-                            <li class="nav-item active ml-4">
+                            <li class="nav-item active mr-4">
                                 <a class="nav-link" href="/rezervari">
                                     <i class="fas fa-address-card mr-1"></i>Rezervări
                                 </a>
@@ -53,9 +52,9 @@
                                     <i class="fas fa-car-side mr-1"></i>Curse
                                 </a>
                             </li> --}}
-                            <li class="nav-item active ml-4 dropdown">
+                            <li class="nav-item active mr-4 dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-route mr-1"></i>Trasee
+                                <i class="fas fa-route mr-1"></i>Raport
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="/trasee">Raport Tur</a>
@@ -71,22 +70,17 @@
                                     <i class="fas fa-route mr-1"></i>Trasee
                                 </a>
                             </li> --}}
-                            {{-- <li class="nav-item active ml-4">
+                            <li class="nav-item active mr-4">
                                 <a class="nav-link" href="/agentii">
                                     <i class="fas fa-handshake mr-1"></i>Agenții
                                 </a>
-                            </li> --}}
-                            <li class="nav-item active ml-4">
-                                <a class="nav-link disabled" href="#">
-                                    <i class="fas fa-handshake mr-1"></i>Agenții
-                                </a>
                             </li>
-                            <li class="nav-item active ml-4">
+                            <li class="nav-item active mr-4">
                                 <a class="nav-link disabled" href="#">
                                     <i class="fas fa-chalkboard-teacher mr-1"></i>Instrucțiuni Rezervări
                                 </a>
                             </li>
-                            <li class="nav-item active ml-4">
+                            <li class="nav-item active mr-4">
                                 <a class="nav-link disabled" href="#">
                                     <i class="fas fa-user-slash mr-1"></i>Clienți neserioși
                                 </a>

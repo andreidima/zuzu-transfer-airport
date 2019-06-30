@@ -100,7 +100,7 @@ class UserFirmaController extends Controller
     {        
             $rezervari = $agentii->rezervari()
                 ->latest()
-                ->paginate(100);
+                ->simplePaginate(100);
 
         return view('agentii.rezervari', compact('agentii', 'rezervari'));
     }

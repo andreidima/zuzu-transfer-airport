@@ -42,7 +42,9 @@
                                     {{ $loop->iteration }}.
                                 </td>  
                                 <td>
-                                    {{ $agentie->nume }}
+                                    <a href="{{ $agentie->path() }}/rezervari" title="Vezi Rezervările Agenției" class="text-dark">
+                                        {{ $agentie->nume }}
+                                    </a>
                                 </td>    
                                 <td>
                                     {{ $agentie->punct_lucru }}
@@ -50,7 +52,7 @@
                                 <td>
                                     {{ $agentie->persoana_contact }}
                                 </td>
-                                <td>
+                                <td style="width:200px; word-break: break-all;">
                                     {{ $agentie->email }}
                                 </td>
                                 <td class="text-center">

@@ -56,10 +56,10 @@
                                     <td>
                                         {{ $loop->iteration }}.
                                     </td>
-                                    <td>
+                                    <td style="max-width:200px; word-break: break-all;">
                                         {{ $rezervare->nume }}
                                     </td>
-                                    <td>
+                                    <td style="max-width:200px; word-break: break-all;">
                                         {{ $rezervare->telefon }}
                                     </td>
                                     <td>
@@ -106,7 +106,7 @@
                                     <td class="text-center">
                                         {{ $rezervare->nr_adulti + $rezervare->nr_copii }}
                                     </td>
-                                    <td>                                
+                                    <td style="max-width:200px; word-break: break-all;">                                
                                         @if(!empty($rezervare->statie))
                                             {{ $rezervare->statie->nume }}
                                         @endif
@@ -120,7 +120,7 @@
 
                     <nav>
                         <ul class="pagination justify-content-center">
-                            {{$rezervari->links('vendor.pagination.bootstrap-4')}}
+                            {{$rezervari->links()}}
                         </ul>
                     </nav>
 
