@@ -10,6 +10,52 @@
 
 
         <div class="card-body">
+            
+            <div class="" id="app1">
+                <form class="needs-validation" novalidate method="GET" action="{{ $agentii->path() }}/rezervari">
+                    @csrf                    
+                    <div class="input-group custom-search-form row d-flex justify-content-center mb-3">
+                        <div class="d-flex col-8 justify-content-center">
+                            <div class="d-flex mr-4 w-35 align-items-center">
+                                <label for="search_data_inceput" class="mb-0 mr-1">Data început</label>
+                                <vue2-datepicker
+                                    @if (!empty($search_data_inceput))
+                                        data-veche="{{ $search_data_inceput }}"
+                                    @endif
+                                    nume-camp-db="search_data_inceput"
+                                    tip="date"
+                                    latime="150"
+                                    {{-- data-veche="{{\Carbon\Carbon::today()}}" --}}
+                                ></vue2-datepicker>
+                            </div>
+                            <div class="d-flex mr-4 w-35 align-items-center">
+                                <label for="search_data_inceput" class="mb-0 mr-1">Data sfârșit</label>
+                                <vue2-datepicker
+                                    @if (!empty($search_data_inceput))
+                                        data-veche="{{ $search_data_sfarsit }}"
+                                    @endif
+                                    nume-camp-db="search_data_sfarsit"
+                                    tip="date"
+                                    latime="150"
+                                    {{-- data-veche="{{\Carbon\Carbon::today()}}" --}}
+                                ></vue2-datepicker>
+                            </div>
+                            <div class="d-flex mr-4 w-30"> 
+                                <button class="btn bg-primary text-white mr-4" type="submit">
+                                    <i class="fas fa-search"></i>Filtrează
+                                </button>
+                                {{-- <a class="btn bg-secondary text-white" href="/rezervari-raport-zi" role="button">
+                                    {{ $agentii->path() }}
+                                </a> --}}
+                            </div> 
+                        </div>                 
+                    </div>
+
+                    <div>
+                    </div>
+                </form>
+            </div>
+
             <div class="row justify-content-center">
                 <div class="col-lg-12 bg-light border">
                     <table class="table table-sm table-striped" style="font-size:0.8rem">
@@ -56,10 +102,10 @@
                                     <td>
                                         {{ $loop->iteration }}.
                                     </td>
-                                    <td style="max-width:200px; word-break: break-all;">
+                                    <td style="max-width:200px; word-break: break-word;">
                                         {{ $rezervare->nume }}
                                     </td>
-                                    <td style="max-width:200px; word-break: break-all;">
+                                    <td style="max-width:200px; word-break: break-word;">
                                         {{ $rezervare->telefon }}
                                     </td>
                                     <td>
@@ -106,7 +152,7 @@
                                     <td class="text-center">
                                         {{ $rezervare->nr_adulti + $rezervare->nr_copii }}
                                     </td>
-                                    <td style="max-width:200px; word-break: break-all;">                                
+                                    <td style="max-width:200px; word-break: break-word;">                                
                                         @if(!empty($rezervare->statie))
                                             {{ $rezervare->statie->nume }}
                                         @endif
@@ -122,7 +168,21 @@
                         <ul class="pagination justify-content-center">
                             {{$rezervari->links()}}
                         </ul>
-                    </nav>
+                    </nav>                  
+
+
+                    <div class="text-center">
+
+                        {{-- agentii/{agentii}/rezervari/{data_inceput}/{data_sfarsit}/export/{view_type} --}}
+
+                        <a href="/agentii/{{ $agentii->id }}/rezervari/{{ $search_data_inceput }}/{{ $search_data_sfarsit }}/export/agentie-rezervari-pdf"
+                            class="btn btn-success"
+                            role="button"
+                            target="_blank"
+                            >
+                            <i class="fas fa-file-pdf"></i> Raport
+                        </a>
+                    </div>
 
 
                 </div>

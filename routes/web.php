@@ -30,7 +30,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 
-//Rute Rezervari
+    //Rute Rezervari
     Route::patch('/rezervari/activa/{rezervari}', 'RezervareController@update_activa')->name('update_activa');
     Route::get( 'rezervari/{rezervari}/export/{view_type}', 'RezervareController@pdfexport');
 
@@ -65,7 +65,7 @@ Route::group(['middleware' => 'auth'], function () {
     // Afisarea rezervarilor pentru un nume de traseu, pe toate orele
     Route::get('trasee/toate_orele/{traseu_nume_id}/{data_traseu}', 'TraseuController@show_toate_orele')->name('traseu_dupa_data_toate_orele');
     Route::get('trasee/toate_orele/{traseu_nume_id}/{data_traseu}/export/{view_type}', 'TraseuController@pdfexport_toate_orele');      // Generare PDF
-
+ 
     //Ruta pentru afisarea retur cu plecarile de la Otopeni
     Route::get('trasee/retur', 'TraseuController@index_retur');
 
@@ -75,6 +75,7 @@ Route::group(['middleware' => 'auth'], function () {
     
     Route::resource('agentii', 'UserFirmaController');
     Route::get('agentii/{agentii}/rezervari', 'UserFirmaController@rezervari');
+    Route::get('agentii/{agentii}/rezervari/{search_data_inceput}/{search_data_sfarsit}/export/{view_type}', 'UserFirmaController@pdfexport_rezervari');  // Generare PDF
 
 
 

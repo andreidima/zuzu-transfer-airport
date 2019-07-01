@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\UserFirma;
+use App\Rezervare;
 use Illuminate\Http\Request;
 
 class UserFirmaController extends Controller
@@ -98,10 +99,41 @@ class UserFirmaController extends Controller
      */
     public function rezervari(UserFirma $agentii)
     {        
+        $search_data_inceput = \Request::get('search_data_inceput'); //<-- we use global request to get the param of URI
+        $search_data_sfarsit = \Request::get('search_data_sfarsit'); //<-- we use global request to get the param of URI
+        
+        if(isset($search_data_inceput) && isset($search_data_sfarsit)) {
             $rezervari = $agentii->rezervari()
-                ->latest()
+                ->where('data_cursa', '>=', $search_data_inceput)
+                ->where('data_cursa', '<=', $search_data_sfarsit)
+                ->orderBy('data_cursa')
                 ->simplePaginate(100);
+        } else {
+            $rezervari = $agentii->rezervari()
+                ->orderBy('data_cursa')
+                ->simplePaginate(100);
+        }
 
-        return view('agentii.rezervari', compact('agentii', 'rezervari'));
+        return view('agentii.rezervari', compact('agentii', 'rezervari', 'search_data_inceput', 'search_data_sfarsit'));
+    }
+
+    public function pdfexport_rezervari(Request $request, $agentii, $search_data_inceput, $search_data_sfarsit)
+    {
+        $agentie = UserFirma::select('id', 'nume')
+            ->where('id', $agentii)
+            ->first();
+        $rezervari = Rezervare::all()
+            ->where('data_cursa', '>=', $search_data_inceput)
+            ->where('data_cursa', '<=', $search_data_sfarsit)
+            ->where('activa', 1);
+            
+        // dd($request, $agentii, $search_data_inceput, $search_data_sfarsit);
+        // dd($agentie, $rezervari);
+        
+        if ($request->view_type === 'agentie-rezervari-pdf') {
+            $pdf = \PDF::loadView('agentii.export.agentie-rezervari-pdf', compact('agentie', 'rezervari', 'search_data_inceput', 'search_data_sfarsit'))
+                ->setPaper('a4');
+            return $pdf->stream('Raport ' . $agentie->nume . ', ' . $search_data_inceput . ' - ' . $search_data_sfarsit . '.pdf');
+        }
     }
 }
