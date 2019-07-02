@@ -357,16 +357,12 @@ class RezervareController extends Controller
      */
     public function show(Rezervare $rezervari)
     {
-        if (auth()->user()->isNot($rezervari->user) && (auth()->user()->firma->id != 1)) {
-            abort(403);
-        }
+        $this->authorize('update', $rezervari);
         return view('rezervari.show', compact('rezervari'));
     }
     public function show_dupa_modificare(Rezervare $rezervari)
     {
-        if (auth()->user()->isNot($rezervari->user) && (auth()->user()->firma->id != 1)) {
-            abort(403);
-        }
+        $this->authorize('update', $rezervari);
         return view('rezervari.show_dupa_modificare', compact('rezervari'));
     }
 
@@ -378,9 +374,7 @@ class RezervareController extends Controller
      */
     public function edit(Rezervare $rezervari)
     {
-        // if (auth()->user()->isNot($rezervari->user) && (auth()->user()->firma->id != 1)) {
-        //     abort(403);
-        // }
+        $this->authorize('update', $rezervari);
         return view('rezervari.edit', compact('rezervari'));
     }
 
@@ -461,7 +455,7 @@ class RezervareController extends Controller
      */
     public function destroy(Rezervare $rezervari)
     {
-        $this->authorize('update', $rezervari);
+        $this->authorize('delete', $rezervari);
         $rezervari->delete();
         return redirect('/rezervari');
     }
@@ -488,7 +482,7 @@ class RezervareController extends Controller
             'nume' => ['required', 'max:100'],
             'telefon' => auth()->user()->isDispecer() ? [ 'required', 'max:100'] : [ 'required ', 'regex:/^[0-9 ]+$/', 'max: 100'],
             'email' => ['nullable', 'email', 'max:100'],
-            'nr_adulti' => [ 'required', 'integer', 'between:0,20'],
+            'nr_adulti' => [ 'required', 'integer', 'between:1,20'],
             'nr_copii' => [ 'nullable', 'integer', 'between:0,10'],
             'pret_total' => ['nullable', 'numeric', 'max:999999'],
             'observatii' => ['max:10000'],

@@ -407,8 +407,9 @@
             </div>
                 
                 <div class="form-row">
-                    <div class="col-lg-12 d-flex justify-content-center">               
-                        @if (auth()->user()->isDispecer())
+                    <div class="col-lg-12 d-flex justify-content-center">  
+                        <button type="submit" class="btn btn-primary mr-4">Adaugă Rezervare</button>             
+                        {{-- @if (auth()->user()->isDispecer())
                             <button type="submit" class="btn btn-primary mr-4">Adaugă Rezervare</button> 
                         @else
                             <!-- Button to Open the Modal -->
@@ -441,7 +442,7 @@
                                 </div>
                             </div>
                             </div>
-                        @endif
+                        @endif --}}
                         
                         <button type="button" class="btn btn-dark ml-4" v-on:click="retur = !retur">Retur</button>                           
                             <input

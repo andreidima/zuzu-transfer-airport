@@ -54,7 +54,7 @@ class RezervarePolicy
      */
     public function delete(User $user, Rezervare $rezervare)
     {
-        //
+        return ($user->firma->id == 1);
     }
 
     /**

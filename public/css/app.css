@@ -9740,3 +9740,19 @@ h3 {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
+
+.mx-datepicker-popup {
+  background-color: #000;
+}
+
+.mx-calendar {
+  background-color: #000;
+}
+
+.mx-calendar-content {
+  color: white;
+}
+
+.mx-calendar-header {
+  color: white;
+}

@@ -56,8 +56,17 @@
 <body>
     @switch($trasee_nume->id)
         @case(1)    
+            @php
+                $nr_pagina = 1;
+            @endphp
             @forelse ($trasee_nume->trasee as $traseu)     
                 @if ($traseu->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->count() > 0)          
+                    @if ($nr_pagina > 1)
+                        <div style="page-break-after: always;"></div>
+                    @endif
+                    @php
+                        $nr_pagina++;
+                    @endphp
                     <div style="border:dashed #999;
                         width:690px; 
                         min-height:600px;            
@@ -226,10 +235,6 @@
                             </tr>
                         </table>
                     </div>
-                    @if ($loop->last)
-                    @else
-                        <div style="page-break-after: always;"></div>
-                    @endif
                 @endif
             @empty
             @endforelse

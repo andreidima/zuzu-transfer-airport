@@ -31,7 +31,7 @@
                             <div class="d-flex mr-4 w-35 align-items-center">
                                 <label for="search_data_inceput" class="mb-0 mr-1">Data sfârșit</label>
                                 <vue2-datepicker
-                                    @if (!empty($search_data_inceput))
+                                    @if (!empty($search_data_sfarsit))
                                         data-veche="{{ $search_data_sfarsit }}"
                                     @endif
                                     nume-camp-db="search_data_sfarsit"
@@ -175,13 +175,27 @@
 
                         {{-- agentii/{agentii}/rezervari/{data_inceput}/{data_sfarsit}/export/{view_type} --}}
 
-                        <a href="/agentii/{{ $agentii->id }}/rezervari/{{ $search_data_inceput }}/{{ $search_data_sfarsit }}/export/agentie-rezervari-pdf"
-                            class="btn btn-success"
-                            role="button"
-                            target="_blank"
-                            >
-                            <i class="fas fa-file-pdf"></i> Raport
-                        </a>
+                            {{-- <a href="/agentii/{{ $agentii->id }}/rezervari/export/agentie-rezervari-pdf"
+                                class="btn btn-success" role="button" target="_blank">
+                                <i class="fas fa-file-pdf"></i> Raport
+                            </a>
+
+                            <a href="/agentii/{{ $agentii->id }}/rezervari/{{ $search_data_inceput }}/{{ $search_data_sfarsit }}/export/agentie-rezervari-pdf"
+                                class="btn btn-success" role="button" target="_blank">
+                                <i class="fas fa-file-pdf"></i> Raport
+                            </a> --}}
+
+                        @if (empty($search_data_inceput) || empty($search_data_sfarsit))
+                            <a href="/agentii/{{ $agentii->id }}/rezervari/export/agentie-rezervari-pdf"
+                                class="btn btn-success" role="button" target="_blank">
+                                <i class="fas fa-file-pdf"></i> Raport
+                            </a>
+                        @else
+                            <a href="/agentii/{{ $agentii->id }}/rezervari/export/agentie-rezervari-pdf/{{ $search_data_inceput }}/{{ $search_data_sfarsit }}"
+                                class="btn btn-success" role="button" target="_blank">
+                                <i class="fas fa-file-pdf"></i> Raport
+                            </a>
+                        @endif
                     </div>
 
 
