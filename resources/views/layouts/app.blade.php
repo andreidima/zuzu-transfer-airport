@@ -52,39 +52,45 @@
                                     <i class="fas fa-car-side mr-1"></i>Curse
                                 </a>
                             </li> --}}
-                            <li class="nav-item active mr-4 dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-route mr-1"></i>Raport
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/trasee">Raport Tur</a>
-                                <a class="dropdown-item" href="/trasee/retur">Raport Retur</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/rezervari-raport-zi">Raport / zi</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Statistică</a>
-                                </div>
-                            </li>
+                            @if (auth()->user()->isDispecer())
+                                <li class="nav-item active mr-4 dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-route mr-1"></i>Raport
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/trasee">Raport Tur</a>
+                                    <a class="dropdown-item" href="/trasee/retur">Raport Retur</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="/rezervari-raport-zi">Raport / zi</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Statistică</a>
+                                    </div>
+                                </li>
+                            @endif
                             {{-- <li class="nav-item active ml-4">
                                 <a class="nav-link" href="/trasee">
                                     <i class="fas fa-route mr-1"></i>Trasee
                                 </a>
                             </li> --}}
-                            <li class="nav-item active mr-4">
-                                <a class="nav-link" href="/agentii">
-                                    <i class="fas fa-handshake mr-1"></i>Agenții
-                                </a>
-                            </li>
+                            @if (auth()->user()->isDispecer())
+                                <li class="nav-item active mr-4">
+                                    <a class="nav-link" href="/agentii">
+                                        <i class="fas fa-handshake mr-1"></i>Agenții
+                                    </a>
+                                </li>
+                            @endif
                             <li class="nav-item active mr-4">
                                 <a class="nav-link disabled" href="#">
                                     <i class="fas fa-chalkboard-teacher mr-1"></i>Instrucțiuni Rezervări
                                 </a>
                             </li>
-                            <li class="nav-item active mr-4">
-                                <a class="nav-link disabled" href="#">
-                                    <i class="fas fa-user-slash mr-1"></i>Clienți neserioși
-                                </a>
-                            </li>
+                            @if (auth()->user()->isDispecer())
+                                <li class="nav-item active mr-4">
+                                    <a class="nav-link disabled" href="#">
+                                        <i class="fas fa-user-slash mr-1"></i>Clienți neserioși
+                                    </a>
+                                </li>
+                            @endif
                         @endguest
                     </ul>
 

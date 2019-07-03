@@ -41,7 +41,7 @@ Route::group(['middleware' => 'auth'], function () {
         ]);
 
 
-    // Route::group(['middleware' => 'auth'], function () {
+    Route::group(['middleware' => 'dispecer'], function () {
         //Ruta pentru cautarea completa pe o zi sau mai multe
         Route::any('/rezervari-raport-zi', 'RezervareRaportZiController@index');
         
@@ -67,13 +67,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('agentii/{agentii}/rezervari', 'UserFirmaController@rezervari');
         Route::get('agentii/{agentii}/rezervari/export/agentie-rezervari-pdf/{search_data_inceput?}/{search_data_sfarsit?}', 'UserFirmaController@pdfexport_rezervari');  // Generare PDF
 
-
-
-
         Route::get('/acasa', 'AcasaController@index')->name('acasa');
 
         Route::get('/home', 'HomeController@index')->name('home');       
-    // });
+    });
 });
 
 
