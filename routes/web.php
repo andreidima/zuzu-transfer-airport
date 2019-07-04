@@ -26,7 +26,8 @@ Route::get('/orase_ore_rezervari', 'RezervareController@orase_ore_rezervari');
 
 Route::group(['middleware' => 'auth'], function () {
 
-    Route::get('/', 'AcasaController@index')->name('acasa');
+    // Route::get('/', 'AcasaController@index')->name('acasa');
+    Route::redirect('/', '/rezervari');
 
     //Rute Rezervari
     Route::patch('/rezervari/activa/{rezervari}', 'RezervareController@update_activa')->name('update_activa');

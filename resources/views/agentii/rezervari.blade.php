@@ -166,7 +166,7 @@
 
                     <nav>
                         <ul class="pagination justify-content-center">
-                            {{$rezervari->links()}}
+                            {{$rezervari->appends(request()->query())->links()}}
                         </ul>
                     </nav>                  
 
@@ -184,8 +184,8 @@
                                 class="btn btn-success" role="button" target="_blank">
                                 <i class="fas fa-file-pdf"></i> Raport
                             </a> --}}
-
-                        @if (empty($search_data_inceput) || empty($search_data_sfarsit))
+                        
+                        {{-- @if (empty($search_data_inceput) || empty($search_data_sfarsit))
                             <a href="/agentii/{{ $agentii->id }}/rezervari/export/agentie-rezervari-pdf"
                                 class="btn btn-success" role="button" target="_blank">
                                 <i class="fas fa-file-pdf"></i> Raport
@@ -195,7 +195,15 @@
                                 class="btn btn-success" role="button" target="_blank">
                                 <i class="fas fa-file-pdf"></i> Raport
                             </a>
-                        @endif
+                        @endif --}}
+                        
+                        @isset($search_data_inceput, $search_data_sfarsit)
+                            <a href="/agentii/{{ $agentii->id }}/rezervari/export/agentie-rezervari-pdf/{{ $search_data_inceput }}/{{ $search_data_sfarsit }}"
+                                class="btn btn-success" role="button" target="_blank">
+                                <i class="fas fa-file-pdf"></i> Raport
+                            </a>
+                        @endisset
+
                     </div>
 
 

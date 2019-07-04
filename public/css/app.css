@@ -9742,11 +9742,11 @@ h3 {
 }
 
 .mx-datepicker-popup {
-  background-color: #000;
+  background-color: #6c757d;
 }
 
 .mx-calendar {
-  background-color: #000;
+  background-color: #6c757d;
 }
 
 .mx-calendar-content {
@@ -9755,4 +9755,9 @@ h3 {
 
 .mx-calendar-header {
   color: white;
+}
+
+.cell.cur-month {
+  font-weight: bold;
+  font-size: 1.1rem;
 }

@@ -97,21 +97,26 @@ class UserFirmaController extends Controller
      * @param  \App\UserFirma  $userFirma
      * @return \Illuminate\Http\Response
      */
-    public function rezervari(UserFirma $agentii)
+    public function rezervari(UserFirma $agentii, $search_data_inceput = null, $search_data_sfarsit = null)
     {        
         $search_data_inceput = \Request::get('search_data_inceput'); //<-- we use global request to get the param of URI
         $search_data_sfarsit = \Request::get('search_data_sfarsit'); //<-- we use global request to get the param of URI
         
         if(isset($search_data_inceput) && isset($search_data_sfarsit)) {
             $rezervari = $agentii->rezervari()
+                ->with('cursa', 'ora', 'oras_plecare')
                 ->where('data_cursa', '>=', $search_data_inceput)
                 ->where('data_cursa', '<=', $search_data_sfarsit)
-                ->orderBy('data_cursa')
-                ->simplePaginate(100);
+                ->sortBy(function ($rezervare) {
+                    return $rezervare->nume;
+                })
+                ->simplePaginate(100)
+                ->appends(request()->query());
         } else {
             $rezervari = $agentii->rezervari()
-                ->orderBy('data_cursa')
-                ->simplePaginate(100);
+                ->latest()
+                ->simplePaginate(100)
+                ->appends(request()->query());
         }
         // dd($agentii, $agentii->rezervari());
 

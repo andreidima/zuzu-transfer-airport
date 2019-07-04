@@ -15,11 +15,11 @@
 
 
 .mx-datepicker-popup{
-  background-color: #000;
+  background-color: #6c757d;
 }
 
 .mx-calendar{
-  background-color: #000;
+  background-color: #6c757d;
 }
 
 .mx-calendar-content{
@@ -28,6 +28,11 @@
 
 .mx-calendar-header{
   color: white;
+}
+
+.cell.cur-month{
+  font-weight: bold;
+  font-size: 1.1rem;
 }
 
 

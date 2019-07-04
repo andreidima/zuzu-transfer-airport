@@ -23,4 +23,9 @@ class Oras extends Model
     {
         return $this->hasMany('App\Cursa', 'sosire_id');
     }
+
+    public function rezervari()
+    {
+        return $this->hasManyThrough('App\Rezervari', 'App\Cursa');
+    }
 }
