@@ -34,6 +34,7 @@
             border-width:1px;
             border-style: solid;
             table-layout:fixed;
+             font-weight: normal;
             
         }
         tr {
@@ -84,17 +85,17 @@
                         <br>
                         
                         <table style="">
-                            <tr style="background-color:#e7d790">
+                            <tr style="background-color:#e7d790; font-weight: normal;">
                                 <th style="width:3%">Nr. crt.</th>
                                 <th style="width:15%">Nume si prenume</th>
                                 <th style="width:6%">Plecare</th>
                                 <th style="width:6%">Sosire</th>
-                                <th style="width:8%">Data plecare</th>
+                                <th style="width:7%">Data plecare</th>
                                 <th style="width:5%">Suma</th>
                                 <th style="width:5%">Plata</th>
                                 <th style="width:15%">Statie imbarcare</th>
-                                <th style="width:5%">Nr. adulti</th>                                
-                                <th style="width:5%">Nr. copii</th>
+                                <th style="width:3%">Nr. ad.</th>                                
+                                <th style="width:3%">Nr. cp.</th>
                             </tr>
 
                                 @forelse ($rezervari as $rezervare)

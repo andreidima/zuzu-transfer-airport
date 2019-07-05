@@ -104,12 +104,9 @@ class UserFirmaController extends Controller
         
         if(isset($search_data_inceput) && isset($search_data_sfarsit)) {
             $rezervari = $agentii->rezervari()
-                ->with('cursa', 'ora', 'oras_plecare')
                 ->where('data_cursa', '>=', $search_data_inceput)
                 ->where('data_cursa', '<=', $search_data_sfarsit)
-                ->sortBy(function ($rezervare) {
-                    return $rezervare->nume;
-                })
+                ->orderBy('cursa_id')
                 ->simplePaginate(100)
                 ->appends(request()->query());
         } else {
@@ -118,7 +115,7 @@ class UserFirmaController extends Controller
                 ->simplePaginate(100)
                 ->appends(request()->query());
         }
-        // dd($agentii, $agentii->rezervari());
+        // dd($agentii, $rezervari);
 
         return view('agentii.rezervari', compact('agentii', 'rezervari', 'search_data_inceput', 'search_data_sfarsit'));
     }
@@ -134,7 +131,7 @@ class UserFirmaController extends Controller
                 ->where('data_cursa', '>=', $search_data_inceput)
                 ->where('data_cursa', '<=', $search_data_sfarsit)
                 ->where('activa', 1)
-                ->orderBy('data_cursa')
+                ->orderBy('cursa_id')
                 ->get();
         } else {
             $rezervari = $agentie->rezervari()

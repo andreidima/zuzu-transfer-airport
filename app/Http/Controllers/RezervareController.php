@@ -436,15 +436,17 @@ class RezervareController extends Controller
 
     public function update_activa(Request $request, Rezervare $rezervari)
     {
-        $this->authorize('update', $rezervari);
-        if ( $rezervari->activa == 0) {
-            $rezervari->activa = 1;
-        } else {
-            $rezervari->activa = 0;
+        if (auth()->user()->isDispecer()){
+            $this->authorize('update', $rezervari);
+            if ( $rezervari->activa == 0) {
+                $rezervari->activa = 1;
+            } else {
+                $rezervari->activa = 0;
+            }
+            $rezervari->update();
+            
+            return redirect('/rezervari');
         }
-        $rezervari->update();
-        
-        return redirect('/rezervari');
     }
 
     /**
@@ -480,7 +482,8 @@ class RezervareController extends Controller
             'zbor_ora_decolare' => ['max:100'],
             'zbor_ora_aterizare' => ['max:100'],
             'nume' => ['required', 'max:100'],
-            'telefon' => auth()->user()->isDispecer() ? [ 'required', 'max:100'] : [ 'required ', 'regex:/^[0-9 ]+$/', 'max: 100'],
+            // 'telefon' => auth() ? auth()->user()->isDispecer() ? [ 'required', 'max:100'] : [ 'required ', 'regex:/^[0-9 ]+$/', 'max: 100'] : [ 'required ', 'regex:/^[0-9 ]+$/', 'max: 100'],
+            'telefon' => ((auth()->user() === null) ? [ 'required ', 'regex:/^[0-9 ]+$/', 'max: 100'] : auth()->user()->isDispecer()) ? [ 'required', 'max:100'] : [ 'required ', 'regex:/^[0-9 ]+$/', 'max: 100'],
             'email' => ['nullable', 'email', 'max:100'],
             'nr_adulti' => [ 'required', 'integer', 'between:1,20'],
             'nr_copii' => [ 'nullable', 'integer', 'between:0,10'],
@@ -499,6 +502,7 @@ class RezervareController extends Controller
             'status' => ['']
         ],
         [
+            'ora_id.required' => 'Câmpul Ora de plecare este obligatoriu',
             'telefon.regex' => 'Câmpul telefon poate conține doar cifre și spații'
         ]
         );

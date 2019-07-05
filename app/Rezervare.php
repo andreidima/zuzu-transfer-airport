@@ -53,16 +53,4 @@ class Rezervare extends Model
             'traseu_id' // Local key on users table...
         );
     }
-
-    public function oras_plecare()
-    {
-        return $this->hasOneThrough(
-            'App\Oras',
-            'App\Cursa'
-            // 'cursa_id', // Foreign key on users table...
-            // 'id', // Foreign key on posts table...
-            // 'ora_id', // Local key on countries table...
-            // 'traseu_id' // Local key on users table...
-        );
-    }
 }
