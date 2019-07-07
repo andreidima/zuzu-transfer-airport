@@ -4,7 +4,11 @@
     <div class="container card px-0">
         <div class="d-flex justify-content-between card-header">
             <div class="flex flex-vertical-center">
-                <h4 class="mt-2"><a href="/agentii"><i class="fas fa-handshake mr-1"></i>Agenții</a> / {{ $agentii->nume }}</h4>
+                @if (auth()->user()->isDispecer())
+                    <h4 class="mt-2"><a href="/agentii"><i class="fas fa-handshake mr-1"></i>Agenții</a> / {{ $agentii->nume }}</h4>
+                @else
+                    <h4 class="mt-2">Raport Rezervări</h4>
+                @endif
             </div> 
         </div>
 
@@ -12,7 +16,7 @@
         <div class="card-body">
             
             <div class="" id="app1">
-                <form class="needs-validation" novalidate method="GET" action="{{ $agentii->path() }}/rezervari">
+                <form class="needs-validation" novalidate method="GET" action="agentii/rezervari">
                     @csrf                    
                     <div class="input-group custom-search-form row d-flex justify-content-center mb-3">
                         <div class="d-flex col-8 justify-content-center">

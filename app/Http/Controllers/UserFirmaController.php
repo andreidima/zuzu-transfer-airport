@@ -97,23 +97,40 @@ class UserFirmaController extends Controller
      * @param  \App\UserFirma  $userFirma
      * @return \Illuminate\Http\Response
      */
-    public function rezervari(UserFirma $agentii, $search_data_inceput = null, $search_data_sfarsit = null)
+    public function rezervari(UserFirma $agentii = null, $search_data_inceput = null, $search_data_sfarsit = null)
     {        
         $search_data_inceput = \Request::get('search_data_inceput'); //<-- we use global request to get the param of URI
         $search_data_sfarsit = \Request::get('search_data_sfarsit'); //<-- we use global request to get the param of URI
-        
-        if(isset($search_data_inceput) && isset($search_data_sfarsit)) {
-            $rezervari = $agentii->rezervari()
-                ->where('data_cursa', '>=', $search_data_inceput)
-                ->where('data_cursa', '<=', $search_data_sfarsit)
-                ->orderBy('cursa_id')
-                ->simplePaginate(100)
-                ->appends(request()->query());
+
+        if (auth()->user()->isDispecer()) {
+            if(isset($search_data_inceput) && isset($search_data_sfarsit)) {
+                $rezervari = $agentii->rezervari()
+                    ->where('data_cursa', '>=', $search_data_inceput)
+                    ->where('data_cursa', '<=', $search_data_sfarsit)
+                    ->orderBy('cursa_id')
+                    ->simplePaginate(100)
+                    ->appends(request()->query());
+            } else {
+                $rezervari = $agentii->rezervari()
+                    ->latest()
+                    ->simplePaginate(100)
+                    ->appends(request()->query());
+            }
         } else {
-            $rezervari = $agentii->rezervari()
-                ->latest()
-                ->simplePaginate(100)
-                ->appends(request()->query());
+            if (isset($search_data_inceput) && isset($search_data_sfarsit)) {
+                $rezervari = auth()->user()->rezervari()
+                    ->where('data_cursa', '>=', $search_data_inceput)
+                    ->where('data_cursa', '<=', $search_data_sfarsit)
+                    ->orderBy('cursa_id')
+                    ->simplePaginate(100)
+                    ->appends(request()->query());
+            } else {
+                $rezervari = auth()->user()->rezervari()
+                    ->latest()
+                    ->simplePaginate(100)
+                    ->appends(request()->query());
+            }
+
         }
         // dd($agentii, $rezervari);
 
@@ -138,10 +155,10 @@ class UserFirmaController extends Controller
                 ->where('activa', 1)
                 ->orderBy('data_cursa')
                 ->get();
-        }    
-        
+        }
+
         $pdf = \PDF::loadView('agentii.export.agentie-rezervari-pdf', compact('agentie', 'rezervari', 'search_data_inceput', 'search_data_sfarsit'))
             ->setPaper('a4');
-        return $pdf->stream('Raport ' . $agentie->nume . ', ' . $search_data_inceput . ' - ' . $search_data_sfarsit . '.pdf');
+        return $pdf->stream($agentie->nume . ', ' . $search_data_inceput . ' - ' . $search_data_sfarsit . '.pdf');
     }
 }

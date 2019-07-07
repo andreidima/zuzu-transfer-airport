@@ -24,7 +24,7 @@ class RezervareController extends Controller
         $search_nume = \Request::get('search_nume'); //<-- we use global request to get the param of URI
         $search_telefon = \Request::get('search_telefon'); //<-- we use global request to get the param of URI
         $search_cod_bilet = \Request::get('search_cod_bilet'); //<-- we use global request to get the param of URI
-        if (auth()->user()->firma->id == 1){
+        if (auth()->user()->isDispecer()){
             $rezervari = Rezervare::join('curse_ore', 'ora_id', '=', 'curse_ore.id')
                 ->select('rezervari.*', 'curse_ore.ora')
                 ->where('nume', 'like', '%' . $search_nume . '%')

@@ -55,7 +55,7 @@
                             @if (auth()->user()->isDispecer())
                                 <li class="nav-item active mr-4 dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-route mr-1"></i>Raport
+                                    <i class="fas fa-book mr-1"></i>Raport
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="/trasee">Raport Tur</a>
@@ -76,6 +76,12 @@
                                 <li class="nav-item active mr-4">
                                     <a class="nav-link" href="/agentii">
                                         <i class="fas fa-handshake mr-1"></i>Agenții
+                                    </a>
+                                </li>
+                            @else
+                                <li class="nav-item active mr-4">
+                                    <a class="nav-link" href="/agentii/rezervari">
+                                        <i class="fas fa-book mr-1"></i>Raport
                                     </a>
                                 </li>
                             @endif
