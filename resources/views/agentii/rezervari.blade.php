@@ -15,8 +15,12 @@
 
         <div class="card-body">
             
-            <div class="" id="app1">
-                <form class="needs-validation" novalidate method="GET" action="agentii/rezervari">
+            <div class="" id="app1">                
+                @if (auth()->user()->isDispecer())
+                    <form class="needs-validation" novalidate method="GET" action="{{ $agentii->path() }}/rezervari">
+                @else
+                    <form class="needs-validation" novalidate method="GET" action="rezervari">
+                @endif
                     @csrf                    
                     <div class="input-group custom-search-form row d-flex justify-content-center mb-3">
                         <div class="d-flex col-8 justify-content-center">
@@ -201,11 +205,15 @@
                             </a>
                         @endif --}}
                         
-                        @isset($search_data_inceput, $search_data_sfarsit)
-                            <a href="/agentii/{{ $agentii->id }}/rezervari/export/agentie-rezervari-pdf/{{ $search_data_inceput }}/{{ $search_data_sfarsit }}"
-                                class="btn btn-success" role="button" target="_blank">
-                                <i class="fas fa-file-pdf"></i> Raport
-                            </a>
+                        @isset($search_data_inceput, $search_data_sfarsit)                         
+                            @if (auth()->user()->isDispecer())
+                                <a href="/agentii/{{ $agentii->id }}/rezervari/export/agentie-rezervari-pdf/{{ $search_data_inceput }}/{{ $search_data_sfarsit }}"
+                            @else
+                                <a href="/agentii/rezervari/export/agentie-rezervari-pdf/{{ $search_data_inceput }}/{{ $search_data_sfarsit }}"
+                            @endif
+                                    class="btn btn-success" role="button" target="_blank">
+                                    <i class="fas fa-file-pdf"></i> Raport
+                                </a>
                         @endisset
 
                     </div>

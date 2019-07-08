@@ -130,15 +130,14 @@ class UserFirmaController extends Controller
                     ->simplePaginate(100)
                     ->appends(request()->query());
             }
-
         }
         // dd($agentii, $rezervari);
 
         return view('agentii.rezervari', compact('agentii', 'rezervari', 'search_data_inceput', 'search_data_sfarsit'));
     }
 
-    public function pdfexport_rezervari(Request $request, $agentii, $search_data_inceput = null, $search_data_sfarsit = null)
-    {
+    public function pdfexport_rezervari_dispecer(Request $request, $agentii = null, $search_data_inceput = null, $search_data_sfarsit = null)
+    {            
         $agentie = UserFirma::select('id', 'nume')
             ->where('id', $agentii)
             ->first();
@@ -150,11 +149,27 @@ class UserFirmaController extends Controller
                 ->where('activa', 1)
                 ->orderBy('cursa_id')
                 ->get();
-        } else {
-            $rezervari = $agentie->rezervari()
+        }
+
+        $pdf = \PDF::loadView('agentii.export.agentie-rezervari-pdf', compact('agentie', 'rezervari', 'search_data_inceput', 'search_data_sfarsit'))
+            ->setPaper('a4');
+        return $pdf->stream($agentie->nume . ', ' . $search_data_inceput . ' - ' . $search_data_sfarsit . '.pdf');
+    }
+
+    public function pdfexport_rezervari_agentie(Request $request, $search_data_inceput = null, $search_data_sfarsit = null)
+    { 
+        $agentie = UserFirma::select('id', 'nume')
+            ->where('id', auth()->user()->firma->id)
+            ->first();  
+
+        if (isset($search_data_inceput) && isset($search_data_sfarsit)) {
+            $rezervari = auth()->user()->rezervari()
+                ->where('data_cursa', '>=', $search_data_inceput)
+                ->where('data_cursa', '<=', $search_data_sfarsit)
                 ->where('activa', 1)
-                ->orderBy('data_cursa')
-                ->get();
+                ->orderBy('cursa_id')
+                ->simplePaginate(100)
+                ->appends(request()->query());
         }
 
         $pdf = \PDF::loadView('agentii.export.agentie-rezervari-pdf', compact('agentie', 'rezervari', 'search_data_inceput', 'search_data_sfarsit'))

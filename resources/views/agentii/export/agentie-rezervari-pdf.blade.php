@@ -64,27 +64,22 @@
                             -webkit-border-radius: 10px;
                             border-radius: 10px;">
                         <table style="">
-                            <tr style="">
-                                <td style="border-width:0px; padding:0rem; width:40%">
+                            <tr>
+                                <td style="border-width:0px; padding:0rem;" colspan="4">
                                         <img src="{{ asset('images/logo-zuzu.png') }}" width="150px">
                                 </td>
-                                <td style="border-width:0px; padding:0rem; width:60%; text-align:center; font-size:16px">
+                                <td style="border-width:0px; padding:0rem; text-align:center; font-size:16px" colspan="6">
                                     Raport: {{ $agentie->nume }}
                                     <br>
                                     De la data: {{ $search_data_inceput }} la data {{ $search_data_sfarsit }}
                                     <br>
                                 </td>
                             </tr>
-                        </table>
-
-                        <br><br><br>
-
-                        <p style="margin: 0 0 0 0px;">
-                        </p>
-
-                        <br>
-                        
-                        <table style="">
+                            <tr class="">
+                                <td style="border-width:0px;" colspan="10">
+                                    &nbsp;
+                                </td>
+                            </tr>
                             <tr style="background-color:#e7d790; font-weight: normal;">
                                 <th style="width:3%">Nr. crt.</th>
                                 <th style="width:15%">Nume si prenume</th>
@@ -94,7 +89,7 @@
                                 <th style="width:5%">Suma</th>
                                 <th style="width:5%">Plata</th>
                                 <th style="width:15%">Statie imbarcare</th>
-                                <th style="width:3%">Nr. ad.</th>                                
+                                <th style="width:3%">Nr. ad.</th>
                                 <th style="width:3%">Nr. cp.</th>
                             </tr>
 
