@@ -26,7 +26,27 @@
             <div class="form-row">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
-                    <table class="table table-striped bg-light">
+                    <table class="">
+                        <tr style="text-align:center; font-weight:bold;">
+                            <td colspan="3" style="border-width:0px; padding:0rem;">
+                                <h3 style="background-color:#e7d790; color:black; margin:0px 0px 2px 0px; padding:2px 0px;">
+                                Informatii Calator
+                                </h3>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="35%" style="">
+                                Calator: <b>{{ $rezervari->nume }}</b>
+                            </td>
+                            <td width="25%" style="text-align:center;">
+                                Telefon: <b>{{ $rezervari->telefon }}</b>
+                            </td>
+                            <td width="40%" style="text-align:right;">
+                                E-mail: <b>{{ $rezervari->email }}</b>
+                            </td>
+                        </tr>
+
+
                         <tbody>
                             <tr>
                                 <td class="text-right w-25 ">Client</td>
@@ -53,14 +73,14 @@
                             <tr>
                                 <td class="text-right">Dată cursă</td>
                                 <td>
-                                    @if(!empty($rezervare->data_cursa)) 
+                                    {{-- @if(!empty($rezervare->data_cursa))  --}}
                                     {{-- {{$rezervare->data_cursa}} --}}
                                         {{-- {{ \Carbon\Carbon::parse($rezervare->data_cursa)->format('d.m.Y') }}, --}}
-                                        {{ \Carbon\Carbon::createFromFormat('Y.m.d H:i', $rezervare->data_cursa)->format('d.m.Y') }},
+                                        {{-- {{ \Carbon\Carbon::createFromFormat('Y.m.d H:i', $rezervare->data_cursa)->format('d.m.Y') }},
                                     @endif
                                     @if(!empty($rezervare->ora_id)) 
                                         {{ \Carbon\Carbon::parse($rezervare->ora->ora)->format('H:i') }}
-                                    @endif
+                                    @endif --}}
                                 </td>
                             </tr>
                             <tr>

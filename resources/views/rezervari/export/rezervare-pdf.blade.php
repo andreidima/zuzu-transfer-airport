@@ -29,6 +29,7 @@
             border-style: solid;
             border-width: 0px;
             width: 100%;
+            word-wrap:break-word;
         }
         
         th, td {
@@ -81,7 +82,7 @@
             <table>
                 <tr style="text-align:center; font-weight:bold;">
                     <td colspan="3" style="border-width:0px; padding:0rem;">
-                        <h3 style="background-color:#e7d790; color:black; margin:0px 0px 2px 0px; padding:2px 0px">
+                        <h3 style="background-color:#e7d790; color:black; margin:0px 0px 2px 0px; padding:2px 0px;">
                         Informatii Calator
                         </h3>
                     </td>
@@ -140,19 +141,19 @@
                             </span>
                         @endif
                         <br>
-                        @if (!empty(auth()->user()))
+                        {{-- @if (!empty(auth()->user())) --}}
                             <span style="font-size:1.2rem;">
                                 {{ \Carbon\Carbon::parse($rezervari->data_cursa)->isoFormat('dddd') }}
                             </span>
                             <br>
                             {{ \Carbon\Carbon::parse($rezervari->data_cursa)->isoFormat('D MMM YYYY') }}
-                        @else
+                        {{-- @else
                             <span style="font-size:1.2rem;">
                                 {{ \Carbon\Carbon::createFromFormat('Y.m.d H:i', $rezervari->data_cursa)->isoFormat('dddd') }}
                             </span>
                             <br>
                             {{ \Carbon\Carbon::createFromFormat('Y.m.d H:i', $rezervari->data_cursa)->isoFormat('D MMM YYYY') }}
-                        @endif
+                        @endif --}}
                     </td>
                     <td>
                         <br>
@@ -185,7 +186,7 @@
                             </span>                          
                         @endif
                         <br>
-                        @if (!empty(auth()->user()))
+                        {{-- @if (!empty(auth()->user())) --}}
                             <span style="font-size:1.2rem;">
                                 {{ \Carbon\Carbon::parse($rezervari->data_cursa)
                                     ->addHours(\Carbon\Carbon::parse($rezervari->ora->ora)->hour)
@@ -201,7 +202,7 @@
                                     ->addHours(\Carbon\Carbon::parse($rezervari->cursa->durata)->hour)
                                     ->addMinutes(\Carbon\Carbon::parse($rezervari->cursa->durata)->minute)
                                     ->isoFormat('D MMM YYYY') }}
-                        @else
+                        {{-- @else
                             <span style="font-size:1.2rem;">
                                 {{ \Carbon\Carbon::createFromFormat('Y.m.d H:i', $rezervari->data_cursa)
                                     ->addHours(\Carbon\Carbon::parse($rezervari->ora->ora)->hour)
@@ -217,7 +218,7 @@
                                     ->addHours(\Carbon\Carbon::parse($rezervari->cursa->durata)->hour)
                                     ->addMinutes(\Carbon\Carbon::parse($rezervari->cursa->durata)->minute)
                                     ->isoFormat('D MMM YYYY') }}
-                        @endif
+                        @endif --}}
                         <br>
                     </td>
                 </tr>
@@ -360,7 +361,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="">
+                    <td style="font-size:0.9rem">
                         In functie de numarul de pasageri circula microbus/autocar.Rezervarea este valabila numai cu confirmarea agentiei transportatoare. 
                         <br>
                         <b>Conditii generale de calatorie:</b> Rezervarile on-line trebuie facute cu cel putin 24 ore inaintea plecarii. In cazul in care datele personale/ datele si orele de calatorie au fost completate gresit pasagerul risca sa isi piarda rezervarea .Este necesar sa va prezentati la locul plecarii cu minim 15 minute inainte de plecarea catre Otopeni.  Orice intarziere, atrage responsabilitatea unilaterala a pasagerului intarziat.

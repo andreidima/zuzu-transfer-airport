@@ -26,7 +26,7 @@
 
                 <div class="form-row mb-0 d-flex justify-content-center">
                     <div class="form-group col-lg-6 card bg-warning text-dark shadow-sm px-2 mb-0">
-                        <div class="form-row mb-0 d-flex justify-content-between">
+                        <div class="form-row mb-2 d-flex justify-content-between">
                             <div class="form-group col-lg-5 m-0">
                                 <script type="application/javascript"> 
                                     orasPlecareVechi={!! json_encode(old('oras_plecare', "0")) !!}
@@ -68,31 +68,35 @@
                             </div>
                         </div>
                         <div class="form-row mb-0 d-flex justify-content-between">
-                            <div class="form-group col-lg-5 m-0">
-                                <label for="pret_adult" class="mb-0">Preț adult:</label>
-                                <input 
-                                    type="text" 
-                                    class="form-control form-control-sm {{ $errors->has('pret_adult') ? 'is-invalid' : '' }}" 
-                                    name="pret_adult"
-                                    v-model="pret_adult" 
-                                    value="{{ old('pret_adult') }}"
-                                    required
-                                    disabled>
+                            <div class="form-group col-lg-5 m-0 d-flex">
+                                <label for="pret_adult" class="col-form-label mb-0 mr-2">Preț adult:</label>
+                                <div class="px-0" style="width:50px">
+                                    <input 
+                                        type="text" 
+                                        class="form-control form-control-sm {{ $errors->has('pret_adult') ? 'is-invalid' : '' }}" 
+                                        name="pret_adult"
+                                        v-model="pret_adult" 
+                                        value="{{ old('pret_adult') }}"
+                                        required
+                                        disabled>
+                                </div>
                             </div>
-                            <div class="form-group col-lg-5 m-0">
-                                <label for="pret_copil" class="mb-0">Preț copil:</label>
-                                <input 
-                                    type="text" 
-                                    class="form-control form-control-sm {{ $errors->has('pret_copil') ? 'is-invalid' : '' }}" 
-                                    name="pret_copil" 
-                                    v-model="pret_copil"
-                                    value="{{ old('pret_copil') }}"
-                                    required
-                                    disabled> 
+                            <div class="form-group col-lg-5 m-0 d-flex">
+                                <label for="pret_copil" class="col-form-label mb-0 mr-2">Preț copil:</label>
+                                <div class="px-0" style="width:50px">
+                                    <input 
+                                        type="text" 
+                                        class="form-control form-control-sm {{ $errors->has('pret_copil') ? 'is-invalid' : '' }}" 
+                                        name="pret_copil" 
+                                        v-model="pret_copil"
+                                        value="{{ old('pret_copil') }}"
+                                        required
+                                        disabled> 
+                                </div>
                             </div>
                         </div>
 
-                        <div class="form-row mb-2 d-flex justify-content-between">
+                        <div class="form-row mb-0 d-flex justify-content-between">
                             <div class="form-group col-lg-5 m-0">
                                 <script type="application/javascript"> 
                                     oraPlecareVeche={!! json_encode(old('ora_id', "0")) !!}
@@ -120,6 +124,25 @@
                                     required
                                     disabled
                                     >  
+                            </div>
+                        </div>
+
+                        <div class="form-row mb-2">
+                            <div class="form-group col-lg-5 mb-0">
+                                <script type="application/javascript"> 
+                                    statieImbarcareVeche={!! json_encode(old('statie_id', "0")) !!}
+                                </script>        
+                                <label for="statie_id" class="mb-0">Stația de îmbarcare:</label>
+                                    <select class="custom-select custom-select-sm {{ $errors->has('statie_id') ? 'is-invalid' : '' }}"
+                                        name="statie_id"
+                                        v-model="statie_id"
+                                    >
+                                        <option v-for='statie_id in statii_imbarcare'                                
+                                            :value='statie_id.id'                                       
+                                            >
+                                            @{{statie_id.nume}}
+                                        </option>
+                                    </select>
                             </div>
                         </div>
                     </div>
@@ -210,16 +233,6 @@
                                     value="{{ old('email') }}"
                                     > 
                             </div> 
-                            <div class="form-group col-lg-12 mb-1">
-                                <label for="nume" class="mb-0">Statie îmbarcare:</label>
-                                <input 
-                                    type="text" 
-                                    class="form-control form-control-sm {{ $errors->has('statie_imbarcare') ? 'is-invalid' : '' }}" 
-                                    name="statie_imbarcare" 
-                                    placeholder="" 
-                                    value="{{ old('statie_imbarcare') }}"
-                                    required> 
-                            </div>
                             <div class="form-group col-lg-12 mb-0 pt-1 border-top border-bottom">
                                     {{-- <label for="nume" class="mb-0">Număr de locuri rezervate:</label>  --}}
                                 <div class="form-group row mb-0">                                
@@ -268,16 +281,18 @@
                                 </div>
                             </div>                        
                             <div class="form-group col-lg-12 mb-0 mt-1 d-flex"> 
-                                <label for="pret_total" class="mb-0">Preț total:</label>
-                                <input 
-                                    type="text" 
-                                    class="form-control form-control-sm {{ $errors->has('pret_total') ? 'is-invalid' : '' }}" 
-                                    name="pret_total"
-                                    v-model="pret_total" 
-                                    placeholder="0" 
-                                    value="{{ old('pret_total') }}"
-                                    required
-                                    readonly> 
+                                <label for="pret_total" class="mb-0 col-form-label mr-2">Preț total:</label>
+                                <div class="px-0" style="width:80px">
+                                    <input 
+                                        type="text" 
+                                        class="form-control form-control-sm {{ $errors->has('pret_total') ? 'is-invalid' : '' }}" 
+                                        name="pret_total"
+                                        v-model="pret_total" 
+                                        placeholder="0" 
+                                        value="{{ old('pret_total') }}"
+                                        required
+                                        readonly> 
+                                </div>
                             </div>   
                         </div>
                     </div>

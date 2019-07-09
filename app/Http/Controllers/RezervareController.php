@@ -516,7 +516,7 @@ class RezervareController extends Controller
             $pdf = \PDF::loadView('rezervari.export.rezervare-pdf', compact('rezervari'))
                 ->setPaper('a4');
                     // return $pdf->stream('Rezervare ' . $rezervari->nume . '.pdf');
-                    return $pdf->download('Rezervare ' . $rezervari->nume . '.pdf');
+                    return $pdf->stream('Rezervare ' . $rezervari->nume . '.pdf');
         }
         // elseif($request->view_type === 'fisa-de-date-a-imobilului-pdf'){
         //     $pdf = PDF::loadView('registru.export.pdf-fisa-de-date-a-imobilului', ['registre' => $registre]) ->setPaper('a4');
@@ -563,10 +563,8 @@ class RezervareController extends Controller
      */
     public function postAdaugaRezervare1(Request $request)
     {       
-        // if(empty($request->session()->get('rezervare'))){
             $request->session()->forget('rezervare');
-            $rezervare = Rezervare::make($this->validateRequest());
-            // $rezervare->fill($this->validateRequest());   
+            $rezervare = Rezervare::make($this->validateRequest()); 
 
                 // aflarea id-ului cursei in functie de orasele introduse
                 $cursa_id = Cursa::select('id')
@@ -584,27 +582,6 @@ class RezervareController extends Controller
                 unset($rezervare['oras_plecare'], $rezervare['oras_sosire'], $rezervare['ora_plecare'], $rezervare['cursa'], $rezervare['statie'], $rezervare['ora']);
 
             $request->session()->put('rezervare', $rezervare);
-        // }else{
-        //     $rezervare = $request->session()->get('rezervare');
-        //     $rezervare->fill($this->validateRequest());
-
-        //         // aflarea id-ului cursei in functie de orasele introduse
-        //         $cursa_id = Cursa::select('id')
-        //             ->where([
-        //                 ['plecare_id', $request->oras_plecare],
-        //                 ['sosire_id', $request->oras_sosire]
-        //             ])
-        //             ->first();
-                
-        //         // setarea id-ului cursei in functie de orasele introduse
-        //         $rezervare->cursa_id = $cursa_id->id;
-
-        //         // stergerea oraselor din request, se foloseste id-ul cursei in DB
-        //         // stergerea ore_plecare din request, se foloseste ora_id orei in DB
-        //         unset($rezervare['oras_plecare'], $rezervare['oras_sosire'], $rezervare['ora_plecare']);
-
-        //     $request->session()->put('rezervare', $rezervare);
-        // }
 
         return redirect('/adauga-rezervare-pasul-2');
     }
@@ -650,7 +627,6 @@ class RezervareController extends Controller
         // $rezervare->data_cursa = \Carbon\Carbon::createFromFormat('Y.m.d H:i', $rezervare->data_cursa)->format('d.m.Y');
 
 
-        // dd($rezervare);
                 
         $request->session()->put('rezervare', $rezervare);
 
@@ -677,6 +653,10 @@ class RezervareController extends Controller
     public function adaugaRezervare3(Request $request)
     {
         $rezervare = $request->session()->get('rezervare');
+        // $request->session()->forget('rezervare');
+        // $request->session()->flush();
+        // dd (session()); 
+
         return view('rezervari.guest-create/adauga-rezervare3',compact('rezervare', $rezervare));
     }
 
