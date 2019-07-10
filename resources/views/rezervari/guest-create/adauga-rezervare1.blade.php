@@ -280,7 +280,7 @@
                                         </div>
                                 </div>
                             </div>                        
-                            <div class="form-group col-lg-12 mb-0 mt-1 d-flex"> 
+                            <div class="form-group col-lg-12 mb-0 mt-1 d-flex  border-bottom"> 
                                 <label for="pret_total" class="mb-0 col-form-label mr-2">Preț total:</label>
                                 <div class="px-0" style="width:80px">
                                     <input 
@@ -293,14 +293,22 @@
                                         required
                                         readonly> 
                                 </div>
-                            </div>   
+                            </div>                         
+                            <div class="form-group col-lg-12 mb-0 mt-1 d-flex"> 
+                                <label for="" class="mr-4">Acord de confidențialitate:</label>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="acord_de_confidentialitate" value="1" required
+                                    {{ old('acord_de_confidentialitate') == '1' ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="acord_de_confidentialitate">prin utilizarea acestui formular sunteți de acord cu stocarea și procesarea datelor dvs. pe acest site web</label> 
+                                </div>
+                            </div>  
                         </div>
                     </div>
                 </div>
                 
                 <div class="form-row">
                     <div class="col-lg-12 d-flex justify-content-center">  
-                        <button type="submit" class="btn btn-primary mr-4">Adaugă Rezervare</button>  
+                        <button type="submit" class="btn btn-primary mr-4">Verifică Rezervare</button>  
                     </div>
                 </div>
                     

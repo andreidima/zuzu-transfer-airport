@@ -499,7 +499,8 @@ class RezervareController extends Controller
             'retur_zbor_ora_aterizare' => ['max:100'],
             'order_id' => [''],
             'user_id' => [''],
-            'status' => ['']
+            'status' => [''],
+            'acord_de_confidentialitate' => auth()->user() === null ? ['required'] : ['']
         ],
         [
             'ora_id.required' => 'Câmpul Ora de plecare este obligatoriu',
@@ -567,7 +568,7 @@ class RezervareController extends Controller
             $rezervare = Rezervare::make($this->validateRequest()); 
 
                 // aflarea id-ului cursei in functie de orasele introduse
-                $cursa_id = Cursa::select('id')
+                $cursa = Cursa::select('id', 'pret_adult', 'pret_copil')
                     ->where([
                         ['plecare_id', $request->oras_plecare],
                         ['sosire_id', $request->oras_sosire]
@@ -575,11 +576,15 @@ class RezervareController extends Controller
                     ->first();
                 
                 // setarea id-ului cursei in functie de orasele introduse
-                $rezervare->cursa_id = $cursa_id->id;
+                $rezervare->cursa_id = $cursa->id;
+
+                // calcularea pretului total
+                $rezervare->pret_total = $cursa->pret_adult * $rezervare->nr_adulti + $cursa->pret_copil * $rezervare->nr_copii;
 
                 // stergerea oraselor din request, se foloseste id-ul cursei in DB
                 // stergerea ore_plecare din request, se foloseste ora_id orei in DB
-                unset($rezervare['oras_plecare'], $rezervare['oras_sosire'], $rezervare['ora_plecare'], $rezervare['cursa'], $rezervare['statie'], $rezervare['ora']);
+                unset($rezervare['oras_plecare'], $rezervare['oras_sosire'], $rezervare['ora_plecare'], $rezervare['cursa'], $rezervare['statie'], $rezervare['ora'],
+                    $rezervare['acord_de_confidentialitate']);
 
             $request->session()->put('rezervare', $rezervare);
 
@@ -617,6 +622,17 @@ class RezervareController extends Controller
 
         $rezervare = $request->session()->get('rezervare');
         $rezervare->created_at = \Carbon\Carbon::now();
+
+
+        // aflarea id-ului cursei in functie de orasele introduse
+        $cursa = Cursa::select('id', 'pret_adult', 'pret_copil')
+            ->where('id', $rezervare->cursa_id)
+            ->first();
+
+        // calcularea pretului total
+        $rezervare->pret_total = $cursa->pret_adult * $rezervare->nr_adulti + $cursa->pret_copil * $rezervare->nr_copii;
+
+
         $rezervare_array = $rezervare->toArray();
         unset($rezervare_array['cursa'], $rezervare_array['statie'], $rezervare_array['ora'], $rezervare_array['tip_plata'], $rezervare_array['id']);
         // dd($rezervare_array);

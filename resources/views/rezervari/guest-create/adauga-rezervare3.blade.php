@@ -25,7 +25,7 @@
         <div class="card-body">
             <div class="form-row">
                 <div class="col-sm-12">
-                    Rezervarea a fost adaugată cu succes
+                    Rezervarea pentru clientul "{{ $rezervare->nume }}" a fost adaugată cu succes!
                 </div>
             </div>
             <div class="form-row">

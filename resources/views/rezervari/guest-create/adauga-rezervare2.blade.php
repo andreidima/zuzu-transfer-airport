@@ -173,7 +173,7 @@
                             <td class="text-center">
                                 <small>
                                     <p class="m-0">
-                                        Prin finalizarea rezervării sunteți de acord cu termenii și condițiile acestui site, precum și cu prelucrarea datelor cu caracter personal.
+                                        Prin finalizarea rezervării sunteți de acord cu <a href="https://www.zuzu-transfer-aeroport.ro/termeni-si-conditii/" target="_blank">termenii și condițiile</a> acestui site, precum și cu prelucrarea datelor cu caracter personal.
                                     </p>                                
                                     <span class="text-danger">
                                         Neanunțarea telefonică cu minim 12 ore înainte de îmbarcare poate duce la pierderea biletelor rezervate!
@@ -196,12 +196,13 @@
                 </div>
             </div>
             <div class="form-row">
-                <div class="col-sm-12 text-center">  
+                <div class="col-sm-12 d-flex justify-content-center">  
                     <form  class="needs-validation" novalidate method="POST" action="/adauga-rezervare-pasul-2">
                         @csrf                                                 
                             
-                        <button type="submit" class="btn btn-primary" style="">Finalizează rezervarea</button> 
+                        <button type="submit" class="btn btn-primary mr-4" style="">Salvează rezervarea</button> 
                     </form>
+                    <a class="btn btn-secondary" href="https://www.zuzu-transfer-aeroport.ro/" role="button">Anulează rezervarea</a>
 
                 </div>
             </div>

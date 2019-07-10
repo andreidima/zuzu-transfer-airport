@@ -166,8 +166,8 @@
                             
                             {{-- @if (auth()->user()->isDispecer()) --}}
                                 <a class="btn btn-sm btn-primary mr-4" href="{{ $rezervari->path() }}/modifica" role="button">Modifică Rezervarea</a>
-                            {{-- @endif --}}                            
-                               
+                            {{-- @endif --}}
+
                                 <a href="{{ $rezervari->path() }}/export/rezervare-pdf"
                                     title="Descarcă bilet"
                                     >
@@ -183,7 +183,7 @@
                             <small>
                                 <p class="m-0">
                                     Prin finalizarea rezervării sunteți de acord cu termenii și condițiile acestui site, precum și cu prelucrarea datelor cu caracter personal.
-                                </p>                                
+                                </p>
                                 <span class="text-danger">
                                     Neanunțarea telefonică cu minim 12 ore înainte de îmbarcare poate duce la pierderea biletelor rezervate!
                                 </span>
