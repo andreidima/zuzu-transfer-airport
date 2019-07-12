@@ -261,8 +261,8 @@ class RezervareController extends Controller
      */
     public function store(Request $request)
     {
-        $rezervare_tur = Rezervare::make($this->validateRequest());
-        $rezervare_retur = Rezervare::make($this->validateRequest());
+        $rezervare_tur = Rezervare::make($this->validateRequest($request));
+        $rezervare_retur = Rezervare::make($this->validateRequest($request));
 
         // stergerea oraselor din request, se foloseste id-ul cursei in DB
         // stergerea ore_plecare din request, se foloseste ora_id orei in DB
@@ -388,7 +388,7 @@ class RezervareController extends Controller
     public function update(Request $request, Rezervare $rezervari)
     {
         if (auth()->user()->isDispecer()){ 
-            $this->validateRequest();
+            $this->validateRequest($request);
             $this->authorize('update', $rezervari);    
 
             // aflarea id-ului cursei in functie de orasele introduse
@@ -467,8 +467,9 @@ class RezervareController extends Controller
      *
      * @return array
      */
-    protected function validateRequest()
+    protected function validateRequest(Request $request)
     {
+        // dd ($request);
         return request()->validate([
             'cursa_id' =>['nullable', 'numeric', 'max:999'],
             'oras_plecare' => [ 'required', 'numeric', 'max:999'],
@@ -481,9 +482,9 @@ class RezervareController extends Controller
             'zbor_oras_decolare' => ['max:100'],
             'zbor_ora_decolare' => ['max:100'],
             'zbor_ora_aterizare' => ['max:100'],
-            'nume' => ['required', 'max:100'],
+            'nume' => ['required', 'max:100', 'unique:rezervari,nume,NULL,id,telefon,'.$request->telefon.',data_cursa,'.$request->data_cursa.',ora_id,'.$request->ora_id],
             // 'telefon' => auth() ? auth()->user()->isDispecer() ? [ 'required', 'max:100'] : [ 'required ', 'regex:/^[0-9 ]+$/', 'max: 100'] : [ 'required ', 'regex:/^[0-9 ]+$/', 'max: 100'],
-            'telefon' => (auth()->user() === null) ? [ 'required ', 'regex:/^[0-9 ]+$/', 'max: 100'] : (auth()->user()->isDispecer() ? [ 'required', 'max:100'] : [ 'required ', 'regex:/^[0-9 ]+$/', 'max: 100']),
+            'telefon' => (auth()->user() === null) ? [ 'required', 'regex:/^[0-9 ]+$/', 'max: 100'] : (auth()->user()->isDispecer() ? [ 'required', 'max:100'] : [ 'required ', 'regex:/^[0-9 ]+$/', 'max: 100']),
             'email' => auth()->user() === null ? [ 'required', 'email', 'max:100'] : ['nullable', 'email', 'max:100'],
             'nr_adulti' => [ 'required', 'integer', 'between:1,20'],
             'nr_copii' => [ 'nullable', 'integer', 'between:0,10'],

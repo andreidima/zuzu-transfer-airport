@@ -13,29 +13,11 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
-
-.mx-datepicker-popup{
-  background-color: #6c757d;
-}
-
-.mx-calendar{
-  background-color: #6c757d;
-}
-
-.mx-calendar-content{
-  color: white;
-}
-
-.mx-calendar-header{
-  color: white;
-}
-
-.cell.cur-month{
+.mx-calendar-content, .mx-calendar-header{
+  color: black;
   font-weight: bold;
   font-size: 0.9rem;
 }
-
-
 
 // Table
 // @media (max-width: 500px) {

@@ -93,6 +93,9 @@
                                         required
                                         disabled> 
                                 </div>
+                                <label id="" class="col-form-label pl-1 align-bottom">
+                                    2-7 ani
+                                </label>
                             </div>
                         </div>
 
