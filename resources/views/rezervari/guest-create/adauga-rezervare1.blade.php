@@ -296,7 +296,35 @@
                                         required
                                         readonly> 
                                 </div>
-                            </div>                         
+                            </div>    
+                            @guest                 
+                                <div class="form-group col-lg-12 mb-0 mt-1 pb-1 border-bottom"> 
+                                    <div class="d-flex justify-content-center">
+                                        <button type="button" class="btn btn-light btn-sm mr-2" v-on:click="plata_online = !plata_online">PLATA CU CARD</button>                           
+                                        <input
+                                            type="hidden"
+                                            name="plata_online"
+                                            v-model="plata_online">
+                                        <img src="{{ asset('images/footer-icons-pay.png') }}" width="90px">
+                                    </div>
+                                    <div v-show="plata_online" class="form-group col-lg-12 mb-1 mt-1">
+                                        <div class="row d-flex">
+                                                <label for="adresa" class="mb-0 col-form-label mr-2">Adresa:<span class="text-danger">*</span></label>
+                                            <div class="form-group col-lg-10 mb-1">
+                                                <textarea 
+                                                    type="text" 
+                                                    rows="2"
+                                                    class="form-control form-control-sm {{ $errors->has('adresa') ? 'is-invalid' : '' }}" 
+                                                    name="adresa" 
+                                                    placeholder="Adresa de facturare" 
+                                                    value="{{ old('adresa') }}"
+                                                    >
+                                            </textarea>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                </div>  
+                            @endguest
                             <div class="form-group col-lg-12 mb-0 mt-1 d-flex"> 
                                 <label for="" class="mr-4">Acord de confidențialitate:</label>
                                 <div class="form-check">

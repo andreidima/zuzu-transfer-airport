@@ -388,7 +388,7 @@ class RezervareController extends Controller
     public function update(Request $request, Rezervare $rezervari)
     {
         if (auth()->user()->isDispecer()){ 
-            $this->validateRequest($request);
+            $this->validateRequest($request, $rezervari);
             $this->authorize('update', $rezervari);    
 
             // aflarea id-ului cursei in functie de orasele introduse
@@ -467,9 +467,9 @@ class RezervareController extends Controller
      *
      * @return array
      */
-    protected function validateRequest(Request $request)
+    protected function validateRequest(Request $request, $rezervari = null)
     {
-        // dd ($request);
+        // dd ($request->_method);
         return request()->validate([
             'cursa_id' =>['nullable', 'numeric', 'max:999'],
             'oras_plecare' => [ 'required', 'numeric', 'max:999'],
@@ -482,7 +482,10 @@ class RezervareController extends Controller
             'zbor_oras_decolare' => ['max:100'],
             'zbor_ora_decolare' => ['max:100'],
             'zbor_ora_aterizare' => ['max:100'],
-            'nume' => ['required', 'max:100', 'unique:rezervari,nume,NULL,id,telefon,'.$request->telefon.',data_cursa,'.$request->data_cursa.',ora_id,'.$request->ora_id],
+            'nume' => ($request->_method === "PATCH") ?
+                ['required', 'max:100', 'unique:rezervari,nume,' . $rezervari->id . ',id,telefon,' . $request->telefon . ',data_cursa,' . $request->data_cursa . ',ora_id,' . $request->ora_id]
+                :
+                ['required', 'max:100', 'unique:rezervari,nume,NULL,id,telefon,' . $request->telefon . ',data_cursa,' . $request->data_cursa . ',ora_id,' . $request->ora_id],
             // 'telefon' => auth() ? auth()->user()->isDispecer() ? [ 'required', 'max:100'] : [ 'required ', 'regex:/^[0-9 ]+$/', 'max: 100'] : [ 'required ', 'regex:/^[0-9 ]+$/', 'max: 100'],
             'telefon' => (auth()->user() === null) ? [ 'required', 'regex:/^[0-9 ]+$/', 'max: 100'] : (auth()->user()->isDispecer() ? [ 'required', 'max:100'] : [ 'required ', 'regex:/^[0-9 ]+$/', 'max: 100']),
             'email' => auth()->user() === null ? [ 'required', 'email', 'max:100'] : ['nullable', 'email', 'max:100'],
@@ -498,14 +501,20 @@ class RezervareController extends Controller
             'retur_zbor_oras_decolare' => ['max:100'],
             'retur_zbor_ora_decolare' => ['max:100'],
             'retur_zbor_ora_aterizare' => ['max:100'],
+            
+            'plata_online' => [''],
+            'adresa' => ['required_if:plata_online,true', 'nullable', 'max:99'],
+
             'order_id' => [''],
             'user_id' => [''],
             'status' => [''],
             'acord_de_confidentialitate' => auth()->user() === null ? ['required'] : ['']
         ],
         [
-            'ora_id.required' => 'Câmpul Ora de plecare este obligatoriu',
-            'telefon.regex' => 'Câmpul telefon poate conține doar cifre și spații'
+            'ora_id.required' => 'Câmpul Ora de plecare este obligatoriu.',
+            'telefon.regex' => 'Câmpul Telefon poate conține doar cifre și spații.',
+            'nume.unique' => 'Această Rezervare este deja înregistrată.',
+            'adresa.required_if' => 'Câmpul Adresa este obligatoriu dacă este selectată plata cu card'
         ]
         );
     }
@@ -566,7 +575,7 @@ class RezervareController extends Controller
     public function postAdaugaRezervare1(Request $request)
     {       
             $request->session()->forget('rezervare');
-            $rezervare = Rezervare::make($this->validateRequest()); 
+            $rezervare = Rezervare::make($this->validateRequest($request)); 
 
                 // aflarea id-ului cursei in functie de orasele introduse
                 $cursa = Cursa::select('id', 'pret_adult', 'pret_copil')

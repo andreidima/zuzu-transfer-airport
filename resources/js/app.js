@@ -59,7 +59,9 @@ if (document.querySelector('#orase-ore-plecare')) {
             pret_copil: 0,
             pret_total: pretTotal,
 
-            retur: false
+            retur: false,
+
+            plata_online: false
         },
         created: function () {
             this.getOrasePlecareInitial()
