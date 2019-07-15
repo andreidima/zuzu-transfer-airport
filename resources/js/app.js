@@ -61,7 +61,8 @@ if (document.querySelector('#orase-ore-plecare')) {
 
             retur: false,
 
-            plata_online: false
+            plata_online: plataOnlineVeche,
+            // plata_online: false
         },
         created: function () {
             this.getOrasePlecareInitial()

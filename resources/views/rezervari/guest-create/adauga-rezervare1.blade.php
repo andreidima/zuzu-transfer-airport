@@ -297,7 +297,11 @@
                                         readonly> 
                                 </div>
                             </div>    
-                            @guest                 
+                            @guest                                       
+                                <script type="application/javascript"> 
+                                    plataOnlineVeche={!! json_encode(old('plata_online', false)) !!}
+                                </script>
+
                                 <div class="form-group col-lg-12 mb-0 mt-1 pb-1 border-bottom"> 
                                     <div class="d-flex justify-content-center">
                                         <button type="button" class="btn btn-light btn-sm mr-2" v-on:click="plata_online = !plata_online">PLATA CU CARD</button>                           
@@ -307,6 +311,7 @@
                                             v-model="plata_online">
                                         <img src="{{ asset('images/footer-icons-pay.png') }}" width="90px">
                                     </div>
+
                                     <div v-show="plata_online" class="form-group col-lg-12 mb-1 mt-1">
                                         <div class="row d-flex">
                                                 <label for="adresa" class="mb-0 col-form-label mr-2">Adresa:<span class="text-danger">*</span></label>
@@ -316,9 +321,9 @@
                                                     rows="2"
                                                     class="form-control form-control-sm {{ $errors->has('adresa') ? 'is-invalid' : '' }}" 
                                                     name="adresa" 
-                                                    placeholder="Adresa de facturare" 
-                                                    value="{{ old('adresa') }}"
+                                                    placeholder="Adresa de facturare"
                                                     >
+                                                    {{ old('adresa') }}
                                             </textarea>
                                             </div>
                                         </div>
@@ -326,6 +331,7 @@
                                 </div>  
                             @endguest
                             <div class="form-group col-lg-12 mb-0 mt-1 d-flex"> 
+                                {{ old('adresa') }}
                                 <label for="" class="mr-4">Acord de confidențialitate:</label>
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" name="acord_de_confidentialitate" value="1" required
