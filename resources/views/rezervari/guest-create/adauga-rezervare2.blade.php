@@ -15,12 +15,6 @@
 
             </div>
         </div>    
-{{-- 
-        <div>
-            @php
-                dd( $rezervare->statie_id);
-            @endphp
-        </div> --}}
 
         <div class="card-body">
             <div class="form-row">
@@ -187,12 +181,7 @@
                             </td>
                         </tr>
                     </table>
-
-
                     
-
-
-
                 </div>
             </div>
             <div class="form-row">

@@ -284,6 +284,9 @@
                                 </div>
                             </div>                        
                             <div class="form-group col-lg-12 mb-0 mt-1 d-flex  border-bottom"> 
+                                <script type="application/javascript"> 
+                                    pretTotal={!! json_encode(old('pret_total', 0)) !!}
+                                </script>  
                                 <label for="pret_total" class="mb-0 col-form-label mr-2">Preț total:</label>
                                 <div class="px-0" style="width:80px">
                                     <input 
@@ -295,12 +298,14 @@
                                         value="{{ old('pret_total') }}"
                                         required
                                         readonly> 
-                                </div>
+                                </div>{{ old('pret_total') }}
                             </div>    
                             @guest                                       
                                 <script type="application/javascript"> 
-                                    plataOnlineVeche={!! json_encode(old('plata_online', false)) !!}
+                                    plataOnlineVeche={!! json_encode(old('plata_online') == "true" ? true : false) !!}
                                 </script>
+
+                                <h1 :plata-online="true"></h1>
 
                                 <div class="form-group col-lg-12 mb-0 mt-1 pb-1 border-bottom"> 
                                     <div class="d-flex justify-content-center">
@@ -322,16 +327,13 @@
                                                     class="form-control form-control-sm {{ $errors->has('adresa') ? 'is-invalid' : '' }}" 
                                                     name="adresa" 
                                                     placeholder="Adresa de facturare"
-                                                    >
-                                                    {{ old('adresa') }}
-                                            </textarea>
+                                                    >{{ old('adresa') }}</textarea>
                                             </div>
                                         </div>
                                     </div> 
                                 </div>  
                             @endguest
-                            <div class="form-group col-lg-12 mb-0 mt-1 d-flex"> 
-                                {{ old('adresa') }}
+                            <div class="form-group col-lg-12 mb-0 mt-1 d-flex">
                                 <label for="" class="mr-4">Acord de confidențialitate:</label>
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" name="acord_de_confidentialitate" value="1" required
