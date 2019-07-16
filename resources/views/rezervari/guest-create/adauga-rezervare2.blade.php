@@ -188,9 +188,13 @@
                 <div class="col-sm-12 d-flex justify-content-center">  
                     <form  class="needs-validation" novalidate method="POST" action="/adauga-rezervare-pasul-2">
                         @csrf                                                 
-                            
-                        <button type="submit" class="btn btn-primary mr-4" style="">Salvează rezervarea</button> 
+                        @if ($rezervare->plata_online == "true")
+                            <button type="submit" class="btn btn-primary mr-4" style="">Plătește rezervarea</button>
+                        @else
+                            <button type="submit" class="btn btn-primary mr-4" style="">Salvează rezervarea</button> 
+                        @endif
                     </form>
+                    {{ $rezervare->plata_online }}
                     <a class="btn btn-secondary" href="https://www.zuzu-transfer-aeroport.ro/" role="button">Anulează rezervarea</a>
 
                 </div>
