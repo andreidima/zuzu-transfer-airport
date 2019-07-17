@@ -268,9 +268,11 @@ class RezervareController extends Controller
         // stergerea ore_plecare din request, se foloseste ora_id orei in DB
         // stergerea datelor de retur
         unset($rezervare_tur['oras_plecare'], $rezervare_tur['oras_sosire'], $rezervare_tur['ora_plecare'],
-            $rezervare_tur['retur'], $rezervare_tur['retur_ora_id'], $rezervare_tur['retur_data_cursa'], $rezervare_tur['retur_zbor_oras_decolare'], $rezervare_tur['retur_zbor_ora_decolare'], $rezervare_tur['retur_zbor_ora_aterizare']);
+            $rezervare_tur['retur'], $rezervare_tur['retur_ora_id'], $rezervare_tur['retur_data_cursa'], $rezervare_tur['retur_zbor_oras_decolare'], $rezervare_tur['retur_zbor_ora_decolare'], $rezervare_tur['retur_zbor_ora_aterizare'],
+            $rezervare_tur['plata_online'], $rezervare_tur['adresa']);
         unset($rezervare_retur['oras_plecare'], $rezervare_retur['oras_sosire'], $rezervare_retur['ora_plecare'],
-            $rezervare_retur['retur'], $rezervare_retur['retur_ora_id'], $rezervare_retur['retur_data_cursa'], $rezervare_retur['retur_zbor_oras_decolare'], $rezervare_retur['retur_zbor_ora_decolare'], $rezervare_retur['retur_zbor_ora_aterizare']);
+            $rezervare_retur['retur'], $rezervare_retur['retur_ora_id'], $rezervare_retur['retur_data_cursa'], $rezervare_retur['retur_zbor_oras_decolare'], $rezervare_retur['retur_zbor_ora_decolare'], $rezervare_retur['retur_zbor_ora_aterizare'],
+            $rezervare_retur['plata_online'], $rezervare_retur['adresa']);
         
         $rezervare_tur->user_id = auth()->user()->id;
         $rezervare_retur->user_id = auth()->user()->id;
@@ -337,6 +339,13 @@ class RezervareController extends Controller
         else if(empty($request->tip_plata_id)){
             $rezervare_tur->tip_plata_id = 1;
             $rezervare_retur->tip_plata_id = 1;            
+        }        
+
+        // Trimitere email
+        if (!empty($rezervari->email)) {
+            \Mail::to($rezervari->email)->send(
+                new BiletClient($rezervari)
+            );
         }
 
         if ($request->retur == "false") {
@@ -403,7 +412,8 @@ class RezervareController extends Controller
             $rezervari->cursa_id = $cursa_id->id;
 
             $rezervari->update( $request->except(['oras_plecare', 'oras_sosire', 'ora_plecare', 'date', 'retur', 'retur_ora_id',
-                'retur_data_cursa', 'retur_zbor_oras_decolare', 'retur_zbor_ora_decolare', 'retur_zbor_ora_aterizare']));
+                'retur_data_cursa', 'retur_zbor_oras_decolare', 'retur_zbor_ora_decolare', 'retur_zbor_ora_aterizare',
+                'plata_online', 'adresa']));
 
             $rezervari->nume = strtoupper($rezervari->nume);
             $rezervari->zbor_oras_decolare = strtoupper($rezervari->zbor_oras_decolare);
@@ -423,13 +433,6 @@ class RezervareController extends Controller
             
             $rezervari->update( $request->only(['telefon', 'statie_imbarcare']));
         }
-
-        // Trimitere email
-        // if (!empty($rezervari->email)) {
-        //     \Mail::to($rezervari->email)->send(
-        //         new BiletClient($rezervari)
-        //     );
-        // }
 
         return redirect($rezervari->path().'/rezervare_modificata')->with('status', 'Rezervarea pentru clientul "' . $rezervari->nume . '" a fost modificată cu succes!');
     }
@@ -527,7 +530,7 @@ class RezervareController extends Controller
             $pdf = \PDF::loadView('rezervari.export.rezervare-pdf', compact('rezervari'))
                 ->setPaper('a4');
                     // return $pdf->stream('Rezervare ' . $rezervari->nume . '.pdf');
-                    return $pdf->stream('Rezervare ' . $rezervari->nume . '.pdf');
+                    return $pdf->download('Rezervare ' . $rezervari->nume . '.pdf');
         }
         // elseif($request->view_type === 'fisa-de-date-a-imobilului-pdf'){
         //     $pdf = PDF::loadView('registru.export.pdf-fisa-de-date-a-imobilului', ['registre' => $registre]) ->setPaper('a4');
@@ -591,6 +594,9 @@ class RezervareController extends Controller
                 // calcularea pretului total
                 $rezervare->pret_total = $cursa->pret_adult * $rezervare->nr_adulti + $cursa->pret_copil * $rezervare->nr_copii;
 
+                $rezervare->nume = strtoupper($rezervare->nume);
+                $rezervare->zbor_oras_decolare = strtoupper($rezervare->zbor_oras_decolare);
+
                 // stergerea oraselor din request, se foloseste id-ul cursei in DB
                 // stergerea ore_plecare din request, se foloseste ora_id orei in DB
                 unset($rezervare['oras_plecare'], $rezervare['oras_sosire'], $rezervare['ora_plecare'], $rezervare['cursa'], $rezervare['statie'], $rezervare['ora'],
@@ -644,8 +650,9 @@ class RezervareController extends Controller
 
 
         $rezervare_array = $rezervare->toArray();
-        unset($rezervare_array['cursa'], $rezervare_array['statie'], $rezervare_array['ora'], $rezervare_array['tip_plata'], $rezervare_array['id']);
-        // dd($rezervare_array);
+        unset($rezervare_array['cursa'], $rezervare_array['statie'], $rezervare_array['ora'], $rezervare_array['tip_plata'], $rezervare_array['id'],
+            $rezervare_array['plata_online'], $rezervare_array['adresa']);
+            
             $id = DB::table('rezervari')->insertGetId($rezervare_array);
         // $id = $rezervari->save->insertGetId;
         $rezervare->id = $id;
@@ -665,7 +672,14 @@ class RezervareController extends Controller
         //     $rezervare->data_cursa = \Carbon\Carbon::createFromFormat('Y.m.d H:i', $rezervare->data_cursa)->format('d.m.Y');
         // }
         // $request->session()->put('rezervare', $rezervare);
-        // dd($request->session()->get('rezervare'));
+        // dd($request->session()->get('rezervare'));        
+
+        // Trimitere email
+        if (!empty($rezervare->email)) {
+            \Mail::to($rezervare->email)->send(
+                new BiletClient($rezervare)
+            );
+        }
 
         return redirect('/adauga-rezervare-pasul-3');
 

@@ -34,7 +34,8 @@
                                 <script type="application/javascript"> 
                                     orasPlecareVechi={!! json_encode(old('oras_plecare', $rezervari->cursa->plecare_id)) !!}
                                     statieImbarcareVeche = 0
-                                    returOraPlecareVeche = 0
+                                    returOraPlecareVeche = 0                                    
+                                    plataOnlineVeche = 0
                                 </script>       
                                 <label for="oras_plecare" class="mb-0">Plecare din:<span class="text-danger">*</span></label>
                                     <select class="custom-select-sm custom-select {{ $errors->has('oras_plecare') ? 'is-invalid' : '' }}"

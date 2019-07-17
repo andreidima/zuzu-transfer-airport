@@ -181,7 +181,7 @@
                             </td>
                         </tr>
                     </table>
-                    
+
                 </div>
             </div>
             <div class="form-row">
@@ -194,7 +194,7 @@
                             <button type="submit" class="btn btn-primary mr-4" style="">Salvează rezervarea</button> 
                         @endif
                     </form>
-                    {{ $rezervare->plata_online }}
+                    
                     <a class="btn btn-secondary" href="https://www.zuzu-transfer-aeroport.ro/" role="button">Anulează rezervarea</a>
 
                 </div>
