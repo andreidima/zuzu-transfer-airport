@@ -346,13 +346,14 @@ class RezervareController extends Controller
             \Mail::to($rezervare_tur->email)->send(
                 new BiletClient($rezervare_tur)
             );
-        }      
+        }     
+
         // Trimitere email pentru rezervare retur
-        if (!empty($rezervare_retur->email)) {
-            \Mail::to($rezervare_retur->email)->send(
-                new BiletClient($rezervare_retur)
-            );
-        }
+        // if (!empty($rezervare_retur->email)) {
+        //     \Mail::to($rezervare_retur->email)->send(
+        //         new BiletClient($rezervare_retur)
+        //     );
+        // }
 
         if ($request->retur == "false") {
             $rezervare_tur->save();
