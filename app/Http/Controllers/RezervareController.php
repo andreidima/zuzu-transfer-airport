@@ -341,10 +341,16 @@ class RezervareController extends Controller
             $rezervare_retur->tip_plata_id = 1;            
         }        
 
-        // Trimitere email
-        if (!empty($rezervari->email)) {
-            \Mail::to($rezervari->email)->send(
-                new BiletClient($rezervari)
+        // Trimitere email pentru rezervare tur
+        if (!empty($rezervare_tur->email)) {
+            \Mail::to($rezervare_tur->email)->send(
+                new BiletClient($rezervare_tur)
+            );
+        }      
+        // Trimitere email pentru rezervare retur
+        if (!empty($rezervare_retur->email)) {
+            \Mail::to($rezervare_retur->email)->send(
+                new BiletClient($rezervare_retur)
             );
         }
 
