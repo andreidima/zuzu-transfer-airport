@@ -34,7 +34,7 @@ class RezervareController extends Controller
                 })
                 // ->where('rezervari.id', 'like', '%' . $search_cod_bilet . '%')
                 ->latest('rezervari.created_at')
-                ->spaginate(100);
+                ->simplePaginate(100);
         }
         else {
             $rezervari = auth()->user()->rezervari()
@@ -47,7 +47,7 @@ class RezervareController extends Controller
                 })
                 // ->where('rezervari.id', 'like', '%' . $search_cod_bilet . '%')
                 ->latest('rezervari.created_at')
-                ->paginate(100);
+                ->simplePaginate(100);
         }
         // $rezervaria = auth()->user()->rezervari()
         //     ->join('curse_ore', 'ora_id', '=', 'curse_ore.id')

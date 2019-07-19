@@ -449,11 +449,15 @@
                 @endforelse
                 </tbody>
         </table>
-                <nav>
-                    <ul class="pagination justify-content-center">
-                        {{$rezervari->links()}}
-                    </ul>
-                </nav> 
+            <p class="text-center">
+            Pagina nr. {{$rezervari->currentPage()}}
+            </p>
+
+            <nav>
+                <ul class="pagination justify-content-center">
+                    {{$rezervari->links()}}
+                </ul>
+            </nav> 
 
     </div>
 @endsection
