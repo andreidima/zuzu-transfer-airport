@@ -443,9 +443,9 @@ class RezervareController extends Controller
 
 
         // Trimitere email
-        if (!empty($rezervare->email)) {
-            \Mail::to($rezervare->email)->send(
-                new BiletClient($rezervare)
+        if (!empty($rezervari->email)) {
+            \Mail::to($rezervari->email)->send(
+                new BiletClient($rezervari)
             );
         }
 
