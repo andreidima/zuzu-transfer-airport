@@ -441,6 +441,14 @@ class RezervareController extends Controller
             $rezervari->update( $request->only(['telefon', 'statie_imbarcare']));
         }
 
+
+        // Trimitere email
+        if (!empty($rezervare->email)) {
+            \Mail::to($rezervare->email)->send(
+                new BiletClient($rezervare)
+            );
+        }
+
         return redirect($rezervari->path().'/rezervare_modificata')->with('status', 'Rezervarea pentru clientul "' . $rezervari->nume . '" a fost modificată cu succes!');
     }
 
