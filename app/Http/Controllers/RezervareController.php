@@ -440,7 +440,7 @@ class RezervareController extends Controller
             
             $rezervari->update( $request->only(['telefon', 'statie_imbarcare']));
         }
-
+        // dd(Config::get('mail'));
 
         // Trimitere email
         if (!empty($rezervari->email)) {
