@@ -103,7 +103,9 @@ class TraseuController extends Controller
                     $query->where('ora', '=', $trasee->curse_ore->first()->ora);
                 })
                 ->where('data_cursa', $search)
-                ->where('activa', 1)->get()
+                ->where('activa', 1)
+                ->latest()
+                ->get()
                 ->sortBy(function ($rezervare) {
                     return [$rezervare->ora->ora, $rezervare->cursa->durata];
                 });
@@ -135,7 +137,9 @@ class TraseuController extends Controller
                         $query->where('plecare_id', '=', 8);
                     })
                 ->where('data_cursa', $search)
-                ->where('activa', 1)->get()
+                ->where('activa', 1)
+                ->latest()
+                ->get()
                 ->sortBy(function ($rezervare) {
                     return [$rezervare->ora->ora, $rezervare->cursa->durata];
                 });

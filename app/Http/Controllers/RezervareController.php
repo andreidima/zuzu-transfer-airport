@@ -668,14 +668,31 @@ class RezervareController extends Controller
         unset($rezervare_array['cursa'], $rezervare_array['statie'], $rezervare_array['ora'], $rezervare_array['tip_plata'], $rezervare_array['id'],
             $rezervare_array['plata_online'], $rezervare_array['adresa']);
             
-            $id = DB::table('rezervari')->insertGetId($rezervare_array);
+        
+        // Verificare rezervare duplicat
+        $request_verificare_duplicate = new Request([
+            'nume' => $request->session()->get('rezervare.nume'),
+            'telefon' => $request->session()->get('rezervare.telefon'),
+            'data_cursa' => $request->session()->get('rezervare.data_cursa'),
+            'ora_id' => $request->session()->get('rezervare.ora_id')
+        ]);
+
+        $this->validate($request_verificare_duplicate, [
+            'nume' => ['required', 'max:100', 'unique:rezervari,nume,NULL,id,telefon,' . $request_verificare_duplicate->telefon . ',data_cursa,' . $request_verificare_duplicate->data_cursa . ',ora_id,' . $request_verificare_duplicate->ora_id]
+        ],
+        [
+            'nume.unique' => 'Această Rezervare este deja înregistrată.'
+        ]);
+        
+        //Inserarea rezervarii in baza de date
+        $id = DB::table('rezervari')->insertGetId($rezervare_array);
+        
         // $id = $rezervari->save->insertGetId;
+        
         $rezervare->id = $id;
 
         // $rezervare->data_cursa = \Carbon\Carbon::createFromFormat('Y.m.d H:i', $rezervare->data_cursa)->format('d.m.Y');
 
-
-                
         $request->session()->put('rezervare', $rezervare);
 
         // if($rezervari->save()){

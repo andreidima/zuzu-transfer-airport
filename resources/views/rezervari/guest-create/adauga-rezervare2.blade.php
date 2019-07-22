@@ -16,6 +16,8 @@
             </div>
         </div>    
 
+        @include ('errors')
+
         <div class="card-body">
             <div class="form-row">
                 <div class="col-md-2"></div>

@@ -34,6 +34,7 @@
             border-width:1px;
             border-style: solid;
             table-layout:fixed;
+            font-weight: normal;
             
         }
         tr {
@@ -83,7 +84,7 @@
                                 <td style="border-width:0px; padding:0rem; width:60%; text-align:center; font-size:16px">
                                     Tip traseu: TUR
                                     <br>
-                                    Pentru data: {{ $data_traseu }}
+                                    Pentru data: <u>{{ $data_traseu }}</u>
                                     <br>
                                     @forelse ($traseu->curse_ore as $cursa_ora)
                                         @if ($cursa_ora->cursa->oras_plecare->nume == "Adjud")
@@ -96,8 +97,8 @@
                                             MAR:
                                         @elseif ($cursa_ora->cursa->oras_plecare->nume == "Focsani")
                                             FCS:
-                                        @elseif ($cursa_ora->cursa->oras_plecare->nume == "Ramnicu Sarat")
-                                            RM:
+                                        @elseif ($cursa_ora->cursa->oras_plecare->nume == "Rm.Sarat")
+                                            RMS:
                                         @elseif ($cursa_ora->cursa->oras_plecare->nume == "Buzau")
                                             BZ:
                                         @endif
@@ -117,31 +118,31 @@
 
                         <br><br><br>
 
-                        <p style="margin: 0 0 0 0px;">
-                            Nume sofer ......................................................................................................
-                            Nr. masina ......................................................
+                        <p style="margin: 0 0 0 0px; font-size:1.2rem;">
+                            Nume sofer .......................................................................................
+                            Nr. masina ......................................
                         </p>
 
                         <br>
                         
-                        <table style="">
-                            <tr style="background-color:#e7d790">
-                                <th style="width:4%">Nr. crt.</th>
-                                <th style="width:15%">Nume si prenume</th>
-                                <th style="width:13%">Telefon</th>
-                                <th style="width:9%">Plecare</th>
-                                <th style="width:21%">Statie imbarcare</th>
-                                <th style="width:9%">Ora decolare</th>
-                                <th style="width:10%">Observatii</th>
-                                <th style="width:7%">Suma</th>
-                                <th style="width:7%">Plata</th>
-                                <th style="width:5%">Nr. pers</th>
+                        <table style="width:660px;">
+                            <tr style="background-color:#e7d790;">
+                                <th style="width:20px;">Nr. crt.</th>
+                                <th style="width:125px;">Nume si prenume</th>
+                                <th style="width:105px;">Telefon</th>
+                                <th style="width:55px;">Plecare</th>
+                                <th style="width:170px;">Statie imbarcare</th>
+                                <th style="width:30px;">Ora zbor</th>
+                                <th style="width:60px;">Observatii</th>
+                                <th style="width:35px;">Suma</th>
+                                <th style="width:30px;">Plata</th>
+                                <th style="width:25px;">Nr. pers</th>
                             </tr>
                             @php 
                                 ($nrcrt = 1) 
                             @endphp
                             @forelse ($traseu->curse_ore as $cursa_ora)
-                                @forelse ($cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1) as $rezervare)
+                                @forelse ($cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sortByDesc('created_at') as $rezervare)
                                     <tr>
                                         <td>
                                             {{ $nrcrt++ }}

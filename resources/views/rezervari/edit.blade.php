@@ -15,12 +15,12 @@
                     <div class="form-group col-lg-6 shadow-sm mb-0">
                         <div class="form-row mb-0 d-flex justify-content-between"> 
                                 <h5 class="mb-0">
-                                    <span class="badge badge-danger">
+                                    <span class="badge text-dark" style="background-color:#c3c3c3">
                                         Cod bilet: RO{{ $rezervari->id }}
                                     </span>
                                 </h5>
                                 <h5 class="mb-0">
-                                    <span class="badge badge-danger">
+                                    <span class="badge text-dark" style="background-color:#c3c3c3">
                                         Emis la data de: {{ $rezervari->created_at }}
                                     </span>
                                 </h5>
@@ -248,7 +248,7 @@
                                                     {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
                                                     >
                                                 </div>
-                                            <label id="" class="col-form-label pl-1 text-white align-bottom">
+                                            <label id="" class="col-form-label pl-1 align-bottom">
                                                 2-7 ani
                                             </label>
                                         </div>

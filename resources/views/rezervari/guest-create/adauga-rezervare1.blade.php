@@ -298,7 +298,7 @@
                                         value="{{ old('pret_total') }}"
                                         required
                                         readonly> 
-                                </div>{{ old('pret_total') }}
+                                </div>
                             </div> 
                             
                                                             
