@@ -15,24 +15,24 @@
                 {{-- Traseu Tecuci - Otopeni --}}
                 <table class="table table-sm" style="border:1px solid #333; width:100%;"> 
                     <thead>
-                        <tr style="height:35px; background-color:#336699; text-align:center; color:white;">
-                        <th>Nr.<br>crt.</th>
-                        <th>User</th>
-                        <th>Nume</th>
-                        <th>Telefon</th>
-                        <th>Plecare</th>
-                        <th>Sosire</th>
-                        <th>
+                        <tr style="height:35px; background-color:#336699; text-align:center; color:white; font-size:0.7rem">
+                        <th class="px-0">Nr.<br>crt.</th>
+                        <th class="px-0">User</th>
+                        <th class="px-0">Nume</th>
+                        <th class="px-0">Telefon</th>
+                        <th class="px-0">Plecare</th>
+                        <th class="px-0">Sosire</th>
+                        <th class="px-0">
                             <div style="min-width:80px;">
                                 Data<br />plecare
                             </div>
                         </th>
-                        <th>Ora<br />imbarcare</th>
-                        <th>Ora<br />debarcare</th>
-                        <th>Plata</th>
-                        <th>Nr.<br />pers.</th>
-                        <th align="center">Statie<br />imbarcare</th>
-                        <th colspan="3">Diverse</th>
+                        <th class="px-0">Ora<br />imbarcare</th>
+                        <th class="px-0">Ora<br />debarcare</th>
+                        <th class="px-0">Plata</th>
+                        <th class="px-0">Nr.<br />pers.</th>
+                        <th class="px-0" align="center">Statie<br />imbarcare</th>
+                        <th class="px-0" colspan="3">Diverse</th>
                         </tr>
                     </thead>
                     <tbody>  
@@ -153,12 +153,12 @@
                                     <td align="center">
                                         {{ $rezervare->data_cursa }}
                                     </td>
-                                    <td align="center">  
+                                    <td class="px-0" align="center">  
                                         @if(!empty($rezervare->ora))    
                                             {{ \Carbon\Carbon::parse($rezervare->ora->ora)->format('H:i') }}
                                         @endif
                                     </td>
-                                    <td align="center">
+                                    <td class="px-0" align="center">
                                         @if(!empty($rezervare->ora))    
                                             {{ \Carbon\Carbon::parse($rezervare->ora->ora)
                                                 ->addHours(\Carbon\Carbon::parse($rezervare->cursa->durata)->hour)
@@ -166,7 +166,7 @@
                                                 ->format('H:i') }}  
                                         @endif
                                     </td>
-                                    <td align="center">
+                                    <td class="px-0" align="center">
                                         @if(!empty($rezervare->tip_plata))
                                             {{ $rezervare->tip_plata->nume }}
                                         @else
@@ -185,7 +185,7 @@
                                             -
                                         @endif
                                     </td>
-                                    <td align="center" style="border-right:#333 1px solid;">   
+                                    <td class="px-0" align="center" style="border-right:#333 1px solid;">   
                                         <div style="min-width:90px;">
                                             <div style="float:right; ">   
                                                 <form  

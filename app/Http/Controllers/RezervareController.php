@@ -21,18 +21,19 @@ class RezervareController extends Controller
      */
     public function index()
     {
-        $search_nume = \Request::get('search_nume'); //<-- we use global request to get the param of URI
-        $search_telefon = \Request::get('search_telefon'); //<-- we use global request to get the param of URI
+        $search_nume_telefon = \Request::get('search_nume_telefon'); //<-- we use global request to get the param of URI
         $search_cod_bilet = \Request::get('search_cod_bilet'); //<-- we use global request to get the param of URI
+        // dd($search_cod_bilet);
         if (auth()->user()->isDispecer()){
             $rezervari = Rezervare::join('curse_ore', 'ora_id', '=', 'curse_ore.id')
                 ->select('rezervari.*', 'curse_ore.ora')
-                ->where('nume', 'like', '%' . $search_nume . '%')
-                ->where('telefon', 'like', '%' . $search_telefon . '%')
+                ->when($search_nume_telefon, function ($query, $search_nume_telefon) {
+                    return $query   ->where('nume', 'like', '%' . $search_nume_telefon . '%')
+                                    ->orWhere('telefon', 'like', '%' . $search_nume_telefon . '%');
+                })
                 ->when($search_cod_bilet, function ($query, $search_cod_bilet) {
                     return $query->where( 'rezervari.id', $search_cod_bilet);
                 })
-                // ->where('rezervari.id', 'like', '%' . $search_cod_bilet . '%')
                 ->latest('rezervari.created_at')
                 ->simplePaginate(100);
         }
@@ -40,12 +41,13 @@ class RezervareController extends Controller
             $rezervari = auth()->user()->rezervari()
                 ->join('curse_ore', 'ora_id', '=', 'curse_ore.id')
                 ->select('rezervari.*', 'curse_ore.ora')
-                ->where('nume', 'like', '%' . $search_nume . '%')
-                ->where('telefon', 'like', '%' . $search_telefon . '%')
-                ->when($search_cod_bilet, function ($query, $search_cod_bilet) {
-                    return $query->where('rezervari.id', $search_cod_bilet);
+                ->when($search_nume_telefon, function ($query, $search_nume_telefon) {
+                    return $query   ->where('nume', 'like', '%' . $search_nume_telefon . '%')
+                                    ->orWhere('telefon', 'like', '%' . $search_nume_telefon . '%');
                 })
-                // ->where('rezervari.id', 'like', '%' . $search_cod_bilet . '%')
+                ->when($search_cod_bilet, function ($query, $search_cod_bilet) {
+                    return $query->where( 'rezervari.id', $search_cod_bilet);
+                })
                 ->latest('rezervari.created_at')
                 ->simplePaginate(100);
         }

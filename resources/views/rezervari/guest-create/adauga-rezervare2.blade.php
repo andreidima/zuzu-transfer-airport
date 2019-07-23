@@ -147,7 +147,7 @@
                                 Nr. persoane: <b>{{ $rezervare->nr_adulti +  $rezervare->nr_copii }}</b>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                Total plata: <b>{{ $rezervare->pret_total }}</b>
+                                Total plata: <b>{{ $rezervare->pret_total }}</b> lei
                                 <br>
                                 <br>
                                 Stație îmbarcare:

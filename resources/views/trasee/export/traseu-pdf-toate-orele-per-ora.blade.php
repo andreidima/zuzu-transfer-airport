@@ -97,7 +97,7 @@
                                             MAR:
                                         @elseif ($cursa_ora->cursa->oras_plecare->nume == "Focsani")
                                             FCS:
-                                        @elseif ($cursa_ora->cursa->oras_plecare->nume == "Rm.Sarat")
+                                        @elseif ($cursa_ora->cursa->oras_plecare->nume == "Rm. Sarat")
                                             RMS:
                                         @elseif ($cursa_ora->cursa->oras_plecare->nume == "Buzau")
                                             BZ:
@@ -128,12 +128,12 @@
                         <table style="width:660px;">
                             <tr style="background-color:#e7d790;">
                                 <th style="width:20px;">Nr. crt.</th>
-                                <th style="width:125px;">Nume si prenume</th>
+                                <th style="width:105px;">Nume si prenume</th>
                                 <th style="width:105px;">Telefon</th>
                                 <th style="width:55px;">Plecare</th>
                                 <th style="width:170px;">Statie imbarcare</th>
-                                <th style="width:30px;">Ora zbor</th>
-                                <th style="width:60px;">Observatii</th>
+                                <th style="width:75px;">Observatii</th>
+                                <th style="width:35px;">Ora zbor</th>
                                 <th style="width:35px;">Suma</th>
                                 <th style="width:30px;">Plata</th>
                                 <th style="width:25px;">Nr. pers</th>
@@ -142,7 +142,7 @@
                                 ($nrcrt = 1) 
                             @endphp
                             @forelse ($traseu->curse_ore as $cursa_ora)
-                                @forelse ($cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sortByDesc('created_at') as $rezervare)
+                                @forelse ($cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1) as $rezervare)
                                     <tr>
                                         <td>
                                             {{ $nrcrt++ }}
@@ -166,9 +166,6 @@
                                             @endif
                                         </td>
                                         <td>
-                                            {{ $rezervare->zbor_ora_decolare}}
-                                        </td>
-                                        <td>
                                             @if (empty($rezervare->user))
                                                 <span style="color:#3672ED; font-size:2rem; margin:0px; padding:0px;">
                                                     C
@@ -180,6 +177,9 @@
                                             @else 
                                                 {{ $rezervare->user->firma->nume }}                               
                                             @endif
+                                        </td>
+                                        <td>
+                                            {{ $rezervare->zbor_ora_decolare}}
                                         </td>
                                         <td>
                                             @if (($rezervare->comision_agentie == 0) && ($rezervare->tip_plata_id == 2))

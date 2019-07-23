@@ -10,14 +10,19 @@
                     <form class="needs-validation" novalidate method="GET" action="/rezervari">
                         @csrf                    
                         <div class="input-group custom-search-form">
-                            <input type="text" class="form-control" name="search_nume" placeholder="Caută nume...">
-                            <input type="text" class="form-control" name="search_telefon" placeholder="Caută telefon...">
-                            <input type="text" class="form-control" name="search_cod_bilet" placeholder="Caută cod bilet...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default-sm bg-primary" type="submit">
-                                    <i class="fas fa-search text-white"></i>
-                                </button>
-                            </span>
+                            <div class="w-50">
+                                <input type="text" class="form-control" name="search_nume_telefon" placeholder="Caută nume sau telefon...">
+                            </div>
+                            <div class="mx-4">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default-sm bg-primary" type="submit">
+                                        <i class="fas fa-search text-white"></i>
+                                    </button>
+                                </span>
+                            </div>
+                            <div class="w-25">                            
+                                <input type="text" class="form-control" name="search_cod_bilet" placeholder="Caută cod bilet...">
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -41,7 +46,7 @@
                 @if (auth()->user()->isDispecer())
                     <th class="px-0">User</th>
                 @endif
-                <th>Nume</th>
+                <th style="width:300px">Nume</th>
                 <th>Telefon</th>
                 <th>Plecare</th>
                 <th>Sosire</th>
