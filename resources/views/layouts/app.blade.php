@@ -139,6 +139,20 @@
         <main class="container my-4 py-4 bg-white">
             @yield('content')
         </main>
+
+        <footer class="container my-4 py-4 bg-white">
+            <div class="row">
+                <div class="col-4">
+
+                </div>
+                <div class="col-4">
+                    
+                </div>
+                <div class="col-4">
+                    
+                </div>
+            </div>
+        </footer>
     </div>
 </body>
 </html>
