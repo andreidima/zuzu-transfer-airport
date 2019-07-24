@@ -186,7 +186,7 @@
                             </span>                          
                         @endif
                         <br>
-                        {{-- @if (!empty(auth()->user())) --}}
+                        
                             <span style="font-size:1.2rem;">
                                 {{ \Carbon\Carbon::parse($rezervari->data_cursa)
                                     ->addHours(\Carbon\Carbon::parse($rezervari->ora->ora)->hour)

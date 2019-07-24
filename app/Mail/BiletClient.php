@@ -43,7 +43,7 @@ class BiletClient extends Mailable
                 ->setPaper('a4');
         }
 
-        if($rezervare_retur == null){
+        if($rezervare_retur === null){
             return $this->markdown('mail.bilet-client')
                 ->attachData($pdf->output(), 'Rezervare Zuzu Transfer Aeroport.pdf');
         }

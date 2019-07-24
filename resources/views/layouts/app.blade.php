@@ -25,7 +25,7 @@
 </head>
 <body>
     <div>
-        <nav class="navbar navbar-expand-md navbar-dark bg-primary py-0" style="font-size:1rem">
+        <nav class="navbar navbar-expand-md navbar-dark py-0" style="background-color:#408080; font-size:1rem">
             <div class="container">
                 {{-- @guest
                 @else

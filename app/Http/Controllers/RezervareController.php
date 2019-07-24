@@ -346,16 +346,9 @@ class RezervareController extends Controller
         // Trimitere email pentru rezervare tur
         if (!empty($rezervare_tur->email)) {
             \Mail::to($rezervare_tur->email)->send(
-                new BiletClient($rezervare_tur, $rezervare_retur)
+                new BiletClient($rezervare_tur, ($request->retur == "true" ? $rezervare_retur : null ))
             );
         }     
-
-        // Trimitere email pentru rezervare retur
-        // if (!empty($rezervare_retur->email)) {
-        //     \Mail::to($rezervare_retur->email)->send(
-        //         new BiletClient($rezervare_retur)
-        //     );
-        // }
 
         if ($request->retur == "false") {
             $rezervare_tur->save();

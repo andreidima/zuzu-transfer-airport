@@ -1,49 +1,224 @@
 @extends('layouts.app')
 
 @section('content')   
-    <div class="">
-        {{-- <div class="d-flex justify-content-between card-header mb-4">
+    <div class="container card px-0">
+        <div class="d-flex justify-content-between card-header mb-4">
             <div class="flex flex-vertical-center">
-                <h4 class="mt-2"><a href="/rezervari"><i class="fas fa-file-alt mr-1"></i>Rezervări</a> / {{ $rezervari->nume }}</h4>
+                <h4 class="mt-2">
+                    Rezervare cursă
+                </h4>
             </div>
             <div>
-                <a class="btn btn-primary" href="{{ $rezervari->path() }}/modifica" role="button">Modifică Rezervare</a>
-                <a class="btn btn-danger" href="#" role="button" data-toggle="modal" data-target="#stergeRezervare">Șterge Rezervare</a>
-            </div>
-        </div> --}}
-    
+                <h4 class="mt-2">                    
+                    Zuzu Transfer Aeroport
+                </h4>
 
-    <!-- Modal pentru stergere rezervare-->
-    {{-- <div class="modal fade" id="stergeRezervare" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">{{ $rezervari->nume }}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
             </div>
-            <div class="modal-body">
-                Ești sigur ca vrei să ștergi rezervarea?
+        </div>    
+
+        @include ('errors')
+
+        <div class="card-body">
+            <div class="form-row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <table class="table m-0" style="border:5px solid #efe3b1; border-bottom:0px">
+                        <tr style="text-align:center; font-weight:bold;">
+                            <td colspan="" style="border-width:0px; padding:0rem;">
+                                <h4 style="background-color:#e7d790; color:black; margin:0px 0px 2px 0px; padding:2px 0px;">
+                                Informații Călător
+                                </h4>
+                            </td>
+                        </tr>
+                        <tr style="border-bottom:0px;">
+                            <td>
+                                Călător: <b>{{ $rezervari->nume }}</b>
+                            <br>
+                                Telefon: <b>{{ $rezervari->telefon }}</b>
+                            <br>
+                                E-mail: <b>{{ $rezervari->email }}</b>
+                            </td>
+                        </tr>                       
+                    </table>
+
+                    <table class="table m-0" style="border:5px solid #efe3b1; border-bottom:0px; border-top:0px;">    
+                        <tr style="text-align:center; font-weight:bold;">
+                            <td colspan="5" style="padding:0rem;">
+                                <h4 style="background-color:#e7d790; color:black; margin:0px 0px 2px 0px; padding:2px 0px">
+                                Informații Rezervare bilet
+                                </h4>
+                            </td>
+                        </tr>
+                        <tr valign="top">
+                            <td style="">
+                                Imbarcare: 
+                                <br>
+                                @if (!empty($rezervari->cursa->oras_plecare))
+                                    @if ($rezervari->cursa->oras_plecare->nume == "Otopeni")
+                                        <span style="font-size:1.2rem; font-weight:bold;">
+                                            Otopeni Aeroport
+                                        </span>
+                                    @else
+                                    <span style="font-size:1.2rem; font-weight:bold;">
+                                        {{ $rezervari->cursa->oras_plecare->nume }}
+                                    </span>
+                                    <br>
+                                    <span style="font-size:1rem;">
+                                        @if (!empty($rezervari->statie))
+                                            {{ $rezervari->statie->nume }}
+                                        @else
+                                            {{ $rezervari->statie_imbarcare }}
+                                        @endif
+                                    </span>
+                                    @endif
+                                @endif
+                            </td>
+                            <td style="">
+                                Plecare:
+                                <br>
+                                @if (!empty($rezervari->ora))
+                                    <span style="font-size:1.2rem; font-weight:bold;">
+                                        {{ \Carbon\Carbon::parse($rezervari->ora->ora)->format('H:i') }}
+                                    </span>
+                                @endif
+                                <br>
+                                
+                                    <span style="font-size:1rem;">
+                                        {{ \Carbon\Carbon::parse($rezervari->data_cursa)->isoFormat('dddd') }}
+                                    </span>
+                                    <br>
+                                    {{ \Carbon\Carbon::parse($rezervari->data_cursa)->isoFormat('D MMM YYYY') }}
+                            </td>
+                            <td>
+                                <br>
+                                <img src="{{ asset('images/sageata.gif') }}" width="50px">
+                            </td>
+                            <td style="">
+                                Debarcare:
+                                <br>
+                                @if (!empty($rezervari->cursa->oras_sosire))
+                                    @if ($rezervari->cursa->oras_sosire->nume == "Otopeni")
+                                        <span style="font-size:1.2rem; font-weight:bold;">
+                                            Otopeni Aeroport
+                                        </span>
+                                    @else
+                                    <span style="font-size:1.2rem; font-weight:bold;">
+                                        {{ $rezervari->cursa->oras_sosire->nume }}
+                                    </span>
+                                    @endif
+                                @endif
+                            </td>
+                            <td style="">
+                                Sosire:
+                                <br>
+                                @if (!empty($rezervari->ora->ora && $rezervari->cursa->durata))
+                                    <span style="font-size:1.2rem; font-weight:bold;">
+                                        {{ \Carbon\Carbon::parse($rezervari->ora->ora)
+                                            ->addHours(\Carbon\Carbon::parse($rezervari->cursa->durata)->hour)
+                                            ->addMinutes(\Carbon\Carbon::parse($rezervari->cursa->durata)->minute)
+                                            ->format('H:i') }}   
+                                    </span>                          
+                                @endif
+                                <br>
+                                
+                                    <span style="font-size:1rem;">
+                                        {{ \Carbon\Carbon::parse($rezervari->data_cursa)
+                                            ->addHours(\Carbon\Carbon::parse($rezervari->ora->ora)->hour)
+                                            ->addMinutes(\Carbon\Carbon::parse($rezervari->ora->ora)->minute) 
+                                            ->addHours(\Carbon\Carbon::parse($rezervari->cursa->durata)->hour)
+                                            ->addMinutes(\Carbon\Carbon::parse($rezervari->cursa->durata)->minute)                               
+                                            ->isoFormat('dddd') }}
+                                    </span>
+                                    <br>
+                                        {{ \Carbon\Carbon::parse($rezervari->data_cursa)
+                                            ->addHours(\Carbon\Carbon::parse($rezervari->ora->ora)->hour)
+                                            ->addMinutes(\Carbon\Carbon::parse($rezervari->ora->ora)->minute) 
+                                            ->addHours(\Carbon\Carbon::parse($rezervari->cursa->durata)->hour)
+                                            ->addMinutes(\Carbon\Carbon::parse($rezervari->cursa->durata)->minute)
+                                            ->isoFormat('D MMM YYYY') }}
+                                <br>
+                            </td>
+                        </tr>
+                    </table>
+                              
+                    <table class="table m-0 mb-2" style="border:5px solid #efe3b1;"> 
+                        <tr>
+                            <td>
+                                Nr. persoane: <b>{{ $rezervari->nr_adulti +  $rezervari->nr_copii }}</b>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                Total plata: <b>{{ $rezervari->pret_total }}</b> lei
+                                <br>
+                                <br>
+                                Stație îmbarcare:
+                                    @if (!empty($rezervari->statie))
+                                        <b>{{ $rezervari->statie->nume }}</b>
+                                    @endif
+                                <br>
+                                Detalii zbor:
+                                    <b>
+                                    {{ $rezervari->zbor_ora_decolare }}
+                                    -
+                                    {{ $rezervari->zbor_ora_aterizare }}
+                                    /
+                                    {{ $rezervari->zbor_oras_decolare}}
+                                    </b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">
+                                <small>
+                                    <p class="m-0">
+                                        Prin finalizarea rezervării sunteți de acord cu <a href="https://www.zuzu-transfer-aeroport.ro/termeni-si-conditii/" target="_blank">termenii și condițiile</a> acestui site, precum și cu prelucrarea datelor cu caracter personal.
+                                    </p>                                
+                                    <span class="text-danger">
+                                        Neanunțarea telefonică cu minim 12 ore înainte de îmbarcare poate duce la pierderea biletelor rezervate!
+                                    </span>
+                                    <br>
+                                    <p class="m-0">
+                                        În funcție de numărul de pasageri circulă microbuz / autocar. Rezervarea este valabilă numai cu confirmarea agenției transportatoare.
+                                        Detalii la +40 786 574 788, +40 748 836 345, +40 766 862 890
+                                    </p>
+                                </small>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Renunță</button>
-                
-                <form method="POST" action="{{ $rezervari->path() }}">
-                    @method('DELETE')  
-                    @csrf   
-                    <button 
-                        type="submit" 
-                        class="btn btn-danger"  
-                        >
-                        Șterge Rezervare
-                    </button>                    
-                </form>
-            
+
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center">
+                    <hr>
+                    <a class="btn btn-sm btn-primary mr-2" href="/rezervari/adauga" role="button">Adaugă o nouă Rezervare</a>
+                    
+                    
+                        <a class="btn btn-sm btn-primary mr-4" href="{{ $rezervari->path() }}/modifica" role="button">Modifică Rezervarea</a>
+                    
+
+                        <a href="{{ $rezervari->path() }}/export/rezervare-pdf"
+                            title="Descarcă bilet"
+                            >
+                            <img src="{{ asset('images/download-flat.png') }}" height="50px">
+                        </a>
+
+                    <hr>
+                </div>
             </div>
-            </div>
+
         </div>
-    </div> --}}
+    </div>
+
+@endsection
+
+
+
+
+
+{{-- @extends('layouts.app')
+
+@section('content')   
+    <div class="">
 
         <div class="">
             <div class="row justify-content-center">
@@ -164,9 +339,9 @@
                             <hr>
                             <a class="btn btn-sm btn-primary mr-2" href="/rezervari/adauga" role="button">Adaugă o nouă Rezervare</a>
                             
-                            {{-- @if (auth()->user()->isDispecer()) --}}
+                            
                                 <a class="btn btn-sm btn-primary mr-4" href="{{ $rezervari->path() }}/modifica" role="button">Modifică Rezervarea</a>
-                            {{-- @endif --}}
+                            
 
                                 <a href="{{ $rezervari->path() }}/export/rezervare-pdf"
                                     title="Descarcă bilet"
@@ -203,4 +378,4 @@
         </div>
     </div>
 
-@endsection
+@endsection --}}

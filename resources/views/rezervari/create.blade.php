@@ -19,7 +19,7 @@
                 @csrf
 
                 <div class="form-row mb-0 d-flex justify-content-center">
-                    <div class="form-group col-lg-6 card bg-warning text-dark shadow-sm px-2 mb-0">
+                    <div class="form-group col-lg-6 card text-dark shadow-sm px-2 mb-0" style="background-color:#e5d37f">
                         <div class="form-row mb-0 d-flex justify-content-between">
                             <div class="form-group col-lg-5 m-0">
                                 <script type="application/javascript"> 
@@ -94,7 +94,7 @@
                 </div>
 
                 <div class="form-row mb-0 d-flex justify-content-center">
-                    <div class="form-group col-lg-6 border card bg-primary text-white shadow-sm px-2 mb-0">
+                    <div class="form-group col-lg-6 border card text-white shadow-sm px-2 mb-0" style="background-color:#afae5e">
                         <div class="form-row mb-0 d-flex justify-content-between">
                             <div class="form-group col-lg-5 mb-0 ">
                                 <label for="data_cursa" class="mb-0">Data plecării:<span class="text-danger">*</span></label>
@@ -145,7 +145,7 @@
 
 
                 <div class="form-row mb-2 d-flex justify-content-center">   
-                    <div class="form-group col-lg-6 card bg-success text-white shadow-sm px-2 mb-0"> 
+                    <div class="form-group col-lg-6 card text-white shadow-sm px-2 mb-0" style="background-color:#999a4e"> 
                         <div class="form-group row mb-0">
                             <div class="form-group col-lg-12 my-2">
                                 {{-- <label for="nume" class="mb-0">Nume client:<span class="text-danger">*</span></label> --}}
