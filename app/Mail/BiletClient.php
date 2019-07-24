@@ -18,9 +18,10 @@ class BiletClient extends Mailable
      *
      * @return void
      */
-    public function __construct($rezervari)
+    public function __construct($rezervari, $rezervare_retur = null)
     {
         $this->rezervari = $rezervari;
+        $this->rezervare_retur = $rezervare_retur;
     }
 
     /**
@@ -30,14 +31,24 @@ class BiletClient extends Mailable
      */
     public function build()
     {
-        // return $this->view('view.name');
-        // return $this->from('bilet@zuzu-transfer-aeroport.ro')
         $rezervari = $this->rezervari;
-        // dd($rezervari);
         $pdf = \PDF::loadView('rezervari.export.rezervare-pdf', compact('rezervari'))
             ->setPaper('a4');
 
-        return $this->markdown('mail.bilet-client')
-            ->attachData($pdf->output(), 'Rezervare Zuzu Transfer Aeroport.pdf');
+        if ($rezervare_retur != null){
+            $rezervari = $this->rezervari;
+            $pdf_retur = \PDF::loadView('rezervari.export.rezervare-pdf', compact('rezervari'))
+                ->setPaper('a4');
+        }
+
+        if($rezervare_retur == null){
+            return $this->markdown('mail.bilet-client')
+                ->attachData($pdf->output(), 'Rezervare Zuzu Transfer Aeroport.pdf');
+        }
+        else{
+            return $this->markdown('mail.bilet-client')
+                ->attachData($pdf->output(), 'Rezervare tur Zuzu Transfer Aeroport.pdf')
+                ->attachData($pdf_retur->output(), 'Rezervare retur Zuzu Transfer Aeroport.pdf');
+        }
     }
 }
