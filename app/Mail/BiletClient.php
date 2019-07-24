@@ -35,6 +35,8 @@ class BiletClient extends Mailable
         $pdf = \PDF::loadView('rezervari.export.rezervare-pdf', compact('rezervari'))
             ->setPaper('a4');
 
+        $rezervare_retur = $this->rezervare_retur;
+
         if ($rezervare_retur != null){
             $rezervari = $this->rezervari;
             $pdf_retur = \PDF::loadView('rezervari.export.rezervare-pdf', compact('rezervari'))
