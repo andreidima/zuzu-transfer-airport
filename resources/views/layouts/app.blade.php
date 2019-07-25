@@ -139,17 +139,54 @@
         <main class="container my-4 py-4 bg-white">
             @yield('content')
         </main>
-
+        
         <footer class="container my-4 py-4 bg-white">
-            <div class="row">
+            <div class="row mb-0">
                 <div class="col-4">
-
+                    <ul class="my-0"><h5>Informații</h5>
+                        <li>
+                            <a href="http://www.zuzu-transfer-aeroport.ro/contact/" target="_blank">Contact</a>
+                        </li>
+                        <li>
+                            <a href="http://www.anpc.gov.ro/" target="_blank">ANPC - Protectia consumatorului</a>
+                        </li>
+                        <li>
+                            Copyright © <a href="http://validsoftware.ro/" target="_blank"><b>validsoftware.ro</b></a>
+                        </li>
+                    </ul>
                 </div>
                 <div class="col-4">
-                    
+                    <ul class="my-0"><h5>Meniu</h5>
+                        <li>
+                            <a href="http://www.rezervari.zuzu-transfer-aeroport.ro/index.php/biletele_mele/redirect_agentie" target="_blank"><b>Acasa</b></a>
+                        </li>
+                        <li>
+                            <a href="http://www.zuzu-transfer-aeroport.ro/rent-a-car/" target="_blank">Inchirieri autocare</a>
+                        </li>
+                        <li>
+                            <a href="http://www.zuzu-transfer-aeroport.ro/termeni-si-conditii-2/" target="_blank">Termeni si conditii</a>
+                        </li>
+                        <li>
+                            <a href="http://www.zuzu-transfer-aeroport.ro/politica-de-confidentialitate-a-datelor-cu-caracter-personal/" target="_blank">Politica de confidentialitate</a>
+                        </li>
+                        <li>
+                            <a href="http://www.zuzu-transfer-aeroport.ro/cum-se-face-o-rezervare/" target="_blank">Cum se face o rezervare?</a>
+                        </li>
+                    </ul>                    
                 </div>
                 <div class="col-4">
-                    
+                    <h5>Contact</h5>
+                    <b>Telefon Dispecerat:</b> +40 748 836 345
+                    <br>
+                    <span style="margin-left:163px;">+40 766 862 890</span> 
+                    <br>
+                    <span style="margin-left:163px;">+40 767 335 558</span>
+                    <br>
+                    <b>E-mail:</b> carabus25@yahoo.com
+                    <br>
+                    <a href="https://www.facebook.com/ZuZu-Transfer-Aeroport-763182890435066/" target="_blank">
+                        <img src="{{ asset('images/logo-facebook.png') }}" width="">
+                    </a>
                 </div>
             </div>
         </footer>
