@@ -288,7 +288,7 @@ class TraseuController extends Controller
                 case "1":
                     $pdf = \PDF::loadView('trasee.export.traseu-pdf-toate-orele-per-ora', compact('trasee_nume', 'data_traseu', 'data_traseu_Ymd'))
                         ->setPaper('a4');
-                    return $pdf->stream('Raport ' . $trasee_nume->nume . ', ' . $data_traseu . '.pdf');
+                    return $pdf->download('Raport ' . $trasee_nume->nume . ', ' . $data_traseu . '.pdf');
                     break;
                 case "2":
                     // $rezervari = Rezervare::with('cursa', 'ora')

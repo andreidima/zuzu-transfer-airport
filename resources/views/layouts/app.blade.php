@@ -143,7 +143,7 @@
         <footer class="container my-4 py-4 bg-white">
             <div class="row mb-0">
                 <div class="col-4">
-                    <ul class="my-0"><h5>Informații</h5>
+                    <ul class="my-0" style="list-style-image: url({{ asset('images/arrow.gif') }});"><h5>Informații</h5>
                         <li>
                             <a href="http://www.zuzu-transfer-aeroport.ro/contact/" target="_blank">Contact</a>
                         </li>
@@ -156,7 +156,7 @@
                     </ul>
                 </div>
                 <div class="col-4">
-                    <ul class="my-0"><h5>Meniu</h5>
+                    <ul class="my-0" style="list-style-image: url({{ asset('images/arrow.gif') }});"><h5>Meniu</h5>
                         <li>
                             <a href="http://www.rezervari.zuzu-transfer-aeroport.ro/index.php/biletele_mele/redirect_agentie" target="_blank"><b>Acasa</b></a>
                         </li>

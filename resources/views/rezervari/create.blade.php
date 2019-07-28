@@ -305,7 +305,7 @@
                     </div>
                     <div class="col-lg-6">   
                         <div class="form-row mb-0 justify-content-center">
-                            <div class="form-group col-lg-12 card bg-primary text-white shadow-sm px-2 mb-0">
+                            <div class="form-group col-lg-12 card text-white shadow-sm px-2 mb-0" style="background-color:#999a4e">
                                 <div class="form-row mb-2 d-flex justify-content-between">
                                     <div class="form-group col-lg-5 mb-0">     
                                         <script type="application/javascript"> 
@@ -339,7 +339,7 @@
                             </div>
                         </div>
                         <div class="form-row mb-0 justify-content-center">
-                            <div class="form-group col-lg-12 card bg-warning shadow-sm px-2 mb-0">
+                            <div class="form-group col-lg-12 card text-white shadow-sm px-2 mb-0" style="background-color:#999a4e">
                                 <div class="form-row mb-0 d-flex justify-content-between">
                                     <div class="form-group col-lg-5 m-0">  
                                         <label for="retur_data_cursa" class="mb-0">Data plecării:<span class="text-danger">*</span></label>
@@ -387,7 +387,7 @@
                             </div>
                         </div>                            
                         <div class="form-row mb-0 justify-content-center">
-                            <div class="form-group col-lg-12 card bg-success text-white shadow-sm px-2 mb-0 pb-2">
+                            <div class="form-group col-lg-12 card text-white shadow-sm px-2 mb-0 pb-2" style="background-color:#999a4e">
                                         <label for="nume" class="mb-0">Statie îmbarcare retur:</label>
                                         <input 
                                             type="text" 

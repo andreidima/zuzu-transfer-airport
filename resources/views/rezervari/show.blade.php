@@ -1,24 +1,10 @@
 @extends('layouts.app')
 
 @section('content')   
-    <div class="container card px-0">
-        <div class="d-flex justify-content-between card-header mb-4">
-            <div class="flex flex-vertical-center">
-                <h4 class="mt-2">
-                    Rezervare cursă
-                </h4>
-            </div>
-            <div>
-                <h4 class="mt-2">                    
-                    Zuzu Transfer Aeroport
-                </h4>
-
-            </div>
-        </div>    
 
         @include ('errors')
 
-        <div class="card-body">
+        <div class="card-body p-0">
             <div class="form-row">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
@@ -145,11 +131,31 @@
                         <tr>
                             <td>
                                 Nr. persoane: <b>{{ $rezervari->nr_adulti +  $rezervari->nr_copii }}</b>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                Total plata: <b>{{ $rezervari->pret_total }}</b> lei
-                                <br>
-                                <br>
+                            </td>
+                            <td>                          
+                                Total plata acum:
+                                    <b>
+                                    @if (($rezervari->comision_agentie == 0) && ($rezervari->tip_plata_id == 2))
+                                        {{ $rezervari->pret_total }}
+                                    @else 
+                                        {{ $rezervari->comision_agentie - 0}}
+                                    @endif
+                                    </b>
+                                    lei                                
+                                <br>                                
+                                Total plata la imbarcare:
+                                    <b>
+                                    @if (($rezervari->comision_agentie == 0) && ($rezervari->tip_plata_id == 2))
+                                        0
+                                    @else 
+                                        {{ $rezervari->pret_total - $rezervari->comision_agentie }}
+                                    @endif
+                                    </b>
+                                    lei
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border:0px;">
                                 Stație îmbarcare:
                                     @if (!empty($rezervari->statie))
                                         <b>{{ $rezervari->statie->nume }}</b>
@@ -164,8 +170,9 @@
                                     {{ $rezervari->zbor_oras_decolare}}
                                     </b>
                             </td>
+                            <td style="border:0px;"></td>
                         </tr>
-                        <tr>
+                        {{-- <tr>
                             <td class="text-center">
                                 <small>
                                     <p class="m-0">
@@ -181,7 +188,7 @@
                                     </p>
                                 </small>
                             </td>
-                        </tr>
+                        </tr> --}}
                     </table>
 
                 </div>
@@ -189,7 +196,6 @@
 
             <div class="row justify-content-center">
                 <div class="col-lg-10 text-center">
-                    <hr>
                     <a class="btn btn-sm btn-primary mr-2" href="/rezervari/adauga" role="button">Adaugă o nouă Rezervare</a>
                     
                     
@@ -202,12 +208,10 @@
                             <img src="{{ asset('images/download-flat.png') }}" height="50px">
                         </a>
 
-                    <hr>
                 </div>
             </div>
 
         </div>
-    </div>
 
 @endsection
 
