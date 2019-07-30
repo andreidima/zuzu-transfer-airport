@@ -198,9 +198,9 @@
                 <div class="col-lg-10 text-center">
                     <a class="btn btn-sm btn-primary mr-2" href="/rezervari/adauga" role="button">Adaugă o nouă Rezervare</a>
                     
-                    
+                    @if (auth()->user()->isDispecer())
                         <a class="btn btn-sm btn-primary mr-4" href="{{ $rezervari->path() }}/modifica" role="button">Modifică Rezervarea</a>
-                    
+                    @endif
 
                         <a href="{{ $rezervari->path() }}/export/rezervare-pdf"
                             title="Descarcă bilet"

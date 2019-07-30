@@ -182,6 +182,7 @@
                                     name="telefon" 
                                     placeholder="Telefon" 
                                     value="{{ old('telefon') == '' ? $rezervari->telefon : old('telefon') }}"
+                                    {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
                                     required> 
                             </div>  
                             <div class="form-group col-lg-12 mb-1">
@@ -203,6 +204,7 @@
                                     name="statie_imbarcare" 
                                     placeholder="" 
                                     value="{{ old('statie_imbarcare') == '' ? $rezervari->statie_imbarcare : old('statie_imbarcare') }}"
+                                    {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
                                     required> 
                             </div>
                             <div class="form-group col-lg-12 mb-0 pt-1 border-top border-bottom">

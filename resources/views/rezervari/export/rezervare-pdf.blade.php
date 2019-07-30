@@ -7,7 +7,7 @@
     <title>Bilet</title>
     <style>
         html { 
-            margin: 10px 20px;
+            margin: 40px 30px;
         }
 
         body { 
@@ -58,7 +58,7 @@
 <body>
     {{-- <div style="width:730px; height: 1030px; border-style: dashed ; border-width:2px; border-radius: 15px;">      --}}
     <div style="border:dashed #999;
-        width:730px; 
+        width:710px; 
         min-height:600px;            
         padding: 0px 8px 0px 8px;
         margin:0px 0px;
@@ -122,14 +122,14 @@
                             <span style="font-size:1.5rem; font-weight:bold;">
                                 {{ $rezervari->cursa->oras_plecare->nume }}
                             </span>
-                            <br>
+                            {{-- <br>
                             <span style="font-size:1.2rem;">
                                 @if (!empty($rezervari->statie))
                                     {{ $rezervari->statie->nume }}
                                 @else
                                     {{ $rezervari->statie_imbarcare }}
                                 @endif
-                            </span>
+                            </span> --}}
                             @endif
                         @endif
                     </td>
@@ -223,6 +223,16 @@
                         <br>
                     </td>
                 </tr>
+                <tr>
+                    <td colspan="5">
+                        Statie imbarcare: 
+                        @if (!empty($rezervari->statie))
+                            {{ $rezervari->statie->nume }}
+                        @else
+                            {{ $rezervari->statie_imbarcare }}
+                        @endif
+                    </td>
+                </tr>
             </table>
                             
             <table>
@@ -270,7 +280,7 @@
                         
                     </td>
                 </tr>
-                <tr>                    
+                {{-- <tr>                    
                     <td style="border-style: solid; border-width:0px; padding: 0 0 0 5px;">
                         
                     </td>
@@ -289,7 +299,7 @@
                     <td style="border-style: solid; border-width:1px; padding: 0 0 0 5px; text-align:center;">
                         {{ $rezervari->pret_total }} lei
                     </td>
-                </tr>
+                </tr> --}}
                 <tr>                    
                     <td style="border-style: solid; border-width:0px; padding: 0 0 0 5px;">
                         
@@ -307,7 +317,12 @@
                         Achitat:
                     </td>
                     <td style="border-style: solid; border-width:1px; padding: 0 0 0 5px; text-align:center;">
-                        {{ $rezervari->comision_agentie + $rezervari->plata_avans}} lei
+                        @if (($rezervari->comision_agentie == 0) && ($rezervari->tip_plata_id == 2))
+                            {{ $rezervari->pret_total }}
+                        @else 
+                            {{ $rezervari->comision_agentie - 0}}
+                        @endif
+                        lei
                     </td>
                 </tr>
                 <tr>                    
@@ -327,7 +342,12 @@
                         Rest de plata:
                     </td>
                     <td style="border-style: solid; border-width:1px; padding: 0 0 0 5px; text-align:center;">
-                        {{ $rezervari->pret_total - $rezervari->comision_agentie - $rezervari->plata_avans}} lei
+                        @if (($rezervari->comision_agentie == 0) && ($rezervari->tip_plata_id == 2))
+                            0
+                        @else 
+                            {{ $rezervari->pret_total - $rezervari->comision_agentie }}
+                        @endif
+                        lei
                     </td>
                 </tr>
             </table>
@@ -362,7 +382,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="font-size:0.9rem">
+                    <td style="font-size:0.6rem">
                         In functie de numarul de pasageri circula microbus/autocar.Rezervarea este valabila numai cu confirmarea agentiei transportatoare. 
                         <br>
                         <b>Conditii generale de calatorie:</b> Rezervarile on-line trebuie facute cu cel putin 24 ore inaintea plecarii. In cazul in care datele personale/ datele si orele de calatorie au fost completate gresit pasagerul risca sa isi piarda rezervarea .Este necesar sa va prezentati la locul plecarii cu minim 15 minute inainte de plecarea catre Otopeni.  Orice intarziere, atrage responsabilitatea unilaterala a pasagerului intarziat.

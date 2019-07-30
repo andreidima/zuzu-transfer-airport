@@ -15,12 +15,12 @@
                     <div class="form-group col-lg-6 shadow-sm mb-0">
                         <div class="form-row mb-0 d-flex justify-content-between"> 
                                 <h5 class="mb-0">
-                                    <span class="badge badge-danger">
+                                    <span class="badge badge-secondary">
                                         Cod bilet: RO{{ $rezervari->id }}
                                     </span>
                                 </h5>
                                 <h5 class="mb-0">
-                                    <span class="badge badge-danger">
+                                    <span class="badge badge-secondary">
                                         Emis la data de: {{ $rezervari->created_at }}
                                     </span>
                                 </h5>

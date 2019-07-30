@@ -356,7 +356,7 @@ class RezervareController extends Controller
         } else {
             $rezervare_tur->save();
             $rezervare_retur->save();
-            return redirect('/rezervari')->with('status', 'Rezervările tur si retur pentru clientul "' . $rezervare_tur->nume . '" au fost adăugate cu succes!');
+            return redirect('/rezervari/'.$rezervare_tur->id.'/'.$rezervare_retur->id)->with('status', 'Rezervările tur si retur pentru clientul "' . $rezervare_tur->nume . '" au fost adăugate cu succes!');
         }
     }
 
@@ -375,6 +375,12 @@ class RezervareController extends Controller
     {
         $this->authorize('update', $rezervari);
         return view('rezervari.show_dupa_modificare', compact('rezervari'));
+    }
+    public function show_rezervare_tur_retur(Rezervare $rezervare_tur, Rezervare $rezervare_retur)
+    {
+        $this->authorize('update', $rezervare_tur);        
+        $this->authorize('update', $rezervare_retur);
+        return view('rezervari.show_rezervare_tur_retur', compact('rezervare_tur', 'rezervare_retur'));
     }
 
     /**

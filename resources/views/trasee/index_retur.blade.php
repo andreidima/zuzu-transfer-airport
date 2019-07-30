@@ -73,7 +73,7 @@
                                                     {{ $nr_rezervari[$loop->index] }}
                                                 </small> --}}
                                             </td>
-                                            <td style="padding: 0.1em 1em;">
+                                            <td style="padding: 0.1em 1em;" class="text-danger">
                                                 <span title="Total pasageri">
                                                     {{ $nr_rezervari[$loop->index] }}
                                                 </span>
