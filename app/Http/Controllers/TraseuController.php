@@ -28,14 +28,13 @@ class TraseuController extends Controller
             ->where('id', 1)
             ->get();
         $trasee_nume_galati_otopeni = TraseuNume::select('id', 'nume')
-            ->where('id', 3)
-            ->get();
-        $trasee_nume_otopeni = TraseuNume::select('id', 'nume')
             ->where('id', 2)
-            ->orwhere('id', 4)
             ->get();
+        // $trasee_nume_otopeni = TraseuNume::select('id', 'nume')
+        //     ->where('id', 3)
+        //     ->get();
             
-        return view('trasee.index', compact('trasee_nume_tecuci_otopeni', 'trasee_nume_galati_otopeni', 'trasee_nume_otopeni', 'search'));
+        return view('trasee.index', compact('trasee_nume_tecuci_otopeni', 'trasee_nume_galati_otopeni', 'search'));
     }
 
 
@@ -51,8 +50,7 @@ class TraseuController extends Controller
             $search = \Carbon\Carbon::today()->format('Y-m-d');
         }
         $trasee_nume_otopeni = TraseuNume::select('id', 'nume')
-            ->where('id', 2)
-            ->orwhere('id', 4)
+            ->where('id', 3)
             ->get();
 
         return view('trasee.index_retur', compact('trasee_nume_otopeni', 'search'));

@@ -47,7 +47,7 @@
                                 $nr_rezervari[] = array();    
                             @endphp
                             @forelse ($trasee_nume_otopeni as $traseu_nume)
-                                @if ($loop->first)
+                                {{-- @if ($loop->first)
                                     @forelse ($traseu_nume->trasee as $traseu)
                                         @php 
                                             $nr_rezervari[$loop->index] = 
@@ -57,25 +57,27 @@
                                         @endphp 
                                     @empty
                                     @endforelse
-                                @elseif ($loop->last)
+                                @elseif ($loop->last) --}}
                                     @forelse ($traseu_nume->trasee as $traseu)
-                                        @php 
+                                        {{-- @php 
+                                            dd($loop->index);
                                             $nr_rezervari[$loop->index] += 
                                                 $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_adulti')
                                                 +
                                                 $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_copii')                                     
-                                        @endphp 
+                                        @endphp  --}}
                                         <tr>  
                                             <td style="padding: 0.1em 1em;">
-                                                {{ \Carbon\Carbon::parse($traseu->curse_ore->first()->ora)->format('H:i') }}                                        
-                                                {{-- <br>
-                                                <small style="text-danger">
-                                                    {{ $nr_rezervari[$loop->index] }}
-                                                </small> --}}
+                                                {{ \Carbon\Carbon::parse($traseu->curse_ore->first()->ora)->format('H:i') }}     
                                             </td>
                                             <td style="padding: 0.1em 1em;" class="text-danger">
                                                 <span title="Total pasageri">
-                                                    {{ $nr_rezervari[$loop->index] }}
+                                                    {{-- {{ $nr_rezervari[$loop->index] }} --}}
+                                                    {{
+                                                    $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_adulti')
+                                                    +
+                                                    $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_copii') 
+                                                    }}
                                                 </span>
                                             </td>
                                             <td style="padding: 0.1em 1em;">
@@ -89,7 +91,7 @@
                                         </tr> 
                                     @empty
                                     @endforelse
-                                @else
+                                {{-- @else
                                     @forelse ($traseu_nume->trasee as $traseu)
                                         @php 
                                             $nr_rezervari[$loop->index] = 
@@ -99,7 +101,7 @@
                                         @endphp 
                                     @empty
                                     @endforelse
-                                @endif
+                                @endif --}}
                             @empty
                             @endforelse
                         </table>
@@ -109,7 +111,6 @@
                                         class="btn btn-success"
                                         role="button"
                                         >
-                                        {{-- <i class="fas fa-users" title="Călători"></i> Călători --}}
                                         Raport complet {{ \Carbon\Carbon::createFromFormat('Y-m-d', $search)->format('d.m.Y') }}
                                     </a>
                         </div>

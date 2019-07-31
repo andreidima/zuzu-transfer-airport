@@ -39,8 +39,8 @@
                         @php ($total_persoane = 0)
                         @php ($nr_crt = 1)
                         @forelse ($trasee_nume->trasee as $traseu)
-                            @forelse ($traseu->curse_ore as $cursa_ora)   
-                            @forelse ($cursa_ora->rezervari->where('data_cursa', $search)->where('activa', 1)->sortByDesc('created_at') as $rezervare)  
+                            @forelse ($traseu->curse_ore as $cursa_ora)  
+                            @forelse ($cursa_ora->rezervari->where('data_cursa', $search)->where('activa', 1)->sortByDesc('created_at') as $rezervare) 
                                 @php ($total_persoane = $total_persoane + $rezervare->nr_adulti + $rezervare->nr_copii)
                                 @if ($rezervare->activa == 0)
                                     <tr style="color:black; height:15px; line-height:30px; border-bottom:solid 1px #99F; background:#99F;">
@@ -54,6 +54,7 @@
                                 
                                     <td align="center">
                                         {{ $nr_crt++ }}
+                                        {{-- {{ $cursa_ora->id }} --}}
                                     </td>
                                     <td align="center">
                                         @if (empty($rezervare->user))

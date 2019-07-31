@@ -49,20 +49,12 @@
                                     <tr>
                                             @forelse ($traseu->curse_ore as $cursa_ora) 
                                                 <th style="width: 11%">
-                                                    @if ($cursa_ora->cursa->oras_plecare->nume === 'Ramnicu Sarat')
-                                                        Rm.Sarat
-                                                    @else
-                                                        {{$cursa_ora->cursa->oras_plecare->nume}}
-                                                    @endif
+                                                    {{$cursa_ora->cursa->oras_plecare->nume}}
                                                 </th>
                                             @empty
                                             @endforelse
                                         <th style="width: 11%">
-                                            @if ($cursa_ora->cursa->oras_sosire->nume === 'Ramnicu Sarat')
-                                                Rm.Sarat
-                                            @else
-                                                {{$cursa_ora->cursa->oras_sosire->nume}}
-                                            @endif
+                                            {{$cursa_ora->cursa->oras_sosire->nume}}
                                         </th>
                                         <th style="width: 15%">
 
@@ -72,7 +64,7 @@
                                 
                                 
                                 <tr>         
-                                @forelse ($traseu->curse_ore as $cursa_ora) 
+                                @forelse ($traseu->curse_ore as $cursa_ora)
                                     <td style="line-height:0.9rem">
                                             @if(!empty(\Carbon\Carbon::parse($cursa_ora->ora)))
                                                 <a href="{{ $traseu->path() }}/{{ \Carbon\Carbon::createFromFormat('Y-m-d', $search)->format('d-m-Y') }}"
@@ -152,20 +144,12 @@
                                     <tr>
                                             @forelse ($traseu->curse_ore as $cursa_ora) 
                                                 <th style="width: 11%">
-                                                    @if ($cursa_ora->cursa->oras_plecare->nume === 'Ramnicu Sarat')
-                                                        Rm.Sarat
-                                                    @else
-                                                        {{$cursa_ora->cursa->oras_plecare->nume}}
-                                                    @endif
+                                                    {{$cursa_ora->cursa->oras_plecare->nume}}
                                                 </th>
                                             @empty
                                             @endforelse
                                         <th style="width: 11%">
-                                            @if ($cursa_ora->cursa->oras_sosire->nume === 'Ramnicu Sarat')
-                                                Rm.Sarat
-                                            @else
-                                                {{$cursa_ora->cursa->oras_sosire->nume}}
-                                            @endif
+                                            {{$cursa_ora->cursa->oras_sosire->nume}}
                                         </th>
                                         <th style="width: 15%">
 

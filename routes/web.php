@@ -34,7 +34,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get( 'rezervari/{rezervari}/export/{view_type}', 'RezervareController@pdfexport');
 
     // Rezervari -> Show - cand este salvata o Rezervare cu Retur, se afiseaza informatiile ambelor Rezervari
-        Route::get('rezervari/{rezervare_tur}/{rezervare_retur}', 'RezervareController@show_rezervare_tur_retur');    
+        Route::get('rezervari/tur_retur/{rezervare_tur}/{rezervare_retur}', 'RezervareController@show_rezervare_tur_retur');    
 
     // Pagina speciala pentru vizualizare rezervare doar dupa modificare
         Route::get('rezervari/{rezervari}/rezervare_modificata', 'RezervareController@show_dupa_modificare');
