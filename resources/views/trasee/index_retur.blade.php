@@ -107,7 +107,7 @@
                         </table>
                     <div class="d-flex justify-content-between">
                         <div class="flex flex-vertical-center mx-auto">  
-                                    <a href="/trasee/toate_orele/2/{{ \Carbon\Carbon::createFromFormat('Y-m-d', $search)->format('d-m-Y') }}"
+                                    <a href="/trasee/toate_orele/3/{{ \Carbon\Carbon::createFromFormat('Y-m-d', $search)->format('d-m-Y') }}"
                                         class="btn btn-success"
                                         role="button"
                                         >
