@@ -56,7 +56,7 @@
 
 <body>
     @switch($trasee_nume->id)
-        @case(1)    
+        @case(1)   
             @php
                 $nr_pagina = 1;
             @endphp

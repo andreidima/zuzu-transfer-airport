@@ -54,7 +54,10 @@
     </style>
 </head>
 
-<body>   
+<body> 
+    @switch($trasee_nume->id)
+        @case(1) 
+        @case(2)  
             @php
                 $nr_pagina = 1;
             @endphp
@@ -243,6 +246,173 @@
                 @endif
             @empty
             @endforelse
+
+            @break
+        @case(3)
+            @php
+                $nr_pagina = 1;
+            @endphp
+            @forelse ($trasee_nume->trasee as $traseu)     
+                @if ($traseu->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->count() > 0)          
+                    @if ($nr_pagina > 1)
+                        <div style="page-break-after: always;"></div>
+                    @endif
+                    @php
+                        $nr_pagina++;
+                    @endphp
+                    <div style="border:dashed #999;
+                        width:690px; 
+                        min-height:600px;            
+                        padding: 15px 10px 15px 10px;
+                        margin:0px 0px;
+                            -moz-border-radius: 10px;
+                            -webkit-border-radius: 10px;
+                            border-radius: 10px;">
+                        <table style="">
+                            <tr style="">
+                                <td style="border-width:0px; padding:0rem; width:40%">
+                                        <img src="{{ asset('images/logo-zuzu.png') }}" width="150px">
+                                </td>
+                                <td style="border-width:0px; padding:0rem; width:60%; text-align:center; font-size:16px">
+                                    Tip traseu: RETUR
+                                    <br>
+                                    Pentru data: {{ $data_traseu }}
+                                    <br>
+                                    ora: {{\Carbon\Carbon::parse($traseu->curse_ore->first()->ora)->format('H:i')}}
+                                </td>
+                            </tr>
+                        </table>
+
+                        <br><br><br>
+
+                        <p style="margin: 0 0 0 0px; font-size:1.2rem;">
+                            Nume sofer .......................................................................................
+                            Nr. masina ......................................
+                        </p>
+
+                        <br>
+                        
+                        <table style="width:660px;">
+                            <tr style="background-color:#e7d790;">
+                                <th style="width:20px;">Nr. crt.</th>
+                                <th style="width:90px;">Nume si prenume</th>
+                                <th style="width:105px;">Telefon</th>
+                                <th style="width:55px;">Sosire</th>
+                                <th style="width:35px;">Ora zbor</th>
+                                <th style="width:55px;">Aterizare</th>
+                                <th style="width:130px;">Statie imbarcare</th>
+                                <th style="width:75px;">Observatii</th>
+                                <th style="width:35px;">Suma</th>
+                                <th style="width:30px;">Plata</th>
+                                <th style="width:25px;">Nr. pers.</th>
+                            </tr>
+                            @php 
+                                ($nrcrt = 1) 
+                            @endphp
+                            @forelse ($traseu->curse_ore as $cursa_ora)
+                                @forelse ($cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1) as $rezervare)
+                                    <tr>
+                                        <td>
+                                            {{ $nrcrt++ }}
+                                        </td>
+                                        <td>
+                                            {{ $rezervare->nume }}
+                                        </td>
+                                        <td>
+                                            {{ $rezervare->telefon }}
+                                        </td>
+                                        <td>
+                                            {{$cursa_ora->cursa->oras_sosire->nume}}
+                                        </td>
+                                        <td>
+                                            {{ $rezervare->zbor_ora_aterizare}}
+                                        </td>
+                                        <td>
+                                            {{ $rezervare->zbor_oras_decolare}}
+                                        </td>
+                                        <td>
+                                            @if(!empty($rezervare->statie))
+                                                {{ $rezervare->statie->nume }}
+                                            @elseif(!empty($rezervare->statie_imbarcare))
+                                                {{ $rezervare->statie_imbarcare }}
+                                            @else
+                                                -
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if (empty($rezervare->user))
+                                                <span style="color:#3672ED; font-size:2rem; margin:0px; padding:0px;">
+                                                    C
+                                                </span>
+                                            @elseif ($rezervare->user->firma->id == 1) 
+                                                <span style="color:#ed8336; font-size:2rem;">
+                                                    D
+                                                </span>  
+                                            @else 
+                                                {{ $rezervare->user->firma->nume }}                               
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if (($rezervare->comision_agentie == 0) && ($rezervare->tip_plata_id == 2))
+                                                0
+                                            @else 
+                                                {{ $rezervare->pret_total - $rezervare->comision_agentie }}
+                                            @endif
+                                            lei
+                                        </td>
+                                        <td>
+                                            @if ($rezervare->tip_plata->nume == "Sofer")
+                                                S
+                                            @else
+                                                {{ $rezervare->tip_plata->nume }}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            {{ $rezervare->nr_adulti + $rezervare->nr_copii}}
+                                        </td>
+                                    </tr>
+                                @empty
+                                @endforelse
+                            @empty
+                            @endforelse
+                        
+                            @php
+                                $nr_persoane = 0;
+                                $suma = 0;    
+                            @endphp
+
+                            @forelse ($traseu->curse_ore as $cursa_ora)
+                                @php
+                                    $nr_persoane = $nr_persoane +
+                                        $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sum('nr_adulti') +
+                                        $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sum('nr_copii');     
+                                    $suma = $suma + $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sum('pret_total') -
+                                        $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sum('comision_agentie') - 
+                                        $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)
+                                            ->where('tip_plata_id', 2)->where('comision_agentie', 0)->sum('pret_total');
+                                @endphp
+                            @empty
+                            @endforelse
+
+                            <tr>
+                                <td colspan="9" style="text-align:right; padding-right:5px;">
+                                    Total: {{ $suma }} lei
+                                </td>
+                                <td>
+                                    Nr. pers
+                                </td>
+                                <td>
+                                    {{ $nr_persoane }}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                @endif
+            @empty
+            @endforelse
+
+            @break
+    @endswitch
 
 </body>
 
