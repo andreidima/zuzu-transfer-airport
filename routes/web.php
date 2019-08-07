@@ -48,6 +48,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('agentii/rezervari/export/agentie-rezervari-pdf/{search_data_inceput}/{search_data_sfarsit}', 'UserFirmaController@pdfexport_rezervari_agentie');  // Generare PDF
 
     Route::group(['middleware' => 'dispecer'], function () {
+        Route::resource('/clienti-neseriosi', 'ClientNeseriosController');
+
         //Ruta pentru cautarea completa pe o zi sau mai multe
         Route::any('/rezervari-raport-zi', 'RezervareRaportZiController@index');
         

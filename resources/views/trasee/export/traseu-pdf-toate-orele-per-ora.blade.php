@@ -297,10 +297,10 @@
                                 <th style="width:20px;">Nr. crt.</th>
                                 <th style="width:85px;">Nume si prenume</th>
                                 <th style="width:105px;">Telefon</th>
-                                <th style="width:55px;">Sosire</th>
+                                <th style="width:45px;">Sosire</th>
                                 <th style="width:35px;">Ora at.</th>
-                                <th style="width:55px;">Aterizare</th>
-                                <th style="width:130px;">Statie imbarcare</th>
+                                <th style="width:75px;">Aterizare</th>
+                                <th style="width:120px;">Statie imbarcare</th>
                                 <th style="width:75px;">Observatii</th>
                                 <th style="width:35px;">Suma</th>
                                 <th style="width:30px;">Plata</th>

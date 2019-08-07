@@ -92,7 +92,7 @@
                             </li>
                             @if (auth()->user()->isDispecer())
                                 <li class="nav-item active mr-4">
-                                    <a class="nav-link disabled" href="#">
+                                    <a class="nav-link" href="/clienti-neseriosi">
                                         <i class="fas fa-user-slash mr-1"></i>Clienți neserioși
                                     </a>
                                 </li>
