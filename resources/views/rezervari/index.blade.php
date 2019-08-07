@@ -70,8 +70,8 @@
                 <th class="px-0">Bilet</th>
                 @if (auth()->user()->isDispecer())
                     <th class="px-0" colspan="3">Diverse</th>
-                {{-- @else
-                    <th class="px-0">Editare</th> --}}
+                @else
+                    <th class="px-0">Editare</th>
                 @endif
                 </tr>
             </thead>
@@ -441,12 +441,12 @@
                                         </a>
                                     </div>
                                 </div>
-                            {{-- @else
+                            @else
                                         <a href="{{ $rezervare->path() }}/modifica"
                                             title="Editează Rezervarea"
                                             >
                                             <img src="{{ asset('images/icon-edit.jpg') }}" height="26px">
-                                        </a> --}}
+                                        </a>
                             @endif
                         </td>
                     </tr>                                          

@@ -274,7 +274,7 @@
                         <b>TOTAL PERSOANE: {{ $total_persoane }}</b>
                     </p>
 
-                    <div class="text-center">
+                    <div class="d-flex justify-content-around">
                         {{-- <a href="/trasee/toate_orele/{{ $trasee_nume->id }}/{{ \Carbon\Carbon::createFromFormat('Y-m-d', $search)->format('d-m-Y') }}/export/traseu-pdf-toate-orele"
                             class="btn btn-success"
                             role="button"
@@ -288,6 +288,13 @@
                             target="_blank"
                             >
                             <i class="fas fa-file-pdf"></i> Raport complet {{ \Carbon\Carbon::createFromFormat('Y-m-d', $search)->format('d.m.Y') }}
+                        </a>
+                        <a href="/trasee/toate_orele/{{ $trasee_nume->id }}/{{ \Carbon\Carbon::createFromFormat('Y-m-d', $search)->format('d-m-Y') }}/export/traseu-pdf-toate-orele"
+                            class="btn btn-secondary"
+                            role="button"
+                            target="_blank"
+                            >
+                            <i class="fas fa-file-pdf"></i> Raport compact {{ \Carbon\Carbon::createFromFormat('Y-m-d', $search)->format('d.m.Y') }}
                         </a>
                     </div>           
                   

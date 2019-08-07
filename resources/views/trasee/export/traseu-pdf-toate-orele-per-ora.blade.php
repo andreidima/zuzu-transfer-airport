@@ -295,16 +295,16 @@
                         <table style="width:660px;">
                             <tr style="background-color:#e7d790;">
                                 <th style="width:20px;">Nr. crt.</th>
-                                <th style="width:90px;">Nume si prenume</th>
+                                <th style="width:85px;">Nume si prenume</th>
                                 <th style="width:105px;">Telefon</th>
                                 <th style="width:55px;">Sosire</th>
-                                <th style="width:35px;">Ora zbor</th>
+                                <th style="width:35px;">Ora at.</th>
                                 <th style="width:55px;">Aterizare</th>
                                 <th style="width:130px;">Statie imbarcare</th>
                                 <th style="width:75px;">Observatii</th>
                                 <th style="width:35px;">Suma</th>
                                 <th style="width:30px;">Plata</th>
-                                <th style="width:25px;">Nr. pers.</th>
+                                <th style="width:25px;">Nr. pers</th>
                             </tr>
                             @php 
                                 ($nrcrt = 1) 
@@ -335,8 +335,6 @@
                                                 {{ $rezervare->statie->nume }}
                                             @elseif(!empty($rezervare->statie_imbarcare))
                                                 {{ $rezervare->statie_imbarcare }}
-                                            @else
-                                                -
                                             @endif
                                         </td>
                                         <td>

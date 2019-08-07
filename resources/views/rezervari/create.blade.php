@@ -371,6 +371,7 @@
                                             name="retur_zbor_oras_decolare" 
                                             placeholder="" 
                                             value="{{ old('retur_zbor_oras_decolare') }}"
+                                            style="text-transform:uppercase"
                                             required>  
                                     </div>
                                     <div class="form-group col-lg-5 mb-0">

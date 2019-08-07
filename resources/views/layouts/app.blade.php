@@ -136,7 +136,7 @@
             </div>
         </nav>
 
-        <main class="container my-4 py-4 bg-white">
+        <main class="container my-4 py-4 bg-white" style="min-height:450px">
             @yield('content')
         </main>
         

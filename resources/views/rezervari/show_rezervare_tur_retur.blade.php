@@ -170,7 +170,11 @@
                                     {{ $rezervare_tur->zbor_oras_decolare}}
                                     </b>
                             </td>
-                            <td style="border:0px;">
+                            <td style="border:0px;">                    
+                                @if (auth()->user()->isDispecer())
+                                    <a class="btn btn-sm btn-primary mr-4" href="{{ $rezervare_tur->path() }}/modifica" role="button">Modifică Rezervarea</a>
+                                @endif
+
                                 <a href="{{ $rezervare_tur->path() }}/export/rezervare-pdf"
                                     title="Descarcă bilet"
                                     >
@@ -325,7 +329,11 @@
                                     {{ $rezervare_retur->zbor_oras_decolare}}
                                     </b>
                             </td>
-                            <td style="border:0px;">
+                            <td style="border:0px;">                    
+                                @if (auth()->user()->isDispecer())
+                                    <a class="btn btn-sm btn-primary mr-4" href="{{ $rezervare_retur->path() }}/modifica" role="button">Modifică Rezervarea</a>
+                                @endif
+
                                 <a href="{{ $rezervare_retur->path() }}/export/rezervare-pdf"
                                     title="Descarcă bilet"
                                     >
@@ -341,10 +349,6 @@
             <div class="row justify-content-center">
                 <div class="col-lg-10 text-center">
                     <a class="btn btn-sm btn-primary mr-2" href="/rezervari/adauga" role="button">Adaugă o nouă Rezervare</a>
-                    
-                    @if (auth()->user()->isDispecer())
-                        <a class="btn btn-sm btn-primary mr-4" href="{{ $rezervare_tur->path() }}/modifica" role="button">Modifică Rezervarea</a>
-                    @endif
 
 
                 </div>

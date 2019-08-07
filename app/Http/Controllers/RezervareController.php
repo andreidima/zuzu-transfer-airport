@@ -278,13 +278,6 @@ class RezervareController extends Controller
         
         $rezervare_tur->user_id = auth()->user()->id;
         $rezervare_retur->user_id = auth()->user()->id;
-
-        $rezervare_tur->nume = strtoupper($rezervare_tur->nume);
-        $rezervare_retur->nume = strtoupper($rezervare_retur->nume);
-
-        $rezervare_tur->zbor_oras_decolare = strtoupper($rezervare_tur->zbor_oras_decolare);
-        $rezervare_retur->zbor_oras_decolare = strtoupper($rezervare_retur->zbor_oras_decolare);
-
         
         $this->authorize('update', $rezervare_tur);
         $this->authorize('update', $rezervare_retur);
@@ -297,6 +290,12 @@ class RezervareController extends Controller
         $rezervare_retur->zbor_ora_decolare = $request->retur_zbor_ora_decolare;
         $rezervare_retur->zbor_ora_aterizare = $request->retur_zbor_ora_aterizare;
         $rezervare_retur->statie_imbarcare = $request->retur_statie_imbarcare;
+
+        $rezervare_tur->nume = strtoupper($rezervare_tur->nume);
+        $rezervare_retur->nume = strtoupper($rezervare_retur->nume);
+
+        $rezervare_tur->zbor_oras_decolare = strtoupper($rezervare_tur->zbor_oras_decolare);
+        $rezervare_retur->zbor_oras_decolare = strtoupper($rezervare_retur->zbor_oras_decolare);
 
         // aflarea id-ului cursei in functie de orasele introduse
         $cursa_id_tur = Cursa::select('id')
@@ -498,9 +497,9 @@ class RezervareController extends Controller
             'data_cursa' => [ 'required', 'max:50'],
             'ora_id' =>[ 'required', 'nullable', 'max:99'],
             // 'ora_plecare' => [''] // pastrata pentru old(ora_plecare) in formular
-            'zbor_oras_decolare' => ['max:100'],
-            'zbor_ora_decolare' => ['max:100'],
-            'zbor_ora_aterizare' => ['max:100'],
+            'zbor_oras_decolare' => ['max:18'],
+            'zbor_ora_decolare' => ['max:15'],
+            'zbor_ora_aterizare' => ['max:15'],
             'nume' => ($request->_method === "PATCH") ?
                 ['required', 'max:100', 'unique:rezervari,nume,' . $rezervari->id . ',id,telefon,' . $request->telefon . ',data_cursa,' . $request->data_cursa . ',ora_id,' . $request->ora_id]
                 :
