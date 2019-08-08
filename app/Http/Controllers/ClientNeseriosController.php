@@ -14,8 +14,13 @@ class ClientNeseriosController extends Controller
      */
     public function index()
     {
-        $clienti_neseriosi = ClientNeserios::all();
-        // dd ($clienti_neseriosi);
+        $search_client_neserios_telefon = \Request::get('search_client_neserios_telefon'); //<-- we use global request to get the param of URI
+
+        $clienti_neseriosi = ClientNeserios::when($search_client_neserios_telefon, function ($query, $search_client_neserios_telefon) {
+                                    return $query->where( 'telefon', 'like', '%' . $search_client_neserios_telefon . '%');
+                                })
+                ->latest()
+                ->get();
 
         return view('clienti-neseriosi.index', compact('clienti_neseriosi'));
     }
@@ -38,7 +43,9 @@ class ClientNeseriosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $client_neserios = ClientNeserios::create($this->validateRequest($request));
+
+        return redirect($client_neserios->path())->with('status', 'Clientul neserios "' . $client_neserios->nume . '" a fost adăugat cu succes!');
     }
 
     /**
@@ -47,9 +54,9 @@ class ClientNeseriosController extends Controller
      * @param  \App\ClientNeserios  $clientNeserios
      * @return \Illuminate\Http\Response
      */
-    public function show(ClientNeserios $clientNeserios)
-    {
-        //
+    public function show(ClientNeserios $clienti_neseriosi)
+    {        
+        return view('clienti-neseriosi.show', compact('clienti_neseriosi'));
     }
 
     /**
@@ -58,9 +65,9 @@ class ClientNeseriosController extends Controller
      * @param  \App\ClientNeserios  $clientNeserios
      * @return \Illuminate\Http\Response
      */
-    public function edit(ClientNeserios $clientNeserios)
+    public function edit(ClientNeserios $clienti_neseriosi)
     {
-        //
+        return view('clienti-neseriosi.edit', compact('clienti_neseriosi'));
     }
 
     /**
@@ -70,9 +77,12 @@ class ClientNeseriosController extends Controller
      * @param  \App\ClientNeserios  $clientNeserios
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ClientNeserios $clientNeserios)
+    public function update(Request $request, ClientNeserios $clienti_neseriosi)
     {
-        //
+        $this->validateRequest($request, $clienti_neseriosi);
+        $clienti_neseriosi->update($request);
+        
+        return redirect($clienti_neseriosi->path())->with('status', 'Clientu neserios "' . $clienti_neseriosi->nume . '" a fost modificat cu succes!');
     }
 
     /**
@@ -81,8 +91,24 @@ class ClientNeseriosController extends Controller
      * @param  \App\ClientNeserios  $clientNeserios
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ClientNeserios $clientNeserios)
+    public function destroy(ClientNeserios $clienti_neseriosi)
     {
-        //
+        $clienti_neseriosi->delete();
+        return redirect('/clienti-neseriosi');
     }
+
+    /**
+     * Validate the request attributes.
+     *
+     * @return array
+     */
+    protected function validateRequest(Request $request, $rezervari = null)
+    {
+        return request()->validate([
+            'nume' => ['required', 'max:100'],
+            'telefon' => ['required', 'max:100'],            
+            'observatii' => ['required', 'max:500']
+        ]);
+    }
+
 }

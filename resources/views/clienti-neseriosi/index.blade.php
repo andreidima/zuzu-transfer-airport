@@ -4,10 +4,10 @@
     <div class="container card px-0">
         <div class="d-flex justify-content-between card-header">
             <div class="flex flex-vertical-center">
-                <h4 class="mt-2"><a href="/rezervari"><i class="fas fa-file-alt mr-1"></i>Clienți neserioși</a></h4>
+                <h4 class="mt-2"><a href="/clienti-neseriosi"><i class="fas fa-file-alt mr-1"></i>Clienți neserioși</a></h4>
             </div> 
                 <div class="w-50">             
-                    <form class="needs-validation" novalidate method="GET" action="/rezervari">
+                    <form class="needs-validation" novalidate method="GET" action="/clienti-neseriosi">
                         @csrf                    
                         <div class="input-group custom-search-form">
                             <div class="w-50">
@@ -24,7 +24,7 @@
                     </form>
                 </div>
             <div>
-                <a class="btn btn-primary" href="/rezervari/adauga" role="button">Adaugă client neserios</a>
+                <a class="btn btn-primary" href="/clienti-neseriosi/adauga" role="button">Adaugă client neserios</a>
             </div>
         </div>
     </div>

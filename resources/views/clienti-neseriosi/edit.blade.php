@@ -21,7 +21,7 @@
                                     class="form-control form-control-sm {{ $errors->has('nume') ? 'is-invalid' : '' }}" 
                                     name="nume" 
                                     placeholder="Nume Client"
-                                    value="{{ old('nume') }}"
+                                    value="{{ old('nume') == '' ? $clienti_neseriosi->nume : old('nume') }}"
                                     style=""
                                     required> 
                             </div>
@@ -32,17 +32,17 @@
                                     class="form-control form-control-sm {{ $errors->has('telefon') ? 'is-invalid' : '' }}" 
                                     name="telefon" 
                                     placeholder="Telefon" 
-                                    value="{{ old('telefon') }}"
+                                    value="{{ old('telefon') == '' ? $clienti_neseriosi->telefon : old('telefon') }}"
                                     required> 
                             </div>  
                             <div class="form-group col-lg-12 mb-1">
                                 {{-- <label for="email" class="mb-0">E-mail:</label> --}}
                                 <input 
                                     type="text" 
-                                    class="form-control form-control-sm {{ $errors->has('email') ? 'is-invalid' : '' }}" 
+                                    class="form-control form-control-sm {{ $errors->has('observatii') ? 'is-invalid' : '' }}" 
                                     name="observatii" 
                                     placeholder="Observartii" 
-                                    value="{{ old('observatii') }}"
+                                    value="{{ old('observatii') == '' ? $clienti_neseriosi->observatii : old('observatii') }}"
                                     >
                             </div> 
                         </div>
@@ -53,7 +53,7 @@
                 
                 <div class="form-row">
                     <div class="col-lg-12 d-flex justify-content-center">  
-                        <button type="submit" class="btn btn-primary mr-4">Adaugă client neserios</button> 
+                        <button type="submit" class="btn btn-primary mr-4">Modifică client neserios</button> 
                     </div>
                 </div>
                     
