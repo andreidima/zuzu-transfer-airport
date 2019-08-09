@@ -80,9 +80,9 @@ class ClientNeseriosController extends Controller
     public function update(Request $request, ClientNeserios $clienti_neseriosi)
     {
         $this->validateRequest($request, $clienti_neseriosi);
-        $clienti_neseriosi->update($request);
+        $clienti_neseriosi->update($request->all());
         
-        return redirect($clienti_neseriosi->path())->with('status', 'Clientu neserios "' . $clienti_neseriosi->nume . '" a fost modificat cu succes!');
+        return redirect($clienti_neseriosi->path())->with('status', 'Clientul neserios "' . $clienti_neseriosi->nume . '" a fost modificat cu succes!');
     }
 
     /**

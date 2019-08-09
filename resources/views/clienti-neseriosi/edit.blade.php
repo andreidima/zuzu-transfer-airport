@@ -2,12 +2,13 @@
 
 @section('content')
 <div>
-    <div class="container p-0 " id="orase-ore-plecare"> 
+    <div class="container p-0"> 
 
         @include ('errors')
         
         <div class="">
-            <form  class="needs-validation" novalidate method="POST" action="/clienti-neseriosi" style="font-size:0.8rem">
+            <form  class="needs-validation" novalidate method="POST" action="{{ $clienti_neseriosi->path() }}" style="font-size:0.8rem">
+                @method('PATCH')
                 @csrf
 
 
