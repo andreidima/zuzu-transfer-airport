@@ -150,7 +150,11 @@
                             @endphp
                             @forelse ($traseu->curse_ore as $cursa_ora)
                                 @forelse ($cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1) as $rezervare)
-                                    <tr>
+                                    @if (in_array($rezervare->telefon, $telefoane_clienti_neseriosi))
+                                        <tr style="background:#c6fabf">
+                                    @else
+                                        <tr>
+                                    @endif
                                         <td>
                                             {{ $nrcrt++ }}
                                         </td>
@@ -311,7 +315,11 @@
                             @endphp
                             @forelse ($traseu->curse_ore as $cursa_ora)
                                 @forelse ($cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1) as $rezervare)
-                                    <tr>
+                                    @if (in_array($rezervare->telefon, $telefoane_clienti_neseriosi))
+                                        <tr style="background:#c6fabf">
+                                    @else
+                                        <tr>
+                                    @endif
                                         <td>
                                             {{ $nrcrt++ }}
                                         </td>

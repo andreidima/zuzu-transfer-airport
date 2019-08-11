@@ -8,6 +8,7 @@ use App\Oras;
 use App\OrasStatie;
 use App\TipPlata;
 use App\CursaOra;
+use App\ClientNeserios;
 use DB;
 use Illuminate\Http\Request;
 use App\Mail\BiletClient;
@@ -51,6 +52,9 @@ class RezervareController extends Controller
                 ->latest('rezervari.created_at')
                 ->simplePaginate(100);
         }
+
+        $telefoane_clienti_neseriosi = ClientNeserios::pluck('telefon')->all();
+
         // $rezervaria = auth()->user()->rezervari()
         //     ->join('curse_ore', 'ora_id', '=', 'curse_ore.id')
         //     ->select('rezervari.*', 'curse_ore.ora')
@@ -108,7 +112,7 @@ class RezervareController extends Controller
         //     ->count();
 
         // return view('rezervari.index', compact('rezervari_curente', 'rezervari_curente_nr', 'rezervari_vechi', 'rezervari_vechi_nr'));
-        return view('rezervari.index', compact('rezervari'));
+        return view('rezervari.index', compact('rezervari', 'telefoane_clienti_neseriosi'));
     }
 
     /**

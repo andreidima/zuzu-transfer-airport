@@ -44,6 +44,8 @@
                                 <tr style="color:black; height:35px; line-height:30px; border-bottom:solid 1px #99F;">
                             @elseif (\Carbon\Carbon::parse($rezervare->created_at)->format('Y-m-d') == $rezervare->data_cursa)
                                 <tr bgcolor=yellow style="color:black; height:35px; line-height:30px; border-bottom:solid 1px #99F;">
+                            @elseif (in_array($rezervare->telefon, $telefoane_clienti_neseriosi))
+                                <tr style="color:black; height:35px; line-height:30px; border-bottom:solid 1px #99F; background:#c6fabf">
                             @else
                                 <tr style="color:black; height:35px; line-height:30px; border-bottom:solid 1px #99F;">
                             @endif    

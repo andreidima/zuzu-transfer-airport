@@ -80,7 +80,9 @@
                     @if ($rezervare->activa == 0)
                         <tr style="color:black; height:15px; line-height:30px; border-bottom:solid 1px #99F; background:#99F;">
                     @elseif (\Carbon\Carbon::parse($rezervare->created_at)->format('Y-m-d') == $rezervare->data_cursa)
-                        <tr bgcolor=yellow style="color:black; height:35px; line-height:30px; border-bottom:solid 1px #99F;"> 
+                        <tr bgcolor=yellow style="color:black; height:35px; line-height:30px; border-bottom:solid 1px #99F;">
+                    @elseif (in_array($rezervare->telefon, $telefoane_clienti_neseriosi))
+                        <tr style="color:black; height:35px; line-height:30px; border-bottom:solid 1px #99F; background:#c6fabf"> 
                     @else
                         <tr style="color:black; height:35px; line-height:30px; border-bottom:solid 1px #99F;">
                     @endif    
@@ -187,20 +189,12 @@
                         </td>
                         <td align="center">
                             @if (!empty($rezervare->cursa->oras_plecare))
-                                @if ($rezervare->cursa->oras_plecare->nume == "Ramnicu Sarat")
-                                    Rm.Sarat
-                                @else
-                                    {{ $rezervare->cursa->oras_plecare->nume }}
-                                @endif
+                                {{ $rezervare->cursa->oras_plecare->nume }}
                             @endif
                         </td>
                         <td align="center">
                             @if (!empty($rezervare->cursa->oras_sosire))
-                                @if ($rezervare->cursa->oras_sosire->nume == "Ramnicu Sarat")
-                                    Rm.Sarat
-                                @else
-                                    {{ $rezervare->cursa->oras_sosire->nume }}
-                                @endif
+                                {{ $rezervare->cursa->oras_sosire->nume }}
                             @endif
                         </td>
                         <td align="center">

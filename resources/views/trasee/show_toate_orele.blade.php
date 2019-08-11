@@ -45,6 +45,8 @@
                                     <tr style="color:black; height:35px; line-height:30px; border-bottom:solid 1px #99F;">
                                 @elseif (\Carbon\Carbon::parse($rezervare->created_at)->format('Y-m-d') == $rezervare->data_cursa)
                                     <tr bgcolor=yellow style="color:black; height:35px; line-height:30px; border-bottom:solid 1px #99F;">
+                                @elseif (in_array($rezervare->telefon, $telefoane_clienti_neseriosi))
+                                    <tr style="color:black; height:35px; line-height:30px; border-bottom:solid 1px #99F; background:#c6fabf">
                                 @else
                                     <tr style="color:black; height:35px; line-height:30px; border-bottom:solid 1px #99F;">
                                 @endif    
@@ -289,13 +291,16 @@
                             >
                             <i class="fas fa-file-pdf"></i> Raport complet {{ \Carbon\Carbon::createFromFormat('Y-m-d', $search)->format('d.m.Y') }}
                         </a>
-                        <a href="/trasee/toate_orele/{{ $trasee_nume->id }}/{{ \Carbon\Carbon::createFromFormat('Y-m-d', $search)->format('d-m-Y') }}/export/traseu-pdf-toate-orele"
-                            class="btn btn-secondary"
-                            role="button"
-                            target="_blank"
-                            >
-                            <i class="fas fa-file-pdf"></i> Raport compact {{ \Carbon\Carbon::createFromFormat('Y-m-d', $search)->format('d.m.Y') }}
-                        </a>
+
+                        @if ($trasee_nume->id == 3)
+                            <a href="/trasee/toate_orele/{{ $trasee_nume->id }}/{{ \Carbon\Carbon::createFromFormat('Y-m-d', $search)->format('d-m-Y') }}/export/traseu-pdf-toate-orele"
+                                class="btn btn-secondary"
+                                role="button"
+                                target="_blank"
+                                >
+                                <i class="fas fa-file-pdf"></i> Raport compact {{ \Carbon\Carbon::createFromFormat('Y-m-d', $search)->format('d.m.Y') }}
+                            </a>
+                        @endif
                     </div>           
                   
     </div>

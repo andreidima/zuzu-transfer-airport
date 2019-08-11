@@ -8,6 +8,7 @@ use App\CursaOra;
 use Illuminate\Http\Request;
 use App\CursaOraTraseu;
 use App\Rezervare;
+use App\ClientNeserios;
 
 class TraseuController extends Controller
 {
@@ -113,7 +114,9 @@ class TraseuController extends Controller
         //     return view('trasee.show', compact('trasee', 'search'));
         // }
 
-        return view('trasee.show', compact('trasee', 'search'));
+        $telefoane_clienti_neseriosi = ClientNeserios::pluck('telefon')->all();
+
+        return view('trasee.show', compact('trasee', 'search', 'telefoane_clienti_neseriosi'));
     }
 
     /**
@@ -157,7 +160,9 @@ class TraseuController extends Controller
         ->where('id', $traseu_nume_id)
         ->first();
 
-        return view('trasee.show_toate_orele', compact('trasee_nume', 'search'));
+        $telefoane_clienti_neseriosi = ClientNeserios::pluck('telefon')->all();
+
+        return view('trasee.show_toate_orele', compact('trasee_nume', 'search', 'telefoane_clienti_neseriosi'));
     }
 
     /**
@@ -199,12 +204,14 @@ class TraseuController extends Controller
         $data_traseu_Ymd = \Carbon\Carbon::createFromFormat('d-m-Y', $data_traseu)->format('Y-m-d');
         $data_traseu = \Carbon\Carbon::createFromFormat('d-m-Y', $data_traseu)->format('d.m.Y');
 
+        $telefoane_clienti_neseriosi = ClientNeserios::pluck('telefon')->all();
+
         if ($request->view_type === 'traseu-html') {
-            return view('trasee.export.traseu-pdf', compact('trasee', 'data_traseu', 'data_traseu_Ymd'));
+            return view('trasee.export.traseu-pdf', compact('trasee', 'data_traseu', 'data_traseu_Ymd', 'telefoane_clienti_neseriosi'));
         } elseif ($request->view_type === 'traseu-pdf') {
             // $pdf->render();
 
-            $pdf = \PDF::loadView('trasee.export.traseu-pdf', compact('trasee', 'data_traseu', 'data_traseu_Ymd'))
+            $pdf = \PDF::loadView('trasee.export.traseu-pdf', compact('trasee', 'data_traseu', 'data_traseu_Ymd', 'telefoane_clienti_neseriosi'))
                 ->setPaper('a4');
             return $pdf->stream('Raport ' . $trasee->traseu_nume->nume . ', ' . $data_traseu . ', ' . 
                 \Carbon\Carbon::parse($trasee->curse_ore->first()->ora)->format('H_i') 
@@ -224,19 +231,21 @@ class TraseuController extends Controller
         $data_traseu_Ymd = \Carbon\Carbon::createFromFormat('d-m-Y', $data_traseu)->format('Y-m-d');
         $data_traseu = \Carbon\Carbon::createFromFormat('d-m-Y', $data_traseu)->format('d.m.Y');
 
+        $telefoane_clienti_neseriosi = ClientNeserios::pluck('telefon')->all();
+
         $trasee_nume = TraseuNume::select('id', 'nume')
             ->where('id', $traseu_nume_id)
             ->first();
         
         if ($request->view_type === 'traseu-html-toate-orele') {
-            return view('trasee.export.traseu-pdf-toate-orele', compact('trasee_nume', 'data_traseu', 'data_traseu_Ymd'));
+            return view('trasee.export.traseu-pdf-toate-orele', compact('trasee_nume', 'data_traseu', 'data_traseu_Ymd', 'telefoane_clienti_neseriosi'));
         } elseif ($request->view_type === 'traseu-pdf-toate-orele') {            
-            $pdf = \PDF::loadView('trasee.export.traseu-pdf-toate-orele', compact('trasee_nume', 'data_traseu', 'data_traseu_Ymd'))
+            $pdf = \PDF::loadView('trasee.export.traseu-pdf-toate-orele', compact('trasee_nume', 'data_traseu', 'data_traseu_Ymd', 'telefoane_clienti_neseriosi'))
                 ->setPaper('a4');
             return $pdf->stream('Raport ' . $trasee_nume->nume . ', ' . $data_traseu . '.pdf');
 
         } elseif ($request->view_type === 'traseu-pdf-toate-orele-per-ora') {
-            $pdf = \PDF::loadView('trasee.export.traseu-pdf-toate-orele-per-ora', compact('trasee_nume', 'data_traseu', 'data_traseu_Ymd'))
+            $pdf = \PDF::loadView('trasee.export.traseu-pdf-toate-orele-per-ora', compact('trasee_nume', 'data_traseu', 'data_traseu_Ymd', 'telefoane_clienti_neseriosi'))
                 ->setPaper('a4');
             return $pdf->stream('Raport ' . $trasee_nume->nume . ', ' . $data_traseu . '.pdf');
             
