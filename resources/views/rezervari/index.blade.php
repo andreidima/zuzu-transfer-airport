@@ -47,7 +47,7 @@
                     <th class="px-0">User</th>
                 @endif
                 @if (auth()->user()->isDispecer())
-                    <th style="width:300px">Nume</th>
+                    <th style="min-width:250px;">Nume</th>
                 @else
                     <th style="min-width:120px;">Nume</th>
                 @endif
