@@ -372,18 +372,26 @@ class RezervareController extends Controller
     public function show(Rezervare $rezervari)
     {
         $this->authorize('update', $rezervari);
-        return view('rezervari.show', compact('rezervari'));
+
+        $telefoane_clienti_neseriosi = ClientNeserios::pluck('telefon')->all();
+
+        return view('rezervari.show', compact('rezervari', 'telefoane_clienti_neseriosi'));
     }
+
     public function show_dupa_modificare(Rezervare $rezervari)
     {
         $this->authorize('update', $rezervari);
+
         return view('rezervari.show_dupa_modificare', compact('rezervari'));
     }
     public function show_rezervare_tur_retur(Rezervare $rezervare_tur, Rezervare $rezervare_retur)
     {
         $this->authorize('update', $rezervare_tur);        
         $this->authorize('update', $rezervare_retur);
-        return view('rezervari.show_rezervare_tur_retur', compact('rezervare_tur', 'rezervare_retur'));
+
+        $telefoane_clienti_neseriosi = ClientNeserios::pluck('telefon')->all();
+
+        return view('rezervari.show_rezervare_tur_retur', compact('rezervare_tur', 'rezervare_retur', 'telefoane_clienti_neseriosi'));
     }
 
     /**

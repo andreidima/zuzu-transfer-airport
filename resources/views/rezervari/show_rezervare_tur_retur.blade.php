@@ -15,7 +15,14 @@
                                 Informații Călător
                                 </h4>
                             </td>
-                        </tr>
+                        </tr>                        
+                        @if (in_array($rezervare_tur->telefon, $telefoane_clienti_neseriosi))
+                            <tr style="border-bottom:0px;">
+                                <td class="text-danger">
+                                    Persoana <b>{{ $rezervare_tur->nume }}</b> este în lista de neserioși
+                                </td>
+                            </tr>
+                        @endif
                         <tr style="border-bottom:0px;">
                             <td>
                                 Călător: <b>{{ $rezervare_tur->nume }}</b>
