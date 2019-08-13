@@ -65,10 +65,10 @@
                             border-radius: 10px;">
                         <table style="">
                             <tr>
-                                <td style="border-width:0px; padding:0rem;" colspan="4">
-                                        <img src="{{ asset('images/logo-zuzu.png') }}" width="150px">
+                                <td style="border-width:0px; padding:0rem;">
+                                    <img src="{{ asset('images/logo-zuzu.png') }}" style="width:150px; padding:0rem; margin:0rem;">
                                 </td>
-                                <td style="border-width:0px; padding:0rem; text-align:center; font-size:16px" colspan="6">
+                                <td style="border-width:0px; padding:0rem; text-align:center; font-size:16px">
                                     Raport: {{ $agentie->nume }}
                                     <br>
                                     De la data: {{ $search_data_inceput }} la data {{ $search_data_sfarsit }}
@@ -76,21 +76,23 @@
                                 </td>
                             </tr>
                             <tr class="">
-                                <td style="border-width:0px;" colspan="10">
+                                <td style="border-width:0px;">
                                     &nbsp;
                                 </td>
                             </tr>
+                        </table>
+                        <table>
                             <tr style="background-color:#e7d790; font-weight: normal;">
-                                <th style="width:3%">Nr. crt.</th>
-                                <th style="width:15%">Nume si prenume</th>
-                                <th style="width:6%">Plecare</th>
-                                <th style="width:6%">Sosire</th>
-                                <th style="width:7%">Data plecare</th>
-                                <th style="width:5%">Suma</th>
-                                <th style="width:5%">Plata</th>
-                                <th style="width:15%">Statie imbarcare</th>
-                                <th style="width:3%">Nr. ad.</th>
-                                <th style="width:3%">Nr. cp.</th>
+                                <th style="width:25px">Nr. crt.</th>
+                                <th style="width:130px">Nume si prenume</th>
+                                <th style="width:60px">Plecare</th>
+                                <th style="width:60px">Sosire</th>
+                                <th style="width:70px">Data plecare</th>
+                                <th style="width:50px">Suma</th>
+                                <th style="width:30px">Plata</th>
+                                <th style="width:180px">Statie imbarcare</th>
+                                <th style="width:25px">Nr. ad.</th>
+                                <th style="width:25px">Nr. cp.</th>
                             </tr>
 
                                 @forelse ($rezervari as $rezervare)

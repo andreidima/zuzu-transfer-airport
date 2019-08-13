@@ -57,6 +57,31 @@ class TraseuController extends Controller
         return view('trasee.index_retur', compact('trasee_nume_otopeni', 'search'));
     }
 
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index_statistica()
+    {
+        $search = \Request::get('search');
+        if (empty($search)) {
+            $search = \Carbon\Carbon::today()->format('Y-m-d');
+        }
+        $trasee_nume_tecuci_otopeni = TraseuNume::select('id', 'nume')
+            ->where('id', 1)
+            ->get();
+        $trasee_nume_galati_otopeni = TraseuNume::select('id', 'nume')
+            ->where('id', 2)
+            ->get();
+        $trasee_nume_otopeni = TraseuNume::select('id', 'nume')
+            ->where('id', 3)
+            ->get();
+
+        return view('trasee.index_statistica', compact('trasee_nume_tecuci_otopeni', 'trasee_nume_galati_otopeni', 'trasee_nume_otopeni', 'search'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

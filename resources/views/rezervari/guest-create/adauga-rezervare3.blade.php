@@ -55,7 +55,7 @@
                     </a>
 
                     <hr>
-                    <a href="http://www.rezervari.zuzu-transfer-aeroport.ro/index.php/trasee_romania">INAPOI LA PAGINA PRINCIPALĂ</a>
+                    <a href="https://www.zuzu-transfer-aeroport.ro/">INAPOI LA PAGINA PRINCIPALĂ</a>
                 </div>
                 <div class="col-sm-2">
                 </div>

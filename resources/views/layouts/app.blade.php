@@ -63,7 +63,7 @@
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="/rezervari-raport-zi">Raport / zi</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Statistică</a>
+                                    <a class="dropdown-item" href="/statistica">Statistică</a>
                                     </div>
                                 </li>
                             @endif
@@ -86,7 +86,7 @@
                                 </li>
                             @endif
                             <li class="nav-item active mr-4">
-                                <a class="nav-link disabled" href="#">
+                                <a class="nav-link" href="/instructiuni-rezervari">
                                     <i class="fas fa-chalkboard-teacher mr-1"></i>Instrucțiuni Rezervări
                                 </a>
                             </li>

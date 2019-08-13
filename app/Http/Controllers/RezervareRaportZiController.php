@@ -157,6 +157,9 @@ class RezervareRaportZiController extends Controller
                             $query->where('plecare_id', '=', $search_oras);
                     })
                     ->get();
+                foreach ($raspuns as $r){
+                    $r->ora = \Carbon\Carbon::parse($r->ora)->format('H:i');
+                };
                 break;
             default:
                 break;  

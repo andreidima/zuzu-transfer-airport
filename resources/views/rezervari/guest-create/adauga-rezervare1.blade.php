@@ -328,7 +328,7 @@
                                                     rows="2"
                                                     class="form-control form-control-sm {{ $errors->has('adresa') ? 'is-invalid' : '' }}" 
                                                     name="adresa" 
-                                                    placeholder="Adresa de facturare"
+                                                    placeholder="Adresa postală"
                                                     >{{ old('adresa') }}</textarea>
                                             </div>
                                         </div>

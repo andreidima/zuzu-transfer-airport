@@ -69,5 +69,30 @@
             </div>
         </div>
     </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <img class="my-3 py-3" src="{{ asset('images/logo-zuzu.png') }}" style="width:300px; padding:0rem; margin:0rem;">
+        </div>
+    </div>
+
+        {{-- <div class="row justify-content-center">
+            <span class="badge badge-info">Suport Tehnic:</span> Elena Lemnaru +40 765 296 796
+            <b>Suport Tehnic</b>: Elena Lemnaru +40 765 296 796
+        </div> --}}
+
+    <div class="row justify-content-center">
+        <div class="col-md-4">    
+            <div class="card text-white bg-info m-0 p-0" style="max-width: 19rem;">
+                <div class="card-header my-0 py-0">
+                    <h5 class="my-0 py-0 text-center">Suport Tehnic</h5>
+                </div>
+                <div class="card-body my-0 py-0 text-center">
+                    Elena Lemnaru: +40 765 296 796
+                </div>
+            </div>
+        </div>    
+    </div>
+
 </div>
 @endsection

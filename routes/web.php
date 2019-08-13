@@ -47,6 +47,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('agentii/rezervari', 'UserFirmaController@rezervari');
     Route::get('agentii/rezervari/export/agentie-rezervari-pdf/{search_data_inceput}/{search_data_sfarsit}', 'UserFirmaController@pdfexport_rezervari_agentie');  // Generare PDF
 
+    Route::view('/instructiuni-rezervari', 'instructiuni_rezervari');
+
     Route::group(['middleware' => 'dispecer'], function () {
         Route::resource('/clienti-neseriosi', 'ClientNeseriosController');
 
@@ -68,6 +70,9 @@ Route::group(['middleware' => 'auth'], function () {
     
         //Ruta pentru afisarea retur cu plecarile de la Otopeni
         Route::get('trasee/retur', 'TraseuController@index_retur');
+
+        //Ruta pentru afisarea statisticii Raport/Statistica
+        Route::get('statistica', 'TraseuController@index_statistica');
 
         Route::resource('trasee', 'TraseuController');
 
