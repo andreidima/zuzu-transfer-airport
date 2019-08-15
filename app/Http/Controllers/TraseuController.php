@@ -79,6 +79,7 @@ class TraseuController extends Controller
             ->where('id', 3)
             ->get();
 
+
         return view('trasee.index_statistica', compact('trasee_nume_tecuci_otopeni', 'trasee_nume_galati_otopeni', 'trasee_nume_otopeni', 'search'));
     }
 

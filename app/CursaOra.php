@@ -9,6 +9,8 @@ class CursaOra extends Model
     protected $table = 'curse_ore';
     protected $guarded = [];
 
+    protected $with = ['cursa', 'rezervari'];
+
     public function cursa()
     {
         return $this->belongsTo('App\Cursa', 'cursa_id');

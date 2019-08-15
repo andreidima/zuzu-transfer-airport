@@ -9,6 +9,9 @@ class Traseu extends Model
     protected $table = 'trasee';
     protected $guarded = [];
 
+    protected $with = ['curse_ore', 'rezervari'];
+
+
     public function path()
     {
         return "/trasee/{$this->id}";

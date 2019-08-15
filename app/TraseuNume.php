@@ -9,6 +9,8 @@ class TraseuNume extends Model
     protected $table = 'trasee_nume';
     protected $guarded = [];
 
+    protected $with = ['trasee'];
+
     public function trasee()
     {
         return $this->hasMany('App\Traseu', 'traseu_nume_id');
