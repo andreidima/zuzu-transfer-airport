@@ -183,6 +183,7 @@ class TraseuController extends Controller
         // }
 
         $trasee_nume = TraseuNume::select('id', 'nume')
+        ->with('trasee.curse_ore')
         ->where('id', $traseu_nume_id)
         ->first();
 

@@ -105,13 +105,15 @@ class UserFirmaController extends Controller
         if (auth()->user()->isDispecer()) {
             if(isset($search_data_inceput) && isset($search_data_sfarsit)) {
                 $rezervari = $agentii->rezervari()
+                    ->with('cursa', 'ora', 'tip_plata', 'statie')
                     ->where('data_cursa', '>=', $search_data_inceput)
                     ->where('data_cursa', '<=', $search_data_sfarsit)
                     ->orderBy('cursa_id')
                     ->simplePaginate(100)
-                    ->appends(request()->query());
+                    ->appends(request()->query());                    
             } else {
                 $rezervari = $agentii->rezervari()
+                    ->with('cursa', 'ora', 'tip_plata', 'statie')
                     ->latest()
                     ->simplePaginate(100)
                     ->appends(request()->query());
@@ -119,6 +121,7 @@ class UserFirmaController extends Controller
         } else {
             if (isset($search_data_inceput) && isset($search_data_sfarsit)) {
                 $rezervari = auth()->user()->rezervari()
+                    ->with('cursa', 'ora', 'tip_plata', 'statie')
                     ->where('data_cursa', '>=', $search_data_inceput)
                     ->where('data_cursa', '<=', $search_data_sfarsit)
                     ->orderBy('cursa_id')
@@ -126,6 +129,7 @@ class UserFirmaController extends Controller
                     ->appends(request()->query());
             } else {
                 $rezervari = auth()->user()->rezervari()
+                    ->with('cursa', 'ora', 'tip_plata', 'statie')
                     ->latest()
                     ->simplePaginate(100)
                     ->appends(request()->query());

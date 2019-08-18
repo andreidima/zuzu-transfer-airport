@@ -40,15 +40,23 @@
 
         <div class="card-body">
             <div class="row justify-content-center">
-                <div class="col-3 container-fluid px-0 table-responsive-lg border">    
+                <div class="col-lg-2 container-fluid px-0 table-responsive-lg border">    
                     @forelse ($trasee_nume_tecuci_otopeni as $traseu_nume)                     
                         <h5 class="p-2 bg-secondary text-white mb-0 text-center">{{$traseu_nume->nume}}</h5>
-                        <table class="table table-sm table-striped text-center mb-2">
+                        <table class="table table-sm table-striped text-center mb-0">
+                            @php
+                                $total_persoane_tecuci_otopeni = 0;
+                            @endphp
                             @forelse ($traseu_nume->trasee as $traseu)                                
                                 
                                 <tr>   
                                 @php
-                                    $cursa_ora = $traseu->curse_ore->first();   
+                                    $cursa_ora = $traseu->curse_ore->first();  
+                                    
+                                    $total_persoane_tecuci_otopeni += 
+                                        $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_adulti')
+                                        +
+                                        $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_copii');
                                 @endphp
                                     <td style="">
                                             @if(!empty(\Carbon\Carbon::parse($cursa_ora->ora)))
@@ -69,6 +77,17 @@
                                 </tr>
                             @empty
                             @endforelse 
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr class="text-white" style="background-color:#408080;">
+                                    <td>Total</td>
+                                    <td>
+                                        {{ $total_persoane_tecuci_otopeni }}
+                                        pers
+                                    </td>
+                                </tr>
                         </table>
 
                     @empty
@@ -78,14 +97,22 @@
 
 
                 
-                <div class="col-3 container-fluid px-0 table-responsive-lg border">    
+                <div class="col-lg-2 container-fluid px-0 table-responsive-lg border">    
                     @forelse ($trasee_nume_galati_otopeni as $traseu_nume)                     
                         <h5 class="p-2 bg-secondary text-white mb-0 text-center">{{$traseu_nume->nume}}</h5>
-                        <table class="table table-sm table-striped text-center mb-2">
+                        <table class="table table-sm table-striped text-center mb-0">
+                            @php
+                                $total_persoane_galati_otopeni = 0;
+                            @endphp
                             @forelse ($traseu_nume->trasee as $traseu) 
                                 <tr>      
                                 @php 
                                     $cursa_ora = $traseu->curse_ore->first();
+                                    
+                                    $total_persoane_galati_otopeni += 
+                                        $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_adulti')
+                                        +
+                                        $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_copii');
                                 @endphp
                                     <td style="">
                                             @if(!empty(\Carbon\Carbon::parse($cursa_ora->ora)))
@@ -106,6 +133,17 @@
                                 </tr>
                             @empty
                             @endforelse 
+                                <tr>
+                                    <td class="bd-callout bd-callout-info">&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr class="text-white" style="background-color:#408080;">
+                                    <td>Total</td>
+                                    <td>
+                                        {{ $total_persoane_galati_otopeni }}
+                                        pers
+                                    </td>
+                                </tr>
                         </table>
 
                     @empty
@@ -114,14 +152,21 @@
                 </div> 
 
 
-                <div class="col-3 container-fluid px-0 table-responsive-lg border"> 
+                <div class="col-lg-2 container-fluid px-0 table-responsive-lg border"> 
                     <h5 class="p-2 bg-secondary text-white mb-0 text-center">Otopeni</h5>
-                        <table class="table table-sm table-striped text-center mb-2">   
+                        <table class="table table-sm table-striped text-center mb-0">   
                             @php
                                 $nr_rezervari[] = array();    
+                                $total_persoane_otopeni = 0;
                             @endphp
                             @forelse ($trasee_nume_otopeni as $traseu_nume)
                                     @forelse ($traseu_nume->trasee as $traseu)
+                                        @php                                             
+                                            $total_persoane_otopeni += 
+                                                $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_adulti')
+                                                +
+                                                $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_copii');
+                                        @endphp
                                         <tr>  
                                             <td style="">
                                                 {{ \Carbon\Carbon::parse($traseu->curse_ore->first()->ora)->format('H:i') }}     
@@ -141,6 +186,13 @@
                                     @endforelse
                             @empty
                             @endforelse
+                                <tr class="text-white" style="background-color:#408080;">
+                                    <td>Total</td>
+                                    <td>
+                                        {{ $total_persoane_otopeni }}
+                                        pers
+                                    </td>
+                                </tr>
                         </table>
                 </div> 
 

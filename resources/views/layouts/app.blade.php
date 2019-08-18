@@ -2,8 +2,8 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
-    {{-- <meta name="viewport" content="width=device-width, initial-scale=1"> --}}
-    <meta name="viewport" content="initial-scale=0.1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{-- <meta name="viewport" content="initial-scale=0.1"> --}}
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -27,15 +27,15 @@
     <div>
         <nav class="navbar navbar-expand-md navbar-dark py-0" style="background-color:#408080; font-size:1rem">
             <div class="container">
-                {{-- @guest
+                @guest
                 @else
-                <a class="navbar-brand" href="{{ url('/') }}">
+                {{-- <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Zuzu') }}
-                </a>
+                </a> --}}
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                @endguest --}}
+                @endguest
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
@@ -142,7 +142,7 @@
         
         <footer class="container my-4 py-4 bg-white">
             <div class="row mb-0">
-                <div class="col-4">
+                <div class="col-lg-4 my-1 py-1">
                     <ul class="my-0" style="list-style-image: url({{ asset('images/arrow.gif') }});"><h5>Informații</h5>
                         <li>
                             <a href="http://www.zuzu-transfer-aeroport.ro/contact/" target="_blank">Contact</a>
@@ -155,7 +155,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-4">
+                <div class="col-lg-4 my-1 py-1">
                     <ul class="my-0" style="list-style-image: url({{ asset('images/arrow.gif') }});"><h5>Meniu</h5>
                         <li>
                             <a href="http://www.rezervari.zuzu-transfer-aeroport.ro/index.php/biletele_mele/redirect_agentie" target="_blank"><b>Acasa</b></a>
@@ -174,7 +174,7 @@
                         </li>
                     </ul>                    
                 </div>
-                <div class="col-4">
+                <div class="col-lg-4 my-1 py-1">
                     <h5>Contact</h5>
                     <b>Telefon Dispecerat:</b> +40 748 836 345
                     <br>

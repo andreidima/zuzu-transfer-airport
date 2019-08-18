@@ -47,11 +47,11 @@
                     <th class="px-0">User</th>
                 @endif
                 @if (auth()->user()->isDispecer())
-                    <th style="min-width:250px;">Nume</th>
+                    <th style="min-width:150px;">Nume</th>
                 @else
                     <th style="min-width:120px;">Nume</th>
                 @endif
-                <th>Telefon</th>
+                <th style="width:150px;">Telefon</th>
                 <th>Plecare</th>
                 <th>Sosire</th>
                 <th>

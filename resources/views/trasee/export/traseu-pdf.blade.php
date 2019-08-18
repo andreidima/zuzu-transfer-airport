@@ -139,7 +139,7 @@
                     @forelse ($trasee->curse_ore as $cursa_ora)
                         @forelse ($cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1) as $rezervare)
                             @if (in_array($rezervare->telefon, $telefoane_clienti_neseriosi))
-                                <tr style="background:#c6fabf">
+                                <tr style="background:#71f85f">
                             @else
                                 <tr>
                             @endif
@@ -160,8 +160,6 @@
                                         {{ $rezervare->statie->nume }}
                                     @elseif(!empty($rezervare->statie_imbarcare))
                                         {{ $rezervare->statie_imbarcare }}
-                                    @else
-                                        -
                                     @endif 
                                 </td>
                                 <td>
@@ -290,7 +288,7 @@
                             @forelse ($trasee->curse_ore as $cursa_ora)
                                 @forelse ($cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1) as $rezervare)
                                     @if (in_array($rezervare->telefon, $telefoane_clienti_neseriosi))
-                                        <tr style="background:#c6fabf">
+                                        <tr style="background:#71f85f">
                                     @else
                                         <tr>
                                     @endif

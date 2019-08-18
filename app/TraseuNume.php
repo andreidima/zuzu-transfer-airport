@@ -9,7 +9,7 @@ class TraseuNume extends Model
     protected $table = 'trasee_nume';
     protected $guarded = [];
 
-    protected $with = ['trasee'];
+    // protected $with = ['trasee.curse_ore'];
 
     public function trasee()
     {
