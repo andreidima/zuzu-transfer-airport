@@ -19,6 +19,17 @@
   font-size: 0.9rem;
 }
 
+// @media (max-width:960px){
+@media handheld{
+  .container{
+    display:inline-block;
+    width:device-width;
+  }
+  .td{
+    width: 100%;
+  }
+}
+
 // Table
 // @media (max-width: 500px) {
 //   table {

@@ -34,7 +34,96 @@
                         </tr>                       
                     </table>
 
-                    <table class="table m-0" style="border:5px solid #efe3b1; border-bottom:0px; border-top:0px;">    
+                    <div class="p-0 text-center" style="border:5px solid #efe3b1; border-bottom:0px; border-top:0px;">
+                            <h4 style="background-color:#e7d790; color:black; margin:0px 0px 2px 0px; padding:2px 0px">
+                            Informații Rezervare bilet
+                            </h4>
+                    </div>
+
+                    <div class="d-flex" style="border:5px solid #efe3b1; border-bottom:0px; border-top:0px;">
+                        <div class="flex-fill">
+                            Imbarcare: 
+                            <br>
+                            @if (!empty($rezervari->cursa->oras_plecare))
+                                @if ($rezervari->cursa->oras_plecare->nume == "Otopeni")
+                                    <span style="font-size:1.2rem; font-weight:bold;">
+                                        Otopeni Aeroport
+                                    </span>
+                                @else
+                                <span style="font-size:1.2rem; font-weight:bold;">
+                                    {{ $rezervari->cursa->oras_plecare->nume }}
+                                </span>
+                                @endif
+                            @endif
+                        </div>
+                        <div class="flex-fill">
+                            Plecare:
+                            <br>
+                            @if (!empty($rezervari->ora))
+                                <span style="font-size:1.2rem; font-weight:bold;">
+                                    {{ \Carbon\Carbon::parse($rezervari->ora->ora)->format('H:i') }}
+                                </span>
+                            @endif
+                            <br>
+                            
+                                <span style="font-size:1rem;">
+                                    {{ \Carbon\Carbon::parse($rezervari->data_cursa)->isoFormat('dddd') }}
+                                </span>
+                                <br>
+                                {{ \Carbon\Carbon::parse($rezervari->data_cursa)->isoFormat('D MMM YYYY') }}
+                        </div>
+                        <div class="flex-fill">
+                            <br>
+                            <img src="{{ asset('images/sageata.gif') }}" width="50px">
+                        </div>
+                        <div class="flex-fill">
+                            Debarcare:
+                            <br>
+                            @if (!empty($rezervari->cursa->oras_sosire))
+                                @if ($rezervari->cursa->oras_sosire->nume == "Otopeni")
+                                    <span style="font-size:1.2rem; font-weight:bold;">
+                                        Otopeni Aeroport
+                                    </span>
+                                @else
+                                <span style="font-size:1.2rem; font-weight:bold;">
+                                    {{ $rezervari->cursa->oras_sosire->nume }}
+                                </span>
+                                @endif
+                            @endif
+                        </div>
+                        <div class="flex-fill">
+                            Sosire:
+                            <br>
+                            @if (!empty($rezervari->ora->ora && $rezervari->cursa->durata))
+                                <span style="font-size:1.2rem; font-weight:bold;">
+                                    {{ \Carbon\Carbon::parse($rezervari->ora->ora)
+                                        ->addHours(\Carbon\Carbon::parse($rezervari->cursa->durata)->hour)
+                                        ->addMinutes(\Carbon\Carbon::parse($rezervari->cursa->durata)->minute)
+                                        ->format('H:i') }}   
+                                </span>                          
+                            @endif
+                            <br>
+                            
+                                <span style="font-size:1rem;">
+                                    {{ \Carbon\Carbon::parse($rezervari->data_cursa)
+                                        ->addHours(\Carbon\Carbon::parse($rezervari->ora->ora)->hour)
+                                        ->addMinutes(\Carbon\Carbon::parse($rezervari->ora->ora)->minute) 
+                                        ->addHours(\Carbon\Carbon::parse($rezervari->cursa->durata)->hour)
+                                        ->addMinutes(\Carbon\Carbon::parse($rezervari->cursa->durata)->minute)                               
+                                        ->isoFormat('dddd') }}
+                                </span>
+                                <br>
+                                    {{ \Carbon\Carbon::parse($rezervari->data_cursa)
+                                        ->addHours(\Carbon\Carbon::parse($rezervari->ora->ora)->hour)
+                                        ->addMinutes(\Carbon\Carbon::parse($rezervari->ora->ora)->minute) 
+                                        ->addHours(\Carbon\Carbon::parse($rezervari->cursa->durata)->hour)
+                                        ->addMinutes(\Carbon\Carbon::parse($rezervari->cursa->durata)->minute)
+                                        ->isoFormat('D MMM YYYY') }}
+                            <br>
+                        </div>
+                    </div>
+
+                    {{-- <table class="table m-0" style="border:5px solid #efe3b1; border-bottom:0px; border-top:0px;">    
                         <tr style="text-align:center; font-weight:bold;">
                             <td colspan="5" style="padding:0rem;">
                                 <h4 style="background-color:#e7d790; color:black; margin:0px 0px 2px 0px; padding:2px 0px">
@@ -55,14 +144,6 @@
                                     <span style="font-size:1.2rem; font-weight:bold;">
                                         {{ $rezervari->cursa->oras_plecare->nume }}
                                     </span>
-                                    {{-- <br>
-                                    <span style="font-size:1rem;">
-                                        @if (!empty($rezervari->statie))
-                                            {{ $rezervari->statie->nume }}
-                                        @else
-                                            {{ $rezervari->statie_imbarcare }}
-                                        @endif
-                                    </span> --}}
                                     @endif
                                 @endif
                             </td>
@@ -132,7 +213,7 @@
                                 <br>
                             </td>
                         </tr>
-                    </table>
+                    </table> --}}
                               
                     <table class="table m-0 mb-2" style="border:5px solid #efe3b1;"> 
                         <tr>
@@ -162,7 +243,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td style="border:0px;">
+                            <td colspan="2" style="border:0px;">
                                 Stație îmbarcare:
                                     @if (!empty($rezervari->statie))
                                         {{ $rezervari->statie->nume }}
@@ -179,7 +260,6 @@
                                     {{ $rezervari->zbor_oras_decolare}}
                                     </b>
                             </td>
-                            <td style="border:0px;"></td>
                         </tr>
                         {{-- <tr>
                             <td class="text-center">

@@ -128,8 +128,6 @@
                                                 {{ $rezervare->statie->nume }}
                                             @elseif(!empty($rezervare->statie_imbarcare))
                                                 {{ $rezervare->statie_imbarcare }}
-                                            @else
-                                                -
                                             @endif
                                         </td>
                                         <td>

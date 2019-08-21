@@ -40,7 +40,7 @@
 
         <div class="card-body">
             <div class="row justify-content-center">
-                <div class="col-lg-2 container-fluid px-0 table-responsive-lg border">    
+                <div class="col-lg-2 container-fluid px-0 table-responsive-lg border mb-4">    
                     @forelse ($trasee_nume_tecuci_otopeni as $traseu_nume)                     
                         <h5 class="p-2 bg-secondary text-white mb-0 text-center">{{$traseu_nume->nume}}</h5>
                         <table class="table table-sm table-striped text-center mb-0">
@@ -67,20 +67,23 @@
                                             @endif    
                                     </td>
                                     <td style="">
+                                        <h5 class="m-0 p-0">
+                                            <span class="badge badge-secondary" style="background-color:#408080;">
                                                 {{
                                                     $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_adulti')
                                                     +
                                                     $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_copii')
                                                 }}
-                                                pers
+                                            </span>
+                                        </h5>
                                     </td>
                                 </tr>
                             @empty
                             @endforelse 
-                                <tr>
+                                {{-- <tr>
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
-                                </tr>
+                                </tr> --}}
                                 <tr class="text-white" style="background-color:#408080;">
                                     <td>Total</td>
                                     <td>
@@ -97,7 +100,7 @@
 
 
                 
-                <div class="col-lg-2 container-fluid px-0 table-responsive-lg border">    
+                <div class="col-lg-2 container-fluid px-0 table-responsive-lg border mb-4">    
                     @forelse ($trasee_nume_galati_otopeni as $traseu_nume)                     
                         <h5 class="p-2 bg-secondary text-white mb-0 text-center">{{$traseu_nume->nume}}</h5>
                         <table class="table table-sm table-striped text-center mb-0">
@@ -123,20 +126,23 @@
                                             @endif 
                                     </td>
                                     <td style="">
+                                        <h5 class="m-0 p-0">
+                                            <span class="badge badge-secondary" style="background-color:#408080;">
                                                 {{
                                                     $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_adulti')
                                                     +
                                                     $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_copii')
                                                 }}
-                                                pers
+                                            </span>
+                                        </h5>
                                     </td>
                                 </tr>
                             @empty
                             @endforelse 
-                                <tr>
+                                {{-- <tr>
                                     <td class="bd-callout bd-callout-info">&nbsp;</td>
                                     <td>&nbsp;</td>
-                                </tr>
+                                </tr> --}}
                                 <tr class="text-white" style="background-color:#408080;">
                                     <td>Total</td>
                                     <td>
@@ -172,14 +178,15 @@
                                                 {{ \Carbon\Carbon::parse($traseu->curse_ore->first()->ora)->format('H:i') }}     
                                             </td>
                                             <td style="">
-                                                <span title="Total pasageri">
-                                                    {{
-                                                    $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_adulti')
-                                                    +
-                                                    $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_copii') 
-                                                    }}
-                                                    pers
-                                                </span>
+                                                <h5 class="m-0 p-0">
+                                                    <span class="badge badge-secondary" style="background-color:#408080;">
+                                                        {{
+                                                            $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_adulti')
+                                                            +
+                                                            $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_copii') 
+                                                        }}
+                                                    </span>
+                                                </h5>
                                             </td>
                                         </tr> 
                                     @empty

@@ -2,31 +2,31 @@
 
 @section('content')   
     <div class="container card px-0">
-        <div class="d-flex justify-content-between card-header">
-            <div class="flex flex-vertical-center">
+        <div class="row card-header">
+            <div class="col-lg-2">
                 <h4 class="mt-2"><a href="/rezervari"><i class="fas fa-file-alt mr-1"></i>Rezervări</a></h4>
             </div> 
-                <div class="w-50">             
-                    <form class="needs-validation" novalidate method="GET" action="/rezervari">
-                        @csrf                    
-                        <div class="input-group custom-search-form">
-                            <div class="w-50">
-                                <input type="text" class="form-control" name="search_nume_telefon" placeholder="Caută nume sau telefon...">
-                            </div>
-                            <div class="mx-4">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default-sm bg-primary" type="submit">
-                                        <i class="fas fa-search text-white"></i>
-                                    </button>
-                                </span>
-                            </div>
-                            <div class="w-25">                            
-                                <input type="text" class="form-control" name="search_cod_bilet" placeholder="Caută cod bilet...">
-                            </div>
+            <div class="col-lg-8 mb-2">             
+                <form class="needs-validation" novalidate method="GET" action="/rezervari">
+                    @csrf                    
+                    <div class="input-group custom-search-form">
+                        <div class="w-50">
+                            <input type="text" class="form-control" name="search_nume_telefon" placeholder="Caută nume sau telefon...">
                         </div>
-                    </form>
-                </div>
-            <div>
+                        <div class="mx-4">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default-sm bg-primary" type="submit">
+                                    <i class="fas fa-search text-white"></i>
+                                </button>
+                            </span>
+                        </div>
+                        <div class="w-25">                            
+                            <input type="text" class="form-control" name="search_cod_bilet" placeholder="Caută cod bilet...">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-2">
                 <a class="btn btn-primary" href="/rezervari/adauga" role="button">Adaugă Rezervare</a>
             </div>
         </div>
@@ -38,7 +38,8 @@
     </div>
     @endif
 
-    <div class="container-fluid px-0 table-responsive-lg">
+    {{-- <div class="container-fluid px-0 table-responsive-lg"> --}}
+    <div>
         <table class="table table-sm" style="border:1px solid #333; width:100%;"> 
             <thead>
                 <tr style="height:35px; background-color:#336699; text-align:center; color:white; font-size:0.7rem">
@@ -51,7 +52,7 @@
                 @else
                     <th style="min-width:120px;">Nume</th>
                 @endif
-                <th style="width:150px;">Telefon</th>
+                <th style="min-width:140px;">Telefon</th>
                 <th>Plecare</th>
                 <th>Sosire</th>
                 <th>

@@ -40,7 +40,7 @@
 
         <div class="card-body">
             <div class="row justify-content-center">
-                <div class="col-3 container-fluid px-0 table-responsive-lg border"> 
+                <div class="col-lg-3 container-fluid px-0 table-responsive-lg border"> 
                     <h5 class="p-2 bg-secondary text-white mb-0 text-center">Otopeni</h5>
                         <table class="table table-sm table-striped text-center mb-2">   
                             @php
