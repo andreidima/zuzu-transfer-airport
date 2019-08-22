@@ -84,7 +84,6 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('/home', 'HomeController@index')->name('home');   
         
-        //Ruta pentru logarea de catre user cu id 1, in celelalte conturi
         Route::post('users/loginas', 'UserController@loginAs')->name('loginas');;
     });
 });

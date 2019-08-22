@@ -130,20 +130,19 @@
                                                     <option value='{{{ $row->id }}}'>{{ $row->nume }} - {{ $row->firma->nume }}</option>
                                                 @endforeach
                                             </select>                                        
-                                        </form>  
-
-                                        <div class="dropdown-divider"></div>                             
+                                        </form>                            
                                     @endif
-                                     
+                                    
+                                    {{ Session::get('hasClonedUser') }}
                                     @if (Session::get('hasClonedUser') == 298)
                                         <a class="dropdown-item" href="{{ route('loginas') }}"
                                             onclick="event.preventDefault(); document.getElementById('cloneuser-form').submit();"><span>Revenire la cont Dispecer</span></a>
                                         <form id="cloneuser-form" action="{{ url('users/loginas') }}" method="post">
                                             @csrf
-                                        </form>
-
-                                        <div class="dropdown-divider"></div>                                          
+                                        </form>                                         
                                     @endif
+
+                                    <div class="dropdown-divider"></div> 
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
