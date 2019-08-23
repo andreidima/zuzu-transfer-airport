@@ -48,6 +48,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('agentii/rezervari/export/agentie-rezervari-pdf/{search_data_inceput}/{search_data_sfarsit}', 'UserFirmaController@pdfexport_rezervari_agentie');  // Generare PDF
 
     Route::view('/instructiuni-rezervari', 'instructiuni_rezervari');
+        
+    Route::post('users/loginas', 'UserController@loginAs')->name('loginas');;
 
     Route::group(['middleware' => 'dispecer'], function () {
         Route::resource('/clienti-neseriosi', 'ClientNeseriosController');
@@ -83,8 +85,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/acasa', 'AcasaController@index')->name('acasa');
 
         Route::get('/home', 'HomeController@index')->name('home');   
-        
-        Route::post('users/loginas', 'UserController@loginAs')->name('loginas');;
     });
 });
 

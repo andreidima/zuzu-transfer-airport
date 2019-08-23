@@ -120,11 +120,11 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     
-                                    @if (Auth::user()->id == 298)
+                                    {{-- @if (Auth::user()->id == 298)
                                         <form action='{{ url('users/loginas') }}' method='post'>
                                             @csrf
                                         
-                                            <select name='user_id' onchange='this.form.submit()'>
+                                            <select class="form-control" name='user_id' onchange='this.form.submit()'>
                                                 <option value="">Cont Agentie</option>
                                                 @foreach (\App\User::get() as $row)
                                                     <option value='{{{ $row->id }}}'>{{ $row->nume }} - {{ $row->firma->nume }}</option>
@@ -133,7 +133,6 @@
                                         </form>                            
                                     @endif
                                     
-                                    {{ Session::get('hasClonedUser') }}
                                     @if (Session::get('hasClonedUser') == 298)
                                         <a class="dropdown-item" href="{{ route('loginas') }}"
                                             onclick="event.preventDefault(); document.getElementById('cloneuser-form').submit();"><span>Revenire la cont Dispecer</span></a>
@@ -142,7 +141,7 @@
                                         </form>                                         
                                     @endif
 
-                                    <div class="dropdown-divider"></div> 
+                                    <div class="dropdown-divider"></div>  --}}
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
