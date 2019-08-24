@@ -125,7 +125,7 @@
 
                         <br><br><br>
 
-                        <p style="margin: 0 0 0 0px; font-size:1.2rem;">
+                        <p style="margin: 0 0 0 0px; font-size:1.2rem; page-break-after:avoid;">
                             Nume sofer .......................................................................................
                             Nr. masina ......................................
                         </p>
@@ -287,7 +287,7 @@
 
                         <br><br><br>
 
-                        <p style="margin: 0 0 0 0px; font-size:1.2rem;">
+                        <p style="margin: 0 0 0 0px; font-size:1.2rem; page-break-after:avoid;">
                             Nume sofer .......................................................................................
                             Nr. masina ......................................
                         </p>

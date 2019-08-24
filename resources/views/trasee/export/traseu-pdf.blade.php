@@ -113,7 +113,7 @@
 
                 <br><br><br>
 
-                <p style="margin: 0 0 0 0px; font-size:1.2rem;">
+                <p style="margin: 0 0 0 0px; font-size:1.2rem; page-break-after:avoid;">
                     Nume sofer .......................................................................................
                     Nr. masina ......................................
                 </p>
@@ -139,7 +139,7 @@
                     @forelse ($trasee->curse_ore as $cursa_ora)
                         @forelse ($cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1) as $rezervare)
                             @if (in_array($rezervare->telefon, $telefoane_clienti_neseriosi))
-                                <tr style="background:#71f85f">
+                                <tr style="background:#71f85f;">
                             @else
                                 <tr>
                             @endif
@@ -261,7 +261,7 @@
 
                         <br><br><br>
 
-                        <p style="margin: 0 0 0 0px; font-size:1.2rem;">
+                        <p style="margin: 0 0 0 0px; font-size:1.2rem; page-break-after:avoid;">
                             Nume sofer .......................................................................................
                             Nr. masina ......................................
                         </p>
@@ -273,10 +273,10 @@
                                 <th style="width:20px;">Nr. crt.</th>
                                 <th style="width:85px;">Nume si prenume</th>
                                 <th style="width:105px;">Telefon</th>
-                                <th style="width:55px;">Sosire</th>
+                                <th style="width:45px;">Sosire</th>
                                 <th style="width:35px;">Ora at.</th>
-                                <th style="width:55px;">Aterizare</th>
-                                <th style="width:130px;">Statie imbarcare</th>
+                                <th style="width:75px;">Aterizare</th>
+                                <th style="width:120px;">Statie imbarcare</th>
                                 <th style="width:75px;">Observatii</th>
                                 <th style="width:35px;">Suma</th>
                                 <th style="width:30px;">Plata</th>
@@ -288,7 +288,7 @@
                             @forelse ($trasee->curse_ore as $cursa_ora)
                                 @forelse ($cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1) as $rezervare)
                                     @if (in_array($rezervare->telefon, $telefoane_clienti_neseriosi))
-                                        <tr style="background:#71f85f">
+                                        <tr style="background:#71f85f;">
                                     @else
                                         <tr>
                                     @endif
