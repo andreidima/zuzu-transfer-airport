@@ -161,6 +161,8 @@
                                 <td>
                                     @if (($rezervare->comision_agentie == 0) && ($rezervare->tip_plata_id == 2))
                                         0
+                                    @elseif ($rezervare->tip_plata_id == 3)
+                                        0
                                     @else 
                                         {{ $rezervare->pret_total - $rezervare->comision_agentie }}
                                     @endif
