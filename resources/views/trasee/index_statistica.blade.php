@@ -47,7 +47,8 @@
                             @php
                                 $total_persoane_tecuci_otopeni = 0;
                             @endphp
-                            @forelse ($traseu_nume->trasee as $traseu)                                
+                            @forelse ($traseu_nume->trasee->chunk(5) as $chunk)
+                            @forelse ($chunk as $traseu)                                
                                 
                                 <tr>   
                                 @php
@@ -80,6 +81,8 @@
                                 </tr>
                             @empty
                             @endforelse 
+                            @empty
+                            @endforelse 
                                 {{-- <tr>
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
@@ -107,7 +110,8 @@
                             @php
                                 $total_persoane_galati_otopeni = 0;
                             @endphp
-                            @forelse ($traseu_nume->trasee as $traseu) 
+                            @forelse ($traseu_nume->trasee->chunk(5) as $chunk)
+                            @forelse ($chunk as $traseu) 
                                 <tr>      
                                 @php 
                                     $cursa_ora = $traseu->curse_ore->first();
@@ -139,6 +143,8 @@
                                 </tr>
                             @empty
                             @endforelse 
+                            @empty
+                            @endforelse 
                                 {{-- <tr>
                                     <td class="bd-callout bd-callout-info">&nbsp;</td>
                                     <td>&nbsp;</td>
@@ -166,7 +172,8 @@
                                 $total_persoane_otopeni = 0;
                             @endphp
                             @forelse ($trasee_nume_otopeni as $traseu_nume)
-                                    @forelse ($traseu_nume->trasee as $traseu)
+                                @forelse ($traseu_nume->trasee->chunk(5) as $chunk)
+                                @forelse ($chunk as $traseu) 
                                         @php                                             
                                             $total_persoane_otopeni += 
                                                 $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_adulti')
@@ -189,8 +196,10 @@
                                                 </h5>
                                             </td>
                                         </tr> 
-                                    @empty
-                                    @endforelse
+                                @empty
+                                @endforelse
+                                @empty
+                                @endforelse
                             @empty
                             @endforelse
                                 <tr class="text-white" style="background-color:#408080;">
