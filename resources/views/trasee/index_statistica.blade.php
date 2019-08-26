@@ -40,7 +40,7 @@
 
         <div class="card-body">
             <div class="row justify-content-center">
-                <div class="col-lg-2 container-fluid px-0 table-responsive-lg border mb-4">    
+                {{-- <div class="col-lg-2 container-fluid px-0 table-responsive-lg border mb-4">    
                     @forelse ($trasee_nume_tecuci_otopeni as $traseu_nume)                     
                         <h5 class="p-2 bg-secondary text-white mb-0 text-center">{{$traseu_nume->nume}}</h5>
                         <table class="table table-sm table-striped text-center mb-0">
@@ -83,10 +83,6 @@
                             @endforelse 
                             @empty
                             @endforelse 
-                                {{-- <tr>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                </tr> --}}
                                 <tr class="text-white" style="background-color:#408080;">
                                     <td>Total</td>
                                     <td>
@@ -145,10 +141,6 @@
                             @endforelse 
                             @empty
                             @endforelse 
-                                {{-- <tr>
-                                    <td class="bd-callout bd-callout-info">&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                </tr> --}}
                                 <tr class="text-white" style="background-color:#408080;">
                                     <td>Total</td>
                                     <td>
@@ -161,7 +153,7 @@
                     @empty
                         <div>Nu există trasee în baza de date. Încearcă alte date de căutare.</div>
                     @endforelse
-                </div> 
+                </div>  --}}
 
 
                 <div class="col-lg-2 container-fluid px-0 table-responsive-lg border"> 
@@ -172,8 +164,7 @@
                                 $total_persoane_otopeni = 0;
                             @endphp
                             @forelse ($trasee_nume_otopeni as $traseu_nume)
-                                @forelse ($traseu_nume->trasee->chunk(5) as $chunk)
-                                @forelse ($chunk as $traseu) 
+                                @forelse ($traseu_nume->trasee as $traseu) 
                                         @php                                             
                                             $total_persoane_otopeni += 
                                                 $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_adulti')
@@ -196,8 +187,8 @@
                                                 </h5>
                                             </td>
                                         </tr> 
-                                @empty
-                                @endforelse
+                                {{-- @empty
+                                @endforelse --}}
                                 @empty
                                 @endforelse
                             @empty
