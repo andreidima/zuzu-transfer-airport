@@ -182,7 +182,7 @@
                 <div class="col-lg-4 my-1 py-1">
                     <ul class="my-0" style="list-style-image: url({{ asset('images/arrow.gif') }});"><h5>Meniu</h5>
                         <li>
-                            <a href="http://www.rezervari.zuzu-transfer-aeroport.ro/index.php/biletele_mele/redirect_agentie" target="_blank"><b>Acasa</b></a>
+                            <a href="https://www.zuzu-transfer-aeroport.ro/" target="_blank"><b>Acasa</b></a>
                         </li>
                         <li>
                             <a href="http://www.zuzu-transfer-aeroport.ro/rent-a-car/" target="_blank">Inchirieri autocare</a>

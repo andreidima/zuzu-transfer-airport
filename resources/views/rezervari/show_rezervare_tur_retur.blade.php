@@ -55,14 +55,14 @@
                                     <span style="font-size:1.2rem; font-weight:bold;">
                                         {{ $rezervare_tur->cursa->oras_plecare->nume }}
                                     </span>
-                                    <br>
+                                    {{-- <br>
                                     <span style="font-size:1rem;">
                                         @if (!empty($rezervare_tur->statie))
                                             {{ $rezervare_tur->statie->nume }}
                                         @else
                                             {{ $rezervare_tur->statie_imbarcare }}
                                         @endif
-                                    </span>
+                                    </span> --}}
                                     @endif
                                 @endif
                             </td>
@@ -166,6 +166,8 @@
                                 Stație îmbarcare:
                                     @if (!empty($rezervare_tur->statie))
                                         <b>{{ $rezervare_tur->statie->nume }}</b>
+                                    @else                                    
+                                        {{ $rezervare_tur->statie_imbarcare }}
                                     @endif
                                 <br>
                                 Detalii zbor:
@@ -214,14 +216,14 @@
                                     <span style="font-size:1.2rem; font-weight:bold;">
                                         {{ $rezervare_retur->cursa->oras_plecare->nume }}
                                     </span>
-                                    <br>
+                                    {{-- <br>
                                     <span style="font-size:1rem;">
                                         @if (!empty($rezervare_retur->statie))
                                             {{ $rezervare_retur->statie->nume }}
                                         @else
                                             {{ $rezervare_retur->statie_imbarcare }}
                                         @endif
-                                    </span>
+                                    </span> --}}
                                     @endif
                                 @endif
                             </td>
@@ -324,7 +326,9 @@
                             <td style="border:0px;">
                                 Stație îmbarcare:
                                     @if (!empty($rezervare_retur->statie))
-                                        <b>{{ $rezervare_retur->statie->nume }}</b>
+                                        {{ $rezervare_retur->statie->nume }}
+                                    @else
+                                        {{ $rezervare_retur->statie_imbarcare }}
                                     @endif
                                 <br>
                                 Detalii zbor:

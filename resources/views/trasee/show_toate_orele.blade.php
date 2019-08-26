@@ -20,7 +20,7 @@
                         <th class="px-0">Plecare</th>
                         <th class="px-0">Sosire</th>
                         <th class="px-0">
-                            <div style="min-width:80px;">
+                            <div style="min-width:90px;">
                                 Data<br />plecare
                             </div>
                         </th>
@@ -40,15 +40,15 @@
                             @forelse ($cursa_ora->rezervari->where('data_cursa', $search)->where('activa', 1)->sortByDesc('created_at') as $rezervare) 
                                 @php ($total_persoane = $total_persoane + $rezervare->nr_adulti + $rezervare->nr_copii)
                                 @if ($rezervare->activa == 0)
-                                    <tr style="color:black; height:15px; line-height:30px; border-bottom:solid 1px #99F; background:#99F;">
+                                    <tr style="font-size:0.8rem; color:black; height:15px; line-height:30px; border-bottom:solid 1px #99F; background:#99F;">
                                 @elseif (empty($rezervare->created_at))
-                                    <tr style="color:black; height:35px; line-height:30px; border-bottom:solid 1px #99F;">
+                                    <tr style="font-size:0.8rem; color:black; height:35px; line-height:30px; border-bottom:solid 1px #99F;">
                                 @elseif (\Carbon\Carbon::parse($rezervare->created_at)->format('Y-m-d') == $rezervare->data_cursa)
-                                    <tr bgcolor=yellow style="color:black; height:35px; line-height:30px; border-bottom:solid 1px #99F;">
+                                    <tr bgcolor=yellow style="font-size:0.8rem; color:black; height:35px; line-height:30px; border-bottom:solid 1px #99F;">
                                 @elseif (in_array($rezervare->telefon, $telefoane_clienti_neseriosi))
-                                    <tr style="color:black; height:35px; line-height:30px; border-bottom:solid 1px #99F; background:#c6fabf">
+                                    <tr style="font-size:0.8rem; color:black; height:35px; line-height:30px; border-bottom:solid 1px #99F; background:#c6fabf">
                                 @else
-                                    <tr style="color:black; height:35px; line-height:30px; border-bottom:solid 1px #99F;">
+                                    <tr style="font-size:0.8rem; color:black; height:35px; line-height:30px; border-bottom:solid 1px #99F;">
                                 @endif    
                                 
                                     <td align="center">

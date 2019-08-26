@@ -198,7 +198,7 @@
                                                 </script>  
                                                 <label for="nr_adulti" class="col-form-label pr-0">Număr de locuri:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Adulți:<span class="text-danger">*</span></label>
                                                     <div class="pl-0" style="width:80px">
-                                                    <input 
+                                                    {{-- <input 
                                                         type="number"
                                                         min="0"
                                                         max="20" 
@@ -208,7 +208,15 @@
                                                         value="{{ old('nr_adulti') }}"
                                                         required
                                                         v-on:input='getPretTotal()'
-                                                        > 
+                                                        >  --}}
+                                                    <select class="custom-select custom-select-sm {{ $errors->has('nr_adulti') ? 'is-invalid' : '' }}"
+                                                        name="nr_adulti"
+                                                        v-model="nr_adulti"
+                                                    @change='getPretTotal()'>
+                                                        @for ($i = 1; $i < 16; $i++)
+                                                            <option>{{ $i }}</option>
+                                                        @endfor                                                        
+                                                    </select>
                                                     </div>                                       
                                         </div>  
                                         <div class="form-group col-lg-5 mb-0 d-flex">
@@ -217,7 +225,7 @@
                                             </script>  
                                             <label for="nr_copii" class="col-form-label pr-0">Copii:</label>
                                                 <div class="px-0" style="width:80px">
-                                                <input 
+                                                {{-- <input 
                                                     type="number"
                                                     min="0"
                                                     max="10" 
@@ -227,7 +235,15 @@
                                                     value="{{ old('nr_copii') }}"
                                                     required
                                                     v-on:input='getPretTotal()'
-                                                    >
+                                                    > --}}
+                                                    <select class="custom-select custom-select-sm {{ $errors->has('nr_copii') ? 'is-invalid' : '' }}"
+                                                        name="nr_copii"
+                                                        v-model="nr_copii"
+                                                    @change='getPretTotal()'>
+                                                        @for ($i = 1; $i < 11; $i++)
+                                                            <option>{{ $i }}</option>
+                                                        @endfor                                                        
+                                                    </select>
                                                 </div>
                                             <label id="" class="col-form-label pl-1 text-white align-bottom">
                                                 2-7 ani
@@ -257,7 +273,7 @@
                                 </div>
                             </div>                        
                             <div class="form-group col-lg-12 mb-0 mt-1 d-flex"> 
-                                <label class="mr-2">Preț total:</label>
+                                <label class="mr-2">Plata:</label>
                                 {{-- <div class="form-check mr-4">
                                     <input type="checkbox" class="form-check-input" name="tip_plata_id" value="1"
                                     {{ old('tip_plata_id') == '1' ? 'checked' : '' }}>

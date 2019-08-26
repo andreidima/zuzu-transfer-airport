@@ -12,42 +12,42 @@
     <li>alegeți orașul de plecare și orașul de sosire,</li>
     <li>selectați ora din grilă,</li>
     <li>alegeți dată doar din calendarul afișat,</li>
-    <li>pentru plecările către Otopeni completați ora decolare avion,</li>
-    <li>pentru plecările din Otopeni completați de unde este zborul și ora de aterizare (șoferul va sună pasagerul imediat după aterizare să-l îndrume către mașină, în parcarea de jos lângă bariere)</li>
+    <li>pentru plecările către Otopeni completați <b>ora decolare</b> avion,</li>
+    <li>pentru plecările din Otopeni completați <b>de unde este zborul</b> și <b>ora de aterizare</b> (șoferul va sună pasagerul imediat după aterizare să-l îndrume către mașină, în parcarea de jos lângă bariere)</li>
     <li>nume și prenumele,</li>
     <li>telefon, dacă sunt mai multe numere se pune spațiu între ele,</li>
     <li>nr adulți și nr copii (între 2 și 7 ani) dacă este cazul,</li>
-    <li>la Stație de îmbarcare completați de unde se face îmbarcarea, dacă este cazul se adaugă și "debarcare/....." dacă este diferită,</li>
+    <li>la <b>Stație de îmbarcare</b> completați de unde se face îmbarcarea, dacă este cazul se adaugă și "debarcare/....." dacă este diferită,</li>
 </ul>
 
 <ul style="list-style-type: square">
-    <li>BRĂILA: Plantelor, Penny pe Bz-ului, Catedrala la covrigaria Panda,</li>
-    <li>IANCA: la Avion.</li>
-    <li>GALAȚI:  la McDonald`s.</li>
-    <li>BUZĂU: McDonald`s, peco Alascom sau la Spătaru unde se face și un popas.</li>
-    <li>FOCȘANI:  la Lidl sau Lukoil în centru,</li>
-    <li>RÂMNICU SĂRAT:  la Turist-Profi,</li>
-    <li>TECUCI:  în parcare la Kaufland,</li>
-    <li>PANCIU: Notar,</li>
-    <li>ADJUD: Atlantic sau Lukoil,</li>
-    <li>MĂRĂȘEȘTI: Gara.</li>
+    <li><b>BRĂILA</b>: Plantelor, Penny pe Bz-ului, Catedrala la covrigaria Panda,</li>
+    <li><b>IANCA</b>: la Avion.</li>
+    <li><b>GALAȚI</b>:  la McDonald`s.</li>
+    <li><b>BUZĂU</b>: McDonald`s, peco Alascom sau la Spătaru unde se face și un popas.</li>
+    <li><b>FOCȘANI</b>:  la Lidl sau Lukoil în centru,</li>
+    <li><b>RÂMNICU SĂRAT</b>:  la Turist-Profi,</li>
+    <li><b>TECUCI</b>:  în parcare la Kaufland,</li>
+    <li><b>PANCIU</b>: Notar,</li>
+    <li><b>ADJUD</b>: Atlantic sau Lukoil,</li>
+    <li><b>MĂRĂȘEȘTI</b>: Gara.</li>
 </ul>
 
 <ul style="list-style-type: circle">
-    <li>scrieți sau selectați cu săgeata nr de persoane (adulți sau copii),</li>
-    <li>dacă încasați comisionul în agenție completați suma în căsuța de comision și apoi selectați “Adaugă rezervarea”</li>
-    <li>dacă plata se va face la șofer selectați “Adaugă rezervarea” fără să mai bifați/ completați altceva,</li>
-    <li>dacă încasați integral la agenție bifați “Preț total: La agenție”</li>
-    <li>dacă se solicită și retur bifați “Retur”, completați datele de întoarcere și apoi selectați “Adaugă rezervarea”</li>
-    <li>verificați datele introduse apoi selectați “Adaugă rezervarea”, rezervarea s-a înregistrat, puteți descarcă biletul.</li>
-    <li>Pentru a reveni la pagină principala selectați “Rezervări” din meniul de sus.</li>
+    <li>scrieți sau selectați cu săgeata <b>nr de persoane</b> (adulți sau copii),</li>
+    <li>dacă încasați comisionul în agenție completați suma în căsuța de comision și apoi selectați “<b>Adaugă rezervarea</b>”</li>
+    <li>dacă plata se va face la șofer selectați “<b>Adaugă rezervarea</b>” fără să mai bifați/ completați altceva,</li>
+    <li>dacă încasați integral la agenție bifați “<b>Preț total: La agenție</b>”</li>
+    <li>dacă se solicită și retur bifați “<b>Retur</b>”, completați datele de întoarcere și apoi selectați “<b>Adaugă rezervarea</b>”</li>
+    <li>verificați datele introduse apoi selectați “<b>Adaugă rezervarea</b>”, rezervarea s-a înregistrat, puteți descarcă biletul.</li>
+    <li>Pentru a reveni la pagină principala selectați “<b>Rezervări</b>” din meniul de sus.</li>
 </ul>
 
 <p><b>Aveți posibilitatea de a modifică nr. de telefon și stația de îmbarcare după ce ați făcut rezervarea, de la iconiță de editare din dreptul rezervarii.</b></p>
 <p><b>Pentru alte modificări, rezervări greșite sau anulări ne puteți contacta telefonic sau pe mail la adresa <a href="mailto:carabus25@yahoo.com">carabus25@yahoo.com.</a></b></p>
 <p>În meniul de sus la „<b>Raport</b>” se pot lista rezervările pe un interval de timp pe care îl selectați din calendar.</p>
 <ul>
-    <li>Orice altă observație (îmbarcare/debarcare, altă ora dacă e cursa specială, etc )  care trebuie adăugată la rezervare și pt care nu există o căsuța de completare să o scrieți la “Stație de îmbarcare. Este la fel de important să scrieți stația de îmbarcare la plecările către Otopeni, sunt cazuri, mai ales în Brăila, când persoanele nu răspund la telefon și șoferul nu știe de unde să le ia.</li>
+    <li>Orice altă observație (îmbarcare/debarcare, altă ora dacă e cursa specială, etc )  care trebuie adăugată la rezervare și pt care nu există o căsuța de completare să o scrieți la “<b>Stație de îmbarcare</b>. Este la fel de important să scrieți stația de îmbarcare la plecările către Otopeni, sunt cazuri, mai ales în Brăila, când persoanele nu răspund la telefon și șoferul nu știe de unde să le ia.</li>
     <li>Rezervările care va apar evidențiate cu albastru, sunt anulate de către noi pe motiv că nu s-au prezentat sau au fost anulate la cerere de către clienți telefonic.</li>
 </ul>
       
@@ -60,13 +60,13 @@
 <table style="border:1px solid black; border-collapse: collapse; text-align:center;" align="center">
     <tr>
         <td class="p-2" style="border:1px solid black;">
-            TRASEU
+            <b>TRASEU</b>
         </td>
         <td class="p-2" style="border:1px solid black;">
-            PRET 
+            <b>PRET</b>
         </td>
         <td class="p-2" style="border:1px solid black;">
-            COMISION AGENTIE
+            <b>COMISION AGENTIE</b>
         </td>
     </tr>
     <tr>
