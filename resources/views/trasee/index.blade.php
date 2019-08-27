@@ -105,7 +105,6 @@
                                             class="btn btn-sm btn-primary"
                                             role="button"
                                             >
-                                            {{-- <i class="fas fa-file-pdf"></i> --}}
                                             Raport
                                         </a>        
                                     </td>
@@ -200,7 +199,6 @@
                                             class="btn btn-sm btn-primary"
                                             role="button"
                                             >
-                                            {{-- <i class="fas fa-file-pdf"></i> --}}
                                             Raport
                                         </a>        
                                     </td>

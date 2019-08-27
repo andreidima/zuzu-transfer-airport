@@ -40,19 +40,18 @@
 
         <div class="card-body">
             <div class="row justify-content-center">
-                {{-- <div class="col-lg-2 container-fluid px-0 table-responsive-lg border mb-4">    
+                <div class="col-lg-2 container-fluid px-0 table-responsive-lg border mb-4">    
                     @forelse ($trasee_nume_tecuci_otopeni as $traseu_nume)                     
                         <h5 class="p-2 bg-secondary text-white mb-0 text-center">{{$traseu_nume->nume}}</h5>
                         <table class="table table-sm table-striped text-center mb-0">
                             @php
                                 $total_persoane_tecuci_otopeni = 0;
                             @endphp
-                            @forelse ($traseu_nume->trasee->chunk(5) as $chunk)
-                            @forelse ($chunk as $traseu)                                
+                            @forelse ($traseu_nume->trasee as $traseu)                           
                                 
                                 <tr>   
                                 @php
-                                    $cursa_ora = $traseu->curse_ore->first();  
+                                    $cursa_ora = $traseu->curse_ore->first();
                                     
                                     $total_persoane_tecuci_otopeni += 
                                         $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_adulti')
@@ -81,8 +80,6 @@
                                 </tr>
                             @empty
                             @endforelse 
-                            @empty
-                            @endforelse 
                                 <tr class="text-white" style="background-color:#408080;">
                                     <td>Total</td>
                                     <td>
@@ -106,8 +103,7 @@
                             @php
                                 $total_persoane_galati_otopeni = 0;
                             @endphp
-                            @forelse ($traseu_nume->trasee->chunk(5) as $chunk)
-                            @forelse ($chunk as $traseu) 
+                            @forelse ($traseu_nume->trasee as $traseu)
                                 <tr>      
                                 @php 
                                     $cursa_ora = $traseu->curse_ore->first();
@@ -139,8 +135,6 @@
                                 </tr>
                             @empty
                             @endforelse 
-                            @empty
-                            @endforelse 
                                 <tr class="text-white" style="background-color:#408080;">
                                     <td>Total</td>
                                     <td>
@@ -153,7 +147,7 @@
                     @empty
                         <div>Nu există trasee în baza de date. Încearcă alte date de căutare.</div>
                     @endforelse
-                </div>  --}}
+                </div> 
 
 
                 <div class="col-lg-2 container-fluid px-0 table-responsive-lg border"> 

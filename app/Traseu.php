@@ -9,7 +9,7 @@ class Traseu extends Model
     protected $table = 'trasee';
     protected $guarded = [];
 
-    protected $with = ['curse_ore', 'rezervari'];
+    // protected $with = ['curse_ore:ora', 'rezervari:data_cursa,activa,nr_adulti,nr_copii'];
 
 
     public function path()

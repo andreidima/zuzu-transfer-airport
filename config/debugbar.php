@@ -13,7 +13,6 @@ return [
      | You can provide an array of URI's that must be ignored (eg. 'api/*')
      |
      */
-
     'enabled' => env('DEBUGBAR_ENABLED', null),
     'except' => [
         'telescope*'
