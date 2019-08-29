@@ -10,6 +10,8 @@ class CursaOra extends Model
     protected $guarded = [];
 
     protected $with = ['cursa', 'rezervari'];
+    // protected $with = ['rezervari.user', 'rezervari.tip_plata'];
+                // ->with('user', 'cursa.oras_plecare' ,'cursa.oras_sosire', 'tip_plata', 'statie')
 
     public function cursa()
     {

@@ -27,12 +27,14 @@ class TraseuController extends Controller
         }
         $trasee_nume_tecuci_otopeni = TraseuNume::select('id', 'nume')
             ->where('id', 1)
-            ->with('trasee.curse_ore.cursa', 'trasee.curse_ore', 'trasee.rezervari:data_cursa,activa,nr_adulti,nr_copii')
+            ->with('trasee.curse_ore.cursa', 'trasee.curse_ore.cursa.oras_plecare', 'trasee.curse_ore.cursa.oras_sosire', 
+                    'trasee.curse_ore', 'trasee.rezervari:data_cursa,activa,nr_adulti,nr_copii')
             // ->with('trasee.curse_ore.cursa')
             ->get();
         $trasee_nume_galati_otopeni = TraseuNume::select('id', 'nume')
             ->where('id', 2)
-            ->with('trasee.curse_ore.cursa', 'trasee.curse_ore', 'trasee.rezervari:data_cursa,activa,nr_adulti,nr_copii')
+            ->with('trasee.curse_ore.cursa', 'trasee.curse_ore.cursa.oras_plecare', 'trasee.curse_ore.cursa.oras_sosire', 
+                    'trasee.curse_ore', 'trasee.rezervari:data_cursa,activa,nr_adulti,nr_copii')
             ->get();
         // $trasee_nume_otopeni = TraseuNume::select('id', 'nume')
         //     ->where('id', 3)
@@ -74,12 +76,15 @@ class TraseuController extends Controller
         }
         $trasee_nume_tecuci_otopeni = TraseuNume::select('id', 'nume')
             ->where('id', 1)
+            ->with('trasee.curse_ore', 'trasee.rezervari:data_cursa,activa,nr_adulti,nr_copii')
             ->get();
         $trasee_nume_galati_otopeni = TraseuNume::select('id', 'nume')
             ->where('id', 2)
+            ->with('trasee.curse_ore', 'trasee.rezervari:data_cursa,activa,nr_adulti,nr_copii')
             ->get();
         $trasee_nume_otopeni = TraseuNume::select('id', 'nume')
             ->where('id', 3)
+            ->with('trasee.curse_ore', 'trasee.rezervari:data_cursa,activa,nr_adulti,nr_copii')
             ->get();
 
 
@@ -145,7 +150,14 @@ class TraseuController extends Controller
 
         $telefoane_clienti_neseriosi = ClientNeserios::pluck('telefon')->all();
 
-        return view('trasee.show', compact('trasee', 'search', 'telefoane_clienti_neseriosi'));
+        $rezervari = $trasee->rezervari()
+                ->where('data_cursa', $search)
+                ->where('activa', 1)
+                ->with('cursa', 'cursa.oras_plecare', 'cursa.oras_sosire', 'ora', 'statie', 'tip_plata', 'user')
+                ->simplePaginate(100);
+
+
+        return view('trasee.show', compact('trasee', 'rezervari', 'search', 'telefoane_clienti_neseriosi'));
     }
 
     /**
@@ -187,10 +199,29 @@ class TraseuController extends Controller
 
         $trasee_nume = TraseuNume::select('id', 'nume')
         ->where('id', $traseu_nume_id)
-        // ->with('trasee.curse_ore.cursa', 'trasee.rezervari', 'trasee.rezervari.tip_plata')
-        ->first();
+        ->with('trasee.curse_ore', 'trasee.curse_ore.cursa', 
+                'trasee.curse_ore.rezervari.ora', 'trasee.curse_ore.rezervari.tip_plata', 'trasee.curse_ore.rezervari.statie:id,nume',
+                'trasee.curse_ore.rezervari.cursa.oras_plecare', 'trasee.curse_ore.rezervari.cursa.oras_sosire',
+                'trasee.curse_ore.rezervari.user:id,user_firma_id,nume')
+        // ->with('trasee.curse_ore', 'trasee.curse_ore.cursa', 'trasee.curse_ore.cursa.oras_plecare', 'trasee.curse_ore.cursa.oras_sosire', 
+        //     'trasee.rezervari', 'trasee.rezervari.user', 'trasee.rezervari.user.firma'
+        // )
+        // ->with('trasee.rezervari')
+        // ->with('trasee.curse_ore.cursa', 'trasee.rezervari', 'trasee.rezervari.tip_plata')        
+        // ->with('trasee.curse_ore.cursa', 'trasee.curse_ore', 'trasee.rezervari:data_cursa,activa,nr_adulti,nr_copii')
+        ->get();
+
+        // dd($trasee_nume);
+
+            
 
         $telefoane_clienti_neseriosi = ClientNeserios::pluck('telefon')->all();
+
+        // $rezervari = $trasee->rezervari()
+        //         ->where('data_cursa', $search)
+        //         ->where('activa', 1)
+        //         ->with('cursa', 'cursa.oras_plecare', 'cursa.oras_sosire', 'ora', 'statie', 'tip_plata', 'user')
+        //         ->simplePaginate(100);
 
         return view('trasee.show_toate_orele', compact('trasee_nume', 'search', 'telefoane_clienti_neseriosi'));
     }

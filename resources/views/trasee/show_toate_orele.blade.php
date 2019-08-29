@@ -35,7 +35,8 @@
                     <tbody>  
                         @php ($total_persoane = 0)
                         @php ($nr_crt = 1)
-                        @forelse ($trasee_nume->trasee as $traseu)
+                        @forelse($trasee_nume as $traseu_nume)
+                        @forelse ($traseu_nume->trasee as $traseu)
                             @forelse ($traseu->curse_ore as $cursa_ora)  
                             @forelse ($cursa_ora->rezervari->where('data_cursa', $search)->where('activa', 1)->sortByDesc('created_at') as $rezervare) 
                                 @php ($total_persoane = $total_persoane + $rezervare->nr_adulti + $rezervare->nr_copii)
@@ -53,7 +54,6 @@
                                 
                                     <td align="center">
                                         {{ $nr_crt++ }}
-                                        {{-- {{ $cursa_ora->id }} --}}
                                     </td>
                                     <td align="center">
                                         @if (empty($rezervare->user))
@@ -251,11 +251,8 @@
 
                                             <div style="float:right;" class="">
                                                 <a href="{{ $rezervare->path() }}/modifica"
-                                                    {{-- class="btn btn-primary btn-sm"
-                                                    role="button" --}}
                                                     title="Editează Rezervarea"
                                                     >
-                                                    {{-- <i class="fas fa-edit"></i> --}}
                                                     <img src="{{ asset('images/icon-edit.jpg') }}" height="26px">
                                                 </a>
                                             </div>
@@ -268,7 +265,9 @@
                                 <div>Nu sunt rezervari pentru acest traseu</div>
                             @endforelse                                    
                         @empty
-                        @endforelse  
+                        @endforelse                                   
+                        @empty
+                        @endforelse   
                         </tbody>
                     </table>
                     
@@ -284,7 +283,7 @@
                             >
                             <i class="fas fa-file-pdf"></i> Raport cumulat
                         </a> --}}
-                        <a href="/trasee/toate_orele/{{ $trasee_nume->id }}/{{ \Carbon\Carbon::createFromFormat('Y-m-d', $search)->format('d-m-Y') }}/export/traseu-pdf-toate-orele-per-ora"
+                        <a href="/trasee/toate_orele/{{ $traseu_nume->id }}/{{ \Carbon\Carbon::createFromFormat('Y-m-d', $search)->format('d-m-Y') }}/export/traseu-pdf-toate-orele-per-ora"
                             class="btn btn-success"
                             role="button"
                             target="_blank"
@@ -292,8 +291,8 @@
                             <i class="fas fa-file-pdf"></i> Raport complet {{ \Carbon\Carbon::createFromFormat('Y-m-d', $search)->format('d.m.Y') }}
                         </a>
 
-                        @if ($trasee_nume->id == 3)
-                            <a href="/trasee/toate_orele/{{ $trasee_nume->id }}/{{ \Carbon\Carbon::createFromFormat('Y-m-d', $search)->format('d-m-Y') }}/export/traseu-pdf-toate-orele"
+                        @if ($traseu_nume->id == 3)
+                            <a href="/trasee/toate_orele/{{ $traseu_nume->id }}/{{ \Carbon\Carbon::createFromFormat('Y-m-d', $search)->format('d-m-Y') }}/export/traseu-pdf-toate-orele"
                                 class="btn btn-secondary"
                                 role="button"
                                 target="_blank"

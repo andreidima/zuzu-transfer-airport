@@ -32,7 +32,7 @@ $factory->define(Rezervare::class, function (Faker $faker) {
             ->get()
             ->random(),
         'data_cursa' => Carbon::today()
-            ->addDays(rand(0, 7)),
+            ->addDays(rand(0, 1)),
             // ->addHours(\Carbon\Carbon::parse($ora_plecare)->hour)
             // ->addMinutes(\Carbon\Carbon::parse($ora_plecare)->minute),
         'ora_id' => $ora->id,

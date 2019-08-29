@@ -13,7 +13,8 @@
                     @csrf                    
                     <div class="input-group custom-search-form row d-flex justify-content-center m-0">
                         <div class="form-group d-flex col-8 justify-content-center">
-                            <div class="mr-4 w-25">
+                        <div class="row">
+                            <div class="col-lg-3">
                                 <label for="search_data_inceput" class="mb-0">Data început</label>
                                 <vue2-datepicker
                                     @if (!empty($search_data_inceput))
@@ -25,7 +26,7 @@
                                     {{-- data-veche="{{\Carbon\Carbon::today()}}" --}}
                                 ></vue2-datepicker>
                             </div>
-                            <div class="mr-4 w-25">
+                            <div class="col-lg-3">
                                 <label for="search_data_inceput" class="mb-0">Data sfârșit</label>
                                 <vue2-datepicker
                                     @if (!empty($search_data_inceput))
@@ -37,7 +38,7 @@
                                     {{-- data-veche="{{\Carbon\Carbon::today()}}" --}}
                                 ></vue2-datepicker>
                             </div>
-                            <div class="mr-4 w-25">
+                            <div class="col-lg-3">
                                 <script type="application/javascript"> 
                                     searchOrasVechi={!! json_encode($search_oras, "0") !!}
                                 </script>  
@@ -52,11 +53,11 @@
                                             >@{{search_oras.nume}}</option>
                                     </select>
                             </div>
-                            <div class="w-25">
+                            <div class="col-lg-3">
                                 <script type="application/javascript"> 
                                     searchOraVeche={!! json_encode($search_ora, "0") !!}
                                 </script>        
-                                <label for="search_ora" class="mb-0">Ora de plecare:</label>
+                                <label for="search_ora" class="mb-0">Ora plecare:</label>
                                     <select class="custom-select"
                                         name="search_ora"
                                         v-model="search_ora"
@@ -69,6 +70,7 @@
                                         </option>
                                     </select>
                             </div>
+                        </div>
                         </div>
                         <div class="form-group d-flex align-self-end col-12 justify-content-center"> 
                             <button class="btn bg-primary text-white mr-4" type="submit">
