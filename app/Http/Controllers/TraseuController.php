@@ -27,14 +27,37 @@ class TraseuController extends Controller
         }
         $trasee_nume_tecuci_otopeni = TraseuNume::select('id', 'nume')
             ->where('id', 1)
-            ->with('trasee.curse_ore.cursa', 'trasee.curse_ore.cursa.oras_plecare', 'trasee.curse_ore.cursa.oras_sosire', 
-                    'trasee.curse_ore', 'trasee.rezervari:data_cursa,activa,nr_adulti,nr_copii')
+            ->with(
+                // 'trasee.curse_ore.cursa', 
+                // 'trasee.rezervari:data_cursa,activa,nr_adulti,nr_copii',
+                ['trasee.rezervari' => function ($query) use ($search) {
+                    $query->where('data_cursa', $search)
+                        ->where('activa', 1);
+                }],
+                'trasee.rezervari:nr_adulti,nr_copii',
+                'trasee.rezervari.user',
+                'trasee.curse_ore.cursa.oras_plecare',
+                'trasee.curse_ore.cursa.oras_sosire',
+                'trasee.curse_ore.cursa',
+                'trasee.curse_ore'
+            )
             // ->with('trasee.curse_ore.cursa')
             ->get();
         $trasee_nume_galati_otopeni = TraseuNume::select('id', 'nume')
             ->where('id', 2)
-            ->with('trasee.curse_ore.cursa', 'trasee.curse_ore.cursa.oras_plecare', 'trasee.curse_ore.cursa.oras_sosire', 
-                    'trasee.curse_ore', 'trasee.rezervari:data_cursa,activa,nr_adulti,nr_copii')
+            ->with(
+                // 'trasee.curse_ore.cursa', 
+                // 'trasee.rezervari:data_cursa,activa,nr_adulti,nr_copii',
+                ['trasee.rezervari' => function ($query) use ($search) {
+                    $query->where('data_cursa', $search)
+                        ->where('activa', 1);
+                }],
+                'trasee.rezervari:nr_adulti,nr_copii',
+                'trasee.curse_ore.cursa.oras_plecare',
+                'trasee.curse_ore.cursa.oras_sosire',
+                'trasee.curse_ore.cursa',
+                'trasee.curse_ore'
+            )
             ->get();
         // $trasee_nume_otopeni = TraseuNume::select('id', 'nume')
         //     ->where('id', 3)
@@ -57,6 +80,19 @@ class TraseuController extends Controller
         }
         $trasee_nume_otopeni = TraseuNume::select('id', 'nume')
             ->where('id', 3)
+            ->with(
+                // 'trasee.curse_ore.cursa', 
+                // 'trasee.rezervari:data_cursa,activa,nr_adulti,nr_copii',
+                ['trasee.rezervari' => function ($query) use ($search) {
+                    $query->where('data_cursa', $search)
+                        ->where('activa', 1);
+                }],
+                'trasee.rezervari:nr_adulti,nr_copii',
+                'trasee.curse_ore.cursa.oras_plecare',
+                'trasee.curse_ore.cursa.oras_sosire',
+                'trasee.curse_ore.cursa',
+                'trasee.curse_ore'
+            )
             ->get();
 
         return view('trasee.index_retur', compact('trasee_nume_otopeni', 'search'));
@@ -76,15 +112,46 @@ class TraseuController extends Controller
         }
         $trasee_nume_tecuci_otopeni = TraseuNume::select('id', 'nume')
             ->where('id', 1)
-            ->with('trasee.curse_ore', 'trasee.rezervari:data_cursa,activa,nr_adulti,nr_copii')
+            ->with(
+                [
+                    'trasee.rezervari' => function ($query) use ($search) {
+                        $query
+                            ->select('data_cursa', 'activa', 'nr_adulti', 'nr_copii')
+                            ->where('data_cursa', $search)
+                            ->where('activa', 1);
+                    },
+                    'trasee.curse_ore'
+                ]
+            )
+            // ->with('trasee.curse_ore', 'trasee.rezervari:data_cursa,activa,nr_adulti,nr_copii')
             ->get();
         $trasee_nume_galati_otopeni = TraseuNume::select('id', 'nume')
             ->where('id', 2)
-            ->with('trasee.curse_ore', 'trasee.rezervari:data_cursa,activa,nr_adulti,nr_copii')
+            ->with(
+                [
+                    'trasee.rezervari' => function ($query) use ($search) {
+                        $query
+                            ->select('data_cursa', 'activa', 'nr_adulti', 'nr_copii')
+                            ->where('data_cursa', $search)
+                            ->where('activa', 1);
+                    },
+                    'trasee.curse_ore'
+                ]
+            )
+            // ->with('trasee.curse_ore', 'trasee.rezervari:data_cursa,activa,nr_adulti,nr_copii')
             ->get();
         $trasee_nume_otopeni = TraseuNume::select('id', 'nume')
             ->where('id', 3)
-            ->with('trasee.curse_ore', 'trasee.rezervari:data_cursa,activa,nr_adulti,nr_copii')
+            ->with(
+                ['trasee.rezervari' => function ($query) use ($search) {
+                    $query
+                        ->select('data_cursa', 'activa', 'nr_adulti', 'nr_copii')
+                        ->where('data_cursa', $search)
+                        ->where('activa', 1);
+                },
+                'trasee.curse_ore'
+            ])
+            // ->with('trasee.curse_ore', 'trasee.rezervari:data_cursa,activa,nr_adulti,nr_copii')
             ->get();
 
 

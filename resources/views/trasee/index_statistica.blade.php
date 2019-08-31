@@ -57,6 +57,9 @@
                                         $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_adulti')
                                         +
                                         $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_copii');
+                                        // $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_adulti')
+                                        // +
+                                        // $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_copii');
                                 @endphp
                                     <td style="">
                                             @if(!empty(\Carbon\Carbon::parse($cursa_ora->ora)))
