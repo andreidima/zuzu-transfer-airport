@@ -48,7 +48,7 @@ class RezervareRaportZiController extends Controller
                         }
                     })
                     ->latest('rezervari.created_at')
-                    ->limit(2000)
+                    ->limit(500)
                     ->get();
             } else {
                 $rezervari = auth()->user()->rezervari()
@@ -58,7 +58,7 @@ class RezervareRaportZiController extends Controller
                     ->where('data_cursa', '>=', $search_data_inceput)
                     ->where('data_cursa', '<=', $search_data_sfarsit)
                     ->latest('rezervari.created_at')
-                    ->limit(2000)
+                    ->limit(500)
                     ->get();
             }
         }
