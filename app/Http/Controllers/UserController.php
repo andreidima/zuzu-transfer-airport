@@ -28,4 +28,9 @@ class UserController extends Controller
             return redirect()->back();
         }
     }
+
+    public function AuthRouteAPI(Request $request)
+    {
+        return $request->user();
+    }
 }
