@@ -13,13 +13,13 @@
 Auth::routes(['register' => false, 'password.request' => true]);
 
 // Rute pentru rezervare facuta de guest
-    Route::get('/adauga-rezervare-pasul-1', 'RezervareController@adaugaRezervare1');
-    Route::post('/adauga-rezervare-pasul-1', 'RezervareController@postAdaugaRezervare1');
-    Route::get('/adauga-rezervare-pasul-2', 'RezervareController@adaugaRezervare2');
-    Route::post('/adauga-rezervare-pasul-2', 'RezervareController@postAdaugaRezervare2');
-    Route::get('/adauga-rezervare-pasul-3', 'RezervareController@adaugaRezervare3');
-    Route::get('/bilet-rezervat', 'RezervareController@pdfexportguest');
-    // Route::post('/adauga-rezervare-pasul-3', 'RezervareController@postAdaugaRezervare3');
+Route::get('/adauga-rezervare-pasul-1', 'RezervareController@adaugaRezervare1');
+Route::post('/adauga-rezervare-pasul-1', 'RezervareController@postAdaugaRezervare1');
+Route::get('/adauga-rezervare-pasul-2', 'RezervareController@adaugaRezervare2');
+Route::post('/adauga-rezervare-pasul-2', 'RezervareController@postAdaugaRezervare2');
+Route::get('/adauga-rezervare-pasul-3', 'RezervareController@adaugaRezervare3');
+Route::get('/bilet-rezervat', 'RezervareController@pdfexportguest');
+// Route::post('/adauga-rezervare-pasul-3', 'RezervareController@postAdaugaRezervare3');
 
 // Extras date cu Axios
 Route::get('/orase_ore_rezervari', 'RezervareController@orase_ore_rezervari');

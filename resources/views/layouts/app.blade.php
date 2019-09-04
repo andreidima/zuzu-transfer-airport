@@ -47,11 +47,6 @@
                                     <i class="fas fa-address-card mr-1"></i>Rezervări
                                 </a>
                             </li>
-                            {{-- <li class="nav-link active ml-4">
-                                <a class="text-primary" href="/curse">
-                                    <i class="fas fa-car-side mr-1"></i>Curse
-                                </a>
-                            </li> --}}
                             @if (auth()->user()->isDispecer())
                                 <li class="nav-item active mr-4 dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -67,11 +62,6 @@
                                     </div>
                                 </li>
                             @endif
-                            {{-- <li class="nav-item active ml-4">
-                                <a class="nav-link" href="/trasee">
-                                    <i class="fas fa-route mr-1"></i>Trasee
-                                </a>
-                            </li> --}}
                             @if (auth()->user()->isDispecer())
                                 <li class="nav-item active mr-4">
                                     <a class="nav-link" href="/agentii">

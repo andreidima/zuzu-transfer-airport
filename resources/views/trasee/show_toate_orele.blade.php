@@ -141,13 +141,13 @@
                                         {{ $rezervare->telefon }}
                                     </td>
                                     <td align="center">
-                                        @if (!empty($rezervare->cursa->oras_plecare))
-                                            {{ $rezervare->cursa->oras_plecare->nume }}
+                                        @if (!empty($cursa_ora->cursa->oras_plecare))
+                                            {{ $cursa_ora->cursa->oras_plecare->nume }}
                                         @endif
                                     </td>
                                     <td align="center">
-                                        @if (!empty($rezervare->cursa->oras_sosire))
-                                            {{ $rezervare->cursa->oras_sosire->nume }}
+                                        @if (!empty($cursa_ora->cursa->oras_sosire))
+                                            {{ $cursa_ora->cursa->oras_sosire->nume }}
                                         @endif
                                     </td>
                                     <td align="center">
@@ -159,10 +159,10 @@
                                         @endif
                                     </td>
                                     <td class="px-0" align="center">
-                                        @if(!empty($rezervare->ora))    
-                                            {{ \Carbon\Carbon::parse($rezervare->ora->ora)
-                                                ->addHours(\Carbon\Carbon::parse($rezervare->cursa->durata)->hour)
-                                                ->addMinutes(\Carbon\Carbon::parse($rezervare->cursa->durata)->minute)
+                                        @if(!empty($cursa_ora->ora))    
+                                            {{ \Carbon\Carbon::parse($cursa_ora->ora)
+                                                ->addHours(\Carbon\Carbon::parse($cursa_ora->cursa->durata)->hour)
+                                                ->addMinutes(\Carbon\Carbon::parse($cursa_ora->cursa->durata)->minute)
                                                 ->format('H:i') }}  
                                         @endif
                                     </td>
