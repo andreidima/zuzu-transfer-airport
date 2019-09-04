@@ -18,6 +18,7 @@ class Dispecer
         if(!auth()->user()->isDispecer()){
             return redirect('/rezervari');
         }
+        // dd(auth()->user());
         return $next($request);
     }
 }
