@@ -105,7 +105,15 @@ class UserFirmaController extends Controller
         if (auth()->user()->isDispecer()) {
             if(isset($search_data_inceput) && isset($search_data_sfarsit)) {
                 $rezervari = $agentii->rezervari()
-                    ->with('cursa', 'ora', 'tip_plata', 'statie')
+                    ->join('curse_ore', 'ora_id', '=', 'curse_ore.id')
+                    ->select('rezervari.*', 'curse_ore.ora')
+                    ->with(
+                        'cursa.oras_plecare', 
+                        'cursa.oras_sosire',
+                        // 'ora', 
+                        'tip_plata',
+                        'statie'
+                    )
                     ->where('data_cursa', '>=', $search_data_inceput)
                     ->where('data_cursa', '<=', $search_data_sfarsit)
                     ->orderBy('cursa_id')
@@ -113,7 +121,15 @@ class UserFirmaController extends Controller
                     ->appends(request()->query());                    
             } else {
                 $rezervari = $agentii->rezervari()
-                    ->with('cursa', 'ora', 'tip_plata', 'statie')
+                    ->join('curse_ore', 'ora_id', '=', 'curse_ore.id')
+                    ->select('rezervari.*', 'curse_ore.ora')
+                    ->with(
+                        'cursa.oras_plecare', 
+                        'cursa.oras_sosire',
+                        // 'ora', 
+                        'tip_plata',
+                        'statie'
+                    )
                     ->latest()
                     ->simplePaginate(100)
                     ->appends(request()->query());
@@ -121,7 +137,15 @@ class UserFirmaController extends Controller
         } else {
             if (isset($search_data_inceput) && isset($search_data_sfarsit)) {
                 $rezervari = auth()->user()->rezervari()
-                    ->with('cursa', 'ora', 'tip_plata', 'statie')
+                    ->join('curse_ore', 'ora_id', '=', 'curse_ore.id')
+                    ->select('rezervari.*', 'curse_ore.ora')
+                    ->with(
+                        'cursa.oras_plecare', 
+                        'cursa.oras_sosire',
+                        // 'ora', 
+                        'tip_plata',
+                        'statie'
+                    )
                     ->where('data_cursa', '>=', $search_data_inceput)
                     ->where('data_cursa', '<=', $search_data_sfarsit)
                     ->orderBy('cursa_id')
@@ -129,7 +153,15 @@ class UserFirmaController extends Controller
                     ->appends(request()->query());
             } else {
                 $rezervari = auth()->user()->rezervari()
-                    ->with('cursa', 'ora', 'tip_plata', 'statie')
+                    ->join('curse_ore', 'ora_id', '=', 'curse_ore.id')
+                    ->select('rezervari.*', 'curse_ore.ora')
+                    ->with(
+                        'cursa.oras_plecare', 
+                        'cursa.oras_sosire',
+                        // 'ora', 
+                        'tip_plata',
+                        'statie'
+                    )
                     ->latest()
                     ->simplePaginate(100)
                     ->appends(request()->query());
@@ -140,7 +172,7 @@ class UserFirmaController extends Controller
         return view('agentii.rezervari', compact('agentii', 'rezervari', 'search_data_inceput', 'search_data_sfarsit'));
     }
 
-    public function pdfexport_rezervari_dispecer(Request $request, $agentii = null, $search_data_inceput = null, $search_data_sfarsit = null)
+    public function pdfexport_rezervari_dispecer(Request $request, $agentii = null, $view_type = null, $search_data_inceput = null, $search_data_sfarsit = null)
     {            
         $agentie = UserFirma::select('id', 'nume')
             ->where('id', $agentii)
@@ -148,19 +180,32 @@ class UserFirmaController extends Controller
 
         if ($search_data_inceput && $search_data_sfarsit){
             $rezervari = $agentie->rezervari()
+                ->select('rezervari.id', 'rezervari.nume', 'cursa_id', 'data_cursa', 'pret_total', 'tip_plata_id', 'statie_imbarcare', 'nr_adulti', 'nr_copii')
                 ->where('data_cursa', '>=', $search_data_inceput)
                 ->where('data_cursa', '<=', $search_data_sfarsit)
                 ->where('activa', 1)
+                ->with(
+                    'cursa.oras_plecare',
+                    'cursa.oras_sosire'
+                )
                 ->orderBy('cursa_id')
                 ->get();
         }
 
-        $pdf = \PDF::loadView('agentii.export.agentie-rezervari-pdf', compact('agentie', 'rezervari', 'search_data_inceput', 'search_data_sfarsit'))
-            ->setPaper('a4');
-        return $pdf->stream($agentie->nume . ', ' . $search_data_inceput . ' - ' . $search_data_sfarsit . '.pdf');
+
+        // dd($search_data_inceput, $search_data_sfarsit);
+        // dd($agentie, $rezervari, $agentie->rezervari()->get());
+
+        if ($request->view_type === 'agentie-rezervari-html') {
+            return view('agentii.export.agentie-rezervari-pdf', compact('agentie', 'rezervari', 'search_data_inceput', 'search_data_sfarsit'));
+        } elseif ($request->view_type === 'agentie-rezervari-pdf') { 
+            $pdf = \PDF::loadView('agentii.export.agentie-rezervari-pdf', compact('agentie', 'rezervari', 'search_data_inceput', 'search_data_sfarsit'))
+                ->setPaper('a4');
+            return $pdf->stream($agentie->nume . ', ' . $search_data_inceput . ' - ' . $search_data_sfarsit . '.pdf');
+        }
     }
 
-    public function pdfexport_rezervari_agentie(Request $request, $search_data_inceput = null, $search_data_sfarsit = null)
+    public function pdfexport_rezervari_agentie(Request $request, $view_type = null, $search_data_inceput = null, $search_data_sfarsit = null)
     { 
         $agentie = UserFirma::select('id', 'nume')
             ->where('id', auth()->user()->firma->id)
@@ -168,16 +213,26 @@ class UserFirmaController extends Controller
 
         if (isset($search_data_inceput) && isset($search_data_sfarsit)) {
             $rezervari = auth()->user()->rezervari()
+                ->select('rezervari.id', 'rezervari.nume', 'cursa_id', 'data_cursa', 'pret_total', 'tip_plata_id', 'statie_imbarcare', 'nr_adulti', 'nr_copii')
                 ->where('data_cursa', '>=', $search_data_inceput)
                 ->where('data_cursa', '<=', $search_data_sfarsit)
                 ->where('activa', 1)
+                ->with(
+                    'cursa.oras_plecare',
+                    'cursa.oras_sosire'
+                )
                 ->orderBy('cursa_id')
-                ->simplePaginate(100)
+                // ->simplePaginate(100)
                 ->appends(request()->query());
         }
 
-        $pdf = \PDF::loadView('agentii.export.agentie-rezervari-pdf', compact('agentie', 'rezervari', 'search_data_inceput', 'search_data_sfarsit'))
-            ->setPaper('a4');
-        return $pdf->stream($agentie->nume . ', ' . $search_data_inceput . ' - ' . $search_data_sfarsit . '.pdf');
+        
+        if ($request->view_type === 'agentie-rezervari-html') {
+            return view('agentii.export.agentie-rezervari-pdf', compact('agentie', 'rezervari', 'search_data_inceput', 'search_data_sfarsit'));
+        } elseif ($request->view_type === 'agentie-rezervari-pdf') { 
+            $pdf = \PDF::loadView('agentii.export.agentie-rezervari-pdf', compact('agentie', 'rezervari', 'search_data_inceput', 'search_data_sfarsit'))
+                ->setPaper('a4');
+            return $pdf->stream($agentie->nume . ', ' . $search_data_inceput . ' - ' . $search_data_sfarsit . '.pdf');
+        }
     }
 }

@@ -369,28 +369,24 @@ class TraseuController extends Controller
 
         $trasee_nume = TraseuNume::select('id', 'nume')
         ->where('id', $traseu_nume_id)
-            // ->with(
-            //     ['trasee.rezervari' => function ($query) use ($search) {
-            //         $query
-            //             ->where('data_cursa', $search)
-            //             ->where('activa', 1);
-            //     }]
-            // )
             ->with(
-                'trasee.curse_ore.rezervari.user',
+                // 'trasee.curse_ore.rezervari.user',
                 'trasee.curse_ore.rezervari.user.firma',
                 'trasee.curse_ore.rezervari.tip_plata',
                 // 'trasee.curse_ore.rezervari.statie',
-                'trasee.curse_ore.cursa.oras_plecare',                
+                'trasee.curse_ore.cursa.oras_plecare',            
                 'trasee.curse_ore.cursa.oras_sosire'
                 // 'trasee.curse_ore.cursa.oras_sosire',
                 // 'trasee.curse_ore.cursa'
             )
             ->with(
+                // ['trasee.curse_ore.rezervari.user'],
+                // 'trasee.curse_ore.rezervari.user.firma',
                 ['trasee.curse_ore.rezervari' => function ($query) use ($search) {
                     $query 
                         ->where('data_cursa', $search)
                         ->where('activa', 1);
+                        // ->with('user.firma');
                 }]
             )
             // ->with( 
@@ -406,17 +402,9 @@ class TraseuController extends Controller
         // ->with('trasee.curse_ore.cursa', 'trasee.curse_ore', 'trasee.rezervari:data_cursa,activa,nr_adulti,nr_copii')
         ->get();
 
-        // dd($trasee_nume);
 
-            
 
         $telefoane_clienti_neseriosi = ClientNeserios::pluck('telefon')->all();
-
-        // $rezervari = $trasee->rezervari()
-        //         ->where('data_cursa', $search)
-        //         ->where('activa', 1)
-        //         ->with('cursa', 'cursa.oras_plecare', 'cursa.oras_sosire', 'ora', 'statie', 'tip_plata', 'user')
-        //         ->simplePaginate(100);
 
         return view('trasee.show_toate_orele', compact('trasee_nume', 'search', 'telefoane_clienti_neseriosi'));
     }
@@ -491,6 +479,33 @@ class TraseuController extends Controller
 
         $trasee_nume = TraseuNume::select('id', 'nume')
             ->where('id', $traseu_nume_id)
+            ->with(
+                // 'trasee.curse_ore.rezervari.user',
+                'trasee.curse_ore.rezervari.user.firma',
+                'trasee.curse_ore.rezervari.tip_plata',
+                // 'trasee.curse_ore.rezervari.statie',
+                'trasee.curse_ore.cursa.oras_plecare',            
+                'trasee.curse_ore.cursa.oras_sosire'
+                // 'trasee.curse_ore.cursa.oras_sosire',
+                // 'trasee.curse_ore.cursa'
+            )
+            ->with(
+                // ['trasee.curse_ore.rezervari.user'],
+                // 'trasee.curse_ore.rezervari.user.firma',
+                ['trasee.curse_ore.rezervari' => function ($query) use ($data_traseu_Ymd) {
+                    $query 
+                        ->where('data_cursa', $data_traseu_Ymd)
+                        ->where('activa', 1);
+                        // ->with('user.firma');
+                }]
+            )
+            ->with(
+                ['trasee.rezervari' => function ($query) use ($data_traseu_Ymd) {
+                    $query 
+                        ->where('data_cursa', $data_traseu_Ymd)
+                        ->where('activa', 1);
+                }]
+            )
             ->first();
         
         if ($request->view_type === 'traseu-html-toate-orele') {
@@ -499,7 +514,9 @@ class TraseuController extends Controller
             $pdf = \PDF::loadView('trasee.export.traseu-pdf-toate-orele', compact('trasee_nume', 'data_traseu', 'data_traseu_Ymd', 'telefoane_clienti_neseriosi'))
                 ->setPaper('a4');
             return $pdf->stream('Raport ' . $trasee_nume->nume . ', ' . $data_traseu . '.pdf');
-
+            
+        } elseif ($request->view_type === 'traseu-html-toate-orele-per-ora') {
+            return view('trasee.export.traseu-pdf-toate-orele-per-ora', compact('trasee_nume', 'data_traseu', 'data_traseu_Ymd', 'telefoane_clienti_neseriosi'));
         } elseif ($request->view_type === 'traseu-pdf-toate-orele-per-ora') {
             $pdf = \PDF::loadView('trasee.export.traseu-pdf-toate-orele-per-ora', compact('trasee_nume', 'data_traseu', 'data_traseu_Ymd', 'telefoane_clienti_neseriosi'))
                 ->setPaper('a4');

@@ -139,7 +139,7 @@
                                     </td>
                                     <td class="text-center">
                                         @if (!empty($rezervare->ora))
-                                            {{ \Carbon\Carbon::parse($rezervare->ora->ora)->format('H:i') }}
+                                            {{ \Carbon\Carbon::parse($rezervare->ora)->format('H:i') }}
                                         @endif
                                     </td>
                                     <td class="text-center">                                

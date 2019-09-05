@@ -45,7 +45,7 @@ Route::group(['middleware' => 'auth'], function () {
         ]);
 
     Route::get('agentii/rezervari', 'UserFirmaController@rezervari');
-    Route::get('agentii/rezervari/export/agentie-rezervari-pdf/{search_data_inceput}/{search_data_sfarsit}', 'UserFirmaController@pdfexport_rezervari_agentie');  // Generare PDF
+    Route::get('agentii/rezervari/export/{view_type}/{search_data_inceput}/{search_data_sfarsit}', 'UserFirmaController@pdfexport_rezervari_agentie');  // Generare PDF
 
     Route::view('/instructiuni-rezervari', 'instructiuni_rezervari');
         
@@ -80,7 +80,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::resource('agentii', 'UserFirmaController');
         Route::get('agentii/{agentii}/rezervari', 'UserFirmaController@rezervari');
-        Route::get('agentii/{agentii}/rezervari/export/agentie-rezervari-pdf/{search_data_inceput}/{search_data_sfarsit}', 'UserFirmaController@pdfexport_rezervari_dispecer');  // Generare PDF
+        Route::get('agentii/{agentii}/rezervari/export/{view_type}/{search_data_inceput}/{search_data_sfarsit}', 'UserFirmaController@pdfexport_rezervari_dispecer');  // Generare PDF
 
         Route::get('/acasa', 'AcasaController@index')->name('acasa');
 

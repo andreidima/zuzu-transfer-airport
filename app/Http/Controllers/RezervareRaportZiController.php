@@ -32,7 +32,15 @@ class RezervareRaportZiController extends Controller
 
         if(isset($search_data_inceput) && isset($search_data_sfarsit)) {
             if (auth()->user()->firma->id == 1) {
-                $rezervari = Rezervare::with('cursa.oras_plecare', 'cursa.oras_sosire', 'statie', 'ora', 'tip_plata', 'user.firma')
+                $rezervari = Rezervare::
+                    with(
+                        'cursa.oras_plecare', 
+                        'cursa.oras_sosire', 
+                        'statie', 
+                        // 'ora', 
+                        'tip_plata', 
+                        'user.firma'
+                    )
                     ->join('curse_ore', 'ora_id', '=', 'curse_ore.id')
                     ->select('rezervari.*', 'curse_ore.ora')
                     ->where('data_cursa', '>=', $search_data_inceput)
@@ -48,17 +56,17 @@ class RezervareRaportZiController extends Controller
                         }
                     })
                     ->latest('rezervari.created_at')
-                    ->limit(500)
+                    ->limit(1000)
                     ->get();
             } else {
                 $rezervari = auth()->user()->rezervari()
-                    ->with('cursa', 'statie', 'ora', 'tip_plata', 'user')
+                    ->with('cursa', 'statie', 'tip_plata', 'user')
                     ->join('curse_ore', 'ora_id', '=', 'curse_ore.id')
                     ->select('rezervari.*', 'curse_ore.ora')
                     ->where('data_cursa', '>=', $search_data_inceput)
                     ->where('data_cursa', '<=', $search_data_sfarsit)
                     ->latest('rezervari.created_at')
-                    ->limit(500)
+                    ->limit(1000)
                     ->get();
             }
         }

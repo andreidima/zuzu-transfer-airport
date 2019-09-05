@@ -154,8 +154,8 @@
                                         {{ $rezervare->data_cursa }}
                                     </td>
                                     <td class="px-0" align="center">  
-                                        @if(!empty($rezervare->ora))    
-                                            {{ \Carbon\Carbon::parse($rezervare->ora->ora)->format('H:i') }}
+                                        @if(!empty($cursa_ora->ora))    
+                                            {{ \Carbon\Carbon::parse($cursa_ora->ora)->format('H:i') }}
                                         @endif
                                     </td>
                                     <td class="px-0" align="center">
