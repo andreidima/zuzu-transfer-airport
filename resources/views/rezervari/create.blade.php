@@ -19,7 +19,7 @@
                 @csrf
 
                 <div class="form-row mb-0 d-flex justify-content-center">
-                    <div class="form-group col-lg-6 card text-dark shadow-sm px-2 mb-0" style="background-color:#e5d37f">
+                    <div class="form-group col-lg-6 card text-dark shadow-sm px-2 mb-0" style="background-color:#dedede">
                         <div class="form-row mb-0 d-flex justify-content-between">
                             <div class="form-group col-lg-5 m-0">
                                 <script type="application/javascript"> 
@@ -94,7 +94,7 @@
                 </div>
 
                 <div class="form-row mb-0 d-flex justify-content-center">
-                    <div class="form-group col-lg-6 border card text-white shadow-sm px-2 mb-0" style="background-color:#afae5e">
+                    <div class="form-group col-lg-6 card shadow-sm px-2 mb-0" style="background-color:#dedede">
                         <div class="form-row mb-0 d-flex justify-content-between">
                             <div class="form-group col-lg-5 mb-0 ">
                                 <label for="data_cursa" class="mb-0">Data plecării:<span class="text-danger">*</span></label>
@@ -145,7 +145,7 @@
 
 
                 <div class="form-row mb-2 d-flex justify-content-center">   
-                    <div class="form-group col-lg-6 card text-white shadow-sm px-2 mb-0" style="background-color:#999a4e"> 
+                    <div class="form-group col-lg-6 card shadow-sm px-2 mb-0" style="background-color:#dedede"> 
                         <div class="form-group row mb-0">
                             <div class="form-group col-lg-12 my-2">
                                 {{-- <label for="nume" class="mb-0">Nume client:<span class="text-danger">*</span></label> --}}
@@ -188,7 +188,7 @@
                                     value="{{ old('statie_imbarcare') }}"
                                     required> 
                             </div>
-                            <div class="form-group col-lg-12 mb-0 pt-1 border-top border-bottom">
+                            <div class="form-group col-lg-12 mb-0 pt-1 border-top border-bottom border-white">
                                     {{-- <label for="nume" class="mb-0">Număr de locuri rezervate:</label>  --}}
                                 <div class="form-group row mb-0">                                
                                         <div class="form-group col-lg-7 mb-0 d-flex">
@@ -245,13 +245,13 @@
                                                         @endfor                                                        
                                                     </select>
                                                 </div>
-                                            <label id="" class="col-form-label pl-1 text-white align-bottom">
+                                            <label id="" class="col-form-label pl-1 align-bottom">
                                                 2-7 ani
                                             </label>
                                         </div>
                                 </div>
                             </div>                     
-                            <div class="form-group col-lg-12 mb-0 pt-1 border-bottom d-flex">
+                            <div class="form-group col-lg-12 mb-0 pt-1 border-bottom border-white d-flex">
                                 <div class="form-group row mb-1">
                                     <div class="form-group col-lg-12 mb-0 d-flex">
                                         <label class="col-form-label mb-0 pb-0">
@@ -314,14 +314,14 @@
 
             <div v-show="retur" class="mb-2">    
                 <div class="form-row justify-content-center">   
-                    <div class="col-md-auto card bg-dark text-white justify-content-center px-0"> 
+                    <div class="col-md-auto card bg-dark justify-content-center px-0"> 
                         <h4 style="width:16px; word-wrap: break-word; white-space:pre-wrap;">
                             RETUR
                         </h4>
                     </div>
                     <div class="col-lg-6">   
                         <div class="form-row mb-0 justify-content-center">
-                            <div class="form-group col-lg-12 card text-white shadow-sm px-2 mb-0" style="background-color:#999a4e">
+                            <div class="form-group col-lg-12 card shadow-sm px-2 mb-0" style="background-color:#dedede">
                                 <div class="form-row mb-2 d-flex justify-content-between">
                                     <div class="form-group col-lg-5 mb-0">     
                                         <script type="application/javascript"> 
@@ -355,7 +355,7 @@
                             </div>
                         </div>
                         <div class="form-row mb-0 justify-content-center">
-                            <div class="form-group col-lg-12 card text-white shadow-sm px-2 mb-0" style="background-color:#999a4e">
+                            <div class="form-group col-lg-12 card shadow-sm px-2 mb-0" style="background-color:#dedede">
                                 <div class="form-row mb-0 d-flex justify-content-between">
                                     <div class="form-group col-lg-5 m-0">  
                                         <label for="retur_data_cursa" class="mb-0">Data plecării:<span class="text-danger">*</span></label>
@@ -404,7 +404,7 @@
                             </div>
                         </div>                            
                         <div class="form-row mb-0 justify-content-center">
-                            <div class="form-group col-lg-12 card text-white shadow-sm px-2 mb-0 pb-2" style="background-color:#999a4e">
+                            <div class="form-group col-lg-12 card shadow-sm px-2 mb-0 pb-2" style="background-color:#dedede">
                                         <label for="nume" class="mb-0">Statie îmbarcare retur:</label>
                                         <input 
                                             type="text" 
@@ -416,7 +416,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-auto card bg-dark text-white justify-content-center px-0"> 
+                    <div class="col-md-auto card bg-dark justify-content-center px-0"> 
                         <h4 style="width:16px; word-wrap: break-word; white-space:pre-wrap;">
                             RETUR
                         </h4>

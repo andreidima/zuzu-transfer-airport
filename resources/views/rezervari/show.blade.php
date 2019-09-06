@@ -70,7 +70,9 @@
                                     {{ \Carbon\Carbon::parse($rezervari->data_cursa)->isoFormat('dddd') }}
                                 </span>
                                 <br>
-                                {{ \Carbon\Carbon::parse($rezervari->data_cursa)->isoFormat('D MMM YYYY') }}
+                                <b>
+                                    {{ \Carbon\Carbon::parse($rezervari->data_cursa)->isoFormat('D MMM YYYY') }}
+                                </b>
                         </div>
                         <div class="flex-fill">
                             <br>
@@ -113,12 +115,14 @@
                                         ->isoFormat('dddd') }}
                                 </span>
                                 <br>
+                                    <b>
                                     {{ \Carbon\Carbon::parse($rezervari->data_cursa)
                                         ->addHours(\Carbon\Carbon::parse($rezervari->ora->ora)->hour)
                                         ->addMinutes(\Carbon\Carbon::parse($rezervari->ora->ora)->minute) 
                                         ->addHours(\Carbon\Carbon::parse($rezervari->cursa->durata)->hour)
                                         ->addMinutes(\Carbon\Carbon::parse($rezervari->cursa->durata)->minute)
                                         ->isoFormat('D MMM YYYY') }}
+                                    </b>
                             <br>
                         </div>
                     </div>

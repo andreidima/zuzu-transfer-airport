@@ -25,7 +25,7 @@
                             </div>
                         </th>
                         <th class="px-0">Ora<br />imbarcare</th>
-                        <th class="px-0">Ora<br />debarcare</th>
+                        <th class="px-0">Ora<br />aterizare</th>
                         <th class="px-0">Plata</th>
                         <th class="px-0">Nr.<br />pers.</th>
                         <th class="px-0" align="center">Statie<br />imbarcare</th>
@@ -159,12 +159,13 @@
                                         @endif
                                     </td>
                                     <td class="px-0" align="center">
-                                        @if(!empty($cursa_ora->ora))    
+                                        {{-- @if(!empty($cursa_ora->ora))    
                                             {{ \Carbon\Carbon::parse($cursa_ora->ora)
                                                 ->addHours(\Carbon\Carbon::parse($cursa_ora->cursa->durata)->hour)
                                                 ->addMinutes(\Carbon\Carbon::parse($cursa_ora->cursa->durata)->minute)
                                                 ->format('H:i') }}  
-                                        @endif
+                                        @endif --}}           
+                                    {{ $rezervare->zbor_ora_aterizare }}
                                     </td>
                                     <td class="px-0" align="center">
                                         @if(!empty($rezervare->tip_plata))
