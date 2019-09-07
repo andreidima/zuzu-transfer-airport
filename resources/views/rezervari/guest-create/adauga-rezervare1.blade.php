@@ -325,7 +325,7 @@
 
                                 {{-- <h1 :plata-online="true"></h1> --}}
 
-                                <div class="form-group col-lg-12 mb-0 mt-1 pb-1 border-bottom"> 
+                                {{-- <div class="form-group col-lg-12 mb-0 mt-1 pb-1 border-bottom"> 
                                     <div class="d-flex justify-content-center">
                                         <button type="button" class="btn btn-light btn-sm mr-2" v-on:click="plata_online = !plata_online">PLATA CU CARD</button>                           
                                         <input
@@ -349,7 +349,7 @@
                                             </div>
                                         </div>
                                     </div> 
-                                </div>
+                                </div> --}}
                             @endguest
 
                             <div class="form-group col-lg-12 mb-0 mt-1 d-flex">
