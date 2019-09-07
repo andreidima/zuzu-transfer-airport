@@ -4,7 +4,7 @@
     <div class="container card px-0">
         <div class="row card-header">
             <div class="col-lg-2">
-                <h4 class="mt-2"><a href="/rezervari"><i class="fas fa-file-alt mr-1"></i>Rezervări</a></h4>
+                <h4 class="mt-2"><a href="/rezervari" style="color:#408080"><i class="fas fa-file-alt mr-1"></i>Rezervări</a></h4>
             </div> 
             <div class="col-lg-8 mb-2">             
                 <form class="needs-validation" novalidate method="GET" action="/rezervari">
@@ -15,7 +15,7 @@
                         </div>
                         <div class="mx-4">
                             <span class="input-group-btn">
-                                <button class="btn btn-default-sm bg-primary" type="submit">
+                                <button class="btn btn-default-sm" type="submit" style="background-color:#408080">
                                     <i class="fas fa-search text-white"></i>
                                 </button>
                             </span>
@@ -27,7 +27,7 @@
                 </form>
             </div>
             <div class="col-lg-2">
-                <a class="btn btn-primary" href="/rezervari/adauga" role="button">Adaugă Rezervare</a>
+                <a class="btn text-white" href="/rezervari/adauga" role="button" style="background-color:#408080">Adaugă Rezervare</a>
             </div>
         </div>
     </div>
@@ -42,7 +42,7 @@
     <div>
         <table class="table table-sm" style="border:1px solid #333; width:100%;"> 
             <thead>
-                <tr style="height:35px; background-color:#336699; text-align:center; color:white; font-size:0.7rem">
+                <tr style="height:35px; background-color:#408080; text-align:center; color:white; font-size:0.7rem">
                 <th class="px-0">Nr.<br>crt.</th>
                 @if (auth()->user()->isDispecer())
                     <th class="px-0">User</th>
