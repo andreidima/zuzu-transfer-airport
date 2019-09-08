@@ -34,10 +34,10 @@
 </ul>
 
 <ul style="list-style-type: circle">
-    <li>scrieți sau selectați cu săgeata <b>nr de persoane</b> (adulți sau copii),</li>
+    <li>selectați <b>nr de persoane</b> (adulți sau copii),</li>
     <li>dacă încasați comisionul în agenție completați suma în căsuța de comision și apoi selectați “<b>Adaugă rezervarea</b>”</li>
     <li>dacă plata se va face la șofer selectați “<b>Adaugă rezervarea</b>” fără să mai bifați/ completați altceva,</li>
-    <li>dacă încasați integral la agenție bifați “<b>Preț total: La agenție</b>”</li>
+    <li>dacă încasați integral la agenție bifați “<b>Plată: La agenție</b>”</li>
     <li>dacă se solicită și retur bifați “<b>Retur</b>”, completați datele de întoarcere și apoi selectați “<b>Adaugă rezervarea</b>”</li>
     <li>verificați datele introduse apoi selectați “<b>Adaugă rezervarea</b>”, rezervarea s-a înregistrat, puteți descarcă biletul.</li>
     <li>Pentru a reveni la pagină principala selectați “<b>Rezervări</b>” din meniul de sus.</li>
