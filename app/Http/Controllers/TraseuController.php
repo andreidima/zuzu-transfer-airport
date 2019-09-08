@@ -457,7 +457,7 @@ class TraseuController extends Controller
 
             $pdf = \PDF::loadView('trasee.export.traseu-pdf', compact('trasee', 'data_traseu', 'data_traseu_Ymd', 'telefoane_clienti_neseriosi'))
                 ->setPaper('a4');
-            return $pdf->stream('Raport ' . $trasee->traseu_nume->nume . ', ' . $data_traseu . ', ' . 
+            return $pdf->download('Raport ' . $trasee->traseu_nume->nume . ', ' . $data_traseu . ', ' . 
                 \Carbon\Carbon::parse($trasee->curse_ore->first()->ora)->format('H_i') 
                 . ' - ' .
                 \Carbon\Carbon::parse($trasee->curse_ore->first()->ora)
@@ -513,14 +513,14 @@ class TraseuController extends Controller
         } elseif ($request->view_type === 'traseu-pdf-toate-orele') {            
             $pdf = \PDF::loadView('trasee.export.traseu-pdf-toate-orele', compact('trasee_nume', 'data_traseu', 'data_traseu_Ymd', 'telefoane_clienti_neseriosi'))
                 ->setPaper('a4');
-            return $pdf->stream('Raport ' . $trasee_nume->nume . ', ' . $data_traseu . '.pdf');
+            return $pdf->download('Raport ' . $trasee_nume->nume . ', ' . $data_traseu . '.pdf');
             
         } elseif ($request->view_type === 'traseu-html-toate-orele-per-ora') {
             return view('trasee.export.traseu-pdf-toate-orele-per-ora', compact('trasee_nume', 'data_traseu', 'data_traseu_Ymd', 'telefoane_clienti_neseriosi'));
         } elseif ($request->view_type === 'traseu-pdf-toate-orele-per-ora') {
             $pdf = \PDF::loadView('trasee.export.traseu-pdf-toate-orele-per-ora', compact('trasee_nume', 'data_traseu', 'data_traseu_Ymd', 'telefoane_clienti_neseriosi'))
                 ->setPaper('a4');
-            return $pdf->stream('Raport ' . $trasee_nume->nume . ', ' . $data_traseu . '.pdf');
+            return $pdf->download('Raport ' . $trasee_nume->nume . ', ' . $data_traseu . '.pdf');
             
         }
     }
