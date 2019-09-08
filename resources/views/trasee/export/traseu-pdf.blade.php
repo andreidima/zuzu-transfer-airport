@@ -214,10 +214,17 @@
                             $nr_persoane = $nr_persoane +
                                 $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sum('nr_adulti') +
                                 $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sum('nr_copii');     
-                            $suma = $suma + $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sum('pret_total') -
-                                $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sum('comision_agentie') - 
+                            $suma = $suma + $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sum('pret_total')
+                                -
+                                $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sum('comision_agentie') 
+                                - 
                                 $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)
-                                    ->where('tip_plata_id', 2)->where('comision_agentie', 0)->sum('pret_total');
+                                    ->where('tip_plata_id', 2)->where('comision_agentie', 0)
+                                    ->sum('pret_total')
+                                -
+                                $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)
+                                    ->where('tip_plata_id', 3)
+                                    ->sum('pret_total');
                         @endphp
                     @empty
                     @endforelse
@@ -368,10 +375,17 @@
                                     $nr_persoane = $nr_persoane +
                                         $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sum('nr_adulti') +
                                         $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sum('nr_copii');     
-                                    $suma = $suma + $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sum('pret_total') -
-                                        $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sum('comision_agentie') - 
+                                    $suma = $suma + $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sum('pret_total')
+                                        -
+                                        $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sum('comision_agentie')
+                                        - 
                                         $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)
-                                            ->where('tip_plata_id', 2)->where('comision_agentie', 0)->sum('pret_total');
+                                            ->where('tip_plata_id', 2)->where('comision_agentie', 0)                   
+                                            ->sum('pret_total')
+                                        -
+                                        $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)
+                                            ->where('tip_plata_id', 3)                                            
+                                            ->sum('pret_total');
                                 @endphp
                             @empty
                             @endforelse
