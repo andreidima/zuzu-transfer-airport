@@ -471,8 +471,21 @@
                 </div>
                     
             </form>
+        </div>
+    </div>
 
+    <div class="m-4">
 
+    </div>
+
+    <div class="justify-content">
+        <div class="row">
+            <div class="col-lg-12 justify-content">
+                <img src="{{ asset('images/grile-ore/Galati - Otopeni.jpg') }}" width="258px">
+                <img src="{{ asset('images/grile-ore/Otopeni - Galati.jpg') }}" width="250px">
+                <img src="{{ asset('images/grile-ore/Tecuci - Otopeni.jpg') }}" width="290px">
+                <img src="{{ asset('images/grile-ore/Otopeni - Tecuci.jpg') }}" width="288px">
+            </div>
         </div>
     </div>
 </div>
