@@ -201,7 +201,7 @@ class UserFirmaController extends Controller
         } elseif ($request->view_type === 'agentie-rezervari-pdf') { 
             $pdf = \PDF::loadView('agentii.export.agentie-rezervari-pdf', compact('agentie', 'rezervari', 'search_data_inceput', 'search_data_sfarsit'))
                 ->setPaper('a4');
-            return $pdf->stream($agentie->nume . ', ' . $search_data_inceput . ' - ' . $search_data_sfarsit . '.pdf');
+            return $pdf->download($agentie->nume . ', ' . $search_data_inceput . ' - ' . $search_data_sfarsit . '.pdf');
         }
     }
 
@@ -232,7 +232,7 @@ class UserFirmaController extends Controller
         } elseif ($request->view_type === 'agentie-rezervari-pdf') { 
             $pdf = \PDF::loadView('agentii.export.agentie-rezervari-pdf', compact('agentie', 'rezervari', 'search_data_inceput', 'search_data_sfarsit'))
                 ->setPaper('a4');
-            return $pdf->stream($agentie->nume . ', ' . $search_data_inceput . ' - ' . $search_data_sfarsit . '.pdf');
+            return $pdf->download($agentie->nume . ', ' . $search_data_inceput . ' - ' . $search_data_sfarsit . '.pdf');
         }
     }
 }
