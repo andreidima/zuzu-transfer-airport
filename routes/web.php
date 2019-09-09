@@ -10,7 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes(['register' => false, 'password.request' => true]);
+// Auth::routes(['register' => true, 'password.request' => true]);
+Auth::routes();
 
 // Rute pentru rezervare facuta de guest
 Route::get('/adauga-rezervare-pasul-1', 'RezervareController@adaugaRezervare1');
