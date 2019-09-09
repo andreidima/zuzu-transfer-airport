@@ -12,14 +12,14 @@ class UserController extends Controller
         $id = request('user_id');
 
         //if session exists remove it and return login to original user
-        if (session()->get('hasClonedUser') == 298) {
+        if (session()->get('hasClonedUser') == 355) {
             auth()->loginUsingId(session()->remove('hasClonedUser'));
             session()->remove('hasClonedUser');
             return redirect()->back();
         }
 
         //only run for developer, clone selected user and create a cloned session
-        if (auth()->user()->id == 298) {
+        if (auth()->user()->id == 355) {
             session()->put('hasClonedUser', auth()->user()->id);
             auth()->loginUsingId($id);
             return redirect()->back();
