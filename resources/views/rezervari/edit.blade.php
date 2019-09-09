@@ -196,7 +196,12 @@
                                     required> 
                             </div> 
                             <div class="form-group col-lg-12 mb-1">
-                                <label for="nume" class="mb-0">Statie îmbarcare:</label>
+                                <label for="nume" class="mb-0">
+                                    Statie îmbarcare:
+                                    @if(!empty($rezervari->statie))
+                                        {{ $rezervari->statie->nume }}
+                                    @endif
+                                </label>
                                 <input 
                                     type="text" 
                                     class="form-control form-control-sm {{ $errors->has('statie_imbarcare') ? 'is-invalid' : '' }}" 
