@@ -38,7 +38,6 @@
     </div>
     @endif
 
-    {{-- <div class="container-fluid px-0 table-responsive-lg"> --}}
     <div>
         <table class="table table-sm" style="border:1px solid #333; width:100%;"> 
             <thead>
@@ -175,18 +174,12 @@
                         @endif
                         
                         <td align="center" style="text-align:left; word-break: break-word;">
-                            {{-- <div style="max-width:200px; word-wrap: break-word; white-space: normal;"> --}}
                                 <span title="Cod bilet: RO{{ $rezervare->id }}">
-                                    {{-- <a href="{{ $rezervare->path() }}" class="text-dark"> --}}
                                         {{ $rezervare->nume }}
-                                    {{-- </a> --}}
                                 </span>
-                            {{-- </div> --}}
                         </td>
                         <td align="center" style="text-align:left; word-break: break-word;">
-                            {{-- <div style="max-width:100px; word-wrap: break-word; white-space: normal;"> --}}
                                 {{ $rezervare->telefon }}
-                            {{-- </div> --}}
                         </td>
                         <td align="center">
                             @if (!empty($rezervare->cursa->oras_plecare))
@@ -224,7 +217,7 @@
                         <td align="center">
                             {{ $rezervare->nr_adulti + $rezervare->nr_copii}}</a>
                         </td>
-                        <td class="px-0" align="center">
+                        <td class="px-0" align="center" style="text-align:left; word-break: break-word;">
                             @if (auth()->user()->isDispecer())
                                 @if(!empty($rezervare->statie))
                                     <!-- Button to Open the Modal -->
@@ -233,7 +226,6 @@
                                         data-toggle="modal" 
                                         data-target="#rezervareStatie{{ $rezervare->id }}"
                                         title="{{ $rezervare->statie->nume }}">
-                                        {{-- <i class="fas fa-info-circle"></i> --}}
                                         <img src="{{ asset('images/icon-details.png') }}" height="">
                                     </button>
 
@@ -269,7 +261,6 @@
                                         data-toggle="modal"
                                         data-target="#rezervareStatie{{ $rezervare->id }}"
                                         title="{{ $rezervare->statie_imbarcare }}">
-                                        {{-- <i class="fas fa-info-circle"></i> --}}
                                         <img src="{{ asset('images/icon-details.png') }}" height="">
                                     </button>
 
@@ -307,15 +298,12 @@
                         <td class="px-0" align="center">
                             <div style="width:25px; height:25px;" class="bg-success mt-1">
                                 <a href="{{ $rezervare->path() }}/export/rezervare-pdf"
-                                    {{-- class="btn btn-success"
-                                    style="width: 100%; height:100%; white-space: normal;" --}}
                                     role="button"
                                     target="_blank"
                                     title="Descarcă bilet"
                                     >
                                     <i class="fas fa-download text-white"></i>
                                 </a>
-                                {{-- <button type="submit" class="btn btn-primary float-right" style="width: 100%; height:100%; white-space: normal;">A</button> --}}
                             </div>
                         </td>
                         <td align="center" style="border-right:#333 1px solid;" class="px-0">   
@@ -427,11 +415,8 @@
 
                                     <div style="float:right;" class="">
                                         <a href="{{ $rezervare->path() }}/modifica"
-                                            {{-- class="btn btn-primary btn-sm"
-                                            role="button" --}}
                                             title="Editează Rezervarea"
                                             >
-                                            {{-- <i class="fas fa-edit"></i> --}}
                                             <img src="{{ asset('images/icon-edit.jpg') }}" height="26px">
                                         </a>
                                     </div>
