@@ -178,10 +178,10 @@
                                         {{ $rezervare->nr_adulti + $rezervare->nr_copii}}</a>
                                     </td>
                                     <td align="center" style="word-break: break-word;">
-                                        @if(!empty($rezervare->statie))
-                                            {{ $rezervare->statie->nume }}
-                                        @elseif(!empty($rezervare->statie_imbarcare))
+                                        @if(!empty($rezervare->statie_imbarcare))
                                             {{ $rezervare->statie_imbarcare }}
+                                        @elseif(!empty($rezervare->statie))
+                                            {{ $rezervare->statie->nume }}
                                         @else
                                             -
                                         @endif

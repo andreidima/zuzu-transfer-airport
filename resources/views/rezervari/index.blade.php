@@ -196,7 +196,7 @@
                         </td>
 
                         @if (!auth()->user()->isDispecer())
-                            <td align="center">
+                            <td align="center" style="text-align:left; word-break: break-word;">
                                 {{ $rezervare->zbor_oras_decolare }}
                             </td>
                         @endif
@@ -219,42 +219,7 @@
                         </td>
                         <td class="px-0" align="center" style="text-align:left; word-break: break-word;">
                             @if (auth()->user()->isDispecer())
-                                @if(!empty($rezervare->statie))
-                                    <!-- Button to Open the Modal -->
-                                    <button type="button" 
-                                        class="btn btn-white btn-sm" 
-                                        data-toggle="modal" 
-                                        data-target="#rezervareStatie{{ $rezervare->id }}"
-                                        title="{{ $rezervare->statie->nume }}">
-                                        <img src="{{ asset('images/icon-details.png') }}" height="">
-                                    </button>
-
-                                    <!-- The Modal -->
-                                    <div class="modal" id="rezervareStatie{{ $rezervare->id }}" >
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-
-                                            <!-- Modal Header -->
-                                            <div class="modal-header">
-                                                <h6 class="modal-title">Client: {{ $rezervare->nume }}</h6>
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            </div>
-
-                                            <!-- Modal body -->
-                                            <div class="modal-body">
-                                                <h6 class="modal-title">Îmbarcare: {{ $rezervare->statie->nume }}</h6>
-                                            </div>
-
-                                            <!-- Modal footer -->
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                @elseif(!empty($rezervare->statie_imbarcare))
+                                @if(!empty($rezervare->statie_imbarcare))
                                     <!-- Button to Open the Modal -->
                                     <button type="button"
                                         class="btn btn-white btn-sm"
@@ -278,6 +243,40 @@
                                             <!-- Modal body -->
                                             <div class="modal-body">
                                                 <h6 class="modal-title">Îmbarcare: {{ $rezervare->statie_imbarcare }}</h6>
+                                            </div>
+
+                                            <!-- Modal footer -->
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                @elseif(!empty($rezervare->statie))
+                                    <!-- Button to Open the Modal -->
+                                    <button type="button" 
+                                        class="btn btn-white btn-sm" 
+                                        data-toggle="modal" 
+                                        data-target="#rezervareStatie{{ $rezervare->id }}"
+                                        title="{{ $rezervare->statie->nume }}">
+                                        <img src="{{ asset('images/icon-details.png') }}" height="">
+                                    </button>
+
+                                    <!-- The Modal -->
+                                    <div class="modal" id="rezervareStatie{{ $rezervare->id }}" >
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+
+                                            <!-- Modal Header -->
+                                            <div class="modal-header">
+                                                <h6 class="modal-title">Client: {{ $rezervare->nume }}</h6>
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+
+                                            <!-- Modal body -->
+                                            <div class="modal-body">
+                                                <h6 class="modal-title">Îmbarcare: {{ $rezervare->statie->nume }}</h6>
                                             </div>
 
                                             <!-- Modal footer -->

@@ -120,13 +120,17 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     
                                     @if (Auth::user()->id == 355)
+
+                                    {{-- @php
+                                        $useri = \App\User::get();
+                                    @endphp --}}
                                         <form action='{{ url('users/loginas') }}' method='post'>
                                             @csrf
                                         
                                             <select class="form-control" name='user_id' onchange='this.form.submit()'>
                                                 <option value="">Cont Agentie</option>
-                                                @foreach (\App\User::get() as $row)
-                                                    <option value='{{{ $row->id }}}'>{{ $row->nume }} - {{ $row->firma->nume }}</option>
+                                                @foreach (\App\User::select('id', 'user_firma_id', 'username')->with('firma:id,nume')->orderBy('username', 'asc')->get() as $row)
+                                                    <option value='{{{ $row->id }}}'>{{ $row->username }} - {{ $row->firma->nume }}</option>
                                                 @endforeach
                                             </select>                                        
                                         </form>                            
