@@ -86,7 +86,7 @@
 
                             <div class="col-md-6">
                                 <input id="telefon" type="telefon" class="form-control{{ $errors->has('telefon') ? ' is-invalid' : '' }}" name="telefon" value="{{ old('telefon') }}" required autocomplete="telefon">
-
+                                <small id="telefonAjutor" class="form-text text-muted">Telefon de contact, preferabil telefon mobil</small>
                                 @if ($errors->has('telefon'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('telefon') }}</strong>
@@ -142,6 +142,14 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-lg-12 form-check d-flex justify-content-center">
+                                <input type="checkbox" class="form-check-input" name="acord_de_confidentialitate" value="1" required
+                                {{ old('acord_de_confidentialitate') == '1' ? 'checked' : '' }}>
+                                <label class="form-check-label" for="acord_de_confidentialitate">Am citit și sunt de acord cu <i>Termenii și condițiile</i> de utilizare</label> 
                             </div>
                         </div>
 
