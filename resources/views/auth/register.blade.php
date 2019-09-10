@@ -5,17 +5,73 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header">{{ __('Înregistrare') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="nume" class="col-md-4 col-form-label text-md-right">{{ __('Nume') }}</label>
+                            <label for="firma_nume" class="col-md-4 col-form-label text-md-right">{{ __('Denumire firmă*:') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('nume') ? ' is-invalid' : '' }}" name="nume" value="{{ old('nume') }}" required autocomplete="nume" autofocus>
+                                <input id="firma_nume" type="text" class="form-control{{ $errors->has('firma_nume') ? ' is-invalid' : '' }}" name="firma_nume" value="{{ old('firma_nume') }}" required autocomplete="firma_nume" autofocus>
+
+                                @if ($errors->has('firma_nume'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('firma_nume') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="firma_punct_lucru" class="col-md-4 col-form-label text-md-right">{{ __('Punct lucru*:') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="firma_punct_lucru" type="text" class="form-control{{ $errors->has('firma_punct_lucru') ? ' is-invalid' : '' }}" name="firma_punct_lucru" value="{{ old('firma_punct_lucru') }}" required autocomplete="firma_punct_lucru" autofocus>
+
+                                @if ($errors->has('firma_punct_lucru'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('firma_punct_lucru') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="firma_cif" class="col-md-4 col-form-label text-md-right">{{ __('C.I.F.:') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="firma_cif" type="text" class="form-control{{ $errors->has('firma_cif') ? ' is-invalid' : '' }}" name="firma_cif" value="{{ old('firma_cif') }}" autocomplete="firma_cif" autofocus>
+
+                                @if ($errors->has('firma_cif'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('firma_cif') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="firma_nr_orc" class="col-md-4 col-form-label text-md-right">{{ __('Nr. O.R.C.:') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="firma_nr_orc" type="text" class="form-control{{ $errors->has('firma_nr_orc') ? ' is-invalid' : '' }}" name="firma_nr_orc" value="{{ old('firma_nr_orc') }}" autocomplete="firma_nr_orc" autofocus>
+
+                                @if ($errors->has('firma_nr_orc'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('firma_nr_orc') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="nume" class="col-md-4 col-form-label text-md-right">{{ __('Persoana contact*:') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="nume" type="text" class="form-control{{ $errors->has('nume') ? ' is-invalid' : '' }}" name="nume" value="{{ old('nume') }}" required autocomplete="nume" autofocus>
 
                                 @if ($errors->has('nume'))
                                     <span class="invalid-feedback" role="alert">
@@ -26,7 +82,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="telefon" class="col-md-4 col-form-label text-md-right">{{ __('Telefon') }}</label>
+                            <label for="telefon" class="col-md-4 col-form-label text-md-right">{{ __('Telefon*:') }}</label>
 
                             <div class="col-md-6">
                                 <input id="telefon" type="telefon" class="form-control{{ $errors->has('telefon') ? ' is-invalid' : '' }}" name="telefon" value="{{ old('telefon') }}" required autocomplete="telefon">
@@ -40,7 +96,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail*:') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autocomplete="email">
@@ -54,7 +110,21 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Parola') }}</label>
+                            <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Nume de utilizator*:') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="username" type="username" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required autocomplete="username">
+
+                                @if ($errors->has('username'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('username') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Parola*:') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required autocomplete="new-password">
@@ -68,7 +138,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirmare Parolă') }}</label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirmare Parolă*:') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">

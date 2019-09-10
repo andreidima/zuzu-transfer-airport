@@ -9,6 +9,8 @@ class UserFirma extends Model
     protected $table = 'users_firme';
     protected $guarded = [];
 
+    public $timestamps = false;
+
     public function path()
     {
         return "/agentii/{$this->id}";

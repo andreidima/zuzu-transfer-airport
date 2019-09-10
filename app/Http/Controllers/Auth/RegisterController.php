@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\UserFirma;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -50,9 +51,13 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'nume' => ['required', 'string', 'max:255'],
-            'telefon' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'firma_nume' => ['required', 'string', 'max:150'],
+            'firma_punct_lucru' => ['required', 'string', 'max:150'],
+            'firma_cif' => ['string', 'max:100'],
+            'firma_nr_orc' => ['string', 'max:100'],
+            'nume' => ['required', 'string', 'max:150'],
+            'telefon' => ['required', 'string', 'max:100'],
+            'email' => ['required', 'string', 'email', 'max:150', 'unique:users'],
             'username' => ['required', 'string', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -67,17 +72,27 @@ class RegisterController extends Controller
     // protected function create(array $data)
     protected function create(array $data)
     {
-        return User::create([
+        $firma = UserFirma::create([
+            'nume' => $data['firma_nume'],
+            'punct_lucru' => $data['firma_punct_lucru'],
+            'cif' => $data['firma_cif'],
+            'nr_orc' => $data['firma_nr_orc'],
+            'persoana_contact' => $data['nume'],
+            'telefon' => $data['telefon'],
+            'email' => $data['email'],
+        ]);
+
+        $firmaId = $firma->id;
+
+        $user = User::create([
+            'user_firma_id' => $firmaId,
             'nume' => $data['nume'],
             'telefon' => $data['telefon'],
             'email' => $data['email'],
-            'username' => $data['email'],
+            'username' => $data['username'],
             'password' => Hash::make($data['password']),
         ]);
-    }
 
-    protected function register(Request $request)
-    {
-        dd($request);
+        return $user;
     }
 }

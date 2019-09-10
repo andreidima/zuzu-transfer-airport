@@ -430,7 +430,7 @@
                         </td>
                     </tr>                                          
                 @empty
-                    <div>Nu s-au gasit rezervări în baza de date. Încearcă alte date de căutare</div>
+                    {{-- <div>Nu s-au gasit rezervări în baza de date. Încearcă alte date de căutare</div> --}}
                 @endforelse
                 </tbody>
         </table>

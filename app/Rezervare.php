@@ -9,7 +9,7 @@ class Rezervare extends Model
     protected $table = 'rezervari';
     protected $guarded = [];
     
-    protected $with = ['user'];
+    // protected $with = ['user'];
 
     public function path()
     {
