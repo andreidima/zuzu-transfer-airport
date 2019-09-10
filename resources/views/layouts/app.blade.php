@@ -121,9 +121,6 @@
                                     
                                     @if (Auth::user()->id == 355)
 
-                                    {{-- @php
-                                        $useri = \App\User::get();
-                                    @endphp --}}
                                         <form action='{{ url('users/loginas') }}' method='post'>
                                             @csrf
                                         

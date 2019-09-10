@@ -349,11 +349,14 @@ class RezervareController extends Controller
         }        
 
         // Trimitere email pentru rezervare tur
-        // if (!empty($rezervare_tur->email)) {
-        //     \Mail::to($rezervare_tur->email)->send(
-        //         new BiletClient($rezervare_tur, ($request->retur == "true" ? $rezervare_retur : null ))
-        //     );
-        // }     
+        if (auth()->user()->id == 355)
+        {
+            if (!empty($rezervare_tur->email)) {
+                \Mail::to($rezervare_tur->email)->send(
+                    new BiletClient($rezervare_tur, ($request->retur == "true" ? $rezervare_retur : null ))
+                );
+            }     
+        }
 
         if ($request->retur == "false") {
             $rezervare_tur->save();
