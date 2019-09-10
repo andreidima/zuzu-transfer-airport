@@ -349,14 +349,11 @@ class RezervareController extends Controller
         }        
 
         // Trimitere email pentru rezervare tur
-        if (auth()->user()->id == 355)
-        {
-            if (!empty($rezervare_tur->email)) {
-                \Mail::to($rezervare_tur->email)->send(
-                    new BiletClient($rezervare_tur, ($request->retur == "true" ? $rezervare_retur : null ))
-                );
-            }     
-        }
+        if (!empty($rezervare_tur->email)) {
+            \Mail::to($rezervare_tur->email)->send(
+                new BiletClient($rezervare_tur, ($request->retur == "true" ? $rezervare_retur : null ))
+            );
+        }   
 
         if ($request->retur == "false") {
             $rezervare_tur->save();
@@ -460,11 +457,11 @@ class RezervareController extends Controller
         // dd(Config::get('mail'));
 
         // Trimitere email
-        // if (!empty($rezervari->email)) {
-        //     \Mail::to($rezervari->email)->send(
-        //         new BiletClient($rezervari)
-        //     );
-        // }
+        if (!empty($rezervari->email)) {
+            \Mail::to($rezervari->email)->send(
+                new BiletClient($rezervari)
+            );
+        }
 
         return redirect($rezervari->path().'/rezervare_modificata')->with('status', 'Rezervarea pentru clientul "' . $rezervari->nume . '" a fost modificată cu succes!');
     }
@@ -724,11 +721,11 @@ class RezervareController extends Controller
         // dd($request->session()->get('rezervare'));        
 
         // Trimitere email
-        // if (!empty($rezervare->email)) {
-        //     \Mail::to($rezervare->email)->send(
-        //         new BiletClient($rezervare)
-        //     );
-        // }
+        if (!empty($rezervare->email)) {
+            \Mail::to($rezervare->email)->send(
+                new BiletClient($rezervare)
+            );
+        }
 
         return redirect('/adauga-rezervare-pasul-3');
 
