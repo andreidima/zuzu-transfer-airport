@@ -148,28 +148,21 @@
                         </div>
 
                         <div class="form-group row">
-                            <div class="col-lg-12 form-check">
-                                <div>
+                            <div class="form-check">
                                     <input type="checkbox" class="form-check-input" name="acord_de_confidentialitate" value="1" 
                                     {{ old('acord_de_confidentialitate') == '1' ? 'checked' : '' }}>
-                                </div>
-                                <div>
                                     <label class="form-check-label" for="acord_de_confidentialitate">Am citit și sunt de acord cu <i>Termenii și condițiile</i> de utilizare</label>
-                                </div> 
-                            </div>
-                                <div class="col-lg-12">
-                                    @if ($errors->has('email'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('email') }}</strong>
+                            <br>
+
+                                    @if ($errors->has('acord_de_confidentialitate'))
+                                        <span class="text-danger" role="alert">
+                                            <small>
+                                                <strong>{{ $errors->first('acord_de_confidentialitate') }}</strong>
+                                            </small>
                                         </span>
                                     @endif
 
-                                    @if ($errors->has('acord_de_confidentialitate'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('acord_de_confidentialitate') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
+                            </div>
                             
                         </div>
 
