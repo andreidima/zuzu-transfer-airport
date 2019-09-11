@@ -160,11 +160,11 @@
             </div>
         </nav>
 
-        <main class="container my-4 py-4 bg-white" style="min-height:450px;">
+        <main class="container my-4 py-4" style="min-height:450px;">
             @yield('content')
         </main>
         
-        <footer class="container my-4 py-4 bg-white">
+        <footer class="container my-4 py-4">
             <div class="row mb-0">
                 <div class="col-lg-4 my-1 py-1">
                     <ul class="my-0" style="list-style-image: url({{ asset('images/arrow.gif') }});"><h5>Informații</h5>

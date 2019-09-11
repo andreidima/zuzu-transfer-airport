@@ -314,12 +314,17 @@
 
             <div v-show="retur" class="mb-2">    
                 <div class="form-row justify-content-center">   
-                    <div class="col-md-auto card bg-dark justify-content-center px-0"> 
+                    {{-- <div class="col-md-auto card bg-dark justify-content-center px-0"> 
                         <h4 style="width:16px; word-wrap: break-word; white-space:pre-wrap;">
                             RETUR
                         </h4>
-                    </div>
-                    <div class="col-lg-6">   
+                    </div> --}}
+                    <div class="col-lg-6 card border-dark">  
+                        <div class="form-row mb-0 justify-content-center">
+                            <div class="form-group col-lg-12 card shadow-sm p-0 m-0 bg-dark text-white text-center">
+                                Retur
+                            </div>
+                        </div> 
                         <div class="form-row mb-0 justify-content-center">
                             <div class="form-group col-lg-12 card shadow-sm px-2 mb-0" style="background-color:#dedede">
                                 <div class="form-row mb-2 d-flex justify-content-between">
@@ -416,11 +421,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-auto card bg-dark justify-content-center px-0"> 
+                    {{-- <div class="col-md-auto card bg-dark justify-content-center px-0"> 
                         <h4 style="width:16px; word-wrap: break-word; white-space:pre-wrap;">
                             RETUR
                         </h4>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
                 

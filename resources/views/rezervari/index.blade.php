@@ -1,8 +1,8 @@
 @extends ('layouts.app')
 
 @section('content')   
-    <div class="container card px-0">
-        <div class="row card-header">
+    <div class="container card">
+        <div class="row card-header px-0">
             <div class="col-lg-2">
                 <h4 class="mt-2"><a href="/rezervari" style="color:#408080"><i class="fas fa-file-alt mr-1"></i>Rezervări</a></h4>
             </div> 

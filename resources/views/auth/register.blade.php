@@ -7,6 +7,8 @@
             <div class="card">
                 <div class="card-header">{{ __('Înregistrare') }}</div>
 
+                @include ('errors')
+
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
@@ -15,7 +17,7 @@
                             <label for="firma_nume" class="col-md-4 col-form-label text-md-right">{{ __('Denumire firmă*:') }}</label>
 
                             <div class="col-md-6">
-                                <input id="firma_nume" type="text" class="form-control{{ $errors->has('firma_nume') ? ' is-invalid' : '' }}" name="firma_nume" value="{{ old('firma_nume') }}" required autocomplete="firma_nume" autofocus>
+                                <input id="firma_nume" type="text" class="form-control{{ $errors->has('firma_nume') ? ' is-invalid' : '' }}" name="firma_nume" value="{{ old('firma_nume') }}" autocomplete="firma_nume" autofocus>
 
                                 @if ($errors->has('firma_nume'))
                                     <span class="invalid-feedback" role="alert">
@@ -29,7 +31,7 @@
                             <label for="firma_punct_lucru" class="col-md-4 col-form-label text-md-right">{{ __('Punct lucru*:') }}</label>
 
                             <div class="col-md-6">
-                                <input id="firma_punct_lucru" type="text" class="form-control{{ $errors->has('firma_punct_lucru') ? ' is-invalid' : '' }}" name="firma_punct_lucru" value="{{ old('firma_punct_lucru') }}" required autocomplete="firma_punct_lucru" autofocus>
+                                <input id="firma_punct_lucru" type="text" class="form-control{{ $errors->has('firma_punct_lucru') ? ' is-invalid' : '' }}" name="firma_punct_lucru" value="{{ old('firma_punct_lucru') }}" autocomplete="firma_punct_lucru" autofocus>
 
                                 @if ($errors->has('firma_punct_lucru'))
                                     <span class="invalid-feedback" role="alert">
@@ -71,7 +73,7 @@
                             <label for="nume" class="col-md-4 col-form-label text-md-right">{{ __('Persoana contact*:') }}</label>
 
                             <div class="col-md-6">
-                                <input id="nume" type="text" class="form-control{{ $errors->has('nume') ? ' is-invalid' : '' }}" name="nume" value="{{ old('nume') }}" required autocomplete="nume" autofocus>
+                                <input id="nume" type="text" class="form-control{{ $errors->has('nume') ? ' is-invalid' : '' }}" name="nume" value="{{ old('nume') }}" autocomplete="nume" autofocus>
 
                                 @if ($errors->has('nume'))
                                     <span class="invalid-feedback" role="alert">
@@ -85,7 +87,7 @@
                             <label for="telefon" class="col-md-4 col-form-label text-md-right">{{ __('Telefon*:') }}</label>
 
                             <div class="col-md-6">
-                                <input id="telefon" type="telefon" class="form-control{{ $errors->has('telefon') ? ' is-invalid' : '' }}" name="telefon" value="{{ old('telefon') }}" required autocomplete="telefon">
+                                <input id="telefon" type="telefon" class="form-control{{ $errors->has('telefon') ? ' is-invalid' : '' }}" name="telefon" value="{{ old('telefon') }}" autocomplete="telefon">
                                 <small id="telefonAjutor" class="form-text text-muted">Telefon de contact, preferabil telefon mobil</small>
                                 @if ($errors->has('telefon'))
                                     <span class="invalid-feedback" role="alert">
@@ -99,7 +101,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail*:') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" autocomplete="email">
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
@@ -113,7 +115,7 @@
                             <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Nume de utilizator*:') }}</label>
 
                             <div class="col-md-6">
-                                <input id="username" type="username" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required autocomplete="username">
+                                <input id="username" type="username" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" autocomplete="username">
 
                                 @if ($errors->has('username'))
                                     <span class="invalid-feedback" role="alert">
@@ -127,7 +129,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Parola*:') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required autocomplete="new-password">
+                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" autocomplete="new-password">
 
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback" role="alert">
@@ -138,19 +140,37 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirmare Parolă*:') }}</label>
+                            <label for="password_confirmation" class="col-md-4 col-form-label text-md-right">{{ __('Confirmare Parolă*:') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" autocomplete="new-password">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <div class="col-lg-12 form-check d-flex justify-content-center">
-                                <input type="checkbox" class="form-check-input" name="acord_de_confidentialitate" value="1" required
-                                {{ old('acord_de_confidentialitate') == '1' ? 'checked' : '' }}>
-                                <label class="form-check-label" for="acord_de_confidentialitate">Am citit și sunt de acord cu <i>Termenii și condițiile</i> de utilizare</label> 
+                            <div class="col-lg-12 form-check">
+                                <div>
+                                    <input type="checkbox" class="form-check-input" name="acord_de_confidentialitate" value="1" 
+                                    {{ old('acord_de_confidentialitate') == '1' ? 'checked' : '' }}>
+                                </div>
+                                <div>
+                                    <label class="form-check-label" for="acord_de_confidentialitate">Am citit și sunt de acord cu <i>Termenii și condițiile</i> de utilizare</label>
+                                </div> 
                             </div>
+                                <div class="col-lg-12">
+                                    @if ($errors->has('email'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                    @endif
+
+                                    @if ($errors->has('acord_de_confidentialitate'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('acord_de_confidentialitate') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            
                         </div>
 
                         <div class="form-group row mb-0">

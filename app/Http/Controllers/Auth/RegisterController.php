@@ -53,13 +53,14 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'firma_nume' => ['required', 'string', 'max:150'],
             'firma_punct_lucru' => ['required', 'string', 'max:150'],
-            'firma_cif' => ['string', 'max:100'],
-            'firma_nr_orc' => ['string', 'max:100'],
+            'firma_cif' => ['max:100'],
+            'firma_nr_orc' => ['max:100'],
             'nume' => ['required', 'string', 'max:150'],
             'telefon' => ['required', 'string', 'max:100'],
             'email' => ['required', 'string', 'email', 'max:150', 'unique:users'],
             'username' => ['required', 'string', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'acord_de_confidentialitate' => ['required']
         ]);
     }
 
