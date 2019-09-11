@@ -111,7 +111,7 @@
 
                                     <!-- The Modal -->
                                     <div class="modal" id="userRezervare{{ $rezervare->id }}" >
-                                        <div class="modal-dialog">
+                                        <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
 
                                             <!-- Modal Header -->
@@ -147,7 +147,7 @@
 
                                     <!-- The Modal -->
                                     <div class="modal" id="userRezervare{{ $rezervare->id }}" >
-                                        <div class="modal-dialog">
+                                        <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
 
                                             <!-- Modal Header -->
@@ -217,7 +217,7 @@
                         <td align="center">
                             {{ $rezervare->nr_adulti + $rezervare->nr_copii}}</a>
                         </td>
-                        <td class="px-0" align="center" style="text-align:left; word-break: break-word;">
+                        <td class="px-0" align="center" style="word-break: break-word;">
                             @if (auth()->user()->isDispecer())
                                 @if(!empty($rezervare->statie_imbarcare))
                                     <!-- Button to Open the Modal -->
@@ -231,7 +231,7 @@
 
                                     <!-- The Modal -->
                                     <div class="modal" id="rezervareStatie{{ $rezervare->id }}" >
-                                        <div class="modal-dialog">
+                                        <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
 
                                             <!-- Modal Header -->
@@ -265,7 +265,7 @@
 
                                     <!-- The Modal -->
                                     <div class="modal" id="rezervareStatie{{ $rezervare->id }}" >
-                                        <div class="modal-dialog">
+                                        <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
 
                                             <!-- Modal Header -->
@@ -332,7 +332,7 @@
                                         @endif 
 
                                             <div class="modal fade text-dark" id="activeazaAnuleazaRezervare{{ $rezervare->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content">
                                                     <div class="modal-header bg-warning">
                                                         <h5 class="modal-title" id="exampleModalLabel">Client: <b>{{ $rezervare->nume }}</b></h5>
@@ -381,7 +381,7 @@
                                             <i class="far fa-trash-alt"></i>
                                         </a>
                                             <div class="modal fade text-dark" id="stergeRezervare{{ $rezervare->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content">
                                                     <div class="modal-header bg-danger">
                                                         <h5 class="modal-title text-white" id="exampleModalLabel">Client: <b>{{ $rezervare->nume }}</b></h5>

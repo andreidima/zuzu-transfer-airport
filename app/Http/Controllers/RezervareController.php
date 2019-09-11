@@ -515,9 +515,9 @@ class RezervareController extends Controller
             'zbor_ora_decolare' => ['max:15'],
             'zbor_ora_aterizare' => ['max:15'],
             'nume' => ($request->_method === "PATCH") ?
-                ['required', 'max:100', 'unique:rezervari,nume,' . $rezervari->id . ',id,telefon,' . $request->telefon . ',data_cursa,' . $request->data_cursa . ',ora_id,' . $request->ora_id]
+                ['required', 'max:200', 'unique:rezervari,nume,' . $rezervari->id . ',id,telefon,' . $request->telefon . ',data_cursa,' . $request->data_cursa . ',ora_id,' . $request->ora_id]
                 :
-                ['required', 'max:100', 'unique:rezervari,nume,NULL,id,telefon,' . $request->telefon . ',data_cursa,' . $request->data_cursa . ',ora_id,' . $request->ora_id],
+                ['required', 'max:200', 'unique:rezervari,nume,NULL,id,telefon,' . $request->telefon . ',data_cursa,' . $request->data_cursa . ',ora_id,' . $request->ora_id],
             // 'telefon' => auth() ? auth()->user()->isDispecer() ? [ 'required', 'max:100'] : [ 'required ', 'regex:/^[0-9 ]+$/', 'max: 100'] : [ 'required ', 'regex:/^[0-9 ]+$/', 'max: 100'],
             'telefon' => (auth()->user() === null) ? [ 'required', 'regex:/^[0-9 ]+$/', 'max: 100'] : (auth()->user()->isDispecer() ? [ 'required', 'max:100'] : [ 'required ', 'regex:/^[0-9 ]+$/', 'max: 100']),
             'email' => auth()->user() === null ? [ 'required', 'email', 'max:100'] : ['nullable', 'email', 'max:100'],
