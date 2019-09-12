@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\UserFirma;
+use App\Mail\InregistrareUserFirma;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -93,6 +94,10 @@ class RegisterController extends Controller
             'username' => $data['username'],
             'password' => Hash::make($data['password']),
         ]);
+        
+        \Mail::to('andrei.dima@usm.ro')->send(
+            new InregistrareUserFirma($firma, $user)
+        );
 
         return $user;
     }

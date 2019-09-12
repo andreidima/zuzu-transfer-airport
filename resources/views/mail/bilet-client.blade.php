@@ -1,17 +1,15 @@
 @component('mail::message')
-# Buna ziua {{ $rezervari->nume }},
+# Buna {{ $rezervari->nume }},
 <br>
-Va trimitem atasat biletul rezervarii
+Iti trimitem atasat biletul rezervarii
 <br><br>
 {{-- @component('mail::button', ['url' => url( $rezervari->path() . '/export/rezervare-pdf')])
 Descarcă biletul
 @endcomponent --}}
-Va multumim pentru ca ati folosit serviciile noastre.
-<br><br>
-O zi buna!
+Iti multumim pentru ca ai folosit serviciile noastre.
 <br><br><br>
-Nu raspundeti la acest email. Raspunsul dvs. nu va fi citit.<br>
-Do not respond to this message.Your reply will go nowhere. 
+Nu raspunde la acest email. Raspunsul tau nu va fi citit.<br>
+Do not respond to this message. Your reply will go nowhere. 
 <br><br>
 ZUZU Transfer-Aeroport <br>
 Contact: <br>
