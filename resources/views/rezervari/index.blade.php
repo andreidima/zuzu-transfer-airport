@@ -208,7 +208,9 @@
                             {{ \Carbon\Carbon::parse($rezervare->ora)->format('H:i') }}
                         </td>
                         <td class="px-0" align="center">
-                            @if(!empty($rezervare->tip_plata))
+                            @if($rezervare->tip_plata_id === 3)
+                                <img src="{{ asset('images/card.jpg') }}" height="">
+                            @elseif(!empty($rezervare->tip_plata))
                                 {{ $rezervare->tip_plata->nume }}
                             @else
                                 -

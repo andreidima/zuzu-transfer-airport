@@ -686,6 +686,7 @@ class RezervareController extends Controller
 
         $rezervare = $request->session()->get('rezervare');
         $rezervare->created_at = \Carbon\Carbon::now();
+        $rezervare->tip_plata_id = 1;
 
 
         // aflarea id-ului cursei in functie de orasele introduse
@@ -716,6 +717,7 @@ class RezervareController extends Controller
         [
             'nume.unique' => 'Această Rezervare este deja înregistrată.'
         ]);
+
         
         //Inserarea rezervarii in baza de date
         $id = DB::table('rezervari')->insertGetId($rezervare_array);
