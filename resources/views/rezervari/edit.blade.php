@@ -220,10 +220,10 @@
                                                 </script>  
                                                 <label for="nr_adulti" class="col-form-label pr-0">Număr de locuri:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Adulți:<span class="text-danger">*</span></label>
                                                     <div class="pl-0" style="width:80px">
-                                                    {{-- <input 
-                                                        type="number"
-                                                        min="0"
-                                                        max="20" 
+                                                    <input 
+                                                        type="text"
+                                                        {{-- min="0"
+                                                        max="20"  --}}
                                                         class="form-control form-control-sm {{ $errors->has('nr_adulti') ? 'is-invalid' : '' }}" 
                                                         name="nr_adulti" 
                                                         v-model="nr_adulti" 
@@ -231,8 +231,8 @@
                                                         required
                                                         v-on:input='getPretTotal()'
                                                         {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
-                                                        >  --}}
-                                                    <select class="custom-select custom-select-sm {{ $errors->has('nr_adulti') ? 'is-invalid' : '' }}"
+                                                        > 
+                                                    {{-- <select class="custom-select custom-select-sm {{ $errors->has('nr_adulti') ? 'is-invalid' : '' }}"
                                                         name="nr_adulti"
                                                         v-model="nr_adulti"
                                                         {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
@@ -240,7 +240,7 @@
                                                         @for ($i = 1; $i < 16; $i++)
                                                             <option>{{ $i }}</option>
                                                         @endfor                                                        
-                                                    </select>
+                                                    </select> --}}
                                                     </div>                                       
                                         </div>  
                                         <div class="form-group col-lg-5 mb-0 d-flex">
@@ -249,10 +249,10 @@
                                             </script>  
                                             <label for="nr_copii" class="col-form-label pr-0">Copii:</label>
                                                 <div class="px-0" style="width:80px">
-                                                {{-- <input 
-                                                    type="number"
-                                                    min="0"
-                                                    max="10" 
+                                                <input 
+                                                    type="text"
+                                                    {{-- min="0"
+                                                    max="10"  --}}
                                                     class="form-control form-control-sm {{ $errors->has('nr_copii') ? 'is-invalid' : '' }}" 
                                                     name="nr_copii" 
                                                     v-model="nr_copii" 
@@ -260,8 +260,8 @@
                                                     required
                                                     v-on:input='getPretTotal()'
                                                     {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
-                                                    > --}}
-                                                <select class="custom-select custom-select-sm {{ $errors->has('nr_copii') ? 'is-invalid' : '' }}"
+                                                    >
+                                                {{-- <select class="custom-select custom-select-sm {{ $errors->has('nr_copii') ? 'is-invalid' : '' }}"
                                                     name="nr_copii"
                                                     v-model="nr_copii"
                                                     {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
@@ -269,7 +269,7 @@
                                                     @for ($i = 1; $i < 11; $i++)
                                                         <option>{{ $i }}</option>
                                                     @endfor                                                        
-                                                </select>
+                                                </select> --}}
                                                 </div>
                                             <label id="" class="col-form-label pl-1 align-bottom">
                                                 2-7 ani
