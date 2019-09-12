@@ -320,6 +320,8 @@
                                 Total plata acum:
                                     @if (($rezervari->comision_agentie == 0) && ($rezervari->tip_plata_id == 2))
                                         {{ $rezervari->pret_total }}
+                                    @elseif ($rezervari->tip_plata_id == 3)
+                                        0
                                     @else 
                                         {{ $rezervari->comision_agentie - 0}}
                                     @endif
@@ -327,6 +329,8 @@
                                 <br>                                
                                 Total plata la imbarcare:
                                     @if (($rezervari->comision_agentie == 0) && ($rezervari->tip_plata_id == 2))
+                                        0
+                                    @elseif ($rezervari->tip_plata_id == 3)
                                         0
                                     @else 
                                         {{ $rezervari->pret_total - $rezervari->comision_agentie }}
