@@ -11,14 +11,18 @@ class InregistrareUserFirma extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $firma;
+    public $user;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($firma, $user)
     {
-        //
+        $this->firma = $firma;
+        $this->user = $user;
     }
 
     /**
@@ -28,6 +32,6 @@ class InregistrareUserFirma extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.inregistrare-user-firma');
+        return $this->markdown('mail.inregistrare-user-firma');
     }
 }

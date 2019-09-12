@@ -4,10 +4,11 @@
 A fost creat un nou cont in aplicatia de Rezervari.
 <br><br>
 Firma: {{ $firma->nume }}
+<br>
 Username: {{ $user->username }}
 <br><br><br>
 
 
 
-O zi faina!
+Cu stima, Andrei   ( ͡° ͜ʖ ͡°)
 @endcomponent
