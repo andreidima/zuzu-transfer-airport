@@ -541,7 +541,7 @@ class RezervareController extends Controller
             // 'nr_adulti' => [ 'required', 'integer', 'between:1,20'],
             // 'nr_copii' => [ 'nullable', 'integer', 'between:0,10'],
             'nr_adulti' => (auth()->user() === null) ? [ 'required', 'integer', 'between:1,20'] : (auth()->user()->isDispecer() ? [ 'required', 'integer', 'between:1,100'] : [ 'required', 'integer', 'between:1,20']),
-            'nr_copii' => (auth()->user() === null) ? [ 'nullable', 'integer', 'between:1,10'] : (auth()->user()->isDispecer() ? [ 'nullable', 'integer', 'between:1,100'] : [ 'nullable', 'integer', 'between:1,10']),
+            'nr_copii' => (auth()->user() === null) ? [ 'nullable', 'integer', 'between:0,10'] : (auth()->user()->isDispecer() ? [ 'nullable', 'integer', 'between:0,100'] : [ 'nullable', 'integer', 'between:0,10']),
             'pret_total' => ['nullable', 'numeric', 'max:999999'],
             'observatii' => ['max:10000'],
             'comision_agentie' => [ 'nullable', 'numeric', 'max:999999'],
