@@ -79,7 +79,8 @@
                 @forelse ($rezervari as $rezervare)                         
                     @if ($rezervare->activa == 0)
                         <tr style="color:black; height:15px; line-height:30px; border-bottom:solid 1px #99F; background:#99F;">
-                    @elseif (\Carbon\Carbon::parse($rezervare->created_at)->format('Y-m-d') == $rezervare->data_cursa)
+                    @elseif (\Carbon\Carbon::parse($rezervare->created_at)->format('Y-m-d') === $rezervare->data_cursa
+                                && $rezervare->data_cursa === \Carbon\Carbon::today()->format('Y-m-d'))
                         <tr bgcolor=yellow style="color:black; height:35px; line-height:30px; border-bottom:solid 1px #99F;">
                     @elseif (in_array($rezervare->telefon, $telefoane_clienti_neseriosi))
                         <tr style="color:black; height:35px; line-height:30px; border-bottom:solid 1px #99F; background:#c6fabf"> 

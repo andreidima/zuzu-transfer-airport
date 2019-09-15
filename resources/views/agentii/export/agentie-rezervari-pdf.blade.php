@@ -88,9 +88,9 @@
                                 <th style="width:60px">Plecare</th>
                                 <th style="width:60px">Sosire</th>
                                 <th style="width:70px">Data plecare</th>
-                                <th style="width:50px">Suma</th>
-                                <th style="width:30px">Plata</th>
-                                <th style="width:180px">Statie imbarcare</th>
+                                <th style="width:45px">Sofer</th>
+                                <th style="width:45px">Agentie</th>
+                                <th style="width:170px">Statie imbarcare</th>
                                 <th style="width:25px">Nr. ad.</th>
                                 <th style="width:25px">Nr. cp.</th>
                             </tr>
@@ -112,17 +112,28 @@
                                         <td>
                                             {{ $rezervare->data_cursa }}
                                         </td>
+                                    @if (($rezervare->tip_plata_id == 2) && ($rezervare->comision_agentie == 0))
                                         <td>
-                                            {{ $rezervare->pret_total }}
-                                            lei
+                                            
                                         </td>
                                         <td>
-                                            @if (($rezervare->comision_agentie == 0) && ($rezervare->tip_plata_id != 2))
-                                                S
-                                            @else 
-                                                {{ $rezervare->pret_total - $rezervare->comision_agentie }} lei
-                                            @endif
+                                            {{ $rezervare->pret_total }} lei
                                         </td>
+                                    @elseif (($rezervare->tip_plata_id == 2) && ($rezervare->comision_agentie > 0))
+                                        <td>
+                                            {{ $rezervare->pret_total - $rezervare->comision_agentie}} lei
+                                        </td>
+                                        <td>
+                                            {{ $rezervare->comision_agentie }} lei
+                                        </td>
+                                    @else
+                                        <td>
+                                            {{ $rezervare->pret_total }} lei
+                                        </td>
+                                        <td>
+                                            
+                                        </td>
+                                    @endif
                                         <td>
                                             @if(!empty($rezervare->statie))
                                                 {{ $rezervare->statie->nume }}

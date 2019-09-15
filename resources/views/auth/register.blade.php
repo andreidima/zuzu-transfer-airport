@@ -5,7 +5,14 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Înregistrare') }}</div>
+                <div class="card-header d-flex justify-content-between">
+                    <div>
+                        {{ __('Înregistrare') }}
+                    </div>
+                    <div>
+                        Zuzu Transfer Aeroport
+                    </div>
+                </div>
 
                 @include ('errors')
 
@@ -111,7 +118,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        {{-- <div class="form-group row">
                             <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Nume de utilizator*:') }}</label>
 
                             <div class="col-md-6">
@@ -123,7 +130,7 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Parola*:') }}</label>

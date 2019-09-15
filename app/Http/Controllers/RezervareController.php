@@ -458,11 +458,11 @@ class RezervareController extends Controller
         // dd(Config::get('mail'));
 
         // Trimitere email
-        if (!empty($rezervari->email)) {
-            \Mail::to($rezervari->email)->send(
-                new BiletClient($rezervari)
-            );
-        }
+        // if (!empty($rezervari->email)) {
+        //     \Mail::to($rezervari->email)->send(
+        //         new BiletClient($rezervari)
+        //     );
+        // }
 
         return redirect($rezervari->path().'/rezervare_modificata')->with('status', 'Rezervarea pentru clientul "' . $rezervari->nume . '" a fost modificată cu succes!');
     }

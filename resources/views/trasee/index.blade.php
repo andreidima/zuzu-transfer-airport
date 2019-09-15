@@ -214,7 +214,7 @@
                     @empty
                         <div>Nu există trasee în baza de date. Încearcă alte date de căutare.</div>
                     @endforelse
-                </div>  
+                </div> 
 
                 <div class="col-10">
                     <br><br>

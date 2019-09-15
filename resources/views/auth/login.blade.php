@@ -5,14 +5,21 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+                <div class="card-header d-flex justify-content-between">
+                    <div>
+                        {{ __('Login') }}
+                    </div>
+                    <div>
+                        Zuzu Transfer Aeroport
+                    </div>
+                </div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
+                            <label for="username" class="col-md-4 col-form-label text-md-right">Email / Username</label>
 
                             <div class="col-md-6">
                                 <input id="username" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
@@ -83,7 +90,7 @@
 
     <div class="row justify-content-center">
         <div class="col-md-4">    
-            <div class="card text-white bg-info m-0 p-0" style="max-width: 19rem;">
+            <div class="card text-white bg-info mx-0  mb-4 p-0" style="max-width: 19rem;">
                 <div class="card-header my-0 py-0">
                     <h5 class="my-0 py-0 text-center">Suport Tehnic</h5>
                 </div>
@@ -91,6 +98,16 @@
                     Elena Lemnaru: +40 765 296 796
                 </div>
             </div>
+        </div>    
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-4 text-center"> 
+            <div style="max-width: 19rem;">
+                <a href="{{ route('register') }}">
+                    Înregistrare Agenție de Turism
+                </a> 
+            </div>              
         </div>    
     </div>
 

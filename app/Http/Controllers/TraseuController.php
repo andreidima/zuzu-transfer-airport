@@ -324,6 +324,7 @@ class TraseuController extends Controller
                 ->where('data_cursa', $search)
                 ->where('activa', 1)
                 ->with('cursa', 'cursa.oras_plecare', 'cursa.oras_sosire', 'ora', 'statie', 'tip_plata', 'user', 'user.firma')
+                ->orderBy('created_at')
                 ->simplePaginate(100);
 
 

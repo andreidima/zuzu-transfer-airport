@@ -165,6 +165,7 @@
                                     class="form-control form-control-sm {{ $errors->has('telefon') ? 'is-invalid' : '' }}" 
                                     name="telefon" 
                                     placeholder="Telefon" 
+                                    autocomplete="off"
                                     value="{{ old('telefon') }}"
                                     required> 
                             </div>  

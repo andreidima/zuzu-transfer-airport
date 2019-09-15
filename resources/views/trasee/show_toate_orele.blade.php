@@ -44,7 +44,8 @@
                                     <tr style="font-size:0.8rem; color:black; height:15px; line-height:30px; border-bottom:solid 1px #99F; background:#99F;">
                                 @elseif (empty($rezervare->created_at))
                                     <tr style="font-size:0.8rem; color:black; height:35px; line-height:30px; border-bottom:solid 1px #99F;">
-                                @elseif (\Carbon\Carbon::parse($rezervare->created_at)->format('Y-m-d') == $rezervare->data_cursa)
+                                @elseif (\Carbon\Carbon::parse($rezervare->created_at)->format('Y-m-d') === $rezervare->data_cursa
+                                            && $rezervare->data_cursa === \Carbon\Carbon::today()->format('Y-m-d'))
                                     <tr bgcolor=yellow style="font-size:0.8rem; color:black; height:35px; line-height:30px; border-bottom:solid 1px #99F;">
                                 @elseif (in_array($rezervare->telefon, $telefoane_clienti_neseriosi))
                                     <tr style="font-size:0.8rem; color:black; height:35px; line-height:30px; border-bottom:solid 1px #99F; background:#c6fabf">
@@ -168,7 +169,9 @@
                                     {{ $rezervare->zbor_ora_aterizare }}
                                     </td>
                                     <td class="px-0" align="center">
-                                        @if(!empty($rezervare->tip_plata))
+                                        @if($rezervare->tip_plata_id === 3)
+                                            <img src="{{ asset('images/card.jpg') }}" height="">
+                                        @elseif(!empty($rezervare->tip_plata))
                                             {{ $rezervare->tip_plata->nume }}
                                         @else
                                             -

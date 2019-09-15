@@ -80,7 +80,9 @@
                                         {{ \Carbon\Carbon::parse($rezervare_tur->data_cursa)->isoFormat('dddd') }}
                                     </span>
                                     <br>
-                                    {{ \Carbon\Carbon::parse($rezervare_tur->data_cursa)->isoFormat('D MMM YYYY') }}
+                                    <b>
+                                        {{ \Carbon\Carbon::parse($rezervare_tur->data_cursa)->isoFormat('D MMM YYYY') }}
+                                    </b>
                             </td>
                             <td>
                                 <br>
@@ -123,12 +125,14 @@
                                             ->isoFormat('dddd') }}
                                     </span>
                                     <br>
+                                    <b>
                                         {{ \Carbon\Carbon::parse($rezervare_tur->data_cursa)
                                             ->addHours(\Carbon\Carbon::parse($rezervare_tur->ora->ora)->hour)
                                             ->addMinutes(\Carbon\Carbon::parse($rezervare_tur->ora->ora)->minute) 
                                             ->addHours(\Carbon\Carbon::parse($rezervare_tur->cursa->durata)->hour)
                                             ->addMinutes(\Carbon\Carbon::parse($rezervare_tur->cursa->durata)->minute)
                                             ->isoFormat('D MMM YYYY') }}
+                                    </b>
                                 <br>
                             </td>
                         </tr>
@@ -241,7 +245,9 @@
                                         {{ \Carbon\Carbon::parse($rezervare_retur->data_cursa)->isoFormat('dddd') }}
                                     </span>
                                     <br>
-                                    {{ \Carbon\Carbon::parse($rezervare_retur->data_cursa)->isoFormat('D MMM YYYY') }}
+                                    <b>
+                                        {{ \Carbon\Carbon::parse($rezervare_retur->data_cursa)->isoFormat('D MMM YYYY') }}
+                                    </b>
                             </td>
                             <td>
                                 <br>
@@ -284,12 +290,14 @@
                                             ->isoFormat('dddd') }}
                                     </span>
                                     <br>
+                                    <b>
                                         {{ \Carbon\Carbon::parse($rezervare_retur->data_cursa)
                                             ->addHours(\Carbon\Carbon::parse($rezervare_retur->ora->ora)->hour)
                                             ->addMinutes(\Carbon\Carbon::parse($rezervare_retur->ora->ora)->minute) 
                                             ->addHours(\Carbon\Carbon::parse($rezervare_retur->cursa->durata)->hour)
                                             ->addMinutes(\Carbon\Carbon::parse($rezervare_retur->cursa->durata)->minute)
                                             ->isoFormat('D MMM YYYY') }}
+                                    </b>
                                 <br>
                             </td>
                         </tr>

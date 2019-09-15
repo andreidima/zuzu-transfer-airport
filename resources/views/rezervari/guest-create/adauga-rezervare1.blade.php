@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div>
-    <div class="container p-0 " id="orase-ore-plecare"> 
+<div class="container">
+    <div class="card p-0 mb-4" id="orase-ore-plecare"> 
         <div class="d-flex justify-content-between card-header mb-1">
             <div class="flex flex-vertical-center">
                 <h4 class="mt-2">
@@ -20,7 +20,7 @@
 
         @include ('errors')
         
-        <div class="">
+        <div class="card-body">
             <form  class="needs-validation" novalidate method="POST" action="/adauga-rezervare-pasul-1" style="font-size:0.8rem">
                 @csrf
 
@@ -373,6 +373,17 @@
             </form>
 
 
+        </div>
+    </div>
+
+    <div class="justify-content">
+        <div class="row">
+            <div class="col-lg-12 d-flex justify-content-between">
+                <img src="{{ asset('images/grile-ore/Galati - Otopeni.jpg') }}" width="247px">
+                <img src="{{ asset('images/grile-ore/Otopeni - Galati.jpg') }}" width="240px">
+                <img src="{{ asset('images/grile-ore/Tecuci - Otopeni.jpg') }}" width="279px">
+                <img src="{{ asset('images/grile-ore/Otopeni - Tecuci.jpg') }}" width="276px">
+            </div>
         </div>
     </div>
 </div>
