@@ -52,7 +52,14 @@ require_once 'Mobilpay/Payment/Address.php';
 $paymentUrl = 'http://sandboxsecure.mobilpay.ro';
 //$paymentUrl = 'https://secure.mobilpay.ro';
 // this is the path on your server to the public certificate. You may download this from Admin -> Conturi de comerciant -> Detalii -> Setari securitate
+
 $x509FilePath 	= 'key/sandbox.RRY1-B469-K9EE-LPH1-BBSE.public.cer';
+
+
+// print_r($x509FilePath);
+// die();
+var_dump($x509FilePath);
+
 try
 {
 	srand((double) microtime() * 1000000);
@@ -108,7 +115,7 @@ try
 	$objPmReqCard->invoice->setShippingAddress($shippingAddress);
 
 	#uncomment the line below in order to see the content of the request
-	//echo "<pre>";print_r($objPmReqCard);echo "</pre>";
+	// echo "<pre>";print_r($objPmReqCard);echo "</pre>";
 	$objPmReqCard->encrypt($x509FilePath);
 }
 catch(Exception $e)
