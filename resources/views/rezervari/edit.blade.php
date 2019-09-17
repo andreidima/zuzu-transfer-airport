@@ -114,7 +114,7 @@
                                     nume-camp-db="data_cursa"
                                     tip="date"
                                     latime="150"
-                                    not-before="{{ \Carbon\Carbon::today() }}"
+                                    {{-- not-before="{{ \Carbon\Carbon::today() }}" --}}
                                     {{ auth()->user()->isDispecer() ? '' : 'disabled-date'}}
                                 ></vue2-datepicker> 
                             </div>
