@@ -780,6 +780,11 @@ class RezervareController extends Controller
 
     public function testarePlataCard(Request $request)
     {
+        return view('testare-plata-card');
+    }
+
+    public function testarePlataCard1(Request $request)
+    {
         Mobilpay::setOrderId(1)
         ->setAmount('10.00')
         ->setDetails('Some details')
