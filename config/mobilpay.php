@@ -12,7 +12,7 @@ return [
 
     'currency' => 'RON',
 
-    'confirm_url' => 'https://dezvoltare.zuzu-transfer-aeroport.ro',
+    'confirm_url' => 'https://dezvoltare.zuzu-transfer-aeroport.ro/testare-plata-card2',
 
     'cancel_url' => '',
 
