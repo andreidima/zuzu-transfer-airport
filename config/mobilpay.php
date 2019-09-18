@@ -12,10 +12,10 @@ return [
 
     'currency' => 'RON',
 
-    'confirm_url' => 'https://www.youtube.com',
+    'confirm_url' => 'https://dezvoltare.zuzu-transfer-aeroport.ro',
 
-    'cancel_url' => 'https://www.youtube.com',
+    'cancel_url' => '',
 
-    'return_url' => 'http://your.return.url'
+    'return_url' => 'https://dezvoltare.zuzu-transfer-aeroport.ro'
 
 ];
