@@ -26,9 +26,9 @@ class PlataOnlineController extends Controller
         // dd($comanda);
     }
 
-    public function confirmarePlata(Mobilpay $response)
+    public function confirmarePlata(Request $request)
     {
-        // $response = Mobilpay::response();
+        $response = Mobilpay::response();
 
         $data = $response->getData(); //array
 
@@ -36,8 +36,7 @@ class PlataOnlineController extends Controller
             ['nume' => 'andrei', 'telefon' => '1111112332']
         );
 
-        // switch ($response->getMessage()) {
-        switch (1) {
+        switch ($response->getMessage()) {
             case 'confirmed_pending': // transaction is pending review. After this is done, a new IPN request will be sent with either confirmation or cancellation
 
                 //update DB, SET status = "pending"
