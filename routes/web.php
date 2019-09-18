@@ -25,6 +25,9 @@ Route::get('/bilet-rezervat', 'RezervareController@pdfexportguest');
 // Extras date cu Axios
 Route::get('/orase_ore_rezervari', 'RezervareController@orase_ore_rezervari');
 
+//Confirmare plata Online
+Route::post('/confirmare-plata', 'PlataOnlineController@confirmarePlata')->name('confirmare-plata');
+
 Route::group(['middleware' => 'auth'], function () {
 
     // Route::get('/', 'AcasaController@index')->name('acasa');
