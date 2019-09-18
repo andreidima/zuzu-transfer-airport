@@ -785,10 +785,11 @@ class RezervareController extends Controller
 
     public function testarePlataCard1(Request $request)
     {
-        Mobilpay::setOrderId(1)
+        $comanda = Mobilpay::setOrderId(1)
         ->setAmount('10.00')
         ->setDetails('Some details')
-        ->setReturnUrl('https://www.youtube.com')
-        ->purchase();
+        ->setReturnUrl('https://www.youtube.com');
+        // ->purchase();
+        dd($comanda);
     }
 }
