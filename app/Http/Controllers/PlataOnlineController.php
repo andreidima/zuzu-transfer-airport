@@ -8,6 +8,8 @@ use Mobilpay;
 
 class PlataOnlineController extends Controller
 {
+    private $response;
+
     public function testarePlataCard(Request $request)
     {
         return view('testare-plata-card');
@@ -27,18 +29,20 @@ class PlataOnlineController extends Controller
     {
         $response = Mobilpay::response();
         $response = 'raspuns';
-        return redirect('/return-url', compact('response'));
+
+        $this->response = $response;
+        // return redirect('/return-url', compact('response'));
         // return view('testare-plata-card-2', compact('rezervari', 'telefoane_clienti_neseriosi'));
     }
 
-    public function returnUrl(Request $request, $response = null)
+    public function returnUrl(Request $request)
     {
-        dd($request, $response);
+        dd($request, $this->response);
         // print_r($request);
         // print_r($response);
         // $response = Mobilpay::response();
 
-        $data = $response->getData();
+        $data = $this->response->getData();
 
         print_r($data);
         // dd($data, $response);
