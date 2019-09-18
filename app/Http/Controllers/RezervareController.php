@@ -790,6 +790,6 @@ class RezervareController extends Controller
         ->setDetails('Some details')
         // ->setReturnUrl('https://www.youtube.com');
         ->purchase();
-        dd($comanda);
+        // dd($comanda);
     }
 }
