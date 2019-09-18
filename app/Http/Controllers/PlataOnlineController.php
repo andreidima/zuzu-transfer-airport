@@ -26,9 +26,9 @@ class PlataOnlineController extends Controller
         // dd($comanda);
     }
 
-    public function confirmarePlata()
+    public function confirmarePlata(Mobilpay $response)
     {
-        $response = Mobilpay::response();
+        // $response = Mobilpay::response();
 
         $data = $response->getData(); //array
 
