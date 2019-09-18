@@ -33,7 +33,7 @@ class PlataOnlineController extends Controller
         $data = $response->getData(); //array
 
         DB::table('clienti_neseriosi')->insert(
-            ['nume' => 'andrei', 'telefon' => '11111']
+            ['nume' => 'andrei', 'telefon' => '1111112332']
         );
 
         switch ($response->getMessage()) {
