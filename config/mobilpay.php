@@ -16,6 +16,6 @@ return [
 
     'cancel_url' => '',
 
-    'return_url' => 'https://dezvoltare.zuzu-transfer-aeroport.ro'
+    'return_url' => 'https://dezvoltare.zuzu-transfer-aeroport.ro/testare-plata-card2'
 
 ];
