@@ -788,6 +788,7 @@ class RezervareController extends Controller
         Mobilpay::setOrderId(1)
         ->setAmount('10.00')
         ->setDetails('Some details')
+        ->setReturnUrl('https://www.youtube.com')
         ->purchase();
     }
 }
