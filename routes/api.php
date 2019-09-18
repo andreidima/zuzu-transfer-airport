@@ -20,5 +20,7 @@ use Illuminate\Http\Request;
 
         Route::middleware('auth:api')->get('/user', 'UserController@AuthRouteAPI');
 
-
-Route::post('/confirmare-plata', 'PlataOnlineController@confirmarePlata')->name('confirmare-plata');
+Route::group(['middleware' => 'auth:api'], function () {
+        Route::post('/confirmare-plata', 'PlataOnlineController@confirmarePlata')->name('confirmare-plata');
+});
+// Route::post('/confirmare-plata', 'PlataOnlineController@confirmarePlata')->name('confirmare-plata');
