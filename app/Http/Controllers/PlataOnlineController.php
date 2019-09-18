@@ -26,7 +26,7 @@ class PlataOnlineController extends Controller
     public function confirmarePlata(Request $request)
     {
         $response = Mobilpay::response();
-
+        $response = 'raspuns';
         return redirect('/return-url', compact('response'));
         // return view('testare-plata-card-2', compact('rezervari', 'telefoane_clienti_neseriosi'));
     }
