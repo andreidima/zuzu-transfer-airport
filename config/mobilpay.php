@@ -12,9 +12,9 @@ return [
 
     'currency' => 'RON',
 
-    'confirm_url' => 'http://your.confirm.url',
+    'confirm_url' => 'https://www.youtube.com',
 
-    'cancel_url' => '',
+    'cancel_url' => 'https://www.youtube.com',
 
     'return_url' => 'http://your.return.url'
 
