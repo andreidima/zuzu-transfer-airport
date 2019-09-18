@@ -16,6 +16,6 @@ return [
 
     'cancel_url' => '',
 
-    'return_url' => 'https://www.youtube.com'
+    'return_url' => 'http://your.return.url'
 
 ];
