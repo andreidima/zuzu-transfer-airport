@@ -795,6 +795,8 @@ class RezervareController extends Controller
 
     public function testarePlataCard2(Request $request)
     {
+        dd($request);
+
         $response = Mobilpay::response();
 
         $data = $response->getData();
