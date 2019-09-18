@@ -14,6 +14,8 @@ use Illuminate\Http\Request;
 use App\Mail\BiletClient;
 use Illuminate\Validation\Rule;
 
+use Mobilpay;
+
 class RezervareController extends Controller
 {
     /**
