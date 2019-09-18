@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 use Mobilpay;
 
 class PlataOnlineController extends Controller
 {
-    private $response;
+    
+    private $response = 'dsds';
 
     public function testarePlataCard(Request $request)
     {
@@ -28,11 +29,45 @@ class PlataOnlineController extends Controller
     public function confirmarePlata(Request $request)
     {
         $response = Mobilpay::response();
-        $response = 'raspuns';
 
-        $this->response = $response;
-        // return redirect('/return-url', compact('response'));
-        // return view('testare-plata-card-2', compact('rezervari', 'telefoane_clienti_neseriosi'));
+        $data = $response->getData(); //array
+
+        DB::table('clienti_neseriosi')->insert(
+            ['nume' => 'andrei', 'telefon' => '11111']
+        );
+
+        switch ($response->getMessage()) {
+            case 'confirmed_pending': // transaction is pending review. After this is done, a new IPN request will be sent with either confirmation or cancellation
+
+                //update DB, SET status = "pending"
+
+                break;
+            case 'paid_pending': // transaction is pending review. After this is done, a new IPN request will be sent with either confirmation or cancellation
+
+                //update DB, SET status = "pending"
+
+                break;
+            case 'paid': // transaction is pending authorization. After this is done, a new IPN request will be sent with either confirmation or cancellation
+
+                //update DB, SET status = "open/preauthorized"
+
+                break;
+            case 'confirmed': // transaction is finalized, the money have been captured from the customer's account
+
+                //update DB, SET status = "confirmed/captured"
+
+                break;
+            case 'canceled': // transaction is canceled
+
+                //update DB, SET status = "canceled"
+
+                break;
+            case 'credit': // transaction has been refunded
+
+                //update DB, SET status = "refunded"
+
+                break;
+        }	
     }
 
     public function returnUrl(Request $request)
