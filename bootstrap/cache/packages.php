@@ -1,4 +1,16 @@
 <?php return array (
+  'adrianbarbos/mobilpay' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Adrianbarbos\\Mobilpay\\MobilpayServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Omnipay' => 'Omnipay\\Omnipay',
+      'Mobilpay' => 'Adrianbarbos\\Mobilpay\\Mobilpay',
+    ),
+  ),
   'barryvdh/laravel-debugbar' => 
   array (
     'providers' => 

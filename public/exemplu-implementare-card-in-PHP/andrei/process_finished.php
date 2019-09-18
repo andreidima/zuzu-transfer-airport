@@ -1,1 +1,0 @@
-Procesul complet sfarsit

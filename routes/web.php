@@ -85,7 +85,10 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('/acasa', 'AcasaController@index')->name('acasa');
 
-        Route::get('/home', 'HomeController@index')->name('home');   
+        Route::get('/home', 'HomeController@index')->name('home');  
+
+
+        Route::get('/testare-plata-card', 'RezervareController@testarePlataCard')->name('testare-plata-card');   
     });
 });
 

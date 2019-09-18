@@ -775,4 +775,12 @@ class RezervareController extends Controller
             ->setPaper('a4');
                 return $pdf->stream('Rezervare ' . $rezervari->nume . '.pdf');
     }
+
+    public function testarePlataCard(Request $request)
+    {
+        Mobilpay::setOrderId(1)
+        ->setAmount('10.00')
+        ->setDetails('Some details')
+        ->purchase();
+    }
 }
