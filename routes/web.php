@@ -89,7 +89,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('/testare-plata-card', 'PlataOnlineController@testarePlataCard')->name('testare-plata-card');  
         Route::get('/trimitere-catre-plata', 'PlataOnlineController@trimitereCatrePlata')->name('trimitere-catre-plata');  
-        Route::get('/confirmare-plata', 'PlataOnlineController@confirmarePlata')->name('confirmare-plata'); 
+        Route::post('/confirmare-plata', 'PlataOnlineController@confirmarePlata')->name('confirmare-plata'); 
         Route::get('/return-url', 'PlataOnlineController@returnUrl')->name('return-url'); 
 
         Route::get('/clear', function() {
