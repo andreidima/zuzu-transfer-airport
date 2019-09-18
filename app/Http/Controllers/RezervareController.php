@@ -767,20 +767,20 @@ class RezervareController extends Controller
         return view('rezervari.guest-create/adauga-rezervare3',compact('rezervare', $rezervare));
     }
 
-    public function pdfexportguest(Request $request)
-    {
-        $rezervari = $request->session()->get('rezervare');
-        // dd($rezervari);
-        $pdf = \PDF::loadView('rezervari.export.rezervare-pdf', compact('rezervari'))
-            ->setPaper('a4');
-                return $pdf->stream('Rezervare ' . $rezervari->nume . '.pdf');
-    }
+    // public function pdfexportguest(Request $request)
+    // {
+    //     $rezervari = $request->session()->get('rezervare');
+    //     // dd($rezervari);
+    //     $pdf = \PDF::loadView('rezervari.export.rezervare-pdf', compact('rezervari'))
+    //         ->setPaper('a4');
+    //             return $pdf->stream('Rezervare ' . $rezervari->nume . '.pdf');
+    // }
 
-    public function testarePlataCard(Request $request)
-    {
-        Mobilpay::setOrderId(1)
-        ->setAmount('10.00')
-        ->setDetails('Some details')
-        ->purchase();
-    }
+    // public function testarePlataCard(Request $request)
+    // {
+    //     Mobilpay::setOrderId(1)
+    //     ->setAmount('10.00')
+    //     ->setDetails('Some details')
+    //     ->purchase();
+    // }
 }
