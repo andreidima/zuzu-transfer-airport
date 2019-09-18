@@ -777,30 +777,4 @@ class RezervareController extends Controller
             ->setPaper('a4');
                 return $pdf->stream('Rezervare ' . $rezervari->nume . '.pdf');
     }
-
-    public function testarePlataCard(Request $request)
-    {
-        return view('testare-plata-card');
-    }
-
-    public function testarePlataCard1(Request $request)
-    {
-        $comanda = Mobilpay::setOrderId(md5(uniqid(rand())))
-        ->setAmount('10.00')
-        ->setDetails('Some details')
-        // ->setReturnUrl('https://www.youtube.com');
-        ->purchase();
-        // dd($comanda);
-    }
-
-    public function testarePlataCard2(Request $request)
-    {
-        dd($request);
-
-        $response = Mobilpay::response();
-
-        $data = $response->getData();
-
-        dd($data, $response);
-    }
 }
