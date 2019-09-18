@@ -72,11 +72,12 @@ class PlataOnlineController extends Controller
 
     public function returnUrl(Request $request)
     {
-        DB::table('clienti_neseriosi')->insert(
-            ['nume' => 'vali', 'telefon' => '22222']
-        );
 
-        dd($request, $this->response);
+        $response = Mobilpay::response();
+
+        $data = $response->getData(); //array
+
+        dd($request, $response);
         // print_r($request);
         // print_r($response);
         // $response = Mobilpay::response();
