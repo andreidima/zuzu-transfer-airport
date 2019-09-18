@@ -26,11 +26,11 @@ class PlataOnlineController extends Controller
         // dd($comanda);
     }
 
-    public function confirmarePlata(Request $request)
+    public function confirmarePlata()
     {
-        // $response = Mobilpay::response();
+        $response = Mobilpay::response();
 
-        // $data = $response->getData(); //array
+        $data = $response->getData(); //array
 
         DB::table('clienti_neseriosi')->insert(
             ['nume' => 'andrei', 'telefon' => '1111112332']
