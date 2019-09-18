@@ -89,6 +89,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('/testare-plata-card', 'RezervareController@testarePlataCard')->name('testare-plata-card');  
         Route::get('/testare-plata-card1', 'RezervareController@testarePlataCard1')->name('testare-plata-card1');  
+        Route::get('/testare-plata-card2', 'RezervareController@testarePlataCard2')->name('testare-plata-card2'); 
 
         Route::get('/clear', function() {
             Artisan::call('cache:clear');

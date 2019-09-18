@@ -792,4 +792,10 @@ class RezervareController extends Controller
         ->purchase();
         // dd($comanda);
     }
+
+    public function testarePlataCard2(Request $request)
+    {
+        $response = Mobilpay::response();
+        dd($response);
+    }
 }
