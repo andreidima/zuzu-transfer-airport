@@ -33,9 +33,9 @@ class PlataOnlineController extends Controller
 
     public function returnUrl(Request $request, $response = null)
     {
-        // dd($request);
-        print_r($request);
-        print_r($response);
+        dd($request, $response);
+        // print_r($request);
+        // print_r($response);
         // $response = Mobilpay::response();
 
         $data = $response->getData();
