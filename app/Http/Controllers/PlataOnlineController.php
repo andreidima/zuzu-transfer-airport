@@ -31,10 +31,11 @@ class PlataOnlineController extends Controller
         // return view('testare-plata-card-2', compact('rezervari', 'telefoane_clienti_neseriosi'));
     }
 
-    public function testarePlataCard2(Request $request)
+    public function returnUrl(Request $request, $response = null)
     {
-        dd($request);
-
+        // dd($request);
+        print_r($request);
+        print_r($response);
         // $response = Mobilpay::response();
 
         $data = $response->getData();
