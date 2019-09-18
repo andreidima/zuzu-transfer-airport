@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Mobilpay;
+
 class PlataOnlineController extends Controller
 {
     public function testarePlataCard(Request $request)
