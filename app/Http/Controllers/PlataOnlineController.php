@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Mobilpay;
+use Storage;
 
 class PlataOnlineController extends Controller
 {
@@ -34,7 +35,10 @@ class PlataOnlineController extends Controller
 
         // $data_string = $response->toJson();
 
-        dd($response, $data);
+        // dd($response, $data);
+
+        Storage::put('file.txt', 'Your name');
+
         // $mobilpay = Mobilpay::response();
         // $mobilpay = (string) $mobilpay;
 
