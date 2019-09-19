@@ -85,8 +85,8 @@ class PlataOnlineController extends Controller
 
         // Storage::put('file.txt', $response);
         Storage::put('file2.txt', reset($data));
-        Storage::put('file-data.txt', $string3);
-        Storage::put('file-data.txt', $string);
+        Storage::put('file3.txt', $string3);
+        Storage::put('file.txt', $string);
 
         // $mobilpay = Mobilpay::response();
         // $mobilpay = (string) $mobilpay;
