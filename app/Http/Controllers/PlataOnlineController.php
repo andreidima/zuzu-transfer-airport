@@ -37,8 +37,8 @@ class PlataOnlineController extends Controller
 
         // dd($response, $data);
 
-        $array = $data->toArray();
-        $mesaj = implode(', ', $array);
+        // $array = $data->toArray();
+        $mesaj = implode(', ', $data);
 
         Storage::put('file.txt', $response);
         // Storage::put('file-data.txt', $data);
