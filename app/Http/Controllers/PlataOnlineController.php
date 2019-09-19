@@ -60,9 +60,32 @@ class PlataOnlineController extends Controller
         // $string = reset($data) . "\n";
         $string = $string . recursiva($data);
 
+
+
+        function array_values_recursiva($array)
+        {
+            $flat = array();
+
+            foreach ($array as $value) {
+                if (is_array($value)) {
+                    $flat = array_merge($flat, array_values_recursiva($value));
+                } else {
+                    $flat[] = $value;
+                }
+            }
+            return $flat;
+        }
+
+        $string2 = '';
+        $string2 = array_values_recursiva($data);
+
+        $string3 = implode(" ", $string2);
+
+
+
         // Storage::put('file.txt', $response);
         Storage::put('file2.txt', reset($data));
-        // Storage::put('file-data.txt', gettype($data));
+        Storage::put('file-data.txt', $string3);
         Storage::put('file-data.txt', $string);
 
         // $mobilpay = Mobilpay::response();
@@ -159,13 +182,14 @@ class PlataOnlineController extends Controller
 
         $string = '';
 
-        function recursive($array, $level = 1, $string1 = '')
+        function recursive($array, $level = 1)
         {
+            $string1 = '';
             foreach ($array as $key => $value) {
                 //If $value is an array.
                 if (is_array($value)) {
                     //We need to loop through it.
-                    recursive($value, $level + 1);
+                    recursive($value, $level + 1, $string1);
                 } else {
                     //It is not an array, so print it out.
                     echo $key . ": " . $value, '<br>';
@@ -181,6 +205,32 @@ class PlataOnlineController extends Controller
         // recursive($arr);
 
         echo $string;
+
+
+
+        function array_values_recursive($array)
+        {
+            $flat = array();
+
+            foreach ($array as $value) {
+                if (is_array($value)) {
+                    $flat = array_merge($flat, array_values_recursive($value));
+                } else {
+                    $flat[] = $value;
+                }
+            }
+            return $flat;
+        }
+
+        $string2 = '';
+        $string2 = array_values_recursive($arr);
+
+        $string3 = implode(" ", $string2);
+        // foreach (array_values_recursive($arr) as $value){
+        //     $string2 = $string2 . $value;
+        // }
+
+        dd($string3);
 
     }
 }
