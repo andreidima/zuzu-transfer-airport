@@ -32,7 +32,7 @@ class PlataOnlineController extends Controller
 
         $request = (string) $request->orderId;
 
-        dd($response, $data);
+        // dd($response, $data);
         // $mobilpay = Mobilpay::response();
         // $mobilpay = (string) $mobilpay;
 
