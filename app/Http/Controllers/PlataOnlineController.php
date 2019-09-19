@@ -77,7 +77,7 @@ class PlataOnlineController extends Controller
 
         // $data = $response->getData(); //array
 
-        dd($request);
+        dd($request, $this->response);
         // print_r($request);
         // print_r($response);
         // $response = Mobilpay::response();
