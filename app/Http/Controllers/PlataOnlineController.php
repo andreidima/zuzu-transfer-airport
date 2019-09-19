@@ -39,9 +39,25 @@ class PlataOnlineController extends Controller
 
         $string = '';
 
-        foreach ($data as $value) {
-            $string =  $string . $value[0];
+
+
+        function recursiva($array, $level = 1, $string1 = '')
+        {
+            foreach ($array as $key => $value) {
+                //If $value is an array.
+                if (is_array($value)) {
+                    //We need to loop through it.
+                    recursive($value, $level + 1);
+                } else {
+                    //It is not an array, so print it out.
+                    // echo $key . ": " . $value, '<br>';
+                    $string1 = $string1 . $key . ": " . $value . '<br>';
+                }
+            }
+            return $string1;
         }
+
+        $string = recursiva($data);
 
         // Storage::put('file.txt', $response);
         // Storage::put('file-data.txt', reset($data));
@@ -112,10 +128,49 @@ class PlataOnlineController extends Controller
         echo ($string);
 
         // dd($matrice);
-        
+
         // $array = $request->toArray();
         // echo implode(', ', $array);
-        
+
+        $arr = [
+            "_token" => "aHgDik0zuDxxBqYgbi0ZTkaPyG3CVwk5WO7LtU6u",
+            "contractor_invoice_no" => "",
+            "date" => "26-11-2015",
+            "contractor_reference" => "sdfsdf",
+            "workorder_reference" => "151 alandale",
+            "square_installed" => "455",
+            "square_invoice" => "677",
+            "other_work_" => array(1, array('a', 'b', array('one' => 'path'))),
+            "other_invoice_" => array(1, 2, 3),
+            "comments" => "comments"
+        ];
+
+        $myArray = array(
+            'example',
+            'example two',
+            array(
+                'another level',
+                array(
+                    'level three'
+                )
+            )
+        );
+
+        function recursive($array, $level = 1)
+        {
+            foreach ($array as $key => $value) {
+                //If $value is an array.
+                if (is_array($value)) {
+                    //We need to loop through it.
+                    recursive($value, $level + 1);
+                } else {
+                    //It is not an array, so print it out.
+                    echo $key . ": " . $value, '<br>';
+                }
+            }
+        }
+
+        recursive($arr);
 
     }
 }
