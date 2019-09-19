@@ -107,13 +107,9 @@ class PlataOnlineController extends Controller
         // dd($request->implode('-'));
         // dd($request->toArray()->implode('-'));
         
-        // $array = $request->toArray();
-        // echo implode(', ', $array);
-
-        $response = Mobilpay::response();
-
-        dd($response);
-
+        $array = $request->toArray();
+        echo implode(', ', $array);
+        
 
     }
 }
