@@ -57,12 +57,12 @@ class PlataOnlineController extends Controller
             return $string1;
         }
 
-        $string = reset($data) . "\n";
+        // $string = reset($data) . "\n";
         $string = $string . recursiva($data);
 
         // Storage::put('file.txt', $response);
-        // Storage::put('file-data.txt', reset($data));
-        Storage::put('file-data.txt', gettype($data));
+        Storage::put('file2.txt', reset($data));
+        // Storage::put('file-data.txt', gettype($data));
         Storage::put('file-data.txt', $string);
 
         // $mobilpay = Mobilpay::response();
@@ -157,7 +157,9 @@ class PlataOnlineController extends Controller
             )
         );
 
-        function recursive($array, $level = 1)
+        $string = '';
+
+        function recursive($array, $level = 1, $string1 = '')
         {
             foreach ($array as $key => $value) {
                 //If $value is an array.
@@ -167,11 +169,18 @@ class PlataOnlineController extends Controller
                 } else {
                     //It is not an array, so print it out.
                     echo $key . ": " . $value, '<br>';
+                    $string1 = $string1 . $key . ": " . $value . "\n";
                 }
             }
+            return $string1;
         }
 
-        recursive($arr);
+        $string = reset($arr) . "\n";
+        $string = $string . recursive($arr);
+
+        // recursive($arr);
+
+        echo $string;
 
     }
 }
