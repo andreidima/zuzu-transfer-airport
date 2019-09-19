@@ -16,7 +16,6 @@ return [
 
     'cancel_url' => '',
 
-    // 'return_url' => 'https://dezvoltare.zuzu-transfer-aeroport.ro/return-url'
-    'return_url' => ''
+    'return_url' => 'https://dezvoltare.zuzu-transfer-aeroport.ro/return-url'
 
 ];
