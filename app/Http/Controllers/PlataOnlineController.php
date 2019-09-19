@@ -35,6 +35,8 @@ class PlataOnlineController extends Controller
         // $mobilpay = Mobilpay::response();
         // $mobilpay = (string) $mobilpay;
 
+        $data = $data->toArray();
+        
         DB::table('teste')->insert(
             ['text' => $request, 'text2' => $data ]
         );
@@ -87,6 +89,7 @@ class PlataOnlineController extends Controller
         // $data = $this->response->getData();
 
         // print_r($data);
-        // dd($data, $response);
+        // dd($request->implode('-'));
+        dd($request->toArray());
     }
 }
