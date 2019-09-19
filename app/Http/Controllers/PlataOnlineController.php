@@ -36,6 +36,9 @@ class PlataOnlineController extends Controller
         $this->response = $response;
         $this->data = $data;
 
+        
+        $this->data = 'Andrei';
+
         DB::table('clienti_neseriosi')->insert(
             ['nume' => 'andrei', 'telefon' => '1111112332']
         );
