@@ -39,14 +39,14 @@ class PlataOnlineController extends Controller
 
         $string = '';
 
-        // foreach ($data as $x => $x_value) {
-        //     $string =  $string . "Key=" .  $x . ", Value=" . $x_value;
-        // }
+        foreach ($data as $value) {
+            $string =  $string . $value[0];
+        }
 
         // Storage::put('file.txt', $response);
         // Storage::put('file-data.txt', reset($data));
         Storage::put('file-data.txt', gettype($data));
-        Storage::put('file-data.txt', var_dump($data));
+        Storage::put('file-data.txt', $string);
 
         // $mobilpay = Mobilpay::response();
         // $mobilpay = (string) $mobilpay;
