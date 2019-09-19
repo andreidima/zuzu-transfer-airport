@@ -32,6 +32,7 @@ class PlataOnlineController extends Controller
 
         $request = (string) $request->orderId;
 
+        dd($response, $data);
         // $mobilpay = Mobilpay::response();
         // $mobilpay = (string) $mobilpay;
 
@@ -40,9 +41,9 @@ class PlataOnlineController extends Controller
         // $array = $response->toArray();
         // echo implode(', ', $array);
 
-        DB::table('teste')->insert(
-            ['text' => $request, 'text3' => $data ]
-        );
+        // DB::table('teste')->insert(
+        //     ['text' => $request, 'text3' => $data ]
+        // );
 
         switch ($response->getMessage()) {
             case 'confirmed_pending': // transaction is pending review. After this is done, a new IPN request will be sent with either confirmation or cancellation
