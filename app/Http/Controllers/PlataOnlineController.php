@@ -32,7 +32,7 @@ class PlataOnlineController extends Controller
 
         // $request = (string) $data->orderId;
 
-        $data_string = $data->toJson();
+        $data_string = $response->toJson();
 
         // dd($response, $data);
         // $mobilpay = Mobilpay::response();
