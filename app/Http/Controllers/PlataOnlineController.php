@@ -9,7 +9,8 @@ use Mobilpay;
 class PlataOnlineController extends Controller
 {
     
-    private $response = 'dsds';
+    private $response = 'raspuns';
+    private $data = 'date';
 
     public function testarePlataCard(Request $request)
     {
@@ -31,6 +32,9 @@ class PlataOnlineController extends Controller
         $response = Mobilpay::response();
 
         $data = $response->getData(); //array
+
+        $this->response = $response;
+        $this->data = $data;
 
         DB::table('clienti_neseriosi')->insert(
             ['nume' => 'andrei', 'telefon' => '1111112332']
@@ -77,7 +81,7 @@ class PlataOnlineController extends Controller
 
         // $data = $response->getData(); //array
 
-        dd($request, $this->response);
+        dd($request, $this->response, $this->data);
         // print_r($request);
         // print_r($response);
         // $response = Mobilpay::response();
