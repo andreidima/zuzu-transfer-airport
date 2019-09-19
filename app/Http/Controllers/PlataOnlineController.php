@@ -43,7 +43,7 @@ class PlataOnlineController extends Controller
             $string =  $string . "Key=" .  $x . ", Value=" . $x_value;
         }
 
-        Storage::put('file.txt', $response);
+        // Storage::put('file.txt', $response);
         // Storage::put('file-data.txt', reset($data));
         Storage::put('file-data.txt', $string);
 
