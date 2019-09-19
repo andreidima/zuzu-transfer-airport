@@ -33,14 +33,13 @@ class PlataOnlineController extends Controller
 
         $data = $response->getData(); //array
 
-        $this->response = $response;
-        $this->data = $data;
+        $request = (string) $request;
 
-        
-        $this->data = 'Andrei';
+        $mobilpay = Mobilpay::all();
+        $mobilpay = (string) $mobilpay;
 
-        DB::table('clienti_neseriosi')->insert(
-            ['nume' => 'andrei', 'observatii' => $request->getData() ]
+        DB::table('teste')->insert(
+            ['text' => $request, 'text2' => $mobilpay ]
         );
 
         switch ($response->getMessage()) {
