@@ -35,8 +35,8 @@ class PlataOnlineController extends Controller
         // $mobilpay = Mobilpay::response();
         // $mobilpay = (string) $mobilpay;
 
-        $data = $data->toArray();
-        
+        $data = implode(', ', $data);
+
         DB::table('teste')->insert(
             ['text' => $request, 'text2' => $data ]
         );
@@ -90,6 +90,10 @@ class PlataOnlineController extends Controller
 
         // print_r($data);
         // dd($request->implode('-'));
-        dd($request->toArray());
+        // dd($request->toArray()->implode('-'));
+        
+        $array = $request->toArray();
+        echo implode(', ', $array);
+
     }
 }
