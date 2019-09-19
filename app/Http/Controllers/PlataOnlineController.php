@@ -35,10 +35,13 @@ class PlataOnlineController extends Controller
         // $mobilpay = Mobilpay::response();
         // $mobilpay = (string) $mobilpay;
 
-        $data = implode(', ', $data);
+        // $data = implode(', ', $data);
+
+        $array = $response->toArray();
+        echo implode(', ', $array);
 
         DB::table('teste')->insert(
-            ['text' => $request, 'text2' => $data ]
+            ['text' => $request, 'text2' => $array ]
         );
 
         switch ($response->getMessage()) {
