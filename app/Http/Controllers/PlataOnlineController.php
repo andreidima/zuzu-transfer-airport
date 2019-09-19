@@ -38,11 +38,11 @@ class PlataOnlineController extends Controller
         // dd($response, $data);
 
         // $array = $data->toArray();
-        $mesaj = implode(', ', $data);
+        // $mesaj = implode(', ', $data);
 
         Storage::put('file.txt', $response);
-        // Storage::put('file-data.txt', $data);
-        Storage::put('file-mesaj.txt', $mesaj);
+        Storage::put('file-data.txt', reset($data));
+        Storage::put('file-mesaj.txt', $data->price);
 
         // $mobilpay = Mobilpay::response();
         // $mobilpay = (string) $mobilpay;
@@ -93,22 +93,17 @@ class PlataOnlineController extends Controller
     public function returnUrl(Request $request)
     {
 
-        // $response = Mobilpay::response();
+        $matrice = array(
+            'fruct' => 'cireasa',
+            'pret' => '3'
+        );
 
-        // $data = $response->getData(); //array
+        echo reset($matrice);
 
-        // print_r($request);
-        // print_r($response);
-        // $response = Mobilpay::response();
-
-        // $data = $this->response->getData();
-
-        // print_r($data);
-        // dd($request->implode('-'));
-        // dd($request->toArray()->implode('-'));
+        // dd($matrice);
         
-        $array = $request->toArray();
-        echo implode(', ', $array);
+        // $array = $request->toArray();
+        // echo implode(', ', $array);
         
 
     }
