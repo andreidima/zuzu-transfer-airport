@@ -36,7 +36,7 @@ class PlataOnlineController extends Controller
         // $mobilpay = (string) $mobilpay;
 
         DB::table('teste')->insert(
-            ['text' => $request, 'text2' => '' ]
+            ['text' => $request, 'text2' => $data ]
         );
 
         switch ($response->getMessage()) {
