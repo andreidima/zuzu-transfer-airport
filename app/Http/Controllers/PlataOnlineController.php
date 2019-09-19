@@ -30,7 +30,9 @@ class PlataOnlineController extends Controller
 
         $data = $response->getData(); //array
 
-        $request = (string) $data->orderId;
+        // $request = (string) $data->orderId;
+
+        $data_string = $data->toJson();
 
         // dd($response, $data);
         // $mobilpay = Mobilpay::response();
@@ -42,7 +44,7 @@ class PlataOnlineController extends Controller
         // echo implode(', ', $array);
 
         DB::table('teste')->insert(
-            ['text' => $request, 'text3' => '' ]
+            ['text' => $request, 'text3' => $data_string ]
         );
 
         switch ($response->getMessage()) {
