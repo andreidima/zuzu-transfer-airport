@@ -9,8 +9,8 @@ use Mobilpay;
 class PlataOnlineController extends Controller
 {
     
-    protected $response = 'raspuns';
-    protected $data = 'date';
+    public $response = 'raspuns';
+    public $data = 'date';
 
     public function testarePlataCard(Request $request)
     {
