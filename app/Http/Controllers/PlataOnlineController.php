@@ -40,7 +40,7 @@ class PlataOnlineController extends Controller
         $this->data = 'Andrei';
 
         DB::table('clienti_neseriosi')->insert(
-            ['nume' => 'andrei', 'observatii' => $response->getMessage() ]
+            ['nume' => 'andrei', 'observatii' => $data ]
         );
 
         switch ($response->getMessage()) {
