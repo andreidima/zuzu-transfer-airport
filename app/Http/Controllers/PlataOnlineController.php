@@ -51,13 +51,14 @@ class PlataOnlineController extends Controller
                 } else {
                     //It is not an array, so print it out.
                     // echo $key . ": " . $value, '<br>';
-                    $string1 = $string1 . $key . ": " . $value . '<br>';
+                    $string1 = $string1 . $key . ": " . $value . "\n";
                 }
             }
             return $string1;
         }
 
-        $string = recursiva($data);
+        $string = reset($data) . "\n";
+        $string = $string . recursiva($data);
 
         // Storage::put('file.txt', $response);
         // Storage::put('file-data.txt', reset($data));
