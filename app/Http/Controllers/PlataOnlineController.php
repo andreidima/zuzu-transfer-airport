@@ -47,7 +47,7 @@ class PlataOnlineController extends Controller
                 //If $value is an array.
                 if (is_array($value)) {
                     //We need to loop through it.
-                    recursive($value, $level + 1);
+                    recursiva($value, $level + 1);
                 } else {
                     //It is not an array, so print it out.
                     // echo $key . ": " . $value, '<br>';
