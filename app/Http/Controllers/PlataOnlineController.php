@@ -37,12 +37,15 @@ class PlataOnlineController extends Controller
 
         // dd($response, $data);
 
-        // $array = $data->toArray();
-        // $mesaj = implode(', ', $data);
+        $string = '';
+
+        foreach ($data as $x => $x_value) {
+            $string =  $string . "Key=" .  $x . ", Value=" . $x_value;
+        }
 
         Storage::put('file.txt', $response);
-        Storage::put('file-data.txt', reset($data));
-        Storage::put('file-mesaj.txt', $data->price);
+        // Storage::put('file-data.txt', reset($data));
+        Storage::put('file-data.txt', $string);
 
         // $mobilpay = Mobilpay::response();
         // $mobilpay = (string) $mobilpay;
@@ -98,7 +101,13 @@ class PlataOnlineController extends Controller
             'pret' => '3'
         );
 
-        echo reset($matrice);
+        $string = '';
+
+        foreach ($matrice as $x => $x_value) {
+            $string =  $string . "Key=" .  $x . ", Value=" . $x_value;
+        }
+        
+        echo ($string);
 
         // dd($matrice);
         
