@@ -37,11 +37,11 @@ class PlataOnlineController extends Controller
 
         // $data = implode(', ', $data);
 
-        $array = $response->toArray();
-        echo implode(', ', $array);
+        // $array = $response->toArray();
+        // echo implode(', ', $array);
 
         DB::table('teste')->insert(
-            ['text' => $request, 'text2' => $array ]
+            ['text' => $request, 'text3' => $data ]
         );
 
         switch ($response->getMessage()) {
