@@ -554,18 +554,19 @@ class RezervareController extends Controller
             'retur_zbor_ora_aterizare' => ['max:100'],
             
             'plata_online' => [''],
-            'adresa' => ['required_if:plata_online,true', 'nullable', 'max:99'],
+            // 'adresa' => ['required_if:plata_online,true', 'nullable', 'max:99'],
 
             'order_id' => [''],
             'user_id' => [''],
             'status' => [''],
+            'plata_cu_card' => [''],
             'acord_de_confidentialitate' => auth()->user() === null ? ['required'] : ['']
         ],
         [
             'ora_id.required' => 'Câmpul Ora de plecare este obligatoriu.',
             'telefon.regex' => 'Câmpul Telefon poate conține doar cifre și spații.',
             'nume.unique' => 'Această Rezervare este deja înregistrată.',
-            'adresa.required_if' => 'Câmpul Adresa este obligatoriu dacă este selectată plata cu card'
+            // 'adresa.required_if' => 'Câmpul Adresa este obligatoriu dacă este selectată plata cu card'
         ]
         );
     }
@@ -645,6 +646,7 @@ class RezervareController extends Controller
                 $rezervare->nume = strtoupper($rezervare->nume);
                 $rezervare->zbor_oras_decolare = strtoupper($rezervare->zbor_oras_decolare);
 
+
                 // stergerea oraselor din request, se foloseste id-ul cursei in DB
                 // stergerea ore_plecare din request, se foloseste ora_id orei in DB
                 unset($rezervare['oras_plecare'], $rezervare['oras_sosire'], $rezervare['ora_plecare'], $rezervare['cursa'], $rezervare['statie'], $rezervare['ora'],
@@ -699,6 +701,7 @@ class RezervareController extends Controller
 
 
         $rezervare_array = $rezervare->toArray();
+        $plata_online = $rezervare_array['plata_online'];
         unset($rezervare_array['cursa'], $rezervare_array['statie'], $rezervare_array['ora'], $rezervare_array['tip_plata'], $rezervare_array['id'],
             $rezervare_array['plata_online'], $rezervare_array['adresa']);
             
@@ -730,6 +733,8 @@ class RezervareController extends Controller
 
         $request->session()->put('rezervare', $rezervare);
 
+        // dd($plata_online);
+
         // if($rezervari->save()){
         //     dd(Response::json(array('success' => true, 'last_insert_id' => $rezervari->id), 200));
         // };
@@ -748,8 +753,11 @@ class RezervareController extends Controller
             );
         }
 
+        if ($plata_online == 1){
+            return redirect('/trimitere-catre-plata');
+        }else{
         return redirect('/adauga-rezervare-pasul-3');
-
+        }
     }
 
         /**
@@ -773,6 +781,6 @@ class RezervareController extends Controller
         // dd($rezervari);
         $pdf = \PDF::loadView('rezervari.export.rezervare-pdf', compact('rezervari'))
             ->setPaper('a4');
-                return $pdf->stream('Rezervare ' . $rezervari->nume . '.pdf');
+                return $pdf->download('Rezervare ' . $rezervari->nume . '.pdf');
     }
 }

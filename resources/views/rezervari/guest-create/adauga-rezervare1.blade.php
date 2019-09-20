@@ -318,38 +318,64 @@
                             </div> 
                             
                                                             
-                                <script type="application/javascript"> 
+                                 <script type="application/javascript"> 
                                     plataOnlineVeche={!! json_encode(old('plata_online') == "true" ? true : false) !!}
                                 </script>
-                            @guest       
 
-                                {{-- <h1 :plata-online="true"></h1> --}}
+                                {{--
+                            @guest   
+                            @else    
+                            
+                                @if (Auth::user()->id == 355)
 
-                                {{-- <div class="form-group col-lg-12 mb-0 mt-1 pb-1 border-bottom"> 
-                                    <div class="d-flex justify-content-center">
-                                        <button type="button" class="btn btn-light btn-sm mr-2" v-on:click="plata_online = !plata_online">PLATA CU CARD</button>                           
-                                        <input
-                                            type="hidden"
-                                            name="plata_online"
-                                            v-model="plata_online">
-                                        <img src="{{ asset('images/footer-icons-pay.png') }}" width="90px">
-                                    </div>
+                                    <h1 :plata-online="true"></h1>
 
-                                    <div v-show="plata_online" class="form-group col-lg-12 mb-1 mt-1">
-                                        <div class="row d-flex">
-                                                <label for="adresa" class="mb-0 col-form-label mr-2">Adresa:<span class="text-danger">*</span></label>
-                                            <div class="form-group col-lg-10 mb-1">
-                                                <textarea
-                                                    type="text" 
-                                                    rows="2"
-                                                    class="form-control form-control-sm {{ $errors->has('adresa') ? 'is-invalid' : '' }}" 
-                                                    name="adresa" 
-                                                    placeholder="Adresa postală"
-                                                    >{{ old('adresa') }}</textarea>
+                                    <div class="form-group col-lg-12 mb-0 mt-1 pb-1 border-bottom"> 
+                                        <div class="d-flex justify-content-center">
+                                            <button type="button" class="btn btn-light btn-sm mr-2" v-on:click="plata_online = !plata_online">PLATA CU CARD</button>                           
+                                            <input
+                                                type="hidden"
+                                                name="plata_online"
+                                                v-model="plata_online">
+                                            <img src="{{ asset('images/footer-icons-pay.png') }}" width="90px">
+                                        </div>
+
+                                        <div v-show="plata_online" class="form-group col-lg-12 mb-1 mt-1">
+                                            <div class="row d-flex">
+                                                    <label for="adresa" class="mb-0 col-form-label mr-2">Adresa:<span class="text-danger">*</span></label>
+                                                <div class="form-group col-lg-10 mb-1">
+                                                    <textarea
+                                                        type="text" 
+                                                        rows="2"
+                                                        class="form-control form-control-sm {{ $errors->has('adresa') ? 'is-invalid' : '' }}" 
+                                                        name="adresa" 
+                                                        placeholder="Adresa postală"
+                                                        >{{ old('adresa') }}</textarea>
+                                                </div>
                                             </div>
+                                        </div> 
+                                    </div>
+                                @endif
+                                
+                            @endguest --}}
+
+                                    {{-- temporar pana e gata plata online --}}
+                                        <input type="hidden" name="plata_online" value="0" />
+                            
+                            @guest   
+                            @else 
+                                @if (Auth::user()->id == 355)
+                                    <div class="form-group col-lg-12 mb-0 mt-1 d-flex justify-content-center border-bottom">
+                                        <label for="" class="pr-2">Plata cu card:</label>
+                                        <input type="hidden" name="plata_online" value="0" />
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input px-2" name="plata_online" value="1" required
+                                            {{ old('plata_online') == '1' ? 'checked' : '' }}>
+                                            <img src="{{ asset('images/footer-icons-pay.png') }}" width="90px">
+                                            {{-- <label class="form-check-label" for="plata_online">prin utilizarea acestui formular sunteți de acord cu stocarea și procesarea datelor dvs. pe acest site web</label>  --}}
                                         </div>
                                     </div> 
-                                </div> --}}
+                                @endif
                             @endguest
 
                             <div class="form-group col-lg-12 mb-0 mt-1 d-flex">
