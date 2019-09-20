@@ -264,19 +264,19 @@ class PlataOnlineController extends Controller
 
 
 
-        DB::table('payment_notifications')->insert([
-            'order_id' => 'orderId',
-            'purchase_id' => '1',
-            'action' => 'action',
-            'error_code' => 'e',
-            'error_message' => 'errorMessage',
-            'notify_date' => \Carbon\Carbon::now(),
-            'original_amount' => '1',
-            'processed_amount' => '1',
-            'pan_masked' => 'a',
-            'customer_id' => 'a',
-            'payment_instrument_id' => '1',
-        ]);
+        // DB::table('payment_notifications')->insert([
+        //     'order_id' => 'orderId',
+        //     'purchase_id' => '1',
+        //     'action' => 'action',
+        //     'error_code' => 'e',
+        //     'error_message' => 'errorMessage',
+        //     'notify_date' => \Carbon\Carbon::now(),
+        //     'original_amount' => '1',
+        //     'processed_amount' => '1',
+        //     'pan_masked' => 'a',
+        //     'customer_id' => 'a',
+        //     'payment_instrument_id' => '1',
+        // ]);
 
     }
 }
