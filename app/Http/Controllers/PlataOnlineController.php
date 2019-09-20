@@ -116,6 +116,7 @@ class PlataOnlineController extends Controller
 
     public function returnUrl(Request $request)
     {
+        dd($request);
 
         $matrice = array(
             'fruct' => 'cireasa',
@@ -239,6 +240,8 @@ class PlataOnlineController extends Controller
         //     'customer_id' => 'a',
         //     'payment_instrument_id' => '1',
         // ]);
+
+        $rezervare = DB::table('rezervari')->where('id', 'John')->first();
 
     }
 }
