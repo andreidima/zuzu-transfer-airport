@@ -19,14 +19,13 @@ class PlataOnlineController extends Controller
     {
         $comanda = Mobilpay::setOrderId(md5(uniqid(rand())))
         ->setAmount('10.00')
-        ->setDetails('Some details')
-        ->setAdditionalParams([
-            // 'email' => $request->email
-            'email' => 'andrei.dima@usm.ro',
-            'firstName' => 'Andrei Dima'
-        ])
+        ->setDetails('Plata online pentru biletul -')
+        // ->setAdditionalParams([
+        //     'email' => $request->email
+        //     'email' => 'andrei.dima@usm.ro',
+        //     'firstName' => 'Andrei Dima'
+        // ])
         ->purchase();
-        // dd($comanda);
     }
 
     public function confirmarePlata(Request $request)
@@ -35,37 +34,7 @@ class PlataOnlineController extends Controller
 
         $data = $response->getData(); //array
 
-        // $request = (string) $data->orderId;
-
-        // $data_string = $response->toJson();
-
-        // dd($response, $data);
-
-        $string = '';
-
-
-
-        function recursiva($array, $level = 1, $string1 = '')
-        {
-            foreach ($array as $key => $value) {
-                //If $value is an array.
-                if (is_array($value)) {
-                    //We need to loop through it.
-                    recursiva($value, $level + 1);
-                } else {
-                    //It is not an array, so print it out.
-                    // echo $key . ": " . $value, '<br>';
-                    $string1 = $string1 . $key . ": " . $value . "\n";
-                }
-            }
-            return $string1;
-        }
-
-        // $string = reset($data) . "\n";
-        $string = $string . recursiva($data);
-
-
-
+        
         function array_values_recursiva($array, $level = 1)
         {
             $flat = array();
@@ -89,33 +58,24 @@ class PlataOnlineController extends Controller
 
         $string3 = implode(" ", $string2);
 
-
-
-        // Storage::put('file.txt', $response);
         Storage::put('file2.txt', reset($data));
         Storage::put('file3.txt', $string3);
         Storage::put('file.txt', $data['orderId']);
-
-        // $mobilpay = Mobilpay::response();
-        // $mobilpay = (string) $mobilpay;
-
-        // $data = implode(', ', $data);
-
-        // $array = $response->toArray();
-        // echo implode(', ', $array);
+        
 
         DB::table('payment_notifications')->insert([
             'order_id' => $data['orderId'],
-            'purchase_id' => '1',
             'action' => $data['objPmNotify']['action'],
             'error_code' => $data['objPmNotify']['errorCode'],
             'error_message' => $data['objPmNotify']['errorMessage'],
             'notify_date' => $data['objPmNotify']['timestamp'],
             'original_amount' => $data['objPmNotify']['originalAmount'],
             'processed_amount' => $data['objPmNotify']['processedAmount'],
-            'pan_masked' => 'a',
-            'customer_id' => 'a',
-            'payment_instrument_id' => '1',
+            'rezervare_id' => 'a',
+            'nume' => ['objPmNotify']['customer']['firstName'],
+            'telefon' => ['objPmNotify']['customer']['mobilePhone'],
+            'email' => ['objPmNotify']['customer']['email'],
+            'adresa' => ['objPmNotify']['customer']['address'],
         ]);
 
         switch ($response->getMessage()) {
