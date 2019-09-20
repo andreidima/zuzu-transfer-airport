@@ -243,7 +243,7 @@ class PlataOnlineController extends Controller
         $payment = DB::table('payment_notifications')->where('order_id', $request->orderId)->first();
         $rezervare = DB::table('rezervari')->where('id', $payment->rezervare_id)->first();
 
-        dd($rezervare);
+        dd($payment, $rezervare);
 
     }
 }
