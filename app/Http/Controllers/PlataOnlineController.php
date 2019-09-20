@@ -110,7 +110,7 @@ class PlataOnlineController extends Controller
             'action' => 'action',
             'error_code' => 'errorCode',
             'error_message' => 'errorMessage',
-            // 'notify_date' => 'a',
+            'notify_date' => \Carbon\Carbon::now(),
             'original_amount' => 'a',
             'processed_amount' => 'a',
             'pan_masked' => 'a',
@@ -259,6 +259,8 @@ class PlataOnlineController extends Controller
         // }
         echo '<br><br><br><br>';
         echo $string3;
+        echo '<br>';
+        echo \Carbon\Carbon::now();
 
     }
 }
