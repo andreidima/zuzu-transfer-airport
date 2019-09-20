@@ -342,7 +342,9 @@
                         Rest de plata:
                     </td>
                     <td style="border-style: solid; border-width:1px; padding: 0 0 0 5px; text-align:center;">
-                        @if (($rezervari->comision_agentie == 0) && ($rezervari->tip_plata_id == 2))
+                        @if ($rezervari->tip_plata_id == 3)
+                            0
+                        @elseif (($rezervari->comision_agentie == 0) && ($rezervari->tip_plata_id == 2))
                             0
                         @else 
                             {{ $rezervari->pret_total - $rezervari->comision_agentie }}
