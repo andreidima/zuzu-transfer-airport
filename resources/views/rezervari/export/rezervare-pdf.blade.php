@@ -317,7 +317,9 @@
                         Achitat:
                     </td>
                     <td style="border-style: solid; border-width:1px; padding: 0 0 0 5px; text-align:center;">
-                        @if (($rezervari->comision_agentie == 0) && ($rezervari->tip_plata_id == 2))
+                        @if ($rezervari->tip_plata_id == 3)
+                            {{ $rezervari->pret_total }}
+                        @elseif (($rezervari->comision_agentie == 0) && ($rezervari->tip_plata_id == 2))
                             {{ $rezervari->pret_total }}
                         @else 
                             {{ $rezervari->comision_agentie - 0}}
