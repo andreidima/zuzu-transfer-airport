@@ -105,14 +105,14 @@ class PlataOnlineController extends Controller
         // echo implode(', ', $array);
 
         DB::table('payment_notifications')->insert([
-            'order_id' => 'orderId',
+            'order_id' => $data['orderId'],
             'purchase_id' => '1',
-            'action' => 'action',
-            'error_code' => 'errorCode',
-            'error_message' => 'errorMessage',
-            'notify_date' => \Carbon\Carbon::now(),
-            'original_amount' => 'a',
-            'processed_amount' => 'a',
+            'action' => $data['action'],
+            'error_code' => $data['errorCode'],
+            'error_message' => $data['errorMessage'],
+            'notify_date' => $data['timestamp'],
+            'original_amount' => $data['originalAmount'],
+            'processed_amount' => $data['processedAmount'],
             'pan_masked' => 'a',
             'customer_id' => 'a',
             'payment_instrument_id' => '1',
@@ -261,6 +261,22 @@ class PlataOnlineController extends Controller
         echo $string3;
         echo '<br>';
         echo \Carbon\Carbon::now();
+
+
+
+        DB::table('payment_notifications')->insert([
+            'order_id' => 'orderId',
+            'purchase_id' => '1',
+            'action' => 'action',
+            'error_code' => 'e',
+            'error_message' => 'errorMessage',
+            'notify_date' => \Carbon\Carbon::now(),
+            'original_amount' => '1',
+            'processed_amount' => '1',
+            'pan_masked' => 'a',
+            'customer_id' => 'a',
+            'payment_instrument_id' => '1',
+        ]);
 
     }
 }
