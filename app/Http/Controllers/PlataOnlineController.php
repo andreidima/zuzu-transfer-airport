@@ -20,7 +20,10 @@ class PlataOnlineController extends Controller
         $comanda = Mobilpay::setOrderId(md5(uniqid(rand())))
         ->setAmount('10.00')
         ->setDetails('Some details')
-        // ->setReturnUrl('https://www.youtube.com');
+        ->setAdditionalParams([
+            // 'email' => $request->email
+            'email' => 'andrei.dima@usm.ro'
+        ])
         ->purchase();
         // dd($comanda);
     }
