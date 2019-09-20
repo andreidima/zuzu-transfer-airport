@@ -73,7 +73,7 @@ class PlataOnlineController extends Controller
             'notify_date' => $data['objPmNotify']['timestamp'],
             'original_amount' => $data['objPmNotify']['originalAmount'],
             'processed_amount' => $data['objPmNotify']['processedAmount'],
-            'rezervare_id' => 'a',
+            'rezervare_id' => $data['params']['rezervare_id'],
             'nume' => $data['objPmNotify']['customer']['firstName'],
             'telefon' => $data['objPmNotify']['customer']['mobilePhone'],
             'email' => $data['objPmNotify']['customer']['email'],
@@ -116,7 +116,6 @@ class PlataOnlineController extends Controller
 
     public function returnUrl(Request $request)
     {
-        dd($request);
 
         $matrice = array(
             'fruct' => 'cireasa',
@@ -241,7 +240,10 @@ class PlataOnlineController extends Controller
         //     'payment_instrument_id' => '1',
         // ]);
 
-        $rezervare = DB::table('rezervari')->where('id', 'John')->first();
+        $payment = DB::table('payment_notifications')->where('order_id', $request->orderId)->first();
+        $rezervare = DB::table('rezervari')->where('id', $payment->rezervare_id)->first();
+
+        dd($rezervare);
 
     }
 }
