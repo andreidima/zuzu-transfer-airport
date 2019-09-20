@@ -104,19 +104,19 @@ class PlataOnlineController extends Controller
         // $array = $response->toArray();
         // echo implode(', ', $array);
 
-        // DB::table('payment_notifications')->insert([
-        //     'order_id' => 'a',
-        //     'purchase_id' => 'a',
-        //     'action' => 'a',
-        //     'error_code' => 'a',
-        //     'error_message' => 'a',
-        //     'notify_date' => 'a',
-        //     'original_amount' => 'a',
-        //     'processed_amount' => 'a',
-        //     'pan_masked' => 'a',
-        //     'customer_id' => 'a',
-        //     'payment_instrument_id' => 'a',
-        // ]);
+        DB::table('payment_notifications')->insert([
+            'order_id' => 'orderId',
+            'purchase_id' => 'a',
+            'action' => 'action',
+            'error_code' => 'errorCode',
+            'error_message' => 'errorMessage',
+            'notify_date' => 'a',
+            'original_amount' => 'a',
+            'processed_amount' => 'a',
+            'pan_masked' => 'a',
+            'customer_id' => 'a',
+            'payment_instrument_id' => 'a',
+        ]);
 
         switch ($response->getMessage()) {
             case 'confirmed_pending': // transaction is pending review. After this is done, a new IPN request will be sent with either confirmation or cancellation
