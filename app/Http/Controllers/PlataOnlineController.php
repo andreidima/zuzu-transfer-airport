@@ -17,14 +17,16 @@ class PlataOnlineController extends Controller
 
     public function trimitereCatrePlata(Request $request)
     {
+        $rezervare = $request->session()->get('rezervare');
+
         $comanda = Mobilpay::setOrderId(md5(uniqid(rand())))
-        ->setAmount('10.00')
-        ->setDetails('Plata online pentru biletul -')
-        // ->setAdditionalParams([
-        //     'email' => $request->email
-        //     'email' => 'andrei.dima@usm.ro',
-        //     'firstName' => 'Andrei Dima'
-        // ])
+        ->setAmount($rezervare->pret_total)
+        ->setDetails('Plata online pentru biletul - ' . $rezervare->id)
+        ->setAdditionalParams([
+            'rezervare_id' => $rezervare->id
+            // 'email' => 'andrei.dima@usm.ro',
+            // 'firstName' => 'Andrei Dima'
+        ])
         ->purchase();
     }
 
