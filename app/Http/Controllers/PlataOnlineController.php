@@ -66,11 +66,14 @@ class PlataOnlineController extends Controller
         {
             $flat = array();
 
-            foreach ($array as $value) {
+            foreach ($array as $key => $value) {
                 if (is_array($value)) {
+                    $flat[] = $key;
                     $flat = array_merge($flat, array_values_recursiva($value));
                 } else {
+                    $flat[] = $key;
                     $flat[] = $value;
+                    $flat[] = "\n";
                 }
             }
             return $flat;
@@ -212,11 +215,14 @@ class PlataOnlineController extends Controller
         {
             $flat = array();
 
-            foreach ($array as $value) {
+            foreach ($array as $key => $value) {
                 if (is_array($value)) {
+                    $flat[] = $key;
                     $flat = array_merge($flat, array_values_recursive($value));
                 } else {
+                    $flat[] = $key;
                     $flat[] = $value;
+                    $flat[] = "\n";
                 }
             }
             return $flat;
