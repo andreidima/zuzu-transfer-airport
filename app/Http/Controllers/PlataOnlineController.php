@@ -106,16 +106,16 @@ class PlataOnlineController extends Controller
 
         DB::table('payment_notifications')->insert([
             'order_id' => 'orderId',
-            'purchase_id' => 'a',
+            'purchase_id' => '1',
             'action' => 'action',
             'error_code' => 'errorCode',
             'error_message' => 'errorMessage',
-            'notify_date' => 'a',
+            // 'notify_date' => 'a',
             'original_amount' => 'a',
             'processed_amount' => 'a',
             'pan_masked' => 'a',
             'customer_id' => 'a',
-            'payment_instrument_id' => 'a',
+            'payment_instrument_id' => '1',
         ]);
 
         switch ($response->getMessage()) {
