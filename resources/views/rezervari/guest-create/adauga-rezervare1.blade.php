@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container p-0">
     <div class="card p-0 mb-4" id="orase-ore-plecare"> 
         <div class="d-flex justify-content-between card-header mb-1">
             <div class="flex flex-vertical-center">
@@ -378,11 +378,11 @@
 
     <div class="justify-content">
         <div class="row">
-            <div class="col-lg-12 d-flex justify-content-between">
-                <img src="{{ asset('images/grile-ore/Galati - Otopeni.jpg') }}" width="247px">
-                <img src="{{ asset('images/grile-ore/Otopeni - Galati.jpg') }}" width="240px">
-                <img src="{{ asset('images/grile-ore/Tecuci - Otopeni.jpg') }}" width="279px">
-                <img src="{{ asset('images/grile-ore/Otopeni - Tecuci.jpg') }}" width="276px">
+            <div class="col-lg-12 text-center">
+                <img src="{{ asset('images/grile-ore/Galati - Otopeni.jpg') }}" width="245px">
+                <img src="{{ asset('images/grile-ore/Otopeni - Galati.jpg') }}" width="237px">
+                <img src="{{ asset('images/grile-ore/Tecuci - Otopeni.jpg') }}" width="277px">
+                <img src="{{ asset('images/grile-ore/Otopeni - Tecuci.jpg') }}" width="275px">
             </div>
         </div>
     </div>

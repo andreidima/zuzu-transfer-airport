@@ -66,18 +66,19 @@ class PlataOnlineController extends Controller
 
 
 
-        function array_values_recursiva($array)
+        function array_values_recursiva($array, $level = 1)
         {
             $flat = array();
 
             foreach ($array as $key => $value) {
                 if (is_array($value)) {
-                    $flat[] = $key;
-                    $flat = array_merge($flat, array_values_recursiva($value));
+                    $flat[] = "<br><br>";
+                    $flat[] = "Level: " . $level . " key: " . $key . "<br>";
+                    $flat = array_merge($flat, array_values_recursive($value, $level + 1));
                 } else {
                     $flat[] = $key;
                     $flat[] = $value;
-                    $flat[] = "\n";
+                    $flat[] = "<br>";
                 }
             }
             return $flat;
@@ -93,7 +94,7 @@ class PlataOnlineController extends Controller
         // Storage::put('file.txt', $response);
         Storage::put('file2.txt', reset($data));
         Storage::put('file3.txt', $string3);
-        Storage::put('file.txt', $string);
+        Storage::put('file.txt', $data['orderId']);
 
         // $mobilpay = Mobilpay::response();
         // $mobilpay = (string) $mobilpay;
@@ -103,9 +104,19 @@ class PlataOnlineController extends Controller
         // $array = $response->toArray();
         // echo implode(', ', $array);
 
-        // DB::table('teste')->insert(
-        //     ['text' => $request, 'text3' => $data_string ]
-        // );
+        // DB::table('payment_notifications')->insert([
+        //     'order_id' => 'a',
+        //     'purchase_id' => 'a',
+        //     'action' => 'a',
+        //     'error_code' => 'a',
+        //     'error_message' => 'a',
+        //     'notify_date' => 'a',
+        //     'original_amount' => 'a',
+        //     'processed_amount' => 'a',
+        //     'pan_masked' => 'a',
+        //     'customer_id' => 'a',
+        //     'payment_instrument_id' => 'a',
+        // ]);
 
         switch ($response->getMessage()) {
             case 'confirmed_pending': // transaction is pending review. After this is done, a new IPN request will be sent with either confirmation or cancellation
@@ -176,6 +187,12 @@ class PlataOnlineController extends Controller
             "comments" => "comments"
         ];
 
+        echo '<br>';
+        echo $arr['date'];
+        echo '<br><br><br>';
+        echo $arr['other_work_'][1][2]['one'];
+        echo '<br><br><br>';
+
         $myArray = array(
             'example',
             'example two',
@@ -215,18 +232,19 @@ class PlataOnlineController extends Controller
 
 
 
-        function array_values_recursive($array)
+        function array_values_recursive($array, $level = 1)
         {
             $flat = array();
 
             foreach ($array as $key => $value) {
                 if (is_array($value)) {
-                    $flat[] = $key;
-                    $flat = array_merge($flat, array_values_recursive($value));
+                    $flat[] = "<br><br>";
+                    $flat[] = "Level: " . $level . " key: " . $key . "<br>";
+                    $flat = array_merge($flat, array_values_recursive($value, $level + 1));
                 } else {
                     $flat[] = $key;
                     $flat[] = $value;
-                    $flat[] = "\n";
+                    $flat[] = "<br>";
                 }
             }
             return $flat;
@@ -239,8 +257,8 @@ class PlataOnlineController extends Controller
         // foreach (array_values_recursive($arr) as $value){
         //     $string2 = $string2 . $value;
         // }
-
-        dd($string3);
+        echo '<br><br><br><br>';
+        echo $string3;
 
     }
 }
