@@ -13,6 +13,7 @@ use DB;
 use Illuminate\Http\Request;
 use App\Mail\BiletClient;
 use Illuminate\Validation\Rule;
+use Session;
 
 class RezervareController extends Controller
 {
@@ -767,7 +768,13 @@ class RezervareController extends Controller
      */
     public function adaugaRezervare3(Request $request)
     {
-        $rezervare = $request->session()->get('rezervare');
+        if (Session::has('rezervare')) {
+            $rezervare = $request->session()->get('rezervare');
+        }else {
+            $payment = DB::table('payment_notifications')->where('order_id', $request->orderId)->first();
+            $rezervare = DB::table('rezervari')->where('id', $payment->rezervare_id)->first();
+        }
+
         // $request->session()->forget('rezervare');
         // $request->session()->flush();
         // dd (session()); 

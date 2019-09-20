@@ -99,6 +99,8 @@ class PlataOnlineController extends Controller
             case 'confirmed': // transaction is finalized, the money have been captured from the customer's account
 
                 //update DB, SET status = "confirmed/captured"
+                $payment = DB::table('payment_notifications')->where('order_id', $data['orderId'])->first();
+                DB::table('rezervari')->where('id', $payment->rezervare_id)->update(['tip_plata_id' => 3]);
 
                 break;
             case 'canceled': // transaction is canceled
