@@ -22,7 +22,8 @@ class PlataOnlineController extends Controller
         ->setDetails('Some details')
         ->setAdditionalParams([
             // 'email' => $request->email
-            'email' => 'andrei.dima@usm.ro'
+            'email' => 'andrei.dima@usm.ro',
+            'firstName' => 'Andrei Dima'
         ])
         ->purchase();
         // dd($comanda);
