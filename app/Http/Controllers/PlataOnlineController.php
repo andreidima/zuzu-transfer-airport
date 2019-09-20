@@ -72,13 +72,13 @@ class PlataOnlineController extends Controller
 
             foreach ($array as $key => $value) {
                 if (is_array($value)) {
-                    $flat[] = "<br><br>";
-                    $flat[] = "Level: " . $level . " key: " . $key . "<br>";
+                    $flat[] = "\n\n";
+                    $flat[] = "Level: " . $level . " key: " . $key . "\n";
                     $flat = array_merge($flat, array_values_recursiva($value, $level + 1));
                 } else {
                     $flat[] = $key;
                     $flat[] = $value;
-                    $flat[] = "<br>";
+                    $flat[] = "\n";
                 }
             }
             return $flat;
