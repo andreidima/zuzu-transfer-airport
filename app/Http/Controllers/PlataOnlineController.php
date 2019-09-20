@@ -72,10 +72,11 @@ class PlataOnlineController extends Controller
             'original_amount' => $data['objPmNotify']['originalAmount'],
             'processed_amount' => $data['objPmNotify']['processedAmount'],
             'rezervare_id' => 'a',
-            'nume' => ['objPmNotify']['customer']['firstName'],
-            'telefon' => ['objPmNotify']['customer']['mobilePhone'],
-            'email' => ['objPmNotify']['customer']['email'],
-            'adresa' => ['objPmNotify']['customer']['address'],
+            'nume' => ['customer']['firstName'],
+            // 'nume' => ['objPmNotify']['customer']['firstName'],
+            // 'telefon' => ['objPmNotify']['customer']['mobilePhone'],
+            // 'email' => ['objPmNotify']['customer']['email'],
+            // 'adresa' => ['objPmNotify']['customer']['address'],
         ]);
 
         switch ($response->getMessage()) {
