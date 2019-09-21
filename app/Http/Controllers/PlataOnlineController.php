@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Mobilpay;
 use Storage;
+use App\PlataOnline;
 
 class PlataOnlineController extends Controller
 {
@@ -41,35 +42,34 @@ class PlataOnlineController extends Controller
         $data = $response->getData(); //array
 
         
-        function array_values_recursiva($array, $level = 1)
-        {
-            $flat = array();
+        // function array_values_recursiva($array, $level = 1)
+        // {
+        //     $flat = array();
 
-            foreach ($array as $key => $value) {
-                if (is_array($value)) {
-                    $flat[] = "\n\n";
-                    $flat[] = "Level: " . $level . " key: " . $key . "\n";
-                    $flat = array_merge($flat, array_values_recursiva($value, $level + 1));
-                } else {
-                    $flat[] = $key;
-                    $flat[] = $value;
-                    $flat[] = "\n";
-                }
-            }
-            return $flat;
-        }
+        //     foreach ($array as $key => $value) {
+        //         if (is_array($value)) {
+        //             $flat[] = "\n\n";
+        //             $flat[] = "Level: " . $level . " key: " . $key . "\n";
+        //             $flat = array_merge($flat, array_values_recursiva($value, $level + 1));
+        //         } else {
+        //             $flat[] = $key;
+        //             $flat[] = $value;
+        //             $flat[] = "\n";
+        //         }
+        //     }
+        //     return $flat;
+        // }
 
-        $string2 = '';
-        $string2 = array_values_recursiva($data);
+        // $string2 = '';
+        // $string2 = array_values_recursiva($data);
 
-        $string3 = implode(" ", $string2);
+        // $string3 = implode(" ", $string2);
 
-        Storage::put('file2.txt', reset($data));
-        Storage::put('file3.txt', $string3);
-        Storage::put('file.txt', $data['orderId']);
+        // Storage::put('file2.txt', reset($data));
+        // Storage::put('file3.txt', $string3);
+        // Storage::put('file.txt', $data['orderId']);
         
-
-        DB::table('payment_notifications')->insert([
+        DB::table('plata_online')->insert([
             'order_id' => $data['orderId'],
             'action' => $data['objPmNotify']['action'],
             'error_code' => $data['objPmNotify']['errorCode'],
@@ -82,6 +82,7 @@ class PlataOnlineController extends Controller
             'telefon' => $data['objPmNotify']['customer']['mobilePhone'],
             'email' => $data['objPmNotify']['customer']['email'],
             'adresa' => $data['objPmNotify']['customer']['address'],
+            'created_at' => \Carbon\Carbon::now(),
         ]);
 
         switch ($response->getMessage()) {
@@ -103,8 +104,8 @@ class PlataOnlineController extends Controller
             case 'confirmed': // transaction is finalized, the money have been captured from the customer's account
 
                 //update DB, SET status = "confirmed/captured"
-                $payment = DB::table('payment_notifications')->where('order_id', $data['orderId'])->first();
-                DB::table('rezervari')->where('id', $payment->rezervare_id)->update(['tip_plata_id' => 3]);
+                $plata_online = DB::table('plata_online')->where('order_id', $data['orderId'])->first();
+                DB::table('rezervari')->where('id', $plata_online->rezervare_id)->update(['tip_plata_id' => 3]);
 
                 break;
             case 'canceled': // transaction is canceled

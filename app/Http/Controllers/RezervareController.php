@@ -782,15 +782,16 @@ class RezervareController extends Controller
         // }
 
         if ($request->has('orderId')) {
-            $payment = DB::table('payment_notifications')->where('order_id', $request->orderId)->latest()->first();
-            $rezervare = \App\Rezervare::where('id', $payment->rezervare_id)->first();
+            $plata_online = DB::table('plata_online')->where('order_id', $request->orderId)->latest()->first();
+            $rezervare = \App\Rezervare::where('id', $plata_online->rezervare_id)->first();
 
-            $request->session()->put('payment', $payment);
-            $request->session()->put('rezervare', $rezervare);
+            $request->session()->put('plata_online', $plata_online);
+            $request->session()->forget('rezervare');
+            $request->session()->put('rezervare_id', $rezervare->id);
 
             // dd($rezervare, $rezervare->ora->ora);
 
-            return view('rezervari.guest-create/adauga-rezervare3', compact('rezervare', 'payment'));
+            return view('rezervari.guest-create/adauga-rezervare3', compact('rezervare', 'plata_online'));
 
         } else {
             $rezervare = $request->session()->get('rezervare');
@@ -805,7 +806,12 @@ class RezervareController extends Controller
 
     public function pdfexportguest(Request $request)
     {
-        $rezervari = $request->session()->get('rezervare');
+        if ($request->has('plata_online')) {
+            $rezervari = \App\Rezervare::where('id', $request->rezervare_id)->first();
+        }else {
+            $rezervari = $request->session()->get('rezervare');
+        }
+
         // dd($rezervari);
         $pdf = \PDF::loadView('rezervari.export.rezervare-pdf', compact('rezervari'))
             ->setPaper('a4');
