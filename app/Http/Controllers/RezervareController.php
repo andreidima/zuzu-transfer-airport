@@ -784,8 +784,9 @@ class RezervareController extends Controller
         if ($request->has('orderId')) {
             $payment = DB::table('payment_notifications')->where('order_id', $request->orderId)->first();
             $rezervare = DB::table('rezervari')->where('id', $payment->rezervare_id)->first();
-            
+
             $request->session()->put('rezervare', $rezervare);
+            dd($rezervare);
 
             return view('rezervari.guest-create/adauga-rezervare3', compact('rezervare', $rezervare));
 
