@@ -280,23 +280,40 @@
                                 </div>
                             </div>                       
                             <div class="form-group col-lg-12 mb-0 mt-1 d-flex border-bottom">
-                                <label class="mr-2">Preț total:<span class="text-danger">*</span></label>
-                                <div class="form-check mr-4">
-                                    <input type="checkbox" class="form-check-input" name="tip_plata_id" value="1"
-                                    {{ old('tip_plata_id', $rezervari->tip_plata_id) == '1' ? 'checked' : '' }}
-                                    disabled
-                                    >
-                                    <label class="form-check-label text-white" for="tip_plata_id">La șofer</label>
-                                </div>
-                                <div class="form-check ml-4">
-                                    <input type="checkbox" class="form-check-input" name="tip_plata_id" value="2"
-                                    {{ old('tip_plata_id', $rezervari->tip_plata_id) == '2' ? 'checked' : '' }}
-                                    disabled
-                                    >
-                                    <label class="form-check-label text-white" for="tip_plata_id">La agenție</label>
-                                </div>
+                                <label class="col-form-label">Plata:<span class="text-danger">*</span></label>
+
+                                    <script type="application/javascript"> 
+                                        pretTotal={!! json_encode(old('pret_total', $rezervari->pret_total)) !!}
+                                    </script>  
+                                    <div class="px-1 py-0 mb-0 mr-4 d-flex" style="width:100px">
+                                        <input 
+                                            type="text" 
+                                            class="form-control form-control-sm {{ $errors->has('pret_total') ? 'is-invalid' : '' }}" 
+                                            name="pret_total"
+                                            placeholder="0" 
+                                            value="{{ old('pret_total') == '' ? $rezervari->pret_total : old('pret_total') }}"
+                                            required
+                                            disabled
+                                            > 
+                                        <label class="col-form-label mx-1">lei</label>
+                                    </div> 
+                                    
+                                    <div class="form-check mr-4 mt-1">
+                                        <input type="checkbox" class="form-check-input" name="tip_plata_id" value="1"
+                                        {{ old('tip_plata_id', $rezervari->tip_plata_id) == '1' ? 'checked' : '' }}
+                                        disabled
+                                        >
+                                        <label class="form-check-label text-white" for="tip_plata_id">La șofer</label>
+                                    </div>
+                                    <div class="form-check ml-4 mt-1">
+                                        <input type="checkbox" class="form-check-input" name="tip_plata_id" value="2"
+                                        {{ old('tip_plata_id', $rezervari->tip_plata_id) == '2' ? 'checked' : '' }}
+                                        disabled
+                                        >
+                                        <label class="form-check-label text-white" for="tip_plata_id">La agenție</label>
+                                    </div>
                             </div>                     
-                            <div class="form-group col-lg-12 mb-0 mt-1 d-flex border-bottom">
+                            {{-- <div class="form-group col-lg-12 mb-0 mt-1 d-flex border-bottom">
                                 <script type="application/javascript"> 
                                     pretTotal={!! json_encode(old('pret_total', $rezervari->pret_total)) !!}
                                 </script>
@@ -315,8 +332,10 @@
                                 <label class="col-form-label mb-0 pb-0">
                                     lei
                                 </label>
-                            </div> 
-                            <div class="form-group col-lg-12 mb-0 d-flex">                                
+                            </div>  --}}
+                            <div class="form-group col-lg-3 mb-0"> 
+                            </div>
+                            <div class="form-group col-lg-6 mb-0">                                
                                 Total plata acum:
                                     @if (($rezervari->comision_agentie == 0) && ($rezervari->tip_plata_id == 2))
                                         {{ $rezervari->pret_total }}
@@ -336,6 +355,8 @@
                                         {{ $rezervari->pret_total - $rezervari->comision_agentie }}
                                     @endif
                                     lei
+                            </div>
+                            <div class="form-group col-lg-3 mb-0"> 
                             </div>
                         </div>
                     </div>
