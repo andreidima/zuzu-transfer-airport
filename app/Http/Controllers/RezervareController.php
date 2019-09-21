@@ -806,11 +806,10 @@ class RezervareController extends Controller
 
     public function pdfexportguest(Request $request)
     {
-        if ($request->has('plata_online')) {
+        if (Session::has('plata_online')) {
             $rezervari = \App\Rezervare::where('id', $request->rezervare_id)->first();
             dd($rezervari);
         }else {
-            dd($rezervari, $rezervari);
             $rezervari = $request->session()->get('rezervare');
         }
 
