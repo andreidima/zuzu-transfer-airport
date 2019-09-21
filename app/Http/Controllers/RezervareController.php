@@ -808,7 +808,7 @@ class RezervareController extends Controller
     {
         if (Session::has('plata_online')) {
             $rezervari = \App\Rezervare::where('id', $request->rezervare_id)->first();
-            dd($rezervari);
+            // dd($rezervari);
         }else {
             $rezervari = $request->session()->get('rezervare');
         }
