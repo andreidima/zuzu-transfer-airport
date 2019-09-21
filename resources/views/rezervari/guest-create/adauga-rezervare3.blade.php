@@ -30,7 +30,7 @@
                     <h4 style="background-color:#e7d790; color:black; padding:2px 0px;">
                     Rezervarea a fost înregistrată cu codul RO{{ $rezervare->id }}
                     </h4>
-                    @isset($payment)
+                    @isset($plata_online)
                         <br>
                         Starea plății pentru această rezervare este: {{ $payment->arror_message }}
                         <br>
