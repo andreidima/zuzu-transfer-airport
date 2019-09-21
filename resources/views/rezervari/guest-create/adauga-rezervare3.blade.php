@@ -32,8 +32,17 @@
                     </h4>
                     @isset($plata_online)
                         <br>
-                        Starea plății pentru această rezervare este: {{ $plata_online->error_message }}
+                        @if ({{ $plata_online->error_code }} == 0 )
+                            Plata rezervării s-a efectuat cu success!
+                        @else                            
+                            Plata rezervării nu s-a efectuat cu success!
+                            <br>
+                            Aveți posibilitatea să faceți plata la șofer.
+                        @endif
                         <br>
+                        {{-- <br>
+                        Starea plății pentru această rezervare este: {{ $plata_online->error_message }}
+                        <br> --}}
                     @endisset
                     <br>
                     Biletul de rezervare v-a fost trimis pe email, dar îl puteți salva și tipări și de aici                     

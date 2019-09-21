@@ -372,9 +372,27 @@
                                             <input type="checkbox" class="form-check-input px-2" name="plata_online" value="1" required
                                             {{ old('plata_online') == '1' ? 'checked' : '' }}>
                                             <img src="{{ asset('images/footer-icons-pay.png') }}" width="90px">
-                                            {{-- <label class="form-check-label" for="plata_online">prin utilizarea acestui formular sunteți de acord cu stocarea și procesarea datelor dvs. pe acest site web</label>  --}}
                                         </div>
                                     </div> 
+                                    {{-- <div class="form-group col-lg-12 mb-0 mt-1 d-flex justify-content-center border-bottom">
+                                        <label for="" class="pr-2">Modalitate de plată:</label>
+
+                                        <div class="form-check row">
+                                            <input type="radio" class="form-check-input" name="plata_online" value="0"
+                                            {{ old('plata_online') == '0' ? 'checked' : '' }}>
+                                            <label class="form-check-label" for="">
+                                                La șofer
+                                            </label>
+
+                                            <input type="radio" class="form-check-input" name="plata_online" value="1"
+                                            {{ old('plata_online') == '1' ? 'checked' : '' }}>
+                                            <label class="form-check-label" for="">
+                                                Card de credit sau de debit
+                                            </label>
+
+                                            <img src="{{ asset('images/footer-icons-pay.png') }}" width="90px">
+                                        </div>
+                                    </div>  --}}
                                 @endif
                             @endguest
 
