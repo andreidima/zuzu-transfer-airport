@@ -12,6 +12,10 @@ class PlataOnlineController extends Controller
 
     public function testarePlataCard(Request $request)
     {
+        $rezervare = \App\Rezervare::where('id', '25216')->first();
+        dd($rezervare->ora->ora);
+
+
         return view('testare-plata-card');
     }
 

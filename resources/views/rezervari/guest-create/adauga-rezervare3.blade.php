@@ -30,6 +30,11 @@
                     <h4 style="background-color:#e7d790; color:black; padding:2px 0px;">
                     Rezervarea a fost înregistrată cu codul RO{{ $rezervare->id }}
                     </h4>
+                    @isset($payment)
+                        <br>
+                        Starea plății pentru această rezervare este: {{ $payment->arror_message }}
+                        <br>
+                    @endisset
                     <br>
                     Biletul de rezervare v-a fost trimis pe email, dar îl puteți salva și tipări și de aici                     
                     <div class="form-row">

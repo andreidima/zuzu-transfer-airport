@@ -782,19 +782,20 @@ class RezervareController extends Controller
         // }
 
         if ($request->has('orderId')) {
-            $payment = DB::table('payment_notifications')->where('order_id', $request->orderId)->first();
-            $rezervare = DB::table('rezervari')->where('id', $payment->rezervare_id)->first();
+            $payment = DB::table('payment_notifications')->where('order_id', $request->orderId)->last();
+            $rezervare = \App\Rezervare::where('id', $payment->rezervare_id)->first();
 
+            $request->session()->put('payment', $payment);
             $request->session()->put('rezervare', $rezervare);
 
-            dd($rezervare, $rezervare->ora->ora);
+            // dd($rezervare, $rezervare->ora->ora);
 
-            return view('rezervari.guest-create/adauga-rezervare3', compact('rezervare', $rezervare));
+            return view('rezervari.guest-create/adauga-rezervare3', compact('rezervare', 'payment'));
 
         } else {
             $rezervare = $request->session()->get('rezervare');
             
-            return view('rezervari.guest-create/adauga-rezervare3', compact('rezervare', $rezervare));
+            return view('rezervari.guest-create/adauga-rezervare3', compact('rezervare'));
         }
 
         // $request->session()->forget('rezervare');
