@@ -810,6 +810,7 @@ class RezervareController extends Controller
             $rezervari = \App\Rezervare::where('id', $request->rezervare_id)->first();
             dd($rezervari);
         }else {
+            dd($rezervari, $rezervari);
             $rezervari = $request->session()->get('rezervare');
         }
 
