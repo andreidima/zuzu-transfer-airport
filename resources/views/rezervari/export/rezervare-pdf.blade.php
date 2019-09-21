@@ -178,7 +178,7 @@
                     <td style="">
                         Sosire:
                         <br>
-                        @if (!empty($rezervari->ora->ora && $rezervari->cursa->durata))
+                        @if (!empty($rezervari->ora && $rezervari->cursa->durata))
                             <span style="font-size:1.5rem; font-weight:bold;">
                                 {{ \Carbon\Carbon::parse($rezervari->ora->ora)
                                     ->addHours(\Carbon\Carbon::parse($rezervari->cursa->durata)->hour)
