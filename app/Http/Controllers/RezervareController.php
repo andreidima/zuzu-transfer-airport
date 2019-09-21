@@ -786,7 +786,8 @@ class RezervareController extends Controller
             $rezervare = DB::table('rezervari')->where('id', $payment->rezervare_id)->first();
 
             $request->session()->put('rezervare', $rezervare);
-            // dd($rezervare);
+
+            dd($rezervare->ora->ora);
 
             return view('rezervari.guest-create/adauga-rezervare3', compact('rezervare', $rezervare));
 
