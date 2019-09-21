@@ -32,7 +32,7 @@
                     </h4>
                     @isset($plata_online)
                         <br>
-                        Starea plății pentru această rezervare este: {{ $payment->arror_message }}
+                        Starea plății pentru această rezervare este: {{ $plata_online->arror_message }}
                         <br>
                     @endisset
                     <br>
