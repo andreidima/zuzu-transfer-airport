@@ -774,18 +774,28 @@ class RezervareController extends Controller
             dd($request->session()->get('rezervare'), $request->orderId);
         }
 
-        if (Session::has('rezervare')) {
-            $rezervare = $request->session()->get('rezervare');
-        }else {
+        // if (Session::has('rezervare')) {
+        //     $rezervare = $request->session()->get('rezervare');
+        // }else {
+        //     $payment = DB::table('payment_notifications')->where('order_id', $request->orderId)->first();
+        //     $rezervare = DB::table('rezervari')->where('id', $payment->rezervare_id)->first();
+        // }
+
+        if ($request->has('orderId')) {
             $payment = DB::table('payment_notifications')->where('order_id', $request->orderId)->first();
             $rezervare = DB::table('rezervari')->where('id', $payment->rezervare_id)->first();
+
+            return view('rezervari.guest-create/adauga-rezervare3', compact('rezervare', $rezervare));
+
+        } else {
+            $rezervare = $request->session()->get('rezervare');
+            
+            return view('rezervari.guest-create/adauga-rezervare3', compact('rezervare', $rezervare));
         }
 
         // $request->session()->forget('rezervare');
         // $request->session()->flush();
         // dd (session()); 
-
-        return view('rezervari.guest-create/adauga-rezervare3',compact('rezervare', $rezervare));
     }
 
     public function pdfexportguest(Request $request)
