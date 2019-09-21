@@ -782,7 +782,7 @@ class RezervareController extends Controller
         // }
 
         if ($request->has('orderId')) {
-            $payment = DB::table('payment_notifications')->where('order_id', $request->orderId)->last();
+            $payment = DB::table('payment_notifications')->where('order_id', $request->orderId)->latest()->first();
             $rezervare = \App\Rezervare::where('id', $payment->rezervare_id)->first();
 
             $request->session()->put('payment', $payment);
