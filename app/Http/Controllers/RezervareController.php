@@ -787,7 +787,7 @@ class RezervareController extends Controller
 
             $request->session()->put('rezervare', $rezervare);
 
-            dd($rezervare->ora->ora);
+            dd($rezervare, $rezervare->ora->ora);
 
             return view('rezervari.guest-create/adauga-rezervare3', compact('rezervare', $rezervare));
 
