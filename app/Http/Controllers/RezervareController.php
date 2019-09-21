@@ -770,9 +770,9 @@ class RezervareController extends Controller
      */
     public function adaugaRezervare3(Request $request)
     {
-        if ((Auth::check()) && (Auth::user()->id == 355)) {
-            dd($request->session()->get('rezervare'), $request->orderId);
-        }
+        // if ((Auth::check()) && (Auth::user()->id == 355)) {
+        //     dd($request->session()->get('rezervare'), $request->orderId);
+        // }
 
         // if (Session::has('rezervare')) {
         //     $rezervare = $request->session()->get('rezervare');
@@ -789,7 +789,7 @@ class RezervareController extends Controller
 
         } else {
             $rezervare = $request->session()->get('rezervare');
-            
+
             return view('rezervari.guest-create/adauga-rezervare3', compact('rezervare', $rezervare));
         }
 
