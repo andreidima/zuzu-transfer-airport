@@ -32,7 +32,7 @@
                     </h4>
                     @isset($plata_online)
                         <br>
-                        @if ({{ $plata_online->error_code }} == 0 )
+                        @if ($plata_online->error_code == 0 )
                             Plata rezervării s-a efectuat cu success!
                         @else                            
                             Plata rezervării nu s-a efectuat cu success!
