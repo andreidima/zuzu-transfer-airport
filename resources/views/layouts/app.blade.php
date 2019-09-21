@@ -119,7 +119,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     
-                                    @if (Auth::user()->id == 355)
+                                    {{-- @if (Auth::user()->id == 355)
 
                                         <form action='{{ url('users/loginas') }}' method='post'>
                                             @csrf
@@ -147,7 +147,7 @@
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
-                                    </a>
+                                    </a> --}}
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf

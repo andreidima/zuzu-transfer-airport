@@ -15,13 +15,16 @@ class DebugBarMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->user() && in_array(auth()->id(), [355,0])) {
-            \Debugbar::enable();
-        }
-        else {
-            \Debugbar::disable();
-        }
-        // dd(auth()->user(), \Auth::user());
+        // if (auth()->user() && in_array(auth()->id(), [355,0])) {
+        //     \Debugbar::enable();
+        // }
+        // else {
+        //     \Debugbar::disable();
+        // }
+        \Debugbar::disable();
+
+        
+
         return $next($request);
     }
 }
