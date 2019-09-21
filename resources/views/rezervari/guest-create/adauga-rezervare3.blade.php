@@ -33,9 +33,9 @@
                     @isset($plata_online)
                         <br>
                         @if ($plata_online->error_code == 0 )
-                            Plata rezervării s-a efectuat cu success!
+                            Plata rezervării s-a efectuat cu succes!
                         @else                            
-                            Plata rezervării nu s-a efectuat cu success!
+                            Plata rezervării nu s-a efectuat cu succes!
                             <br>
                             Aveți posibilitatea să faceți plata la șofer.
                         @endif
