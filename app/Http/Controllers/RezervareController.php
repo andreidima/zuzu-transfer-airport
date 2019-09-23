@@ -54,7 +54,7 @@ class RezervareController extends Controller
                     return $query->where( 'rezervari.id', $search_cod_bilet);
                 })
                 ->with('cursa.oras_plecare' ,'cursa.oras_sosire', 'tip_plata', 'statie', 'user.firma:id,nume')
-                ->where('nume', '<>', 'ANDREI DIMA TEST')
+                // ->where('nume', '<>', 'ANDREI DIMA TEST')
                 ->latest('rezervari.created_at')
                 ->simplePaginate(100);
         }
