@@ -360,11 +360,11 @@
                             @endguest --}}
 
                                     {{-- temporar pana e gata plata online --}}
-                                        <input type="hidden" name="plata_online" value="0" />
+                                        {{-- <input type="hidden" name="plata_online" value="0" /> --}}
                             
-                            @guest   
+                            {{-- @guest   
                             @else 
-                                @if (Auth::user()->id == 355)
+                                @if (Auth::user()->id == 355) --}}
                                     <div class="form-group col-lg-12 mb-0 mt-1 d-flex justify-content-center border-bottom">
                                         <label for="" class="pr-2">Plata cu card:</label>
                                         <input type="hidden" name="plata_online" value="0" />
@@ -393,8 +393,9 @@
                                             <img src="{{ asset('images/footer-icons-pay.png') }}" width="90px">
                                         </div>
                                     </div>  --}}
-                                @endif
-                            @endguest
+
+                                {{-- @endif
+                            @endguest --}}
 
                             <div class="form-group col-lg-12 mb-0 mt-1 d-flex">
                                 <label for="" class="mr-4">Acord de confidențialitate:</label>
