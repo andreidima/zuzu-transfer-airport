@@ -25,7 +25,8 @@ Route::get('/bilet-rezervat', 'RezervareController@pdfexportguest');
 // Extras date cu Axios
 Route::get('/orase_ore_rezervari', 'RezervareController@orase_ore_rezervari');
 
-//Confirmare plata Online
+
+Route::get('/trimitere-catre-plata', 'PlataOnlineController@trimitereCatrePlata')->name('trimitere-catre-plata');
 Route::post('/confirmare-plata', 'PlataOnlineController@confirmarePlata')->name('confirmare-plata');
 
 Route::group(['middleware' => 'auth'], function () {
@@ -90,8 +91,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('/home', 'HomeController@index')->name('home');  
 
-        Route::get('/testare-plata-card', 'PlataOnlineController@testarePlataCard')->name('testare-plata-card');  
-        Route::get('/trimitere-catre-plata', 'PlataOnlineController@trimitereCatrePlata')->name('trimitere-catre-plata');  
+        Route::get('/testare-plata-card', 'PlataOnlineController@testarePlataCard')->name('testare-plata-card');    
         // Route::post('/confirmare-plata', 'PlataOnlineController@confirmarePlata')->name('confirmare-plata'); 
         Route::get('/return-url', 'PlataOnlineController@returnUrl')->name('return-url'); 
 
