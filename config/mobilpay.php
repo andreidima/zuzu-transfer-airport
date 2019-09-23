@@ -4,11 +4,11 @@ return [
 
     'merchant_id' => 'RRY1-B469-K9EE-LPH1-BBSE',
 
-    'public_key_path' => '/home/zuzutran/mobilpayX509/andrei-sandbox/sandbox.RRY1-B469-K9EE-LPH1-BBSE.public.cer',
+    'public_key_path' => '/home/zuzutran/mobilpayX509/andrei-sandbox/live.RRY1-B469-K9EE-LPH1-BBSE.public.cer',
 
-    'private_key_path' => '/home/zuzutran/mobilpayX509/andrei-sandbox/sandbox.RRY1-B469-K9EE-LPH1-BBSEprivate.key',
+    'private_key_path' => '/home/zuzutran/mobilpayX509/andrei-sandbox/live.RRY1-B469-K9EE-LPH1-BBSEprivate.key',
 
-    'testMode' => true,
+    'testMode' => false,
 
     'currency' => 'RON',
 
