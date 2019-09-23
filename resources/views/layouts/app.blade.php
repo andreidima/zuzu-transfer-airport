@@ -66,6 +66,9 @@
                                     <a class="dropdown-item" href="/trasee/retur">Raport Retur</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="/rezervari-raport-zi">Raport / zi</a>
+                                    @if (auth()->user()->id = 355)
+                                        <a class="dropdown-item" href="/rezervari/delete/rezervari-mass-delete">Ștergere rezervări</a>
+                                    @endif
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="/statistica">Statistică</a>
                                     </div>
@@ -119,7 +122,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     
-                                    @if (Auth::user()->id == 355)
+                                    {{-- @if (Auth::user()->id == 355)
 
                                         <form action='{{ url('users/loginas') }}' method='post'>
                                             @csrf
@@ -141,7 +144,7 @@
                                         </form>                                         
                                     @endif
 
-                                    <div class="dropdown-divider"></div> 
+                                    <div class="dropdown-divider"></div>  --}}
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
