@@ -23,7 +23,7 @@
                         <div class="form-group row d-flex col-7 justify-content-center">
                             {{-- <div class="row">
                                 <div class="col-lg-12"> --}}
-                                    <label for="search_data_inceput" class="mb-0 col-sm-5 col-form-label">Șterge rezervări până la data: </label>
+                                    <label for="search_data_inceput" class="mb-0 col-sm-5 col-form-label">Selecteaza rezervări până la data: </label>
                                     <vue2-datepicker
                                         data-veche="{{ $search_data_sfarsit }}"
                                         nume-camp-db="search_data_sfarsit"
