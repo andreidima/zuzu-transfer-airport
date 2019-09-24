@@ -516,7 +516,21 @@ class RezervareController extends Controller
     public function massDelete(Request $request)
     {
         $search_data_sfarsit = \Request::get('search_data_sfarsit');
-        dd($search_data_sfarsit);
+        // dd($search_data_sfarsit);
+        $deleted_rows_number = 0;
+        if (isset($search_data_sfarsit)) {
+            $deleted_rows_number = Rezervare::where('created_at', '<', $search_data_sfarsit)->count();
+
+            // dd($deletedRows);
+            // $this->authorize('delete', $deletedRows);
+            // $deletedRows->delete();
+        }
+        return view('rezervari.mass-delete', compact('search_data_sfarsit', 'search_data_sfarsit', 'deleted_rows_number'));
+    }
+    public function massDeleteFinalDelete(Request $request)
+    {
+        $search_data_sfarsit = \Request::get('search_data_sfarsit');
+        // dd($search_data_sfarsit);
         if (isset($search_data_sfarsit)) {
             $deletedRows = Rezervare::all()->where('created_at', '<', $search_data_sfarsit);
 

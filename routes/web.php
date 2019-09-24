@@ -65,7 +65,7 @@ Route::group(['middleware' => 'auth'], function () {
         // Extras date cu Axios pentru rezervari-raport-zi
         Route::get('/orase_ore_zi_rezervari', 'RezervareRaportZiController@orase_ore_zi_rezervari');
 
-        Route::any('/rezervari/delete/rezervari-mass-delete/{search_data_sfarsit}', 'RezervareController@massDelete');
+        Route::any('/rezervari/delete/rezervari-mass-delete', 'RezervareController@massDelete');
 
         Route::resource('curse', 'CursaController');
         
