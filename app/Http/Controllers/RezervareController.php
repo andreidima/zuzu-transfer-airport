@@ -520,7 +520,7 @@ class RezervareController extends Controller
         $delete_rows_mesaj = '';
 
         if(isset($search_data_sfarsit)) {
-            $deleted_rows_number = Rezervare::where('created_at', '<', $search_data_sfarsit)->count();            
+            $deleted_rows_number = Rezervare::where('data_cursa', '<', $search_data_sfarsit)->count();            
         }
 
         return view('rezervari.mass-delete', compact('search_data_sfarsit', 'deleted_rows_number', 'delete_rows_mesaj'));
@@ -531,7 +531,7 @@ class RezervareController extends Controller
         $delete_rows_mesaj = '';
 
         if (isset($search_data_sfarsit) && isset($deleted_rows_number)) {
-            $delete_rows = Rezervare::where('created_at', '<', $search_data_sfarsit)->delete();
+            $delete_rows = Rezervare::where('data_cursa', '<', $search_data_sfarsit)->delete();
             // $this->authorize('delete', $delete_rows);
             // dd($delete_rows);
             // $delete_rows->delete();
