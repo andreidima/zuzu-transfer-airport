@@ -54,7 +54,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::view('/instructiuni-rezervari', 'instructiuni_rezervari');
         
-    Route::post('users/loginas', 'UserController@loginAs')->name('loginas');;
+    Route::post('users/loginas', 'UserController@loginAs')->name('loginas');
 
     Route::group(['middleware' => 'dispecer'], function () {
         Route::resource('/clienti-neseriosi', 'ClientNeseriosController');
@@ -64,8 +64,11 @@ Route::group(['middleware' => 'auth'], function () {
         
         // Extras date cu Axios pentru rezervari-raport-zi
         Route::get('/orase_ore_zi_rezervari', 'RezervareRaportZiController@orase_ore_zi_rezervari');
-
-        Route::any('/rezervari/delete/rezervari-mass-delete', 'RezervareController@massDelete');
+        
+        Route::group(['middleware' => 'mass.delete'], function () {
+            Route::any('/rezervari/delete/mass-select', 'RezervareController@massSelect');
+            Route::any('/rezervari/delete/mass-delete/{search_data_sfarsit}/{deleted_rows_number}', 'RezervareController@massDelete');
+        });
 
         Route::resource('curse', 'CursaController');
         

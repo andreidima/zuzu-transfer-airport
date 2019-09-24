@@ -513,32 +513,35 @@ class RezervareController extends Controller
         return redirect('/rezervari');
     }
 
-    public function massDelete(Request $request)
+    public function massSelect(Request $request)
     {
         $search_data_sfarsit = \Request::get('search_data_sfarsit');
-        // dd($search_data_sfarsit);
         $deleted_rows_number = 0;
-        if (isset($search_data_sfarsit)) {
-            $deleted_rows_number = Rezervare::where('created_at', '<', $search_data_sfarsit)->count();
+        $delete_rows_mesaj = '';
 
-            // dd($deletedRows);
-            // $this->authorize('delete', $deletedRows);
-            // $deletedRows->delete();
+        if(isset($search_data_sfarsit)) {
+            $deleted_rows_number = Rezervare::where('created_at', '<', $search_data_sfarsit)->count();            
         }
-        return view('rezervari.mass-delete', compact('search_data_sfarsit', 'search_data_sfarsit', 'deleted_rows_number'));
+
+        return view('rezervari.mass-delete', compact('search_data_sfarsit', 'deleted_rows_number', 'delete_rows_mesaj'));
     }
-    public function massDeleteFinalDelete(Request $request)
+    public function massDelete(Request $request, $search_data_sfarsit, $deleted_rows_number)
     {
-        $search_data_sfarsit = \Request::get('search_data_sfarsit');
-        // dd($search_data_sfarsit);
-        if (isset($search_data_sfarsit)) {
-            $deletedRows = Rezervare::all()->where('created_at', '<', $search_data_sfarsit);
+        // dd($request, $search_data_sfarsit, $deleted_rows_number);
+        $delete_rows_mesaj = '';
 
-            dd($deletedRows);
-            // $this->authorize('delete', $deletedRows);
-            $deletedRows->delete();
+        if (isset($search_data_sfarsit) && isset($deleted_rows_number)) {
+            $delete_rows = Rezervare::where('created_at', '<', $search_data_sfarsit)->delete();
+            // $this->authorize('delete', $delete_rows);
+            // dd($delete_rows);
+            // $delete_rows->delete();
+
+            $delete_rows_mesaj = 'Toate rezervarile pana la data de ' . $search_data_sfarsit . ', ' . $deleted_rows_number . ' rezervari, au fost sterse cu succes!';
+
+            $search_data_sfarsit = null;
+            $deleted_rows_number = 0;
         }
-        return view('rezervari.mass-delete', compact('search_data_sfarsit'));
+        return view('rezervari.mass-delete', compact('search_data_sfarsit', 'deleted_rows_number', 'delete_rows_mesaj'));
     }
 
     /**

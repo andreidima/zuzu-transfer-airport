@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class DebugBarMiddleware
+class MassDelete
 {
     /**
      * Handle an incoming request.
@@ -15,16 +15,10 @@ class DebugBarMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->user() && in_array(auth()->id(), [355,0])) {
-            \Debugbar::enable();
+        if((auth()->user()->id == 355) || (auth()->user()->id == 356)){
+            return $next($request);
+        } else{
+        return redirect('/rezervari');
         }
-        else {
-            \Debugbar::disable();
-        }
-        // \Debugbar::disable();
-
-        
-
-        return $next($request);
     }
 }

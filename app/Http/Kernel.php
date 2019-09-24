@@ -62,6 +62,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'dispecer' => \App\Http\Middleware\Dispecer::class,
+        'mass.delete' => \App\Http\Middleware\MassDelete::class,
         // 'Debugbar' => \App\Http\Middleware\DebugBarMiddleware::class,
     ];
 
