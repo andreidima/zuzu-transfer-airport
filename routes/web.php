@@ -96,9 +96,9 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('/home', 'HomeController@index')->name('home');  
 
-        Route::get('/testare-plata-card', 'PlataOnlineController@testarePlataCard')->name('testare-plata-card');    
+        // Route::get('/testare-plata-card', 'PlataOnlineController@testarePlataCard')->name('testare-plata-card');    
         // Route::post('/confirmare-plata', 'PlataOnlineController@confirmarePlata')->name('confirmare-plata'); 
-        Route::get('/return-url', 'PlataOnlineController@returnUrl')->name('return-url'); 
+        // Route::get('/return-url', 'PlataOnlineController@returnUrl')->name('return-url'); 
 
         // Route::get('/clear', function() {
         //     Artisan::call('cache:clear');
