@@ -104,7 +104,7 @@
                                     tip="date"
                                     latime="220"
                                     not-before="{{ \Carbon\Carbon::today() }}"
-                                    style="box-shadow: 0px 0px 10px yellow;"
+                                    style="box-shadow: 0px 0px 5px yellow;"
                                 ></vue2-datepicker> 
                             </div>
                             <div class="form-group col-lg-5 m-0">
@@ -115,7 +115,7 @@
                                     name="zbor_ora_decolare" 
                                     placeholder="00:00" 
                                     value="{{ old('zbor_ora_decolare') }}"
-                                    style="box-shadow: 0px 0px 10px yellow;"
+                                    style="box-shadow: 0px 0px 5px yellow;"
                                     required>
                             </div>
                         </div>
@@ -128,7 +128,7 @@
                                     name="zbor_oras_decolare" 
                                     placeholder="" 
                                     value="{{ old('zbor_oras_decolare') }}"
-                                    style="text-transform:uppercase; box-shadow: 0px 0px 10px yellow;"
+                                    style="text-transform:uppercase; box-shadow: 0px 0px 5px yellow;"
                                     required>  
                             </div>
                             <div class="form-group col-lg-5 m-0">
@@ -139,7 +139,7 @@
                                     name="zbor_ora_aterizare" 
                                     placeholder="00:00" 
                                     value="{{ old('zbor_ora_aterizare') }}"
-                                    style="box-shadow: 0px 0px 10px yellow;"
+                                    style="box-shadow: 0px 0px 5px yellow;"
                                     required>  
                             </div>
                         </div>
