@@ -9747,6 +9747,10 @@ h3 {
   font-size: 0.9rem;
 }
 
+.mx-icon-last-year, .mx-icon-next-year {
+  display: none;
+}
+
 @media handheld {
   .container {
     display: inline-block;
