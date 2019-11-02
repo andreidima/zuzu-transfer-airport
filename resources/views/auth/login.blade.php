@@ -88,7 +88,7 @@
             <b>Suport Tehnic</b>: Elena Lemnaru +40 765 296 796
         </div> --}}
 
-    <div class="row justify-content-center">
+    {{-- <div class="row justify-content-center">
         <div class="col-md-4">    
             <div class="card text-white bg-info mx-0  mb-4 p-0" style="max-width: 19rem;">
                 <div class="card-header my-0 py-0">
@@ -99,7 +99,7 @@
                 </div>
             </div>
         </div>    
-    </div>
+    </div> --}}
 
     <div class="row justify-content-center">
         <div class="col-md-4 text-center"> 
