@@ -25,6 +25,6 @@
     },
     "dependencies": {
         "moment": "^2.24.0",
-        "vue2-datepicker": "^2.11.0"
+        "vue2-datepicker": "^2.13.3"
     }
 }

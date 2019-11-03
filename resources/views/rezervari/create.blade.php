@@ -104,6 +104,7 @@
                                     tip="date"
                                     latime="220"
                                     not-before="{{ \Carbon\Carbon::today() }}"
+                                    {{-- disabled-dates="{{ \Carbon\Carbon::tomorrow() }}" --}}
                                     style="box-shadow: 0px 0px 5px yellow;"
                                 ></vue2-datepicker> 
                             </div>
