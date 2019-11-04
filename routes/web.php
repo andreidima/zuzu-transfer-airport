@@ -96,6 +96,8 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('/home', 'HomeController@index')->name('home');  
 
+        Route::view('/testare_cod', 'testare_cod');  
+
         // Route::get('/testare-plata-card', 'PlataOnlineController@testarePlataCard')->name('testare-plata-card');    
         // Route::post('/confirmare-plata', 'PlataOnlineController@confirmarePlata')->name('confirmare-plata'); 
         // Route::get('/return-url', 'PlataOnlineController@returnUrl')->name('return-url'); 
