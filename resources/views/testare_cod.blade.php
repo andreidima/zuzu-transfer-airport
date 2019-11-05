@@ -33,8 +33,8 @@ const app = new Vue({
     data() {
             return {
                 disabledDates: {
-                    to: new Date(2016, 0, 5), // Disable all dates up to specific date
-                    from: new Date(2016, 0, 26), // Disable all dates after specific date
+                    to: new Date(2019, 10, 5), // Disable all dates up to specific date
+                    from: new Date(2019, 11, 26), // Disable all dates after specific date
                     days: [6, 0], // Disable Saturday's and Sunday's
                     daysOfMonth: [29, 30, 31], // Disable 29th, 30th and 31st of each month
                     dates: [ // Disable an array of dates
@@ -53,12 +53,12 @@ const app = new Vue({
                     // this can be used for wiring you own logic to disable a date if none
                     // of the above conditions serve your purpose
                     // this function should accept a date and return true if is disabled
-                    customPredictor: function(date) {
-                        // disables the date if it is a multiple of 5
-                        if(date.getDate() % 5 == 0){
-                            return true
-                        }
-                    }
+                    // customPredictor: function(date) {
+                    //     // disables the date if it is a multiple of 5
+                    //     if(date.getDate() % 5 == 0){
+                    //         return true
+                    //     }
+                    // }
                 }
             }
     }
