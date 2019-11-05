@@ -112,7 +112,7 @@ export default {
       :first-day-of-week="1"
       :lang="lang"
       :time-picker-options="timePickerOptions"
-      :disabled-days="['2019-12-25','2019-12-31']"
+      :disabled-days="['2019-12-25','2020-01-01']"
       >
     </date-picker>
     <!-- <date-picker v-model="time3" range :shortcuts="shortcuts"></date-picker> -->

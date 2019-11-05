@@ -54819,7 +54819,7 @@ var render = function() {
           "first-day-of-week": 1,
           lang: _vm.lang,
           "time-picker-options": _vm.timePickerOptions,
-          "disabled-days": ["2019-12-25", "2019-12-31"]
+          "disabled-days": ["2019-12-25", "2020-01-01"]
         },
         model: {
           value: _vm.time2,

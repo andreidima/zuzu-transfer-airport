@@ -380,6 +380,12 @@ class RezervareController extends Controller
         } else {
             $rezervare_tur->save();
             $rezervare_retur->save();
+
+            // $rezervare_tur->retur = $rezervare_retur->id;
+            // $rezervare_tur->update();
+            // dd($rezervare_tur, $rezervare_retur);
+            // $id = DB::table('rezervari')->insertGetId($rezervare_array);
+
             return redirect('/rezervari/tur_retur/'.$rezervare_tur->id.'/'.$rezervare_retur->id)->with('status', 'Rezervările tur si retur pentru clientul "' . $rezervare_tur->nume . '" au fost adăugate cu succes!');
         }
     }
