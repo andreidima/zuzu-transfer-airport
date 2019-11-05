@@ -8,6 +8,9 @@
             <div class="form-row">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
+                    @if ($oferta)
+                        Activeaza oferta de 5 persoane, pret 100 de lei.
+                    @endif
                     <table class="table m-0" style="border:5px solid #efe3b1; border-bottom:0px">
                         <tr style="text-align:center; font-weight:bold;">
                             <td colspan="" style="border-width:0px; padding:0rem;">

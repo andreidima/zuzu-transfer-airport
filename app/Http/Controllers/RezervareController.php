@@ -381,8 +381,11 @@ class RezervareController extends Controller
             $rezervare_tur->save();
             $rezervare_retur->save();
 
-            // $rezervare_tur->retur = $rezervare_retur->id;
-            // $rezervare_tur->update();
+            $rezervare_tur->retur = $rezervare_retur->id;
+            $rezervare_tur->update();
+            
+            $rezervare_retur->tur = $rezervare_tur->id;
+            $rezervare_retur->update();
             // dd($rezervare_tur, $rezervare_retur);
             // $id = DB::table('rezervari')->insertGetId($rezervare_array);
 
@@ -416,9 +419,20 @@ class RezervareController extends Controller
         $this->authorize('update', $rezervare_tur);        
         $this->authorize('update', $rezervare_retur);
 
+        // dd($rezervare_tur->nr_adulti, $rezervare_tur->tip_plata_id, $rezervare_tur->retur, $rezervare_retur->id, $rezervare_tur->cursa->oras_plecare->nume);
+        if(($rezervare_tur->nr_adulti > 4) && ($rezervare_tur->tip_plata_id = 2) && 
+            ($rezervare_tur->retur == $rezervare_retur->id) &&
+            (($rezervare_tur->cursa->oras_plecare->nume == "Braila") || ($rezervare_tur->cursa->oras_plecare->nume == "Galati")))
+        {
+            $oferta = true;    
+        }
+        else {
+            $oferta = false;
+        }
+
         $telefoane_clienti_neseriosi = ClientNeserios::pluck('telefon')->all();
 
-        return view('rezervari.show_rezervare_tur_retur', compact('rezervare_tur', 'rezervare_retur', 'telefoane_clienti_neseriosi'));
+        return view('rezervari.show_rezervare_tur_retur', compact('rezervare_tur', 'rezervare_retur', 'telefoane_clienti_neseriosi', 'oferta'));
     }
 
     /**
@@ -615,7 +629,8 @@ class RezervareController extends Controller
             'user_id' => [''],
             'status' => [''],
             'plata_cu_card' => [''],
-            'acord_de_confidentialitate' => auth()->user() === null ? ['required'] : ['']
+            'acord_de_confidentialitate' => auth()->user() === null ? ['required'] : [''],
+            'oferta' => [''],
         ],
         [
             'ora_id.required' => 'Câmpul Ora de plecare este obligatoriu.',
