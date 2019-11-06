@@ -67096,6 +67096,9 @@ if (document.querySelector('#orase-ore-plecare')) {
       pret_adult: 0,
       pret_copil: 0,
       pret_total: pretTotal,
+      //variabile necesare pentru oferta
+      tip_plata_la_agentie: '',
+      oferta: false,
       retur: false,
       plata_online: plataOnlineVeche // plata_online: false
 
@@ -67257,6 +67260,13 @@ if (document.querySelector('#orase-ore-plecare')) {
       },
       plata_integrala: function plata_integrala() {
         this.comision_agentie = this.pret_total;
+      },
+      oferta_5_adulti: function oferta_5_adulti() {
+        if (this.retur == true && this.nr_adulti > 4 && this.tip_plata_la_agentie == true && (this.oras_plecare == 2 || this.oras_plecare == 5)) {
+          this.oferta = true;
+        } else {
+          this.oferta = false;
+        }
       }
     }
   });

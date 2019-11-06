@@ -9,7 +9,18 @@
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
                     @if ($oferta)
-                        Activeaza oferta de 5 persoane, pret 100 de lei.
+                        @if (($rezervare_tur->oferta == null) && ($rezervare_tur->oferta == null))
+                            Oferta de minim 5 adulti, 100lei/persoană, este disponibilă!
+                            <form method="POST" action="{{ url('rezervari/tur_retur/activare_oferta/'.$rezervare_tur->id.'/'.$rezervare_retur->id) }}">
+                                @method('PATCH')
+                                @csrf 
+                                        <button type="submit" class="btn btn-success">
+                                            Activează oferta
+                                        </button>                      
+                            </form>
+                        @else
+                            Oferta de minim 5 adulti, 100lei/persoană, este activată!
+                        @endif
                     @endif
                     <table class="table m-0" style="border:5px solid #efe3b1; border-bottom:0px">
                         <tr style="text-align:center; font-weight:bold;">

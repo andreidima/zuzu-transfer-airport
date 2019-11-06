@@ -34,7 +34,7 @@
                                         name="oras_plecare"
                                         v-model="oras_plecare"
                                         v-if="oras_plecare.id = 8"
-                                    @change='getOraseSosire()'>
+                                    @change='getOraseSosire();oferta_5_adulti();'>
                                             <optgroup label="Oraș">
                                                 <option v-for='oras_plecare in orase_plecare'
                                                 :value='oras_plecare.id'                  
@@ -217,7 +217,7 @@
                                                     <select class="custom-select custom-select-sm {{ $errors->has('nr_adulti') ? 'is-invalid' : '' }}"
                                                         name="nr_adulti"
                                                         v-model="nr_adulti"
-                                                    @change='getPretTotal()'>
+                                                    @change='getPretTotal();oferta_5_adulti();'>
                                                         @for ($i = 1; $i < 16; $i++)
                                                             <option>{{ $i }}</option>
                                                         @endfor                                                        
@@ -285,7 +285,7 @@
                                     <label class="form-check-label" for="tip_plata_id">La șofer</label>
                                 </div> --}}
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" name="tip_plata_id" value="2"
+                                    <input type="checkbox" class="form-check-input" name="tip_plata_id" v-model="tip_plata_la_agentie" @change='oferta_5_adulti()' value="2"
                                     {{ old('tip_plata_id') == '2' ? 'checked' : '' }}>
                                     <label class="form-check-label" for="tip_plata_id">La agenție</label>
                                 </div>
@@ -435,8 +435,76 @@
             </div>
                 
                 <div class="form-row">
-                    <div class="col-lg-12 d-flex justify-content-center">  
-                        <button type="submit" class="btn btn-primary mr-4">Adaugă Rezervare</button>             
+                    <div class="col-lg-6 d-flex justify-content-center m-auto">  
+                        <input
+                                type="hidden"
+                                name="oferta"
+                                v-model="oferta">
+
+                        <div v-if="oferta" class="col-lg-12 px-0">
+                            <div class="text-center mb-4">
+                                <div class="card border-success">
+                                    <h5 class="card-header bg-success text-white">Ofertă!</h5>
+                                    <div class="card-body">
+                                            <h6>Plata tur la Agenție, 100 lei/adult.</h6>
+                                            <h6>Returul este GRATUIT!!!</h6>
+                                        <button type="submit" name="action" value="cu_oferta" class="btn btn-success">Adaugă Rezervarea folosind Oferta</button>
+                                        {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                                            Adaugă Rezervarea folosind Oferta
+                                        </button> --}}
+                                    </div>
+                                </div>
+                                {{-- Pentru această rezervare, care îndeplinește condițiile campaniei (minim 5 adulți, tur-retur, cu plecare din Brăila sau Galați, plata la Agentie), poti activa următoarea ofertă: plata tur la Agenție, 100 lei / adult, iar returul este GRATUIT. --}}
+                            </div>
+                            <!-- Button to Open the Modal -->
+
+                            <!-- The Modal -->
+                            {{-- <div class="modal" id="myModal">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+
+                                <!-- Modal Header -->
+                                <div class="modal-header bg-warning">
+                                    <h4 class="modal-title">Oferta de minim 5 adulti, 100lei/persoană, este disponibilă!</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    Pentru aceasta rezervare poti activa următoarea ofertă, ce îndeplinește următoarele condiții:
+                                    <br>
+                                    - plecare din Brăila sau Galați;
+                                    <br>
+                                    - un număr de minim 5 adulți;
+                                    <br>
+                                    - călatorie tur și retur;
+                                    <br>
+                                    - plata tur la Agenție, 100 lei / persoană;
+                                    <br>
+                                    - returul este gratuit
+                                </div>
+
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <button type="submit" name="action" value="cu_oferta" class="btn btn-primary mr-4">Adaugă Rezervare folosind Oferta</button>
+                                    <button type="submit" name="action" value="fara_oferta" class="btn btn-primary mr-4">Adaugă Rezervare fără Oferta</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Reverifică datele</button>
+                                </div>
+
+                                </div>
+                            </div>
+                            </div> --}}
+                            <div class="d-flex justify-content-center m-auto">
+                                <button type="submit" name="action" value="fara_oferta" class="btn btn-primary mr-4">Adaugă Rezervarea fără Ofertă</button>
+                                <button type="button" class="btn btn-dark ml-4" v-on:click="(retur = !retur);oferta_5_adulti();">Retur</button>
+                            </div>
+                        </div>
+                        
+                        <div v-if="!oferta" class="d-flex justify-content-center m-auto">
+                            <button type="submit" class="btn btn-primary mr-4">Adaugă Rezervare</button>
+                            <button type="button" class="btn btn-dark ml-4" v-on:click="(retur = !retur);oferta_5_adulti();">Retur</button>
+                        </div>
+                                     
                         {{-- @if (auth()->user()->isDispecer())
                             <button type="submit" class="btn btn-primary mr-4">Adaugă Rezervare</button> 
                         @else
@@ -472,7 +540,7 @@
                             </div>
                         @endif --}}
                         
-                        <button type="button" class="btn btn-dark ml-4" v-on:click="retur = !retur">Retur</button>                           
+                        {{-- <button type="button" class="btn btn-dark ml-4" v-on:click="(retur = !retur);oferta_5_adulti();">Retur</button>                            --}}
                             <input
                                 type="hidden"
                                 name="retur"
