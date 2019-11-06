@@ -381,13 +381,32 @@ class RezervareController extends Controller
             $rezervare_tur->save();
             $rezervare_retur->save();
 
-            $rezervare_tur->retur = $rezervare_retur->id;
+            $rezervare_tur->tur_retur = $rezervare_retur->id;
             $rezervare_tur->update();
             
-            $rezervare_retur->tur = $rezervare_tur->id;
+            $rezervare_retur->tur_retur = $rezervare_tur->id;
             $rezervare_retur->update();
-            // dd($rezervare_tur, $rezervare_retur);
-            // $id = DB::table('rezervari')->insertGetId($rezervare_array);
+
+            //Modificare preturi pentru oferta de minim 5 adulti, Braila sau Galati, tur retur, plata la agentie
+            // dd($rezervare_tur->oferta, $rezervare_retur->oferta, $rezervare_tur->nr_adulti, $rezervare_tur->tip_plata_id,
+            //     $rezervare_tur->retur,
+            //     $rezervare_tur->cursa->oras_plecare->nume,
+            //     $rezervare_retur->id);
+            // dd($request);
+            if (($request->action == "cu_oferta") &&
+                ($rezervare_tur->oferta == null) && ($rezervare_retur->oferta == null) &&
+                ($rezervare_tur->nr_adulti > 4) && ($rezervare_tur->tip_plata_id = 2) && 
+                ($rezervare_tur->tur_retur == $rezervare_retur->id) && 
+                (($rezervare_tur->cursa->oras_plecare->id == 2) || ($rezervare_tur->cursa->oras_plecare->id == 5))
+                ){
+                    $rezervare_tur->oferta = 1;
+                    $rezervare_tur->pret_total = ($rezervare_tur->nr_adulti * 100) + ($rezervare_tur->nr_copii * $rezervare_tur->cursa->pret_copil);
+                    $rezervare_tur->update();
+
+                    $rezervare_retur->oferta = 1;
+                    $rezervare_retur->pret_total = 0;
+                    $rezervare_retur->update();
+            }
 
             return redirect('/rezervari/tur_retur/'.$rezervare_tur->id.'/'.$rezervare_retur->id)->with('status', 'Rezervările tur si retur pentru clientul "' . $rezervare_tur->nume . '" au fost adăugate cu succes!');
         }
@@ -419,22 +438,9 @@ class RezervareController extends Controller
         $this->authorize('update', $rezervare_tur);        
         $this->authorize('update', $rezervare_retur);
 
-        // dd($rezervare_tur->nr_adulti, $rezervare_tur->tip_plata_id, $rezervare_tur->retur, $rezervare_retur->id, $rezervare_tur->cursa->oras_plecare->nume);
-        if(
-            ($rezervare_tur->nr_adulti > 4) && ($rezervare_tur->tip_plata_id = 2) && 
-            ($rezervare_tur->retur == $rezervare_retur->id) &&
-            (($rezervare_tur->cursa->oras_plecare->nume == "Braila") || ($rezervare_tur->cursa->oras_plecare->nume == "Galati"))
-            )
-        {
-            $oferta = true;    
-        }
-        else {
-            $oferta = false;
-        }
-
         $telefoane_clienti_neseriosi = ClientNeserios::pluck('telefon')->all();
 
-        return view('rezervari.show_rezervare_tur_retur', compact('rezervare_tur', 'rezervare_retur', 'telefoane_clienti_neseriosi', 'oferta'));
+        return view('rezervari.show_rezervare_tur_retur', compact('rezervare_tur', 'rezervare_retur', 'telefoane_clienti_neseriosi'));
     }
 
     /**
@@ -520,26 +526,6 @@ class RezervareController extends Controller
             
             return redirect('/rezervari');
         }
-    }
-
-    public function update_rezervare_tur_retur_activare_oferta(Request $request, Rezervare $rezervare_tur, Rezervare $rezervare_retur)
-    {
-        $this->authorize('update', $rezervare_tur);
-        $this->authorize('update', $rezervare_retur);
-
-        if (($rezervare_tur->oferta == null) && ($rezervare_retur->oferta == null)){
-            $rezervare_tur->oferta = "minim 5 adulti, Braila sau Galati, 100 lei/persoana";
-            $rezervare_tur->pret_total = ($rezervare_tur->nr_adulti * 100) + ($rezervare_tur->nr_copii * $rezervare_tur->cursa->pret_copil);
-            $rezervare_tur->update();
-
-            $rezervare_retur->oferta = "minim 5 adulti, Braila sau Galati, 100 lei/persoana";
-            $rezervare_retur->pret_total = 0;
-            $rezervare_retur->update();
-            // dd($rezervare_tur, $rezervare_retur);
-        }
-
-        return redirect('/rezervari/tur_retur/'.$rezervare_tur->id.'/'.$rezervare_retur->id)->with('status', 'Oferta pentru minim 5 adulti, Braila sau Galati, 100lei/persoană, a fost activată cu succes!');
-
     }
 
     /**
@@ -652,7 +638,7 @@ class RezervareController extends Controller
             'status' => [''],
             'plata_cu_card' => [''],
             'acord_de_confidentialitate' => auth()->user() === null ? ['required'] : [''],
-            'oferta' => [''],
+            // 'oferta' => [''],
         ],
         [
             'ora_id.required' => 'Câmpul Ora de plecare este obligatoriu.',
