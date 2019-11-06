@@ -36,24 +36,25 @@ export default {
         step: '00:30',
         end: '23:30'
       },
-      state : {
-        disabledDates: {
-          // to: new Date(2016, 0, 5), // Disable all dates up to specific date
-          from: new Date(2020, 1, 26), // Disable all dates after specific date
-        "days": [6, 0], // Disable Saturday's and Sunday's
-        daysOfMonth: [29, 30, 31], // Disable 29th, 30th and 31st of each month
-        }
-      },
-      disabledDates: {
-        // to: new Date(2019, 12, 5), // Disable all dates up to specific date
-        // from: new Date(2019, 12, 26), // Disable all dates after specific date
-        days: [6, 0], // Disable Saturday's and Sunday's
-        daysOfMonth: [29], // Disable 29th, 30th and 31st of each month
-        // dates: [ // Disable an array of dates
-        //   new Date(2019, 11, 25),
-        //   new Date(2020, 1, 1)
-        // ]
-      }
+      // state : {
+      //   disabledDates: {
+      //     // to: new Date(2016, 0, 5), // Disable all dates up to specific date
+      //     from: new Date(2020, 1, 26), // Disable all dates after specific date
+      //   "days": [6, 0], // Disable Saturday's and Sunday's
+      //   daysOfMonth: [29, 30, 31], // Disable 29th, 30th and 31st of each month
+      //   }
+      // },
+      // disabledDays: {
+      //   // // to: new Date(2019, 12, 5), // Disable all dates up to specific date
+      //   // // from: new Date(2019, 12, 26), // Disable all dates after specific date
+      //   // days: [6, 0], // Disable Saturday's and Sunday's
+      //   // daysOfMonth: [29], // Disable 29th, 30th and 31st of each month
+      //   moment(2019, 11, 25) => true
+      //   // days: [ // Disable an array of dates
+      //   //   new Date(2019, 11, 25),
+      //   //   new Date(2020, 1, 1)
+      //   // ]
+      // }
     }
   },
     created() {
@@ -111,7 +112,7 @@ export default {
       :first-day-of-week="1"
       :lang="lang"
       :time-picker-options="timePickerOptions"
-      :disabled-dates="state.disabledDates"
+      :disabled-days="['2019-12-25','2020-01-01']"
       >
     </date-picker>
     <!-- <date-picker v-model="time3" range :shortcuts="shortcuts"></date-picker> -->

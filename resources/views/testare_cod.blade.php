@@ -35,8 +35,13 @@ const app = new Vue({
                 disabledDates: {
                     to: new Date(2019, 10, 5), // Disable all dates up to specific date
                     from: new Date(2019, 11, 26), // Disable all dates after specific date
+<<<<<<< HEAD
                     // days: [6, 0], // Disable Saturday's and Sunday's
                     // daysOfMonth: [29, 30, 31], // Disable 29th, 30th and 31st of each month
+=======
+                    days: [6, 0], // Disable Saturday's and Sunday's
+                    daysOfMonth: [29, 30, 31], // Disable 29th, 30th and 31st of each month
+>>>>>>> aa085f2735b76d8a4499a7da3f166e1372eab9a9
                     dates: [ // Disable an array of dates
                     new Date(2019, 10, 16),
                     new Date(2019, 9, 17),
