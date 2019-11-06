@@ -420,9 +420,11 @@ class RezervareController extends Controller
         $this->authorize('update', $rezervare_retur);
 
         // dd($rezervare_tur->nr_adulti, $rezervare_tur->tip_plata_id, $rezervare_tur->retur, $rezervare_retur->id, $rezervare_tur->cursa->oras_plecare->nume);
-        if(($rezervare_tur->nr_adulti > 4) && ($rezervare_tur->tip_plata_id = 2) && 
+        if(
+            ($rezervare_tur->nr_adulti > 4) && ($rezervare_tur->tip_plata_id = 2) && 
             ($rezervare_tur->retur == $rezervare_retur->id) &&
-            (($rezervare_tur->cursa->oras_plecare->nume == "Braila") || ($rezervare_tur->cursa->oras_plecare->nume == "Galati")))
+            (($rezervare_tur->cursa->oras_plecare->nume == "Braila") || ($rezervare_tur->cursa->oras_plecare->nume == "Galati"))
+            )
         {
             $oferta = true;    
         }
@@ -518,6 +520,26 @@ class RezervareController extends Controller
             
             return redirect('/rezervari');
         }
+    }
+
+    public function update_rezervare_tur_retur_activare_oferta(Request $request, Rezervare $rezervare_tur, Rezervare $rezervare_retur)
+    {
+        $this->authorize('update', $rezervare_tur);
+        $this->authorize('update', $rezervare_retur);
+
+        if (($rezervare_tur->oferta == null) && ($rezervare_retur->oferta == null)){
+            $rezervare_tur->oferta = "minim 5 adulti, Braila sau Galati, 100 lei/persoana";
+            $rezervare_tur->pret_total = ($rezervare_tur->nr_adulti * 100) + ($rezervare_tur->nr_copii * $rezervare_tur->cursa->pret_copil);
+            $rezervare_tur->update();
+
+            $rezervare_retur->oferta = "minim 5 adulti, Braila sau Galati, 100 lei/persoana";
+            $rezervare_retur->pret_total = 0;
+            $rezervare_retur->update();
+            // dd($rezervare_tur, $rezervare_retur);
+        }
+
+        return redirect('/rezervari/tur_retur/'.$rezervare_tur->id.'/'.$rezervare_retur->id)->with('status', 'Oferta pentru minim 5 adulti, Braila sau Galati, 100lei/persoană, a fost activată cu succes!');
+
     }
 
     /**
