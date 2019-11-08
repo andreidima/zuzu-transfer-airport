@@ -120,11 +120,11 @@
                                             @if ($rezervare->oferta == 1)
                                                 @if ($rezervare->id < $rezervare->tur_retur)
                                                 ✪
+                                                {{ $rezervare->pret_total }} lei
                                                 @else
                                                 RETUR
                                                 @endif
                                             @endif
-                                            {{ $rezervare->pret_total }} lei
                                         </td>
                                     @elseif (($rezervare->tip_plata_id == 2) && ($rezervare->comision_agentie > 0))
                                         <td>
@@ -134,11 +134,11 @@
                                             @if ($rezervare->oferta == 1)
                                                 @if ($rezervare->id < $rezervare->tur_retur)
                                                 ✪
+                                                {{ $rezervare->comision_agentie }} lei
                                                 @else
                                                 RETUR
                                                 @endif
                                             @endif
-                                            {{ $rezervare->comision_agentie }} lei
                                         </td>
                                     @else
                                         <td>
