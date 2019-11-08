@@ -400,7 +400,7 @@ class RezervareController extends Controller
                 (($rezervare_tur->cursa->oras_plecare->id == 2) || ($rezervare_tur->cursa->oras_plecare->id == 5))
                 ){
                     $rezervare_tur->oferta = 1;
-                    $rezervare_tur->pret_total = ($rezervare_tur->nr_adulti * 100) + ($rezervare_tur->nr_copii * $rezervare_tur->cursa->pret_copil);
+                    $rezervare_tur->pret_total = ($rezervare_tur->nr_adulti * 100) + ($rezervare_tur->nr_copii * 60);
                     $rezervare_tur->update();
 
                     $rezervare_retur->oferta = 1;

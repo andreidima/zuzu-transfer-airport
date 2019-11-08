@@ -447,10 +447,10 @@
                             <div v-if="oferta" class="col-lg-12 px-0">
                                 <div class="text-center mb-4">
                                     <div class="card border-success">
-                                        <h5 class="card-header bg-success text-white">Ofertă!</h5>
+                                        <h5 class="card-header bg-success text-white">Ofertă pentru grupuri de minim 5 adulți!</h5>
                                         <div class="card-body">
-                                                <h6>Plata tur la Agenție, 100 lei/adult.</h6>
-                                                <h6>Returul este GRATUIT!!!</h6>
+                                                <h6 class="mb-3">Plata tur la Agenție, 100 lei/adult, 60 lei/copil.</h6>
+                                                {{-- <h6>Returul este GRATUIT!!!</h6> --}}
                                             <button type="submit" name="action" value="cu_oferta" class="btn btn-success">Adaugă Rezervarea folosind Oferta</button>
                                             {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                                                 Adaugă Rezervarea folosind Oferta
