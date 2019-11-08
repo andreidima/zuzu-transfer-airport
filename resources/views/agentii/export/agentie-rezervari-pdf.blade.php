@@ -121,7 +121,7 @@
                                                 @if ($rezervare->id < $rezervare->tur_retur)
                                                 ✪
                                                 @else
-                                                ⊙
+                                                RETUR
                                                 @endif
                                             @endif
                                             {{ $rezervare->pret_total }} lei
@@ -135,7 +135,7 @@
                                                 @if ($rezervare->id < $rezervare->tur_retur)
                                                 ✪
                                                 @else
-                                                ⊙
+                                                RETUR
                                                 @endif
                                             @endif
                                             {{ $rezervare->comision_agentie }} lei
@@ -149,7 +149,7 @@
                                                 @if ($rezervare->id < $rezervare->tur_retur)
                                                 ✪
                                                 @else
-                                                ⊙
+                                                RETUR
                                                 @endif
                                             @endif                                            
                                         </td>

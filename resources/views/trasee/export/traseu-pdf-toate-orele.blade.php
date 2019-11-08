@@ -163,7 +163,7 @@
                                         @if ($rezervare->id < $rezervare->tur_retur)
                                         ✪
                                         @else
-                                        ⊙
+                                        RETUR
                                         @endif
                                     @endif
                                     @if (($rezervare->comision_agentie == 0) && ($rezervare->tip_plata_id == 2))
