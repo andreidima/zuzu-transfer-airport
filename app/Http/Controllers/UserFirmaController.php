@@ -181,7 +181,7 @@ class UserFirmaController extends Controller
 
         if ($search_data_inceput && $search_data_sfarsit){
             $rezervari = $agentie->rezervari()
-                ->select('rezervari.id', 'rezervari.nume', 'cursa_id', 'data_cursa', 'pret_total', 'tip_plata_id', 'comision_agentie', 'statie_imbarcare', 'nr_adulti', 'nr_copii')
+                ->select('rezervari.id', 'rezervari.nume', 'cursa_id', 'data_cursa', 'pret_total', 'tip_plata_id', 'comision_agentie', 'statie_imbarcare', 'nr_adulti', 'nr_copii', 'oferta', 'tur_retur')
                 ->where('data_cursa', '>=', $search_data_inceput)
                 ->where('data_cursa', '<=', $search_data_sfarsit)
                 ->where('activa', 1)
@@ -214,7 +214,7 @@ class UserFirmaController extends Controller
 
         if (isset($search_data_inceput) && isset($search_data_sfarsit)) {
             $rezervari = auth()->user()->rezervari()
-                ->select('rezervari.id', 'rezervari.nume', 'cursa_id', 'data_cursa', 'pret_total', 'tip_plata_id', 'comision_agentie', 'statie_imbarcare', 'nr_adulti', 'nr_copii')
+                ->select('rezervari.id', 'rezervari.nume', 'cursa_id', 'data_cursa', 'pret_total', 'tip_plata_id', 'comision_agentie', 'statie_imbarcare', 'nr_adulti', 'nr_copii', 'oferta', 'tur_retur')
                 ->where('data_cursa', '>=', $search_data_inceput)
                 ->where('data_cursa', '<=', $search_data_sfarsit)
                 ->where('activa', 1)

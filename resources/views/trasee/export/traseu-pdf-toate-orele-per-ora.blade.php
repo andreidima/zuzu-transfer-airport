@@ -191,6 +191,13 @@
                                             {{ $rezervare->zbor_ora_decolare}}
                                         </td>
                                         <td>
+                                            @if ($rezervare->oferta == 1)
+                                                @if ($rezervare->id < $rezervare->tur_retur)
+                                                ✪
+                                                @else
+                                                ⊙
+                                                @endif
+                                            @endif
                                             @if (($rezervare->comision_agentie == 0) && ($rezervare->tip_plata_id == 2))
                                                 0
                                             @elseif ($rezervare->tip_plata_id == 3)
@@ -364,6 +371,13 @@
                                             @endif
                                         </td>
                                         <td>
+                                            @if ($rezervare->oferta == 1)
+                                                @if ($rezervare->id < $rezervare->tur_retur)
+                                                ✪
+                                                @else
+                                                ⊙
+                                                @endif
+                                            @endif
                                             @if (($rezervare->comision_agentie == 0) && ($rezervare->tip_plata_id == 2))
                                                 0
                                             @elseif ($rezervare->tip_plata_id == 3)

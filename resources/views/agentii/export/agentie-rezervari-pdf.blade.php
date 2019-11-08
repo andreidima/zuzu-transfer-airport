@@ -117,6 +117,13 @@
                                             
                                         </td>
                                         <td>
+                                            @if ($rezervare->oferta == 1)
+                                                @if ($rezervare->id < $rezervare->tur_retur)
+                                                ✪
+                                                @else
+                                                ⊙
+                                                @endif
+                                            @endif
                                             {{ $rezervare->pret_total }} lei
                                         </td>
                                     @elseif (($rezervare->tip_plata_id == 2) && ($rezervare->comision_agentie > 0))
@@ -124,6 +131,13 @@
                                             {{ $rezervare->pret_total - $rezervare->comision_agentie}} lei
                                         </td>
                                         <td>
+                                            @if ($rezervare->oferta == 1)
+                                                @if ($rezervare->id < $rezervare->tur_retur)
+                                                ✪
+                                                @else
+                                                ⊙
+                                                @endif
+                                            @endif
                                             {{ $rezervare->comision_agentie }} lei
                                         </td>
                                     @else
@@ -131,7 +145,13 @@
                                             {{ $rezervare->pret_total }} lei
                                         </td>
                                         <td>
-                                            
+                                            @if ($rezervare->oferta == 1)
+                                                @if ($rezervare->id < $rezervare->tur_retur)
+                                                ✪
+                                                @else
+                                                ⊙
+                                                @endif
+                                            @endif                                            
                                         </td>
                                     @endif
                                         <td>
