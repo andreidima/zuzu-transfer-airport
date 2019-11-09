@@ -203,7 +203,9 @@
                                                     @endif
                                                     lei
                                                 @else
-                                                    RETUR
+                                                    <p style="font-size:9px;">
+                                                        RETUR
+                                                    </p>
                                                 @endif
                                             @else
                                                 @if (($rezervare->comision_agentie == 0) && ($rezervare->tip_plata_id == 2))
@@ -392,7 +394,9 @@
                                                     @endif
                                                     lei
                                                 @else
-                                                    RETUR
+                                                    <p style="font-size:9px;">
+                                                        RETUR
+                                                    </p>
                                                 @endif
                                             @else
                                                 @if (($rezervare->comision_agentie == 0) && ($rezervare->tip_plata_id == 2))

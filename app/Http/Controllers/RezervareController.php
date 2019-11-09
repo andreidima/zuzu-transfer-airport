@@ -397,7 +397,7 @@ class RezervareController extends Controller
                 ($rezervare_tur->oferta == null) && ($rezervare_retur->oferta == null) &&
                 ($rezervare_tur->nr_adulti > 4) && ($rezervare_tur->tip_plata_id = 2) && 
                 ($rezervare_tur->tur_retur == $rezervare_retur->id) && 
-                (($rezervare_tur->cursa->oras_plecare->id == 2) || ($rezervare_tur->cursa->oras_plecare->id == 5))
+                (($rezervare_tur->cursa->oras_plecare->id == 2) || ($rezervare_tur->cursa->oras_plecare->id == 5) || ($rezervare_tur->cursa->oras_plecare->id == 6))
                 ){
                     $rezervare_tur->oferta = 1;
                     $rezervare_tur->pret_total = ($rezervare_tur->nr_adulti * 100) + ($rezervare_tur->nr_copii * 60);

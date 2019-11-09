@@ -443,7 +443,7 @@
 
 
                         
-                        @if ((auth()->user()->id == 355) || (auth()->user()->id == 356))
+                        {{-- @if ((auth()->user()->id == 355) || (auth()->user()->id == 356)) --}}
                             <div v-if="oferta" class="col-lg-12 px-0">
                                 <div class="text-center mb-4">
                                     <div class="card border-success">
@@ -507,13 +507,13 @@
                                 <button type="submit" class="btn btn-primary mr-4">Adaugă Rezervare</button>
                                 <button type="button" class="btn btn-dark ml-4" v-on:click="(retur = !retur);oferta_5_adulti();">Retur</button>
                             </div>
-                        @else
+                        {{-- @else
                             <div class="d-flex justify-content-center m-auto">
                                 <button type="submit" class="btn btn-primary mr-4">Adaugă Rezervare</button>
                                 <button type="button" class="btn btn-dark ml-4" v-on:click="(retur = !retur);oferta_5_adulti();">Retur</button>
                             </div>
 
-                        @endif
+                        @endif --}}
                                      
                         {{-- @if (auth()->user()->isDispecer())
                             <button type="submit" class="btn btn-primary mr-4">Adaugă Rezervare</button> 

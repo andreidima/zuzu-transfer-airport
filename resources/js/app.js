@@ -249,7 +249,7 @@ if (document.querySelector('#orase-ore-plecare')) {
                     (this.retur == true) && 
                     (this.nr_adulti > 4) &&
                     (this.tip_plata_la_agentie == true) && 
-                    ((this.oras_plecare == 2) || (this.oras_plecare == 5))
+                    ((this.oras_plecare == 2) || (this.oras_plecare == 5) || (this.oras_plecare == 6))
                     ){
                     this.oferta = true;
                 }else{
