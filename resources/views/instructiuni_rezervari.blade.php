@@ -18,6 +18,20 @@
 
 <p>___________________________________</p>
 
+<p>Am implementat pe site oferta dus-intors la pretul 100lei/adult (20lei comision agentie), 60lei/copil 2-7ani (10lei comision agentie), pe traseul Galati-Otopeni (aeroport) cu urmatoarele conditii:</p>
+<ul style="list-style-type: circle">
+    <li>grupuri de minim 5 adulti,</li>
+    <li>plata integrala la agentie,</li>
+    <li><u>doar pentru aeroport Otopeni</u> (pentru debarcare sau imbarcare din Bucuresti nu se aplica oferta).</li>
+</ul>
+Oferta apare cand introduceti rezervarea si sunt indeplinite toate conditiile, exista posibilitatea de a inregistra rezervarea si fara a accesa oferta daca nu o doriti.
+<br>
+Este posibil sa fie nevoie sa incercati de cateva ori refresh la pagina cu CTRL+F5 daca nu va apare oferta.
+<br>
+*Contravaloarea transportului nu se returneaza.*
+
+<p>___________________________________</p>
+
 <p>Înainte de a face o rezervare asigurați-va că sunteți autentificat cu adresa de e-mail și parolă, la "<b>Adaugă rezervare</b>",</p>
 <ul style="list-style-type: circle">
     <li>alegeți orașul de plecare și orașul de sosire,</li>
