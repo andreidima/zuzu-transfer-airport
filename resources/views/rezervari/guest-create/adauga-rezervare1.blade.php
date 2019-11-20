@@ -421,7 +421,9 @@
         </div>
     </div>
 
-    <div class="justify-content">
+    @include ('layouts.grila-ore')
+
+    {{-- <div class="justify-content">
         <div class="row">
             <div class="col-lg-12 text-center">
                 <img src="{{ asset('images/grile-ore/Galati - Otopeni.jpg') }}" width="245px">
@@ -430,6 +432,6 @@
                 <img src="{{ asset('images/grile-ore/Otopeni - Tecuci.jpg') }}" width="275px">
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>
 @endsection
