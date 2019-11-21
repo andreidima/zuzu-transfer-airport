@@ -181,7 +181,7 @@
         </div>
         <div class="col-lg-3">
             <table class="table table-bordered table-striped table-sm text-center">
-                <thead class="bg-info text-white p-0">
+                <thead class="text-white p-0" style="background-color:lightcoral">
                     <tr>
                         <th class="p-0">Tecuci<br>Adjud<br>Panciu</th>
                         <th class="p-0">Focşani</th>
@@ -292,7 +292,7 @@
         </div>
         <div class="col-lg-3">
             <table class="table table-bordered table-striped table-sm text-center">
-                <thead class="bg-info text-white p-0">
+                <thead class="text-white p-0" style="background-color:lightcoral">
                     <tr>
                         <th class="p-0">Otopeni</th>
                         <th class="p-0">Buzău</th>
