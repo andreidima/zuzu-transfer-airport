@@ -192,7 +192,7 @@
                                     <td class="px-0" align="center" style="border-right:#333 1px solid;">   
                                         <div style="min-width:90px;">
                                             <div style="float:right; ">   
-                                                <form  
+                                                {{-- <form  
                                                     class="needs-validation" novalidate 
                                                     method="POST" action="{{ url('rezervari/activa', $rezervare->id) }}">
                                                         @method('PATCH')
@@ -208,7 +208,66 @@
                                                         </button>
                                                     @endif
                                                     
-                                                </form> 
+                                                </form>  --}}
+                                            @if ($rezervare->activa == 1)  
+                                                <a class="btn btn-dark btn-sm" 
+                                                    href="#" 
+                                                    role="button"
+                                                    data-toggle="modal" 
+                                                    data-target="#activeazaAnuleazaRezervare{{ $rezervare->id }}"
+                                                    title="Anulează Rezervarea"
+                                                    >
+                                                    <i class="fas fa-ban"></i>
+                                                </a>
+                                            @else
+                                                <a class="btn btn-success btn-sm" 
+                                                    href="#" 
+                                                    role="button"
+                                                    data-toggle="modal" 
+                                                    data-target="#activeazaAnuleazaRezervare{{ $rezervare->id }}"
+                                                    title="Activează Rezervarea"
+                                                    >
+                                                    <i class="fas fa-check-circle"></i>
+                                                </a>
+                                            @endif 
+
+                                                <div class="modal fade text-dark" id="activeazaAnuleazaRezervare{{ $rezervare->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                        <div class="modal-header bg-warning">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Client: <b>{{ $rezervare->nume }}</b></h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body" style="text-align:left;">
+                                                            @if ($rezervare->activa == 1) 
+                                                                Ești sigur ca vrei să anulezi rezervarea?
+                                                            @else
+                                                                Ești sigur ca vrei să activezi rezervarea?
+                                                            @endif
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Renunță</button>
+                                                            
+                                                            <form method="POST" action="{{ url('rezervari/activa', $rezervare->id) }}">
+                                                                @method('PATCH')
+                                                                @csrf 
+                                                                    @if ($rezervare->activa == 1)  
+                                                                        <button type="submit" class="btn btn-warning">
+                                                                            Anulează Rezervare
+                                                                        </button> 
+                                                                    @else
+                                                                        <button type="submit" class="btn btn-success">
+                                                                            Activează Rezervare
+                                                                        </button> 
+                                                                    @endif                     
+                                                            </form>
+                                                        
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div> 
 
                                             <div style="float:right;" class="">
