@@ -562,9 +562,21 @@
         </div>
     </div>
 
-    <div class="m-3">
+    {{-- <div class="m-3">
         &nbsp;
-    </div>
+    </div> --}}
+
+    
+                <div class="form-row my-3 d-flex justify-content-center">
+                    <div class="form-group col-lg-9 card shadow-sm px-4 mb-0">
+                        <h5 class="m-0 p-0"><b>Program de sarbatori 2019 - 2020:</b></h5>
+                        - 24.12.2019 si 31.12.2019 ultima cursa pe tur Galati/Tecuci este la 10:30 iar din Otopeni la ora 14:30,
+                        <br>
+                        - 26.12.2019 si 02.01.2020 prima cursa pe tur Galati/Tecuci este la ora 00:00 iar din Otopeni la ora 04:00,
+                        <br>
+                        - 25.12.2019 si 01.01.2020 nu se lucreaza.
+                    </div>
+                </div>
 
     
     @include ('layouts.grila-ore')
