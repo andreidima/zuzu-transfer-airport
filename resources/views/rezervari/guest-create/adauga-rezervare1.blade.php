@@ -24,7 +24,7 @@
             <form  class="needs-validation" novalidate method="POST" action="/adauga-rezervare-pasul-1" style="font-size:0.8rem">
                 @csrf
 
-                <div class="form-row mb-2 d-flex justify-content-center">
+                {{-- <div class="form-row mb-2 d-flex justify-content-center">
                     <div class="form-group col-lg-8 card bg-danger text-white shadow-sm px-2 mb-0">
                         <h5 class="m-0 p-0">Program de sarbatori 2019 - 2020:</h5>
                         - 24.12.2019 si 31.12.2019 ultima cursa pe tur Galati/Tecuci este la 10:30 iar din Otopeni la ora 14:30,
@@ -33,7 +33,7 @@
                         <br>
                         - 25.12.2019 si 01.01.2020 nu se lucreaza.
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="form-row mb-0 d-flex justify-content-center">
                     <div class="form-group col-lg-6 card bg-warning text-dark shadow-sm px-2 mb-0">
