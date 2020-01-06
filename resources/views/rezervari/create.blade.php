@@ -278,17 +278,19 @@
                                 </div>
                             </div>                        
                             <div class="form-group col-lg-12 mb-0 mt-1 d-flex"> 
-                                <label class="mr-2">Plata:</label>
-                                {{-- <div class="form-check mr-4">
-                                    <input type="checkbox" class="form-check-input" name="tip_plata_id" value="1"
-                                    {{ old('tip_plata_id') == '1' ? 'checked' : '' }}>
-                                    <label class="form-check-label" for="tip_plata_id">La șofer</label>
-                                </div> --}}
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" name="tip_plata_id" v-model="tip_plata_la_agentie" @change='oferta_5_adulti()' value="2"
-                                    {{ old('tip_plata_id') == '2' ? 'checked' : '' }}>
-                                    <label class="form-check-label" for="tip_plata_id">La agenție</label>
-                                </div>
+                                {{-- <span class="badge text-white m-0" style="background-color:darkcyan; font-size: 1em;"> --}}
+                                    <label class="mr-2"><b>Plata:</b></label>
+                                    {{-- <div class="form-check mr-4">
+                                        <input type="checkbox" class="form-check-input" name="tip_plata_id" value="1"
+                                        {{ old('tip_plata_id') == '1' ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="tip_plata_id">La șofer</label>
+                                    </div> --}}
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" name="tip_plata_id" v-model="tip_plata_la_agentie" @change='oferta_5_adulti()' value="2"
+                                        {{ old('tip_plata_id') == '2' ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="tip_plata_id"><b>La agenție</b></label>
+                                    </div>
+                                {{-- </span> --}}
                             </div>                   
                             {{-- <div class="form-group col-lg-4 mb-0 mt-2 d-flex"> --}}
                                 <script type="application/javascript"> 
