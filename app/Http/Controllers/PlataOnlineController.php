@@ -26,10 +26,24 @@ class PlataOnlineController extends Controller
 
         if ($rezervare->nume == "ANDREI DIMA TEST")
         {
+            $address = [
+                'type' => 'person',
+                'firstName' => 'Test fname',
+                'lastName' => 'Test lname',
+                'email' => 'email@example.com',
+                'mobilePhone' => '0123456789',
+                'address' => 'Address',
+                'country' => 'Country',
+                'county' => 'county',
+                'city' => 'city',
+            ];
+
             $comanda = Mobilpay::setOrderId(md5(uniqid(rand())))
             ->setAmount('0.05')
             // ->setAmount($rezervare->pret_total)
             ->setDetails('Plata online pentru biletul - ' . $rezervare->id)
+            ->setBillingAddress($address)
+            ->setShippingAddress($address)
             ->setAdditionalParams([
                 'rezervare_id' => $rezervare->id,
                 // 'email' => 'andrei.dima@usm.ro',
