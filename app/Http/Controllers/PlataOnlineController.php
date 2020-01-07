@@ -24,16 +24,30 @@ class PlataOnlineController extends Controller
     {
         $rezervare = $request->session()->get('rezervare');
 
-        $comanda = Mobilpay::setOrderId(md5(uniqid(rand())))
-        // ->setAmount('0.05')
-        ->setAmount($rezervare->pret_total)
-        ->setDetails('Plata online pentru biletul - ' . $rezervare->id)
-        ->setAdditionalParams([
-            'rezervare_id' => $rezervare->id,
-            // 'email' => 'andrei.dima@usm.ro',
-            'nume' => $rezervare->nume
-        ])
-        ->purchase();
+        if ($rezervare->nume == "ANDREI DIMA TEST")
+        {
+            $comanda = Mobilpay::setOrderId(md5(uniqid(rand())))
+            ->setAmount('0.05')
+            // ->setAmount($rezervare->pret_total)
+            ->setDetails('Plata online pentru biletul - ' . $rezervare->id)
+            ->setAdditionalParams([
+                'rezervare_id' => $rezervare->id,
+                // 'email' => 'andrei.dima@usm.ro',
+                'nume' => $rezervare->nume
+            ])
+            ->purchase();
+        } else {
+            $comanda = Mobilpay::setOrderId(md5(uniqid(rand())))
+            // ->setAmount('0.05')
+            ->setAmount($rezervare->pret_total)
+            ->setDetails('Plata online pentru biletul - ' . $rezervare->id)
+            ->setAdditionalParams([
+                'rezervare_id' => $rezervare->id,
+                // 'email' => 'andrei.dima@usm.ro',
+                'nume' => $rezervare->nume
+            ])
+            ->purchase();
+        }
     }
 
     public function confirmarePlata(Request $request)
