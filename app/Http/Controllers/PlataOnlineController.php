@@ -27,10 +27,10 @@ class PlataOnlineController extends Controller
         $address = [
             'type' => 'person',
             'firstName' => $rezervare->nume,
-            'lastName' => '',
+            'lastName' => '-',
             'email' => $rezervare->email,
             'mobilePhone' => $rezervare->telefon,
-            'address' => '',
+            'address' => '-',
             'country' => '',
             'county' => '',
             'city' => '',
