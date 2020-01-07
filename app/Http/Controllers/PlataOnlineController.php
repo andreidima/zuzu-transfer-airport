@@ -30,7 +30,7 @@ class PlataOnlineController extends Controller
         ->setAdditionalParams([
             'rezervare_id' => $rezervare->id,
             // 'email' => 'andrei.dima@usm.ro',
-            'nume' => 'Andrei Dima'
+            'nume' => $rezervare->nume
         ])
         ->purchase();
     }
