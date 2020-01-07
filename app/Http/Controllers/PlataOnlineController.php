@@ -28,9 +28,9 @@ class PlataOnlineController extends Controller
         ->setAmount($rezervare->pret_total)
         ->setDetails('Plata online pentru biletul - ' . $rezervare->id)
         ->setAdditionalParams([
-            'rezervare_id' => $rezervare->id
+            'rezervare_id' => $rezervare->id,
             // 'email' => 'andrei.dima@usm.ro',
-            // 'firstName' => 'Andrei Dima'
+            'nume' => 'Andrei Dima'
         ])
         ->purchase();
     }
