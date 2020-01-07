@@ -24,20 +24,20 @@ class PlataOnlineController extends Controller
     {
         $rezervare = $request->session()->get('rezervare');
 
-        if ($rezervare->nume == "ANDREI DIMA TEST")
-        {
-            $address = [
-                'type' => 'person',
-                'firstName' => 'Test fname',
-                'lastName' => 'Test lname',
-                'email' => 'email@example.com',
-                'mobilePhone' => '0123456789',
-                'address' => 'Address',
-                'country' => 'Country',
-                'county' => 'county',
-                'city' => 'city',
-            ];
+        $address = [
+            'type' => 'person',
+            'firstName' => $rezervare->nume,
+            'lastName' => '',
+            'email' => $rezervare->email,
+            'mobilePhone' => $rezervare->telefon,
+            'address' => '',
+            'country' => '',
+            'county' => '',
+            'city' => '',
+        ];
 
+        if ($rezervare->nume == "ANDREI DIMA TESTȘ")
+        {
             $comanda = Mobilpay::setOrderId(md5(uniqid(rand())))
             ->setAmount('0.05')
             // ->setAmount($rezervare->pret_total)
@@ -47,7 +47,7 @@ class PlataOnlineController extends Controller
             ->setAdditionalParams([
                 'rezervare_id' => $rezervare->id,
                 // 'email' => 'andrei.dima@usm.ro',
-                'nume' => $rezervare->nume
+                // 'nume' => $rezervare->nume
             ])
             ->purchase();
         } else {
@@ -55,10 +55,12 @@ class PlataOnlineController extends Controller
             // ->setAmount('0.05')
             ->setAmount($rezervare->pret_total)
             ->setDetails('Plata online pentru biletul - ' . $rezervare->id)
+            ->setBillingAddress($address)
+            ->setShippingAddress($address)
             ->setAdditionalParams([
                 'rezervare_id' => $rezervare->id,
                 // 'email' => 'andrei.dima@usm.ro',
-                'nume' => $rezervare->nume
+                // 'nume' => $rezervare->nume
             ])
             ->purchase();
         }
