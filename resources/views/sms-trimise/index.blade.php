@@ -58,7 +58,7 @@
 
             <div class="table-responsive rounded">
                 <table class="table table-striped table-hover table-sm rounded"> 
-                    <thead class="text-white rounded" style="background-color:#e66800;">
+                    <thead class="text-white rounded" style="background-color:#408080;">
                         <tr class="" style="padding:2rem">
                             <th style="font-size:0.8rem">Nr. Crt.</th>
                             <th class="" style="">Rezervare</th>
