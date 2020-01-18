@@ -62,15 +62,19 @@
                                     <i class="fas fa-book mr-1"></i>Raport
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/trasee">Raport Tur</a>
-                                    <a class="dropdown-item" href="/trasee/retur">Raport Retur</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="/rezervari-raport-zi">Raport / zi</a>
-                                    @if ((auth()->user()->id == 355) || (auth()->user()->id == 356))
-                                        <a class="dropdown-item" href="/rezervari/delete/mass-select">Ștergere rezervări</a>
-                                    @endif
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="/statistica">Statistică</a>
+                                        <a class="dropdown-item" href="/trasee">Raport Tur</a>
+                                        <a class="dropdown-item" href="/trasee/retur">Raport Retur</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="/rezervari-raport-zi">Raport / zi</a>
+                                        @if ((auth()->user()->id == 355) || (auth()->user()->id == 356))
+                                            <a class="dropdown-item" href="/rezervari/delete/mass-select">Ștergere rezervări</a>
+                                        @endif
+                                        <div class="dropdown-divider"></div>
+                                        @if ((auth()->user()->id == 355))
+                                            <a class="dropdown-item" href="/sms-trimise">Sms trimise</a>
+                                        @endif
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="/statistica">Statistică</a>
                                     </div>
                                 </li>
                             @endif

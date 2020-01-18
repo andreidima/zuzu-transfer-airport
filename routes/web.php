@@ -94,7 +94,9 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('/acasa', 'AcasaController@index')->name('acasa');
 
-        Route::get('/home', 'HomeController@index')->name('home');  
+        Route::get('/home', 'HomeController@index')->name('home');
+
+        Route::resource('sms-trimise', 'SmsTrimisController');
 
         // Route::view('/testare_cod', 'testare_cod');  
 

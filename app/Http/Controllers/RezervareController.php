@@ -9,6 +9,7 @@ use App\OrasStatie;
 use App\TipPlata;
 use App\CursaOra;
 use App\ClientNeserios;
+use App\SmsTrimis;
 use DB;
 use Illuminate\Http\Request;
 use App\Mail\BiletClient;
@@ -26,6 +27,23 @@ class RezervareController extends Controller
      */
     public function index()
     {
+        // $rezervare = Rezervare::latest()->first();
+        // dd($rezervare->updated_at->isoFormat('HH'));
+        // if (($rezervare->cursa->plecare_id !== 8) && 
+        //     (($rezervare->updated_at->isoFormat('HH') > 22) ? 
+        //         (
+        //             // dd('aici')
+        //             $rezervare->updated_at->isoFormat('D.MM.YYYY') == \Carbon\Carbon::now()->isoFormat('D.MM.YYYY')
+        //             ||
+        //             $rezervare->updated_at->isoFormat('D.MM.YYYY') == \Carbon\Carbon::tomorrow()->isoFormat('D.MM.YYYY')
+        //         )
+        //         : 
+        //         $rezervare->updated_at->isoFormat('D.MM.YYYY') == \Carbon\Carbon::now()->isoFormat('D.MM.YYYY'))
+        // ){
+        //     dd('aici');
+        // }
+
+
         $search_nume_telefon = \Request::get('search_nume_telefon'); //<-- we use global request to get the param of URI
         $search_cod_bilet = \Request::get('search_cod_bilet'); //<-- we use global request to get the param of URI
         // dd($search_cod_bilet);
@@ -367,7 +385,7 @@ class RezervareController extends Controller
             $rezervare_retur->tip_plata_id = 1;            
         }        
 
-        // Trimitere email pentru rezervare tur
+        // Trimitere email pentru rezervare tur si retur daca este cazul
         if (!empty($rezervare_tur->email)) {
             \Mail::to($rezervare_tur->email)->send(
                 new BiletClient($rezervare_tur, ($request->retur == "true" ? $rezervare_retur : null ))
@@ -376,10 +394,18 @@ class RezervareController extends Controller
 
         if ($request->retur == "false") {
             $rezervare_tur->save();
+
+            //Trimitere sms
+            $this->trimiteSms($rezervare_tur);
+
             return redirect($rezervare_tur->path())->with('status', 'Rezervarea pentru clientul "' . $rezervare_tur->nume . '" a fost adăugată cu succes!');
         } else {
             $rezervare_tur->save();
             $rezervare_retur->save();
+
+            //Trimitere sms
+            $this->trimiteSms($rezervare_tur);
+            $this->trimiteSms($rezervare_retur);
 
             $rezervare_tur->tur_retur = $rezervare_retur->id;
             $rezervare_tur->update();
@@ -501,6 +527,10 @@ class RezervareController extends Controller
             
             $rezervari->update( $request->only(['telefon', 'statie_imbarcare']));
         }
+
+        //Trimitere sms
+        $this->trimiteSms($rezervari);
+
         // dd(Config::get('mail'));
 
         // Trimitere email
@@ -519,8 +549,12 @@ class RezervareController extends Controller
             $this->authorize('update', $rezervari);
             if ( $rezervari->activa == 0) {
                 $rezervari->activa = 1;
+                //Trimitere sms
+                $this->trimiteSms($rezervari, ' Rezervarea a fost activata');
             } else {
                 $rezervari->activa = 0;
+                //Trimitere sms
+                $this->trimiteSms($rezervari, ' Rezervarea a fost anulata');
             }
             $rezervari->update();
             
@@ -538,6 +572,10 @@ class RezervareController extends Controller
     {
         $this->authorize('delete', $rezervari);
         $rezervari->delete();
+
+        //Trimitere sms
+        // $this->trimiteSms($rezervari, ' Rezervarea a fost stearsa');
+
         return redirect('/rezervari');
     }
 
@@ -766,6 +804,7 @@ class RezervareController extends Controller
 
         $rezervare = $request->session()->get('rezervare');
         $rezervare->created_at = \Carbon\Carbon::now();
+        $rezervare->updated_at = \Carbon\Carbon::now();
         $rezervare->tip_plata_id = 1;
 
 
@@ -831,6 +870,9 @@ class RezervareController extends Controller
             );
         }
 
+        //Trimitere sms
+        $this->trimiteSms($rezervare);
+
         if ($plata_online == 1){
             return redirect('/trimitere-catre-plata');
         }else{
@@ -892,5 +934,148 @@ class RezervareController extends Controller
         $pdf = \PDF::loadView('rezervari.export.rezervare-pdf', compact('rezervari'))
             ->setPaper('a4');
                 return $pdf->download('Rezervare ' . $rezervari->nume . '.pdf');
+    }
+
+
+    public function trimiteSms(Rezervare $rezervare, $mesaj_aditional = null)
+    {
+        if (($rezervare->cursa->plecare_id !== 8) &&
+            (($rezervare->updated_at->isoFormat('HH') > 21) ?
+                (
+                    \Carbon\Carbon::parse($rezervare->data_cursa)->isoFormat('D.MM.YYYY') == \Carbon\Carbon::now()->isoFormat('D.MM.YYYY')
+                    ||
+                    \Carbon\Carbon::parse($rezervare->data_cursa)->isoFormat('D.MM.YYYY') == \Carbon\Carbon::tomorrow()->isoFormat('D.MM.YYYY')
+                )
+                : 
+                \Carbon\Carbon::parse($rezervare->data_cursa)->isoFormat('D.MM.YYYY') == \Carbon\Carbon::now()->isoFormat('D.MM.YYYY')
+            )
+        ){
+
+            // $rezervare->created_at = \Carbon\Carbon::now();
+            // $telefoane = ['0752926589', '0767931404', '0762646917'];
+            $telefoane = ['0765296796'];
+            $mesaj =
+                $rezervare->nume . '. ' .
+                \Carbon\Carbon::parse($rezervare->data_cursa)->isoFormat('D.MM.YY') . ' ' .
+                // $rezervare->data_cursa->format('D.MM.YYYY') . ' ora ' .
+                (\Carbon\Carbon::parse($rezervare->ora->ora)->format('H:i') ?? '') . '. ' .
+                ($rezervare->cursa->oras_plecare->nume ?? '') . ' (' .
+                ($rezervare->statie->nume ?? $rezervare->statie_imbarcare) . '). ' .
+                $rezervare->telefon . '. ' .
+                $rezervare->nr_adulti . ' adulti ' .
+                (($rezervare->nr_copii > 0) ? ('+ ' . $rezervare->nr_copii . ' copii') : '') . 
+                ' = ' . $rezervare->pret_total . ' lei.' .
+                $mesaj_aditional;
+
+            foreach ($telefoane as $telefon) {
+
+                // ----------------------------------------------------------------------------
+                // 
+                //    Exemplu minimal pentru trimiterea de SMS-uri (PHP)
+                //    Serviciul SMS Gateway
+                //    Versiunea 1.1 / 12.04.2010
+                //    Distribuit gratuit    
+                //
+                // ----------------------------------------------------------------------------
+
+                // ----------------------------------------------------------------------------
+                //  Pasul 1    
+                //  Interogam SMS Gateway si salvam rezultatul trimis de acesta in variabila 
+                //  pentru a putea interpreta statutul trimiterii
+                //   - Pentru HTTPS utilizati https://secure.smslink.ro
+                // ----------------------------------------------------------------------------
+                // $mesaj = "Salutare domnule";
+                $content = file_get_contents("http://www.smslink.ro/sms/gateway/communicate/?" .
+                    "connection_id=" . $_ENV['SMSLINK_CONNECTION_ID'] . "&password=" . $_ENV['SMSLINK_PASSWORD'] .
+                    "&to=" . $telefon . "&message=" .
+                    // urlencode("Salut " . $rezervari->nume) .
+                    urlencode($mesaj) .
+                    '&test=1');
+                // dd($content);
+                // ----------------------------------------------------------------------------
+                //  Pasul 2
+                //  Interpretam rezultatul pentru a avea acces la tot continutul acestuia si
+                //  a putea intelege rezultatul mesajului trimis spre SMS Gateway
+                //
+                //  Rezultatul transmis de SMS Gateway va fi intotdeauna de forma urmatoare:
+                //  string Nivel;int ID Rezultat;string Mesaj;string[optional] Variabile
+                // ----------------------------------------------------------------------------
+                //  Pasul 2.1
+                //  Extragem din rezultat toate variabilele separate prin punct si virgula 
+                // ----------------------------------------------------------------------------
+                list($level, $id, $response, $variabiles) = explode(";", $content . ';');
+
+                // ----------------------------------------------------------------------------
+                //  Pasul 2.2
+                //  Verificam daca mesajul trimis a fost transmis cu succes prin compararea
+                //  Nivelului si ID Rezultat
+                // ----------------------------------------------------------------------------
+                //  Daca mesajul este transmis atunci Nivelul va fi MESSAGE si ID- rezultat 
+                //  va avea valoarea numerica 1    
+                // ----------------------------------------------------------------------------
+                if (($level == "MESSAGE") and ($id == 1)) {
+                    // ------------------------------------------------------------------------    
+                    //  Variabilele optionale transmise optional sunt separate prin virgula
+                    //  si vor avea forma urmatoare:
+                    //  mixed Variabila 1,mixed Variabila 2 ... mixed Variabila 3                
+                    // ------------------------------------------------------------------------
+                    $variabiles = explode(",", $variabiles);
+
+                    // ------------------------------------------------------------------------
+                    //  Extragem ID-ul Mesajului alocat de gateway pentru a il salva pentru
+                    //  utilizare ulterioara. Message ID  va fi intotdeauna prima variabila 
+                    //  trimisa, restul fiind explicate complet in documentatia de pe site. 
+                    // ------------------------------------------------------------------------
+                    $message_id = $variabiles[0];
+
+                    // ------------------------------------------------------------------------
+                    //  Pasul 3
+                    //  Afisam mesajul de confirmare si afisam Message ID-ul alocat
+                    // ------------------------------------------------------------------------
+                    // echo "Mesajul a fost trimis si are ID-ul " . $message_id . "!";
+
+                    $smsTrimis = new SmsTrimis;
+                    $smsTrimis->rezervare_id = $rezervare->id;
+                    $smsTrimis->telefon = $telefon;
+                    $smsTrimis->mesaj = $mesaj;
+                    $smsTrimis->trimis = 1;
+                    $smsTrimis->mesaj_id = $message_id;
+                    $smsTrimis->raspuns = $response;
+                    $smsTrimis->content = $content;
+                    $smsTrimis->save();
+                    // return redirect('/clienti')->with('status', 'SMS-ul către "' . $clienti->nume . '" a fost trimis cu succes și are ID-ul ' . $message_id . "!");
+                    // return redirect('/clienti')->with('status', 'SMS-ul către "' . $clienti->nume . '" a fost trimis cu succes!');
+                    // $raspuns['sms-trimis'] = $smsTrimis;
+                    // return ($raspuns);
+                } else {
+                    if ($level == "ERROR") {
+                        // --------------------------------------------------------------------
+                        //  Pasul 3
+                        //  Afisam mesajul de eroare si afisam ID-ul erorii si descrierea
+                        // --------------------------------------------------------------------
+                        // echo "A intervenit eroarea ID " . $id . ", Descriere " . $response;
+
+                        $smsTrimis = new SmsTrimis;
+                        $smsTrimis->rezervare_id = $rezervare->id;
+                        $smsTrimis->telefon = $telefon;
+                        $smsTrimis->mesaj = $mesaj;
+                        $smsTrimis->trimis = 0;
+                        $smsTrimis->raspuns = $response;
+                        $smsTrimis->content = $content;
+                        $smsTrimis->save();
+
+                        // return redirect('/clienti')->with('status', "A intervenit eroarea ID " . $id . ", Descriere: " . $response);
+                        // $raspuns = array();
+                        // array_push($raspuns, $smsTrimis);
+                        // array_push($raspuns, $response);
+                        // $raspuns = [];
+                        // $raspuns['sms-trimis'] = $smsTrimis;
+                        // $raspuns['id'] = $id;
+                        // $raspuns['raspuns'] = $response;
+                        // return ($raspuns);
+                    }
+                }
+            }
+        }
     }
 }
