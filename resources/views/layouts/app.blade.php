@@ -69,10 +69,8 @@
                                         @if ((auth()->user()->id == 355) || (auth()->user()->id == 356))
                                             <a class="dropdown-item" href="/rezervari/delete/mass-select">Ștergere rezervări</a>
                                         @endif
-                                        @if ((auth()->user()->id == 355))
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="/sms-trimise">Sms trimise</a>
-                                        @endif
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="/sms-trimise">Sms trimise</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="/statistica">Statistică</a>
                                     </div>
