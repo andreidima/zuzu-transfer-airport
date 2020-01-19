@@ -961,7 +961,7 @@ class RezervareController extends Controller
                 $rezervare->telefon . '. ' .
                 $rezervare->nr_adulti . ' adulti ' .
                 (($rezervare->nr_copii > 0) ? ('+ ' . $rezervare->nr_copii . ' copii') : '') . 
-                ' = ' . $rezervare->pret_total . ' lei.' .
+                ' = ' . $rezervare->pret_total . ' lei. ' .
                 \Carbon\Carbon::parse($rezervare->data_cursa)->isoFormat('D.MM.YY') . ' ' .
                 $mesaj_aditional;
 
