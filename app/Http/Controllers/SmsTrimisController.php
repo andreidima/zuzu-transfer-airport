@@ -28,7 +28,7 @@ class SmsTrimisController extends Controller
                 return $query->whereDate('created_at', '<=', $search_data_sfarsit);
             })
             ->latest()
-            ->simplePaginate(25);
+            ->simplePaginate(100);
 
         return view(
             'sms-trimise.index',
