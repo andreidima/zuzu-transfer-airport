@@ -956,7 +956,7 @@ class RezervareController extends Controller
             // $telefoane = ['0765296796'];
             $mesaj = (\Carbon\Carbon::parse($rezervare->ora->ora)->format('H:i') ?? '') . '. ' .
                 ($rezervare->cursa->oras_plecare->nume ?? '') . ' (' .
-                ($rezervare->statie->nume ?? $rezervare->statie_imbarcare) . '). ' .
+                ($rezervare->statie->nume ?? $rezervare->statie_imbarcare) . ') ' .
                 $rezervare->nume . ' ' .
                 $rezervare->telefon . '. ' .
                 $rezervare->nr_adulti . ' adulti ' .
