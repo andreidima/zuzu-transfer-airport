@@ -954,17 +954,15 @@ class RezervareController extends Controller
             // $rezervare->created_at = \Carbon\Carbon::now();
             $telefoane = ['0752926589', '0767931404', '0762646917'];
             // $telefoane = ['0765296796'];
-            $mesaj =
-                $rezervare->nume . '. ' .
-                \Carbon\Carbon::parse($rezervare->data_cursa)->isoFormat('D.MM.YY') . ' ' .
-                // $rezervare->data_cursa->format('D.MM.YYYY') . ' ora ' .
-                (\Carbon\Carbon::parse($rezervare->ora->ora)->format('H:i') ?? '') . '. ' .
+            $mesaj = (\Carbon\Carbon::parse($rezervare->ora->ora)->format('H:i') ?? '') . '. ' .
                 ($rezervare->cursa->oras_plecare->nume ?? '') . ' (' .
                 ($rezervare->statie->nume ?? $rezervare->statie_imbarcare) . '). ' .
+                $rezervare->nume . ' ' .
                 $rezervare->telefon . '. ' .
                 $rezervare->nr_adulti . ' adulti ' .
                 (($rezervare->nr_copii > 0) ? ('+ ' . $rezervare->nr_copii . ' copii') : '') . 
                 ' = ' . $rezervare->pret_total . ' lei.' .
+                \Carbon\Carbon::parse($rezervare->data_cursa)->isoFormat('D.MM.YY') . ' ' .
                 $mesaj_aditional;
 
             foreach ($telefoane as $telefon) {
