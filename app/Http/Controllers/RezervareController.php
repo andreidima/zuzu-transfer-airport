@@ -950,9 +950,15 @@ class RezervareController extends Controller
                 \Carbon\Carbon::parse($rezervare->data_cursa)->isoFormat('D.MM.YYYY') == \Carbon\Carbon::now()->isoFormat('D.MM.YYYY')
             )
         ){
+            
+            if (in_array($rezervare->cursa->plecare_id, [2, 5, 6])){
+                $telefoane = ['0752926589'];
+            } else {
+                $telefoane = ['0767931404', '0762646917'];
+            }
 
             // $rezervare->created_at = \Carbon\Carbon::now();
-            $telefoane = ['0752926589', '0767931404', '0762646917'];
+            // $telefoane = ['0752926589', '0767931404', '0762646917'];
             // $telefoane = ['0765296796'];
             $mesaj = (\Carbon\Carbon::parse($rezervare->ora->ora)->format('H:i') ?? '') . '. ' .
                 ($rezervare->cursa->oras_plecare->nume ?? '') . ' (' .
