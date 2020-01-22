@@ -529,7 +529,8 @@ class RezervareController extends Controller
         }
 
         //Trimitere sms
-        $this->trimiteSms($rezervari);
+        // $this->trimiteSms($rezervari);
+        $this->trimiteSms($rezervari, ' Modificata');
 
         // dd(Config::get('mail'));
 
@@ -550,11 +551,11 @@ class RezervareController extends Controller
             if ( $rezervari->activa == 0) {
                 $rezervari->activa = 1;
                 //Trimitere sms
-                $this->trimiteSms($rezervari, ' Rezervarea a fost activata');
+                $this->trimiteSms($rezervari, ' Activata');
             } else {
                 $rezervari->activa = 0;
                 //Trimitere sms
-                $this->trimiteSms($rezervari, ' Rezervarea a fost anulata');
+                $this->trimiteSms($rezervari, ' Anulata');
             }
             $rezervari->update();
             
