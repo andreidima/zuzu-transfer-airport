@@ -550,14 +550,15 @@ class RezervareController extends Controller
             $this->authorize('update', $rezervari);
             if ( $rezervari->activa == 0) {
                 $rezervari->activa = 1;
+                $rezervari->update();
                 //Trimitere sms
                 $this->trimiteSms($rezervari, ' Activata');
             } else {
                 $rezervari->activa = 0;
+                $rezervari->update();
                 //Trimitere sms
                 $this->trimiteSms($rezervari, ' Anulata');
             }
-            $rezervari->update();
             
             return redirect('/rezervari');
         }
