@@ -7,14 +7,15 @@
 <p><strong>PENTRU O MAI BUNĂ FUNCȚIONARE A SISTEMULUI VA RUGĂM SĂ FOLOSIȚI MOZILLA SAU CHROME!</strong></p>
 <p>___________________________________</p>
 
-
-<p class="text-danger"><b>Program de sarbatori 2019 - 2020:</b></p>
+{{-- <p class="text-danger"><b>Program de sarbatori 2019 - 2020:</b></p>
 
 <p class="text-danger">- 24.12.2019 si 31.12.2019 ultima cursa pe tur Galati/Tecuci este la 10:30 iar din Otopeni la ora 14:30,</p>
 
 <p class="text-danger">- 26.12.2019 si 02.01.2020 prima cursa pe tur Galati/Tecuci este la ora 00:00 iar din Otopeni la ora 04:00,</p>
 
-<p class="text-danger">- 25.12.2019 si 01.01.2020 nu se lucreaza.</p>
+<p class="text-danger">- 25.12.2019 si 01.01.2020 nu se lucreaza.</p> --}}
+
+<p class="text-danger p-0 my-1"><b>Program de Paște 2020: program normal, se efectuează toate cursele!</b></p>
 
 <p>___________________________________</p>
 

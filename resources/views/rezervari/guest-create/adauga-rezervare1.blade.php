@@ -34,6 +34,11 @@
                         - 25.12.2019 si 01.01.2020 nu se lucreaza.
                     </div>
                 </div> --}}
+                <div class="form-row mb-2 d-flex justify-content-center">
+                    <div class="form-group col-lg-7 card bg-danger text-white shadow-sm px-2 mb-0">
+                        <h5 class="m-0 p-0">Program de Paște 2020: program normal, se efectuează toate cursele!</h5>
+                    </div>
+                </div>
 
                 <div class="form-row mb-0 d-flex justify-content-center">
                     <div class="form-group col-lg-6 card bg-warning text-dark shadow-sm px-2 mb-0">
