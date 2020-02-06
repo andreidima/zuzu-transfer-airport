@@ -941,6 +941,7 @@ class RezervareController extends Controller
 
     public function trimiteSms(Rezervare $rezervare, $mesaj_aditional = null)
     {
+        // Conditiile in care se trimite rezervarea
         if (($rezervare->cursa->plecare_id !== 8) &&
             (($rezervare->updated_at->isoFormat('HH') > 21) ?
                 (
@@ -953,6 +954,15 @@ class RezervareController extends Controller
             )
         ){
 
+            // Stabilirea pretului rezervarii - daca a fost platita sau nu, sau avans            
+            if ($rezervare->tip_plata_id == 3) {
+                $rezervare->pret_ramas_de_plata = 0;
+            } elseif (($rezervare->comision_agentie == 0) && ($rezervare->tip_plata_id == 2)) {
+                $rezervare->pret_ramas_de_plata = 0;
+            } else {
+                $rezervare->pret_ramas_de_plata =  $rezervare->pret_total - $rezervare->comision_agentie;
+            }
+
             if (in_array($rezervare->cursa->plecare_id, [2, 5, 6])){
                 $telefoane = ['0752926589'];
             } else {
@@ -963,13 +973,14 @@ class RezervareController extends Controller
             // $telefoane = ['0752926589', '0767931404', '0762646917'];
             // $telefoane = ['0765296796'];
             $mesaj = (\Carbon\Carbon::parse($rezervare->ora->ora)->format('H:i') ?? '') . '. ' .
-                ($rezervare->cursa->oras_plecare->nume ?? '') . ' (' .
-                ($rezervare->statie->nume ?? $rezervare->statie_imbarcare) . ') ' .
+                ($rezervare->cursa->oras_plecare->nume ?? '') .
+                (isset($rezervare->statie->nume) ? (' (' . $rezervare->statie->nume . ') ') : '') . 
+                ($rezervare->statie_imbarcare ? (' (' . $rezervare->statie_imbarcare . ') ') : '') . 
                 $rezervare->nume . ' ' .
                 $rezervare->telefon . '. ' .
                 $rezervare->nr_adulti . ' adulti ' .
                 (($rezervare->nr_copii > 0) ? ('+ ' . $rezervare->nr_copii . ' copii') : '') . 
-                ' = ' . $rezervare->pret_total . ' lei. ' .
+                ' = ' . $rezervare->pret_ramas_de_plata . ' lei. ' .
                 \Carbon\Carbon::parse($rezervare->data_cursa)->isoFormat('D.MM.YY') .
                 ($mesaj_aditional ? '. ' . $mesaj_aditional : '');
 
