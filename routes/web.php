@@ -111,22 +111,22 @@ Route::group(['middleware' => 'auth'], function () {
         //     Artisan::call('view:clear');
         // return "Cleared!";
         // });
-        Route::get('teste', function() {
-            // Artisan::call('backup:run'
-            //     , ['--only-db' => true]
-            // );
-            Artisan::call('db:seed');
-                \DB::table('teste')->insert([
-                [
-                    'text' => 'manual'
-                ],
-            ]);
+        // Route::get('teste', function() {
+        //     // Artisan::call('backup:run'
+        //     //     , ['--only-db' => true]
+        //     // );
+        //     Artisan::call('db:seed');
+        //         \DB::table('teste')->insert([
+        //         [
+        //             'text' => 'manual'
+        //         ],
+        //     ]);
 
-            // Artisan::call('inspire');
-            // dd("Backup facut local");
-            Artisan::call('inspire');
-            dd(Artisan::output());
-        });
+        //     // Artisan::call('inspire');
+        //     // dd("Backup facut local");
+        //     Artisan::call('inspire');
+        //     dd(Artisan::output());
+        // });
     });
 });
 
