@@ -25,6 +25,12 @@ class DatabaseSeeder extends Seeder
             // TipPlataSeeder::class,
         ]);
 
-        factory('App\Rezervare', 2000)->create();
+        // factory('App\Rezervare', 2000)->create();
+        
+        DB::table('teste')->insert([
+            [
+                'text' => 'success'
+            ],
+        ]);
     }
 }

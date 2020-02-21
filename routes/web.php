@@ -111,6 +111,17 @@ Route::group(['middleware' => 'auth'], function () {
         //     Artisan::call('view:clear');
         // return "Cleared!";
         // });
+        Route::get('teste', function() {
+            // Artisan::call('backup:run'
+            //     , ['--only-db' => true]
+            // );
+            Artisan::call('db:seed');
+
+            // Artisan::call('inspire');
+            // dd("Backup facut local");
+            Artisan::call('inspire');
+            dd(Artisan::output());
+        });
     });
 });
 
