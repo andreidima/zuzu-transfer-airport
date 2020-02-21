@@ -116,6 +116,11 @@ Route::group(['middleware' => 'auth'], function () {
             //     , ['--only-db' => true]
             // );
             Artisan::call('db:seed');
+                \DB::table('teste')->insert([
+                [
+                    'text' => 'manual'
+                ],
+            ]);
 
             // Artisan::call('inspire');
             // dd("Backup facut local");
