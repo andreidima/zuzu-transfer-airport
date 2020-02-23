@@ -38,7 +38,7 @@
                                             <optgroup label="Oraș">
                                                 <option v-for='oras_plecare in orase_plecare'
                                                 :value='oras_plecare.id'  
-                                                v-bind:style= "[oras_plecare.id == 3 ? {color: 'black', 'font-weight': 'bold'} : {}]"
+                                                v-bind:style= "[oras_plecare.id == 3 ? {color: 'brown', 'font-weight': 'bold'} : {}]"
                                                 >
                                                     @{{oras_plecare.nume}}
                                                 </option>
