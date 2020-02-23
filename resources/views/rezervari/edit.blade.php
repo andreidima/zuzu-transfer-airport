@@ -46,7 +46,8 @@
                                     @change='getOraseSosire()'>
                                             <optgroup label="Oraș">
                                                 <option v-for='oras_plecare in orase_plecare'
-                                                :value='oras_plecare.id'                  
+                                                :value='oras_plecare.id'      
+                                                v-bind:style= "[oras_plecare.id == 3 ? {color: 'black', 'font-weight': 'bold'} : {}]"            
                                                 >@{{oras_plecare.nume}}</option>
                                             </optgroup>
                                             <optgroup label="Aeroport">
@@ -65,7 +66,8 @@
                                         {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
                                     @change='getOrePlecare();getReturOrePlecare();'>
                                             <option v-for='oras_sosire in orase_sosire'                                
-                                            :value='oras_sosire.id'                                       
+                                            :value='oras_sosire.id'
+                                            v-bind:style= "[oras_sosire.id == 3 ? {color: 'black', 'font-weight': 'bold'} : {}]"                                  
                                             >@{{oras_sosire.nume}}</option>
                                     </select>
                             </div>
