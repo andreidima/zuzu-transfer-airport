@@ -901,11 +901,12 @@ class RezervareController extends Controller
         // }
 
         if ($request->has('orderId')) {            
-            //Trimitere sms inca odata daca rezervarea a fost si platita
-            $this->trimiteSms($rezervari, 'Platita online');
 
             $plata_online = \App\PlataOnline::where('order_id', $request->orderId)->latest()->first();
             $rezervare = \App\Rezervare::where('id', $plata_online->rezervare_id)->first();
+
+            //Trimitere sms inca odata daca rezervarea a fost si platita
+            $this->trimiteSms($rezervare, 'Platita online');
 
             $request->session()->put('plata_online', $plata_online);
             $request->session()->forget('rezervare');
