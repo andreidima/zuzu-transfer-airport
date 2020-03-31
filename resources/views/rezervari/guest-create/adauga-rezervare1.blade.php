@@ -35,7 +35,10 @@
                     </div>
                 </div> --}}
                 <div class="form-row mb-2 d-flex justify-content-center">
-                    <div class="form-group col-lg-7 card bg-danger text-white shadow-sm px-2 mb-0">
+                    <div class="form-group col-lg-11 card bg-danger text-white shadow-sm p-0 mb-1 text-center">
+                        <h5 class="m-0 p-0">Preturile au fost modificate de la 1 Aprilie 2020 pe perioada starii de urgenta! Multumim pentru intelegere!</h5>
+                    </div>
+                    <div class="form-group col-lg-7 card bg-danger text-white shadow-sm p-0 mb-0 text-center">
                         <h5 class="m-0 p-0">Program de Paște 2020: program normal, se efectuează toate cursele!</h5>
                     </div>
                 </div>

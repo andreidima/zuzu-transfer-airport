@@ -166,7 +166,7 @@
             </div>
         </nav>
 
-        <main class="container my-3 py-3" style="min-height:450px;">
+        <main class="container my-2 py-2" style="min-height:450px;">
             @yield('content')
         </main>
         

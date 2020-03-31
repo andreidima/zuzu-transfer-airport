@@ -18,6 +18,12 @@
             <form  class="needs-validation" novalidate method="POST" action="/rezervari" style="font-size:0.8rem">
                 @csrf
 
+                <div class="form-row mb-2 d-flex justify-content-center">
+                    <div class="form-group col-lg-9 card text-dark shadow-sm p-0 mb-1 text-center" style="background-color:#dedede">
+                        <h6 class="m-0 p-0">Preturile au fost modificate de la 1 Aprilie 2020 pe perioada starii de urgenta! Multumim pentru intelegere!</h6>
+                    </div>
+                </div>
+
                 <div class="form-row mb-0 d-flex justify-content-center">
                     <div class="form-group col-lg-6 card text-dark shadow-sm px-2 mb-0" style="background-color:#dedede">
                         <div class="form-row mb-0 d-flex justify-content-between">
