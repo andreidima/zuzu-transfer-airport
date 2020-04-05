@@ -219,6 +219,7 @@ class RezervareController extends Controller
                 if(!empty($cursa)){
                     $raspuns = CursaOra::select('id', 'ora')
                         ->where('cursa_id', $cursa->id)
+                        ->orderBy('ora', 'asc')
                         ->get();
                     foreach ($raspuns as $r){
                         $r->ora = \Carbon\Carbon::parse($r->ora)->format('H:i');

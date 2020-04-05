@@ -70,41 +70,64 @@
     
                 <table style="">
                     <tr style="">
-                        <td style="border-width:0px; padding:0rem; width:40%">
+                        <td style="border-width:0px; padding:0rem; width:25%">
                                 <img src="{{ asset('images/logo-zuzu.png') }}" width="150px">
                         </td>
-                        <td style="border-width:0px; padding:0rem; width:60%; text-align:center; font-size:16px">
+                        <td style="border-width:0px; padding:0rem; width:25%; font-size:16px">
                             Tip traseu: TUR
                             <br>
-                            Pentru data: <u>{{ $data_traseu }}</u>
-                            <br>
-                            @forelse ($trasee->curse_ore as $cursa_ora)
-                                @if ($cursa_ora->cursa->oras_plecare->nume == "Adjud")
-                                    ADJ:
+                            Data: <u>{{ $data_traseu }}</u>
+                        </td>
+                        <td style="border-width:0px; padding:0rem; width:50%; font-size:16px;">
+                            @forelse ($trasee->curse_ore->sortByDesc('cursa.durata') as $cursa_ora)
+                                @if ($cursa_ora->cursa->oras_plecare->nume == "Vaslui")
+                                    <u>VAS</u>
+                                    {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}},
+                                @elseif ($cursa_ora->cursa->oras_plecare->nume == "Barlad")
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <u>BAR</u>:
+                                    {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}}
+                                {{-- @elseif ($cursa_ora->cursa->oras_plecare->nume == "Adjud")
+                                    <br>
+                                    ADJ,
                                 @elseif ($cursa_ora->cursa->oras_plecare->nume == "Panciu")
-                                    PAN:
-                                @elseif ($cursa_ora->cursa->oras_plecare->nume == "Tecuci")
-                                    TC:
+                                    PAN,
+                                @elseif ($cursa_ora->cursa->oras_plecare->nume == "Tecuci") --}}
+                                    <br>
+                                    <u>ADJ,PAN,TC</u>:
+                                    {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}},
                                 @elseif ($cursa_ora->cursa->oras_plecare->nume == "Marasesti")
-                                    MAR:
+                                    <u>MAR</u>:
+                                    {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}},
                                 @elseif ($cursa_ora->cursa->oras_plecare->nume == "Focsani")
-                                    FCS:
+                                    <br>
+                                    <u>FCS</u>:
+                                    {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}},
                                 @elseif ($cursa_ora->cursa->oras_plecare->nume == "Rm. Sarat")
-                                    RMS:
+                                    <u>RMS</u>:
+                                    {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}},
                                 @elseif ($cursa_ora->cursa->oras_plecare->nume == "Buzau")
-                                    BZ:
+                                    <u>BZ</u>:
+                                    {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}}
                                 @elseif ($cursa_ora->cursa->oras_plecare->nume == "Galati")
-                                    GL:
+                                    <u>GL</u>:
+                                    {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}},
                                 @elseif ($cursa_ora->cursa->oras_plecare->nume == "Braila")
-                                    BR:
+                                    <u>BR</u>:
+                                    {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}},
                                 @elseif ($cursa_ora->cursa->oras_plecare->nume == "Ianca")
-                                    IAN:
+                                    <br>
+                                    <u>IAN</u>:
+                                    {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}},
                                 @endif
-                                @if($loop->last)
+                                {{-- @if ($cursa_ora->cursa->oras_plecare->nume == "Marasesti")
+                                    {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}}
+                                    <br>
+                                @elseif($loop->last)
                                     {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}}
                                 @else($loop->last)
                                     {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}},
-                                @endif
+                                @endif --}}
                             @empty
                             @endforelse
                         </td>
@@ -136,7 +159,7 @@
                     @php 
                         ($nrcrt = 1) 
                     @endphp
-                    @forelse ($trasee->curse_ore as $cursa_ora)
+                    @forelse ($trasee->curse_ore->sortByDesc('cursa.durata') as $cursa_ora)
                         @forelse ($cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1) as $rezervare)
                             @if (in_array($rezervare->telefon, $telefoane_clienti_neseriosi))
                                 <tr style="background:#71f85f;">

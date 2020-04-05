@@ -93,7 +93,6 @@ class TraseuController extends Controller
                 )
             ->get();
 
-
         // $trasee_nume_otopeni = TraseuNume::select('id', 'nume')
         //     ->where('id', 3)
         //     ->get();

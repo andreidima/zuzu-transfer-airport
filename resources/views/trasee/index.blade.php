@@ -135,7 +135,7 @@
                             @forelse ($traseu_nume->trasee as $traseu)
                                 @if ($loop->first)
                                     <tr>
-                                            @forelse ($traseu->curse_ore as $cursa_ora) 
+                                            @forelse ($traseu->curse_ore->sortByDesc('cursa.durata') as $cursa_ora) 
                                                 <th style="width: 11%">
                                                     {{$cursa_ora->cursa->oras_plecare->nume}}
                                                 </th>
@@ -152,7 +152,7 @@
                                 
                                 
                                 <tr>         
-                                @forelse ($traseu->curse_ore as $cursa_ora)
+                                @forelse ($traseu->curse_ore->sortByDesc('cursa.durata') as $cursa_ora)
                                     <td style="line-height:0.9rem">
                                             @if(!empty(\Carbon\Carbon::parse($cursa_ora->ora)))
                                                 <a href="{{ $traseu->path() }}/{{ \Carbon\Carbon::createFromFormat('Y-m-d', $search)->format('d-m-Y') }}"
