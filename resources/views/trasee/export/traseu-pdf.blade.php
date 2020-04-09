@@ -87,15 +87,12 @@
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <u>BAR</u>:
                                     {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}}
-                                {{-- @elseif ($cursa_ora->cursa->oras_plecare->nume == "Adjud")
-                                    <br>
-                                    ADJ,
-                                @elseif ($cursa_ora->cursa->oras_plecare->nume == "Panciu")
-                                    PAN,
-                                @elseif ($cursa_ora->cursa->oras_plecare->nume == "Tecuci") --}}
+                                @elseif ($cursa_ora->cursa->oras_plecare->nume == "Adjud")
                                     <br>
                                     <u>ADJ,PAN,TC</u>:
                                     {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}},
+                                {{-- @elseif ($cursa_ora->cursa->oras_plecare->nume == "Panciu")
+                                @elseif ($cursa_ora->cursa->oras_plecare->nume == "Tecuci") --}}
                                 @elseif ($cursa_ora->cursa->oras_plecare->nume == "Marasesti")
                                     <u>MAR</u>:
                                     {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}},
