@@ -82,58 +82,56 @@
                                 <td style="border-width:0px; padding:0rem; width:25%">
                                         <img src="{{ asset('images/logo-zuzu.png') }}" width="150px">
                                 </td>
-                                <td style="border-width:0px; padding:0rem; width:25%; font-size:16px">
+                                <td style="border-width:0px; padding:0rem; width:30%; font-size:16px">
                                     Tip traseu: TUR
                                     <br>
                                     Data: <u>{{ $data_traseu }}</u>
                                 </td>
-                                <td style="border-width:0px; padding:0rem; width:50%; font-size:16px;">
+                                <td style="border-width:0px; padding:0rem; width:25%; font-size:16px;">
                                     @forelse ($traseu->curse_ore->sortByDesc('cursa.durata') as $cursa_ora)
                                         @if ($cursa_ora->cursa->oras_plecare->nume == "Vaslui")
                                             <u>VAS</u>
                                             {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}},
                                         @elseif ($cursa_ora->cursa->oras_plecare->nume == "Barlad")
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <br>
                                             <u>BAR</u>:
-                                            {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}}
+                                            {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}},
                                         @elseif ($cursa_ora->cursa->oras_plecare->nume == "Adjud")
                                             <br>
                                             <u>ADJ,PAN,TC</u>:
                                             {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}},
-                                        {{-- @elseif ($cursa_ora->cursa->oras_plecare->nume == "Panciu")
-                                        @elseif ($cursa_ora->cursa->oras_plecare->nume == "Tecuci") --}}
                                         @elseif ($cursa_ora->cursa->oras_plecare->nume == "Marasesti")
+                                            <br>
                                             <u>MAR</u>:
                                             {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}},
-                                        @elseif ($cursa_ora->cursa->oras_plecare->nume == "Focsani")
-                                            <br>
-                                            <u>FCS</u>:
-                                            {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}},
-                                        @elseif ($cursa_ora->cursa->oras_plecare->nume == "Rm. Sarat")
-                                            <u>RMS</u>:
-                                            {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}},
-                                        @elseif ($cursa_ora->cursa->oras_plecare->nume == "Buzau")
-                                            <u>BZ</u>:
-                                            {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}}
                                         @elseif ($cursa_ora->cursa->oras_plecare->nume == "Galati")
                                             <u>GL</u>:
                                             {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}},
                                         @elseif ($cursa_ora->cursa->oras_plecare->nume == "Braila")
+                                            <br>
                                             <u>BR</u>:
                                             {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}},
-                                        @elseif ($cursa_ora->cursa->oras_plecare->nume == "Ianca")
+                                        @endif
+                                    @empty
+                                    @endforelse
+                                </td>
+                                <td style="border-width:0px; padding:0rem; width:20%; font-size:16px;">
+                                    @forelse ($traseu->curse_ore->sortByDesc('cursa.durata') as $cursa_ora)
+                                        @if ($cursa_ora->cursa->oras_plecare->nume == "Focsani")
+                                            <u>FCS</u>:
+                                            {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}},
+                                        @elseif ($cursa_ora->cursa->oras_plecare->nume == "Rm. Sarat")
                                             <br>
+                                            <u>RMS</u>:
+                                            {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}},
+                                        @elseif ($cursa_ora->cursa->oras_plecare->nume == "Ianca")
                                             <u>IAN</u>:
                                             {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}},
-                                        @endif
-                                        {{-- @if ($cursa_ora->cursa->oras_plecare->nume == "Marasesti")
-                                            {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}}
+                                        @elseif ($cursa_ora->cursa->oras_plecare->nume == "Buzau")
                                             <br>
-                                        @elseif($loop->last)
+                                            <u>BZ</u>:
                                             {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}}
-                                        @else($loop->last)
-                                            {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}},
-                                        @endif --}}
+                                        @endif
                                     @empty
                                     @endforelse
                                 </td>
