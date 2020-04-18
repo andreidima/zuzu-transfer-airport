@@ -12,10 +12,10 @@ return [
 
     'currency' => 'RON',
 
-    'confirm_url' => 'https://dezvoltare.zuzu-transfer-aeroport.ro/confirmare-plata',
+    'confirm_url' => 'https://rezervari.zuzu-transfer-aeroport.ro/confirmare-plata',
 
     'cancel_url' => '',
 
-    'return_url' => 'https://dezvoltare.zuzu-transfer-aeroport.ro/adauga-rezervare-pasul-3'
+    'return_url' => 'https://rezervari.zuzu-transfer-aeroport.ro/adauga-rezervare-pasul-3'
 
 ];
