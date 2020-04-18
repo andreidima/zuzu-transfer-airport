@@ -39,26 +39,28 @@ class TraseuController extends Controller
                     ['trasee.rezervari' => function ($query) use ($search, $search_ieri) {
                         $query->where(function ($query) use ($search_ieri) {
                                     $query->whereIn('ora_id', [293, 294, 307])
-                                        ->where('data_cursa', $search_ieri);
+                                        ->where('data_cursa', $search_ieri)
+                                        ->where('activa', 1);
                                 })
                             ->orWhere(function ($query) use ($search) {
                                 $query->whereNotIn('ora_id', [293, 294, 307])
-                                    ->where('data_cursa', $search);
-                                })                            
-                            ->where('activa', 1);
+                                    ->where('data_cursa', $search)
+                                    ->where('activa', 1);
+                                });        
                     }]
                 )
                 ->with(
                     ['trasee.curse_ore.rezervari' => function ($query) use ($search, $search_ieri) {
                         $query->where(function ($query) use ($search_ieri) {
                             $query->whereIn('ora_id', [293, 294, 307])
-                                ->where('data_cursa', $search_ieri);
+                                ->where('data_cursa', $search_ieri)
+                                ->where('activa', 1);
                         })
                             ->orWhere(function ($query) use ($search) {
                                 $query->whereNotIn('ora_id', [293, 294, 307])
-                                    ->where('data_cursa', $search);
-                            })
-                            ->where('activa', 1);
+                                    ->where('data_cursa', $search)
+                                    ->where('activa', 1);
+                            });
                     }]
                 )
             ->get();
@@ -345,13 +347,14 @@ class TraseuController extends Controller
                     $query
                         ->where(function ($query) use ($search_ieri) {
                             $query->whereIn('ora_id', [293, 294, 307])
-                                ->where('data_cursa', $search_ieri);
+                                ->where('data_cursa', $search_ieri)
+                                ->where('activa', 1);
                         })
                         ->orWhere(function ($query) use ($search) {
                             $query->whereNotIn('ora_id', [293, 294, 307])
-                                ->where('data_cursa', $search);
-                        })
-                        ->where('activa', 1);
+                                ->where('data_cursa', $search)
+                                ->where('activa', 1);
+                        });
                     })
                 ->with('cursa', 'cursa.oras_plecare', 'cursa.oras_sosire', 'ora', 'statie', 'tip_plata', 'user', 'user.firma')
                 ->orderBy('created_at')
@@ -419,13 +422,14 @@ class TraseuController extends Controller
                     $query
                         ->where(function ($query) use ($search_ieri) {
                             $query->whereIn('ora_id', [293, 294, 307])
-                                ->where('data_cursa', $search_ieri);
+                                ->where('data_cursa', $search_ieri)
+                                ->where('activa', 1);
                         })
                         ->orWhere(function ($query) use ($search) {
                             $query->whereNotIn('ora_id', [293, 294, 307])
-                                ->where('data_cursa', $search);
-                        })
-                        ->where('activa', 1);
+                                ->where('data_cursa', $search)
+                                ->where('activa', 1);
+                        });
                 }]
             )
             // ->with( 
