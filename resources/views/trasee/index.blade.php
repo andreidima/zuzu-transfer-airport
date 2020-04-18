@@ -163,9 +163,13 @@
                                             <br>
                                             <small class="text-danger">
                                                 {{
-                                                    $cursa_ora->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_adulti')
+                                                    $cursa_ora->rezervari
+                                                        // ->where('data_cursa', $search)
+                                                        ->where('activa', 1)->sum('nr_adulti')
                                                     +
-                                                    $cursa_ora->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_copii')
+                                                    $cursa_ora->rezervari
+                                                        // ->where('data_cursa', $search)
+                                                        ->where('activa', 1)->sum('nr_copii')
                                                 }}
                                             </small>
                                     </td>
@@ -182,9 +186,13 @@
                                         <br>
                                             <small class="text-danger">
                                                 ={{
-                                                    $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_adulti')
+                                                    $traseu->rezervari
+                                                        // ->where('data_cursa', $search)
+                                                        ->where('activa', 1)->sum('nr_adulti')
                                                     +
-                                                    $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_copii')
+                                                    $traseu->rezervari
+                                                        // ->where('data_cursa', $search)
+                                                        ->where('activa', 1)->sum('nr_copii')
                                                 }}
                                             </small>
                                     </td>
