@@ -23,11 +23,6 @@ class CursaOra extends Model
         return $this->hasMany('App\Rezervare', 'ora_id');
     }
 
-    // public function trasee()
-    // {
-    //     return $this->belongsToMany(CursaOra::class)->withTimestamps();
-    // }
-
     public function trasee()
     {
         return $this->belongsToMany('App\Traseu')

@@ -53,4 +53,20 @@ class Traseu extends Model
             // 'ora_id' // Local key on users table...
         );
     }
+
+    public function rezervari_ziua($ziua)
+    {
+        $ziua_anterioara = \Carbon\Carbon::parse($ziua)->subDay()->format('Y-m-d');
+        return $this->rezervari()
+                            ->where(function ($query) use ($ziua_anterioara) {
+                                $query->whereIn('ora_id', [293, 294, 307])
+                                    ->where('data_cursa', $ziua_anterioara)
+                                    ->where('activa', 1);
+                                })
+                            ->orWhere(function ($query) use ($ziua) {
+                                $query->whereNotIn('ora_id', [293, 294, 307])
+                                    ->where('data_cursa', $ziua)
+                                    ->where('activa', 1);
+                                });  
+    }
 }

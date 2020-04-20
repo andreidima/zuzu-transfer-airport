@@ -62,7 +62,7 @@
                 $nr_pagina = 1;
             @endphp
             @forelse ($trasee_nume->trasee as $traseu)     
-                @if ($traseu->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->count() > 0)          
+                @if ($traseu->rezervari->count() > 0)          
                     @if ($nr_pagina > 1)
                         <div style="page-break-after: always;"></div>
                     @endif
@@ -164,7 +164,7 @@
                                 ($nrcrt = 1) 
                             @endphp
                             @forelse ($traseu->curse_ore->sortByDesc('cursa.durata') as $cursa_ora)
-                                @forelse ($cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1) as $rezervare)
+                                @forelse ($cursa_ora->rezervari as $rezervare)
                                     @if (in_array($rezervare->telefon, $telefoane_clienti_neseriosi))
                                         <tr style="background:#71f85f">
                                     @else
@@ -257,16 +257,16 @@
                             @forelse ($traseu->curse_ore as $cursa_ora)
                                 @php
                                     $nr_persoane = $nr_persoane +
-                                        $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sum('nr_adulti') +
-                                        $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sum('nr_copii');     
-                                    $suma = $suma + $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sum('pret_total')
+                                        $cursa_ora->rezervari->sum('nr_adulti') +
+                                        $cursa_ora->rezervari->sum('nr_copii');     
+                                    $suma = $suma + $cursa_ora->rezervari->sum('pret_total')
                                         -
-                                        $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sum('comision_agentie') 
+                                        $cursa_ora->rezervari->sum('comision_agentie') 
                                         - 
-                                        $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)
+                                        $cursa_ora->rezervari
                                             ->where('tip_plata_id', 2)->where('comision_agentie', 0)->sum('pret_total')
                                         -
-                                        $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)
+                                        $cursa_ora->rezervari
                                             ->where('tip_plata_id', 3)->sum('pret_total');
                                 @endphp
                             @empty
