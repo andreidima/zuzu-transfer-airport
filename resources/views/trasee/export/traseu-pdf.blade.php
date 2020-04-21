@@ -116,7 +116,6 @@
                                     <u>RMS</u>:
                                     {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}},
                                 @elseif ($cursa_ora->cursa->oras_plecare->nume == "Ianca")
-                                    <br>
                                     <u>IAN</u>:
                                     {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}},
                                 @elseif ($cursa_ora->cursa->oras_plecare->nume == "Buzau")
