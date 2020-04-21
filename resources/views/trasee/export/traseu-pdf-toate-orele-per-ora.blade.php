@@ -90,7 +90,7 @@
                                 <td style="border-width:0px; padding:0rem; width:25%; font-size:16px;">
                                     @forelse ($traseu->curse_ore->sortByDesc('cursa.durata') as $cursa_ora)
                                         @if ($cursa_ora->cursa->oras_plecare->nume == "Vaslui")
-                                            <u>VAS</u>
+                                            <u>VAS</u>:
                                             {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}},
                                         @elseif ($cursa_ora->cursa->oras_plecare->nume == "Barlad")
                                             <br>

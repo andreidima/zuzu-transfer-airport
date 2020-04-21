@@ -335,11 +335,11 @@ class RezervareController extends Controller
         $rezervare_retur->zbor_ora_aterizare = $request->retur_zbor_ora_aterizare;
         $rezervare_retur->statie_imbarcare = $request->retur_statie_imbarcare;
 
-        $rezervare_tur->nume = strtoupper($rezervare_tur->nume);
-        $rezervare_retur->nume = strtoupper($rezervare_retur->nume);
+        $rezervare_tur->nume = mb_strtoupper($rezervare_tur->nume, 'UTF-8');
+        $rezervare_retur->nume = mb_strtoupper($rezervare_retur->nume, 'UTF-8');
 
-        $rezervare_tur->zbor_oras_decolare = strtoupper($rezervare_tur->zbor_oras_decolare);
-        $rezervare_retur->zbor_oras_decolare = strtoupper($rezervare_retur->zbor_oras_decolare);
+        $rezervare_tur->zbor_oras_decolare = mb_strtoupper($rezervare_tur->zbor_oras_decolare, 'UTF-8');
+        $rezervare_retur->zbor_oras_decolare = mb_strtoupper($rezervare_retur->zbor_oras_decolare, 'UTF-8');
 
         // aflarea id-ului cursei in functie de orasele introduse
         $cursa_id_tur = Cursa::select('id')
@@ -510,8 +510,8 @@ class RezervareController extends Controller
                 'retur_data_cursa', 'retur_zbor_oras_decolare', 'retur_zbor_ora_decolare', 'retur_zbor_ora_aterizare',
                 'plata_online', 'adresa']));
 
-            $rezervari->nume = strtoupper($rezervari->nume);
-            $rezervari->zbor_oras_decolare = strtoupper($rezervari->zbor_oras_decolare);
+            $rezervari->nume = mb_strtoupper($rezervari->nume, 'UTF-8');
+            $rezervari->zbor_oras_decolare = mb_strtoupper($rezervari->zbor_oras_decolare, 'UTF-8');
             $rezervari->update();
         }
         else{
@@ -762,8 +762,8 @@ class RezervareController extends Controller
                 // calcularea pretului total
                 $rezervare->pret_total = $cursa->pret_adult * $rezervare->nr_adulti + $cursa->pret_copil * $rezervare->nr_copii;
 
-                $rezervare->nume = strtoupper($rezervare->nume);
-                $rezervare->zbor_oras_decolare = strtoupper($rezervare->zbor_oras_decolare);
+                $rezervare->nume = mb_strtoupper($rezervare->nume, 'UTF-8');
+                $rezervare->zbor_oras_decolare = mb_strtoupper($rezervare->zbor_oras_decolare, 'UTF-8');
 
 
                 // stergerea oraselor din request, se foloseste id-ul cursei in DB
@@ -947,17 +947,48 @@ class RezervareController extends Controller
     public function trimiteSms(Rezervare $rezervare, $mesaj_aditional = null)
     {
         // Conditiile in care se trimite rezervarea
-        if (($rezervare->cursa->plecare_id !== 8) &&
-            (($rezervare->updated_at->isoFormat('HH') > 21) ?
-                (
-                    \Carbon\Carbon::parse($rezervare->data_cursa)->isoFormat('D.MM.YYYY') == \Carbon\Carbon::now()->isoFormat('D.MM.YYYY')
-                    ||
-                    \Carbon\Carbon::parse($rezervare->data_cursa)->isoFormat('D.MM.YYYY') == \Carbon\Carbon::tomorrow()->isoFormat('D.MM.YYYY')
-                )
-                : 
-                \Carbon\Carbon::parse($rezervare->data_cursa)->isoFormat('D.MM.YYYY') == \Carbon\Carbon::now()->isoFormat('D.MM.YYYY')
-            )
-        ){
+        $trimite_sms = false;
+
+        if ($rezervare->cursa->plecare_id !== 8) {
+            // verificare pentru Vaslui(22:15 si 23:15) si Barlad(23:00), care se calculeaza in ziua urmatoare
+            if (!in_array($rezervare->ora_id, [293, 294, 307])){
+                if ($rezervare->updated_at->isoFormat('HH') > 21){
+                    if (
+                        \Carbon\Carbon::parse($rezervare->data_cursa)->isoFormat('D.MM.YYYY') == \Carbon\Carbon::now()->isoFormat('D.MM.YYYY')
+                        ||
+                        \Carbon\Carbon::parse($rezervare->data_cursa)->isoFormat('D.MM.YYYY') == \Carbon\Carbon::tomorrow()->isoFormat('D.MM.YYYY')
+                    ) {
+                        $trimite_sms = true;
+                    }
+                    
+                } elseif (\Carbon\Carbon::parse($rezervare->data_cursa)->isoFormat('D.MM.YYYY') == \Carbon\Carbon::now()->isoFormat('D.MM.YYYY')) {
+                    $trimite_sms = true;
+                }
+            } else {
+                if ($rezervare->updated_at->isoFormat('HH') > 21){
+                    if (\Carbon\Carbon::parse($rezervare->data_cursa)->isoFormat('D.MM.YYYY') == \Carbon\Carbon::now()->isoFormat('D.MM.YYYY')) {
+                        $trimite_sms = true;
+                    }
+                }
+            }
+        }
+
+        //     (($rezervare->updated_at->isoFormat('HH') > 21) ?
+        //         (
+        //             \Carbon\Carbon::parse($rezervare->data_cursa)->isoFormat('D.MM.YYYY') == \Carbon\Carbon::now()->isoFormat('D.MM.YYYY')
+        //             ||
+        //             \Carbon\Carbon::parse($rezervare->data_cursa)->isoFormat('D.MM.YYYY') == \Carbon\Carbon::tomorrow()->isoFormat('D.MM.YYYY')
+        //         )
+        //         : 
+        //         (    
+        //             if (!in_array($rezervare->ora_id, [293, 294, 307])){
+        //                 \Carbon\Carbon::parse($rezervare->data_cursa)->isoFormat('D.MM.YYYY') == \Carbon\Carbon::now()->isoFormat('D.MM.YYYY')
+        //             }
+        //         )
+        //     )
+        // ){
+
+        if ($trimite_sms) {
 
             // Stabilirea pretului rezervarii - daca a fost platita sau nu, sau avans            
             if ($rezervare->tip_plata_id == 3) {
@@ -972,6 +1003,13 @@ class RezervareController extends Controller
                 $telefoane = ['0752926589'];
             } else {
                 $telefoane = ['0767931404', '0762646917'];
+            }
+
+            // Setare variabila test pentru ANDREI DIMA TESTȘ
+            if (($rezervare->nume == "ANDREI DIMA TESTȘ") || ($rezervare->nume == "ANDREI DIMA TESTș")){
+                $test = 1; // sms-ul nu se trimite
+            } else {
+                $test = 0; // sms-ul se trimite
             }
 
             // $rezervare->created_at = \Carbon\Carbon::now();
@@ -1012,7 +1050,7 @@ class RezervareController extends Controller
                     "&to=" . $telefon . "&message=" .
                     // urlencode("Salut " . $rezervari->nume) .
                     urlencode($mesaj) .
-                    '&test=0');
+                    '&test=' . $test);
                 // dd($content);
                 // ----------------------------------------------------------------------------
                 //  Pasul 2

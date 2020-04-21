@@ -85,7 +85,8 @@
                         <tr bgcolor=yellow style="color:black; height:35px; line-height:30px; border-bottom:solid 1px #99F;">
                     @elseif (\Carbon\Carbon::parse($rezervare->created_at)->format('Y-m-d') === $rezervare->data_cursa
                                 && $rezervare->data_cursa === \Carbon\Carbon::today()->format('Y-m-d')
-                                && ($rezervare->cursa->plecare_id !== 8))
+                                && ($rezervare->cursa->plecare_id !== 8)
+                                && (!in_array($rezervare->ora_id, [293, 294, 307])))
                         <tr style="color:black; height:35px; line-height:30px; border-bottom:solid 1px #99F; background-color:palegoldenrod">
                     @elseif (in_array($rezervare->telefon, $telefoane_clienti_neseriosi))
                         <tr style="color:black; height:35px; line-height:30px; border-bottom:solid 1px #99F; background:#c6fabf"> 
