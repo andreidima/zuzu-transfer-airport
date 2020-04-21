@@ -25,27 +25,45 @@ class TraseuController extends Controller
         if (empty($search)) {
             $search = \Carbon\Carbon::today()->format('Y-m-d');
         }
+        $search_ieri = \Carbon\Carbon::parse($search)->subDay()->format('Y-m-d');
+        // dd($search, $search_ieri);
+
         $trasee_nume_tecuci_otopeni = TraseuNume::select('id', 'nume')
             ->where('id', 1)
-                ->with(
-                    ['trasee.rezervari' => function ($query) use ($search) {
-                        $query->where('data_cursa', $search)
-                            ->where('activa', 1);
-                    }]
-                )
                 ->with(
                     'trasee.curse_ore.cursa.oras_plecare',
                     'trasee.curse_ore.cursa.oras_sosire',
                     'trasee.curse_ore.cursa'
                 )
                 ->with(
-                    ['trasee.curse_ore.rezervari' => function ($query) use ($search) {
-                        $query->where('data_cursa', $search)
-                            ->where('activa', 1);
+                    ['trasee.rezervari' => function ($query) use ($search, $search_ieri) {
+                        $query->where(function ($query) use ($search_ieri) {
+                                    $query->whereIn('ora_id', [293, 294, 307])
+                                        ->where('data_cursa', $search_ieri)
+                                        ->where('activa', 1);
+                                })
+                            ->orWhere(function ($query) use ($search) {
+                                $query->whereNotIn('ora_id', [293, 294, 307])
+                                    ->where('data_cursa', $search)
+                                    ->where('activa', 1);
+                                });        
+                    }]
+                )
+                ->with(
+                    ['trasee.curse_ore.rezervari' => function ($query) use ($search, $search_ieri) {
+                        $query->where(function ($query) use ($search_ieri) {
+                            $query->whereIn('ora_id', [293, 294, 307])
+                                ->where('data_cursa', $search_ieri)
+                                ->where('activa', 1);
+                        })
+                            ->orWhere(function ($query) use ($search) {
+                                $query->whereNotIn('ora_id', [293, 294, 307])
+                                    ->where('data_cursa', $search)
+                                    ->where('activa', 1);
+                            });
                     }]
                 )
             ->get();
-
         // $trasee_tecuci_otopeni = Traseu::select('id', 'traseu_nume_id', 'numar')
         //         ->where('traseu_nume_id', 1)
         //         ->with(
@@ -149,27 +167,45 @@ class TraseuController extends Controller
         if (empty($search)) {
             $search = \Carbon\Carbon::today()->format('Y-m-d');
         }
+        $search_ieri = \Carbon\Carbon::parse($search)->subDay()->format('Y-m-d');
+
         $trasee_nume_tecuci_otopeni = TraseuNume::select('id', 'nume')
             ->where('id', 1)
-            ->with(
-                ['trasee.rezervari' => function ($query) use ($search) {
-                    $query
-                        ->select('data_cursa', 'activa', 'nr_adulti', 'nr_copii')
-                        ->where('data_cursa', $search)
-                        ->where('activa', 1);
-                }]
-            )
             ->with(
                 'trasee.curse_ore.cursa.oras_plecare',
                 'trasee.curse_ore.cursa.oras_sosire',
                 'trasee.curse_ore.cursa'
             )
             ->with(
-                ['trasee.curse_ore.rezervari' => function ($query) use ($search) {
+                ['trasee.rezervari' => function ($query) use ($search, $search_ieri) {
                     $query
-                        ->select('data_cursa', 'activa', 'nr_adulti', 'nr_copii')
-                        ->where('data_cursa', $search)
-                        ->where('activa', 1);
+                    ->select('data_cursa', 'activa', 'nr_adulti', 'nr_copii')
+                    ->where(function ($query) use ($search_ieri) {
+                        $query->whereIn('ora_id', [293, 294, 307])
+                            ->where('data_cursa', $search_ieri)
+                            ->where('activa', 1);
+                    })
+                        ->orWhere(function ($query) use ($search) {
+                            $query->whereNotIn('ora_id', [293, 294, 307])
+                                ->where('data_cursa', $search)
+                                ->where('activa', 1);
+                        });
+                }]
+            )
+            ->with(
+                ['trasee.curse_ore.rezervari' => function ($query) use ($search, $search_ieri) {
+                    $query->where(function ($query) use ($search_ieri) {
+                        $query
+                            ->select('data_cursa', 'activa', 'nr_adulti', 'nr_copii')
+                            ->whereIn('ora_id', [293, 294, 307])
+                            ->where('data_cursa', $search_ieri)
+                            ->where('activa', 1);
+                    })
+                        ->orWhere(function ($query) use ($search) {
+                            $query->whereNotIn('ora_id', [293, 294, 307])
+                                ->where('data_cursa', $search)
+                                ->where('activa', 1);
+                        });
                 }]
             )
             // ->with(
@@ -296,6 +332,8 @@ class TraseuController extends Controller
             $search = \Carbon\Carbon::createFromFormat('d-m-Y', $data_traseu)->format('Y-m-d');
         }
 
+        $search_ieri = \Carbon\Carbon::parse($search)->subDay()->format('Y-m-d');
+
         // if (($trasee->traseu_nume->id == 2) or ( $trasee->traseu_nume->id == 4)) {
         //     $rezervari = Rezervare::with('cursa', 'ora')
         //         ->whereHas('cursa', function ($query) {
@@ -320,8 +358,21 @@ class TraseuController extends Controller
         $telefoane_clienti_neseriosi = ClientNeserios::pluck('telefon')->all();
 
         $rezervari = $trasee->rezervari()
-                ->where('data_cursa', $search)
-                ->where('activa', 1)
+                // ->where('data_cursa', $search)
+                // ->where('activa', 1)
+                ->where(function ($query) use ($search, $search_ieri) {
+                    $query
+                        ->where(function ($query) use ($search_ieri) {
+                            $query->whereIn('ora_id', [293, 294, 307])
+                                ->where('data_cursa', $search_ieri)
+                                ->where('activa', 1);
+                        })
+                        ->orWhere(function ($query) use ($search) {
+                            $query->whereNotIn('ora_id', [293, 294, 307])
+                                ->where('data_cursa', $search)
+                                ->where('activa', 1);
+                        });
+                    })
                 ->with('cursa', 'cursa.oras_plecare', 'cursa.oras_sosire', 'ora', 'statie', 'tip_plata', 'user', 'user.firma')
                 ->orderBy('created_at')
                 ->simplePaginate(100);
@@ -340,6 +391,8 @@ class TraseuController extends Controller
     {
         $search = \Carbon\Carbon::createFromFormat('d-m-Y', $data_traseu)->format('Y-m-d');
 
+        $search_ieri = \Carbon\Carbon::parse($search)->subDay()->format('Y-m-d');
+        // dd($search_ieri, $search);
         // if (($traseu_nume_id == 2) or ( $traseu_nume_id == 4) ) {
         //     $trasee_nume = TraseuNume::select('id', 'nume')
         //         ->where('id', 2)
@@ -382,11 +435,18 @@ class TraseuController extends Controller
             ->with(
                 // ['trasee.curse_ore.rezervari.user'],
                 // 'trasee.curse_ore.rezervari.user.firma',
-                ['trasee.curse_ore.rezervari' => function ($query) use ($search) {
-                    $query 
-                        ->where('data_cursa', $search)
-                        ->where('activa', 1);
-                        // ->with('user.firma');
+                ['trasee.curse_ore.rezervari' => function ($query) use ($search, $search_ieri) {
+                    $query
+                        ->where(function ($query) use ($search_ieri) {
+                            $query->whereIn('ora_id', [293, 294, 307])
+                                ->where('data_cursa', $search_ieri)
+                                ->where('activa', 1);
+                        })
+                        ->orWhere(function ($query) use ($search) {
+                            $query->whereNotIn('ora_id', [293, 294, 307])
+                                ->where('data_cursa', $search)
+                                ->where('activa', 1);
+                        });
                 }]
             )
             // ->with( 
@@ -448,6 +508,46 @@ class TraseuController extends Controller
         $data_traseu_Ymd = \Carbon\Carbon::createFromFormat('d-m-Y', $data_traseu)->format('Y-m-d');
         $data_traseu = \Carbon\Carbon::createFromFormat('d-m-Y', $data_traseu)->format('d.m.Y');
 
+        $trasee = Traseu::where('id', $trasee->id)
+            ->with(
+                'curse_ore.cursa.oras_plecare',
+                'curse_ore.cursa.oras_sosire',
+                'curse_ore.cursa'
+            )
+            ->with(
+                ['rezervari' => function ($query) use ($data_traseu_Ymd) {
+                    $query
+                    ->select('data_cursa', 'activa', 'nr_adulti', 'nr_copii')
+                    ->where(function ($query) use ($data_traseu_Ymd) {
+                        $query->whereIn('ora_id', [293, 294, 307])
+                            ->where('data_cursa', \Carbon\Carbon::parse($data_traseu_Ymd)->subDay()->format('Y-m-d'))
+                            ->where('activa', 1);
+                    })
+                        ->orWhere(function ($query) use ($data_traseu_Ymd) {
+                            $query->whereNotIn('ora_id', [293, 294, 307])
+                                ->where('data_cursa', $data_traseu_Ymd)
+                                ->where('activa', 1);
+                        });
+                }]
+            )
+            ->with(
+                ['curse_ore.rezervari' => function ($query) use ($data_traseu_Ymd) {
+                    $query->where(function ($query) use ($data_traseu_Ymd) {
+                        $query
+                            ->select('data_cursa', 'activa', 'nr_adulti', 'nr_copii')
+                            ->whereIn('ora_id', [293, 294, 307])
+                            ->where('data_cursa', \Carbon\Carbon::parse($data_traseu_Ymd)->subDay()->format('Y-m-d'))
+                            ->where('activa', 1);
+                    })
+                        ->orWhere(function ($query) use ($data_traseu_Ymd) {
+                            $query->whereNotIn('ora_id', [293, 294, 307])
+                                ->where('data_cursa', $data_traseu_Ymd)
+                                ->where('activa', 1);
+                        });
+                }]
+            )
+            ->first();
+
         $telefoane_clienti_neseriosi = ClientNeserios::pluck('telefon')->all();
 
         if ($request->view_type === 'traseu-html') {
@@ -490,20 +590,31 @@ class TraseuController extends Controller
                 // 'trasee.curse_ore.cursa'
             )
             ->with(
-                // ['trasee.curse_ore.rezervari.user'],
-                // 'trasee.curse_ore.rezervari.user.firma',
-                ['trasee.curse_ore.rezervari' => function ($query) use ($data_traseu_Ymd) {
-                    $query 
-                        ->where('data_cursa', $data_traseu_Ymd)
-                        ->where('activa', 1);
-                        // ->with('user.firma');
+                ['trasee.rezervari' => function ($query) use ($data_traseu_Ymd) {
+                    $query->where(function ($query) use ($data_traseu_Ymd) {
+                        $query->whereIn('ora_id', [293, 294, 307])
+                            ->where('data_cursa', \Carbon\Carbon::parse($data_traseu_Ymd)->subDay()->format('Y-m-d'))
+                            ->where('activa', 1);
+                    })
+                        ->orWhere(function ($query) use ($data_traseu_Ymd) {
+                            $query->whereNotIn('ora_id', [293, 294, 307])
+                                ->where('data_cursa', $data_traseu_Ymd)
+                                ->where('activa', 1);
+                        });
                 }]
             )
             ->with(
-                ['trasee.rezervari' => function ($query) use ($data_traseu_Ymd) {
-                    $query 
-                        ->where('data_cursa', $data_traseu_Ymd)
-                        ->where('activa', 1);
+                ['trasee.curse_ore.rezervari' => function ($query) use ($data_traseu_Ymd) {
+                    $query->where(function ($query) use ($data_traseu_Ymd) {
+                        $query->whereIn('ora_id', [293, 294, 307])
+                            ->where('data_cursa', \Carbon\Carbon::parse($data_traseu_Ymd)->subDay()->format('Y-m-d'))
+                            ->where('activa', 1);
+                    })
+                        ->orWhere(function ($query) use ($data_traseu_Ymd) {
+                            $query->whereNotIn('ora_id', [293, 294, 307])
+                                ->where('data_cursa', $data_traseu_Ymd)
+                                ->where('activa', 1);
+                        });
                 }]
             )
             ->first();

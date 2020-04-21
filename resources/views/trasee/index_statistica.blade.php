@@ -54,9 +54,13 @@
                                     $cursa_ora = $traseu->curse_ore->first();
                                     
                                     $total_persoane_tecuci_otopeni += 
-                                        $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_adulti')
+                                        $traseu->rezervari
+                                            // ->where('data_cursa', $search)->where('activa', 1)
+                                            ->sum('nr_adulti')
                                         +
-                                        $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_copii');
+                                        $traseu->rezervari
+                                            // ->where('data_cursa', $search)->where('activa', 1)
+                                            ->sum('nr_copii');
                                         // $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_adulti')
                                         // +
                                         // $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_copii');
@@ -73,9 +77,13 @@
                                         <h5 class="m-0 p-0">
                                             <span class="badge badge-secondary" style="background-color:#408080;">
                                                 {{
-                                                    $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_adulti')
+                                                    $traseu->rezervari
+                                                        // ->where('data_cursa', $search)->where('activa', 1)
+                                                        ->sum('nr_adulti')
                                                     +
-                                                    $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_copii')
+                                                    $traseu->rezervari
+                                                        // ->where('data_cursa', $search)->where('activa', 1)
+                                                        ->sum('nr_copii')
                                                 }}
                                             </span>
                                         </h5>

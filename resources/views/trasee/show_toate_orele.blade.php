@@ -38,7 +38,9 @@
                         @forelse($trasee_nume as $traseu_nume)
                         @forelse ($traseu_nume->trasee as $traseu)
                             @forelse ($traseu->curse_ore as $cursa_ora)  
-                            @forelse ($cursa_ora->rezervari->where('data_cursa', $search)->where('activa', 1)->sortByDesc('created_at') as $rezervare) 
+                            @forelse ($cursa_ora->rezervari
+                                    // ->where('data_cursa', $search)
+                                    ->where('activa', 1)->sortByDesc('created_at') as $rezervare) 
                                 @php ($total_persoane = $total_persoane + $rezervare->nr_adulti + $rezervare->nr_copii)
                                 @if ($rezervare->activa == 0)
                                     <tr style="font-size:0.8rem; color:black; height:15px; line-height:30px; border-bottom:solid 1px #99F; background:#99F;">

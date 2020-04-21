@@ -153,10 +153,10 @@
                         <th style="width:25px;">Nr. pers</th>
                     </tr>
                     @php 
-                        ($nrcrt = 1) 
+                        ($nrcrt = 1);
                     @endphp
                     @forelse ($trasee->curse_ore->sortByDesc('cursa.durata') as $cursa_ora)
-                        @forelse ($cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1) as $rezervare)
+                        @forelse ($cursa_ora->rezervari as $rezervare)
                             @if (in_array($rezervare->telefon, $telefoane_clienti_neseriosi))
                                 <tr style="background:#71f85f;">
                             @else
