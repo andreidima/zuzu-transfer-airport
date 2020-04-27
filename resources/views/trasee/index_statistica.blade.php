@@ -178,7 +178,11 @@
                                         @endphp
                                         <tr>  
                                             <td style="">
-                                                {{ \Carbon\Carbon::parse($traseu->curse_ore->first()->ora)->format('H:i') }}     
+                                                <a href="{{ $traseu->path() }}/{{ \Carbon\Carbon::createFromFormat('Y-m-d', $search)->format('d-m-Y') }}"
+                                                    class="text-dark">
+                                                    {{ \Carbon\Carbon::parse($traseu->curse_ore->first()->ora)->format('H:i') }}
+                                                </a>
+                                                {{-- {{ \Carbon\Carbon::parse($traseu->curse_ore->first()->ora)->format('H:i') }}      --}}
                                             </td>
                                             <td style="">
                                                 <h5 class="m-0 p-0">
