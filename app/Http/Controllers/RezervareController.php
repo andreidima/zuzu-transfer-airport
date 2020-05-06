@@ -630,7 +630,7 @@ class RezervareController extends Controller
             'data_cursa' => [ 'required', 'max:50'],
             'ora_id' =>[ 'required', 'nullable', 'max:99'],
             // 'ora_plecare' => [''] // pastrata pentru old(ora_plecare) in formular
-            'zbor_oras_decolare' => ['max:18'],
+            'zbor_oras_decolare' => ['required_if:oras_plecare,8', 'max:18'],
             'zbor_ora_decolare' => ['max:15'],
             'zbor_ora_aterizare' => ['max:15'],
             // 'nume' => ($request->_method === "PATCH") ?
@@ -686,6 +686,7 @@ class RezervareController extends Controller
             'telefon.regex' => 'Câmpul Telefon poate conține doar cifre și spații.',
             'nume.unique' => 'Această Rezervare este deja înregistrată.',
             // 'adresa.required_if' => 'Câmpul Adresa este obligatoriu dacă este selectată plata cu card'
+            'zbor_oras_decolare.required_if' => 'Câmpul „Oraș decolare avion” este obligatoriu atunci când plecarea este din Otopeni.'
         ]
         );
     }
