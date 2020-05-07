@@ -1,6 +1,6 @@
  <div class="justify-content" style="font-size: 0.9em;">
     <div class="row d-flex align-items-end">
-        <div class="col-lg-3">
+        {{-- <div class="col-lg-3">
             <table class="table table-bordered table-striped table-sm text-center">
                 <thead class="bg-info text-white p-0">
                     <tr>
@@ -400,6 +400,283 @@
                         <td class="p-0">03:00</td>
                     </tr>
             </table>
+        </div> --}}
+
+
+        <div class="col-lg-6">
+            <table class="table table-bordered table-striped table-sm text-center">
+                <thead class="text-white p-0" style="background-color:lightcoral" width="100%">
+                    <tr>
+                        <th class="p-0" width="14%">Vaslui</th>
+                        <th class="p-0" width="14%">Barlad</th>
+                        <th class="p-0" width="14%">Tecuci,<br>Adjud</th>
+                        <th class="p-0" width="14%">Focsani</th>
+                        <th class="p-0" width="14%">Rm<br>Sarat</th>
+                        <th class="p-0" width="14%">Otopeni</th>
+                        <th class="p-0" width="16%">Retur<br>Otopeni</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="p-0">22:15</td>
+                        <td class="p-0">23:00</td>
+                        <td class="p-0">00:00</td>
+                        <td class="p-0">01:00</td>
+                        <td class="p-0">01:30</td>
+                        <td class="p-0">04:00</td>
+                        <td class="p-0 text-white" style="background-color:lightcoral">00:30</td>
+                    </tr>
+                    <tr>
+                        <td class="p-0">23:15</td>
+                        <td class="p-0">00:00</td>
+                        <td class="p-0">01:00</td>
+                        <td class="p-0">02:00</td>
+                        <td class="p-0">02:30</td>
+                        <td class="p-0">05:00</td>
+                        <td class="p-0 text-white" style="background-color:lightcoral">02:00</td>
+                    </tr>
+                    <tr>
+                        <td class="p-0">00:45</td>
+                        <td class="p-0">01:30</td>
+                        <td class="p-0">02:30</td>
+                        <td class="p-0">03:30</td>
+                        <td class="p-0">04:00</td>
+                        <td class="p-0">06:30</td>
+                        <td class="p-0 text-white" style="background-color:lightcoral">04:00</td>
+                    </tr>
+                    <tr>
+                        <td class="p-0">02:15</td>
+                        <td class="p-0">03:00</td>
+                        <td class="p-0">04:00</td>
+                        <td class="p-0">05:00</td>
+                        <td class="p-0">05:30</td>
+                        <td class="p-0">08:00</td>
+                        <td class="p-0 text-white" style="background-color:lightcoral">07:00</td>
+                    </tr>
+                    <tr>
+                        <td class="p-0">03:45</td>
+                        <td class="p-0">04:30</td>
+                        <td class="p-0">05:30</td>
+                        <td class="p-0">06:30</td>
+                        <td class="p-0">07:00</td>
+                        <td class="p-0">09:30</td>
+                        <td class="p-0 text-white" style="background-color:lightcoral">10:00</td>
+                    </tr>
+                    <tr>
+                        <td class="p-0">05:15</td>
+                        <td class="p-0">06:00</td>
+                        <td class="p-0">07:00</td>
+                        <td class="p-0">08:00</td>
+                        <td class="p-0">08:30</td>
+                        <td class="p-0">11:00</td>
+                        <td class="p-0 text-white" style="background-color:lightcoral">11:30</td>
+                    </tr>
+                    <tr>
+                        <td class="p-0">06:45</td>
+                        <td class="p-0">07:30</td>
+                        <td class="p-0">08:30</td>
+                        <td class="p-0">09:30</td>
+                        <td class="p-0">10:00</td>
+                        <td class="p-0">12:30</td>
+                        <td class="p-0 text-white" style="background-color:lightcoral">12:30</td>
+                    </tr>
+                    <tr>
+                        <td class="p-0">08:45</td>
+                        <td class="p-0">09:30</td>
+                        <td class="p-0">10:30</td>
+                        <td class="p-0">11:30</td>
+                        <td class="p-0">12:00</td>
+                        <td class="p-0">14:30</td>
+                        <td class="p-0 text-white" style="background-color:lightcoral">14:30</td>
+                    </tr>
+                    <tr>
+                        <td class="p-0">10:15</td>
+                        <td class="p-0">11:00</td>
+                        <td class="p-0">12:00</td>
+                        <td class="p-0">13:00</td>
+                        <td class="p-0">13:30</td>
+                        <td class="p-0">16:00</td>
+                        <td class="p-0 text-white" style="background-color:lightcoral">15:30</td>
+                    </tr>
+                    <tr>
+                        <td class="p-0">11:45</td>
+                        <td class="p-0">12:30</td>
+                        <td class="p-0">13:30</td>
+                        <td class="p-0">14:30</td>
+                        <td class="p-0">15:00</td>
+                        <td class="p-0">17:30</td>
+                        <td class="p-0 text-white" style="background-color:lightcoral">17:00</td>
+                    </tr>
+                    <tr>
+                        <td class="p-0">13:15</td>
+                        <td class="p-0">14:00</td>
+                        <td class="p-0">15:00</td>
+                        <td class="p-0">16:00</td>
+                        <td class="p-0">16:30</td>
+                        <td class="p-0">19:00</td>
+                        <td class="p-0 text-white" style="background-color:lightcoral">18:30</td>
+                    </tr>
+                    <tr>
+                        <td class="p-0">14:15</td>
+                        <td class="p-0">15:00</td>
+                        <td class="p-0">16:00</td>
+                        <td class="p-0">17:00</td>
+                        <td class="p-0">17:30</td>
+                        <td class="p-0">20:00</td>
+                        <td class="p-0 text-white" style="background-color:lightcoral">20:00</td>
+                    </tr>
+                    <tr>
+                        <td class="p-0">17:15</td>
+                        <td class="p-0">18:00</td>
+                        <td class="p-0">19:00</td>
+                        <td class="p-0">20:00</td>
+                        <td class="p-0">20:30</td>
+                        <td class="p-0">23:00</td>
+                        <td class="p-0 text-white" style="background-color:lightcoral">21:30</td>
+                    </tr>
+                    <tr>
+                        <td class="p-0">19:45</td>
+                        <td class="p-0">20:30</td>
+                        <td class="p-0">21:30</td>
+                        <td class="p-0">22:30</td>
+                        <td class="p-0">23:00</td>
+                        <td class="p-0">01:30</td>
+                        <td class="p-0 text-white" style="background-color:lightcoral">23:00</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
+
+        
+        <div class="col-lg-6">
+            <table class="table table-bordered table-striped table-sm text-center">
+                <thead class="bg-info text-white p-0" width="100%">
+                    <tr>
+                        <th class="p-0" width="16%">Galati</th>
+                        <th class="p-0" width="16%">Braila</th>
+                        <th class="p-0" width="16%">Ianca</th>
+                        <th class="p-0" width="16%">Buzau</th>
+                        <th class="p-0" width="16%">Otopeni</th>
+                        <th class="p-0" width="20%">Retur<br>Otopeni</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="p-0">00:00</td>
+                        <td class="p-0">00:30</td>
+                        <td class="p-0">01:00</td>
+                        <td class="p-0">02:00</td>
+                        <td class="p-0">04:00</td>
+                        <td class="p-0 bg-info text-white">00:30</td>
+                    </tr>
+                    <tr>
+                        <td class="p-0">01:00</td>
+                        <td class="p-0">01:30</td>
+                        <td class="p-0">02:00</td>
+                        <td class="p-0">03:00</td>
+                        <td class="p-0">05:00</td>
+                        <td class="p-0 bg-info text-white">02:00</td>
+                    </tr>
+                    <tr>
+                        <td class="p-0">02:30</td>
+                        <td class="p-0">03:00</td>
+                        <td class="p-0">03:30</td>
+                        <td class="p-0">04:30</td>
+                        <td class="p-0">06:30</td>
+                        <td class="p-0 bg-info text-white">04:00</td>
+                    </tr>
+                    <tr>
+                        <td class="p-0">04:00</td>
+                        <td class="p-0">04:30</td>
+                        <td class="p-0">05:00</td>
+                        <td class="p-0">06:00</td>
+                        <td class="p-0">08:00</td>
+                        <td class="p-0 bg-info text-white">07:00</td>
+                    </tr>
+                    <tr>
+                        <td class="p-0">05:30</td>
+                        <td class="p-0">06:00</td>
+                        <td class="p-0">06:30</td>
+                        <td class="p-0">07:30</td>
+                        <td class="p-0">09:30</td>
+                        <td class="p-0 bg-info text-white">10:00</td>
+                    </tr>
+                    <tr>
+                        <td class="p-0">07:00</td>
+                        <td class="p-0">07:30</td>
+                        <td class="p-0">08:00</td>
+                        <td class="p-0">09:00</td>
+                        <td class="p-0">11:00</td>
+                        <td class="p-0 bg-info text-white">11:30</td>
+                    </tr>
+                    <tr>
+                        <td class="p-0">08:30</td>
+                        <td class="p-0">09:00</td>
+                        <td class="p-0">09:30</td>
+                        <td class="p-0">10:30</td>
+                        <td class="p-0">12:30</td>
+                        <td class="p-0 bg-info text-white">12:30</td>
+                    </tr>
+                    <tr>
+                        <td class="p-0">10:30</td>
+                        <td class="p-0">11:00</td>
+                        <td class="p-0">11:30</td>
+                        <td class="p-0">12:30</td>
+                        <td class="p-0">14:30</td>
+                        <td class="p-0 bg-info text-white">14:30</td>
+                    </tr>
+                    <tr>
+                        <td class="p-0">12:00</td>
+                        <td class="p-0">12:30</td>
+                        <td class="p-0">13:00</td>
+                        <td class="p-0">14:00</td>
+                        <td class="p-0">16:00</td>
+                        <td class="p-0 bg-info text-white">15:30</td>
+                    </tr>
+                    <tr>
+                        <td class="p-0">13:30</td>
+                        <td class="p-0">14:00</td>
+                        <td class="p-0">14:30</td>
+                        <td class="p-0">15:30</td>
+                        <td class="p-0">17:30</td>
+                        <td class="p-0 bg-info text-white">17:00</td>
+                    </tr>
+                    <tr>
+                        <td class="p-0">15:00</td>
+                        <td class="p-0">15:30</td>
+                        <td class="p-0">16:00</td>
+                        <td class="p-0">17:00</td>
+                        <td class="p-0">19:00</td>
+                        <td class="p-0 bg-info text-white">18:30</td>
+                    </tr>
+                    <tr>
+                        <td class="p-0">16:00</td>
+                        <td class="p-0">16:30</td>
+                        <td class="p-0">17:00</td>
+                        <td class="p-0">18:00</td>
+                        <td class="p-0">20:00</td>
+                        <td class="p-0 bg-info text-white">20:00</td>
+                    </tr>
+                    <tr>
+                        <td class="p-0">19:00</td>
+                        <td class="p-0">19:30</td>
+                        <td class="p-0">20:00</td>
+                        <td class="p-0">21:00</td>
+                        <td class="p-0">23:00</td>
+                        <td class="p-0 bg-info text-white">21:30</td>
+                    </tr>
+                    <tr>
+                        <td class="p-0">21:30</td>
+                        <td class="p-0">22:00</td>
+                        <td class="p-0">22:30</td>
+                        <td class="p-0">23:30</td>
+                        <td class="p-0">01:30</td>
+                        <td class="p-0 bg-info text-white">23:00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
     </div>
 </div>

@@ -5,7 +5,7 @@
 <p><em>Pe această pagină gășiți instrucțiunile pt rezervări. Vor fi afișate și noutăți, schimbări de program sau modificări ale site-ului.</em></p>
 
 <p><strong>PENTRU O MAI BUNĂ FUNCȚIONARE A SISTEMULUI VA RUGĂM SĂ FOLOSIȚI MOZILLA SAU CHROME!</strong></p>
-<p>___________________________________</p>
+{{-- <p>___________________________________</p> --}}
 
 {{-- <p class="text-danger"><b>Program de sarbatori 2019 - 2020:</b></p>
 
@@ -15,7 +15,7 @@
 
 <p class="text-danger">- 25.12.2019 si 01.01.2020 nu se lucreaza.</p> --}}
 
-<p class="text-danger p-0 my-1"><b>Program de Paște 2020: program normal, se efectuează toate cursele!</b></p>
+{{-- <p class="text-danger p-0 my-1"><b>Program de Paște 2020: program normal, se efectuează toate cursele!</b></p> --}}
 
 <p>___________________________________</p>
 
@@ -50,13 +50,15 @@ Este posibil sa fie nevoie sa incercati de cateva ori refresh la pagina cu CTRL+
     <li><b>BRĂILA</b>: Plantelor, Penny pe Bz-ului, Catedrala la covrigaria Panda,</li>
     <li><b>IANCA</b>: la Avion.</li>
     <li><b>GALAȚI</b>:  la McDonald`s.</li>
-    <li><b>BUZĂU</b>: McDonald`s, peco Alascom sau la Spătaru unde se face și un popas.</li>
+    <li><b>BUZĂU</b>: McDonald`s</li>
     <li><b>FOCȘANI</b>:  la Lidl sau Lukoil în centru,</li>
     <li><b>RÂMNICU SĂRAT</b>:  la Turist-Profi,</li>
     <li><b>TECUCI</b>:  în parcare la Kaufland,</li>
     <li><b>PANCIU</b>: Notar,</li>
     <li><b>ADJUD</b>: Atlantic sau Lukoil,</li>
     <li><b>MĂRĂȘEȘTI</b>: Gara.</li>
+    <li><b>VASLUI</b>: Piața Traian, OMV</li>
+    <li><b>BÂRLAD</b>: Electrica</li>
 </ul>
 
 <ul style="list-style-type: circle">
@@ -158,6 +160,28 @@ Este posibil sa fie nevoie sa incercati de cateva ori refresh la pagina cu CTRL+
         </td>
         <td class="p-2" style="border:1px solid black;">
              70 lei/adult  (40 lei/copil)
+        </td>
+        <td class="p-2" style="border:1px solid black;">
+            20 lei (10 lei)
+        </td>
+    </tr>
+    <tr>
+        <td class="p-2" style="border:1px solid black;">
+            VASLUI ↔ OTOPENI
+        </td>
+        <td class="p-2" style="border:1px solid black;">
+             100 lei/adult  (60 lei/copil)
+        </td>
+        <td class="p-2" style="border:1px solid black;">
+            20 lei (10 lei)
+        </td>
+    </tr>
+    <tr>
+        <td class="p-2" style="border:1px solid black;">
+            BARLAD ↔ OTOPENI
+        </td>
+        <td class="p-2" style="border:1px solid black;">
+             90 lei/adult  (50 lei/copil)
         </td>
         <td class="p-2" style="border:1px solid black;">
             20 lei (10 lei)
