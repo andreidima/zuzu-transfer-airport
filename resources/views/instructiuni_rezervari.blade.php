@@ -104,7 +104,7 @@ Este posibil sa fie nevoie sa incercati de cateva ori refresh la pagina cu CTRL+
             ↔ OTOPENI
         </td>
         <td class="p-2" style="border:1px solid black;">
-            80 lei/adult (40 lei/copil*)
+            90 lei/adult (40 lei/copil*)
         </td>
         <td class="p-2" style="border:1px solid black;">
             20lei (5 lei)
@@ -115,7 +115,7 @@ Este posibil sa fie nevoie sa incercati de cateva ori refresh la pagina cu CTRL+
             MARASESTI ↔ OTOPENI
         </td>
         <td class="p-2" style="border:1px solid black;">
-            70 lei/adult (35 lei/copil*)
+            90 lei/adult (35 lei/copil*)
         </td>
         <td class="p-2" style="border:1px solid black;">
             15 lei (5 lei)
@@ -126,7 +126,7 @@ Este posibil sa fie nevoie sa incercati de cateva ori refresh la pagina cu CTRL+
             FOCSANI ↔ OTOPENI
         </td>
         <td class="p-2" style="border:1px solid black;">
-            60 lei/adult  (30 lei/copil)
+            80 lei/adult  (30 lei/copil)
         </td>
         <td class="p-2" style="border:1px solid black;">
             15 lei (5 lei)
@@ -137,7 +137,7 @@ Este posibil sa fie nevoie sa incercati de cateva ori refresh la pagina cu CTRL+
             RM. SARAT ↔ OTOPENI
         </td>
         <td class="p-2" style="border:1px solid black;">
-            50 lei/adult  (25 lei/copil)
+            60 lei/adult  (25 lei/copil)
         </td>
         <td class="p-2" style="border:1px solid black;">
             10 lei (5 lei)
@@ -148,7 +148,7 @@ Este posibil sa fie nevoie sa incercati de cateva ori refresh la pagina cu CTRL+
             BUZAU ↔ OTOPENI
         </td>
         <td class="p-2" style="border:1px solid black;">
-             40 lei/adult  (20 lei/copil)
+             50 lei/adult  (20 lei/copil)
         </td>
         <td class="p-2" style="border:1px solid black;">
             10 lei   (5 lei)
@@ -159,7 +159,7 @@ Este posibil sa fie nevoie sa incercati de cateva ori refresh la pagina cu CTRL+
             GALATI/BRAILA ↔ OTOPENI
         </td>
         <td class="p-2" style="border:1px solid black;">
-             70 lei/adult  (40 lei/copil)
+             100 lei/adult  (40 lei/copil)
         </td>
         <td class="p-2" style="border:1px solid black;">
             20 lei (10 lei)
