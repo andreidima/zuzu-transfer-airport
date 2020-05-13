@@ -1,7 +1,10 @@
 @extends ('layouts.app')
 
 @section('content') 
-  
+
+<div class="card">
+<div class="card-body rounded px-5 shadow-lg">
+
 <p><em>Pe această pagină gășiți instrucțiunile pt rezervări. Vor fi afișate și noutăți, schimbări de program sau modificări ale site-ului.</em></p>
 
 <p><strong>PENTRU O MAI BUNĂ FUNCȚIONARE A SISTEMULUI VA RUGĂM SĂ FOLOSIȚI MOZILLA SAU CHROME!</strong></p>
@@ -17,8 +20,8 @@
 
 {{-- <p class="text-danger p-0 my-1"><b>Program de Paște 2020: program normal, se efectuează toate cursele!</b></p> --}}
 
-<p>___________________________________</p>
 
+{{-- <p>___________________________________</p>
 <p>Am implementat pe site oferta dus-intors la pretul 100lei/adult (20lei comision agentie), 60lei/copil 2-7ani (10lei comision agentie), pe traseul Galati-Otopeni (aeroport) cu urmatoarele conditii:</p>
 <ul style="list-style-type: circle">
     <li>grupuri de minim 5 adulti,</li>
@@ -30,8 +33,8 @@ Oferta apare cand introduceti rezervarea si sunt indeplinite toate conditiile, e
 Este posibil sa fie nevoie sa incercati de cateva ori refresh la pagina cu CTRL+F5 daca nu va apare oferta.
 <br>
 *Contravaloarea transportului nu se returneaza.*
+<p>___________________________________</p> --}}
 
-<p>___________________________________</p>
 
 <p>Înainte de a face o rezervare asigurați-va că sunteți autentificat cu adresa de e-mail și parolă, la "<b>Adaugă rezervare</b>",</p>
 <ul style="list-style-type: circle">
@@ -102,12 +105,15 @@ Este posibil sa fie nevoie sa incercati de cateva ori refresh la pagina cu CTRL+
             TECUCI,  PANCIU,  ADJUD 
             <br>
             ↔ OTOPENI
+            <br>
+            <br>
+            Oferta grupuri dus-intors*
         </td>
         <td class="p-2" style="border:1px solid black;">
             80 lei/adult (40 lei/copil*)
         </td>
         <td class="p-2" style="border:1px solid black;">
-            20lei (5 lei)
+            25lei (5 lei)
         </td>
     </tr>
     <tr>
@@ -157,6 +163,9 @@ Este posibil sa fie nevoie sa incercati de cateva ori refresh la pagina cu CTRL+
     <tr>
         <td class="p-2" style="border:1px solid black;">
             GALATI/BRAILA ↔ OTOPENI
+            <br>
+            <br>
+            Oferta grupuri dus-intors
         </td>
         <td class="p-2" style="border:1px solid black;">
              70 lei/adult  (40 lei/copil)
@@ -168,6 +177,9 @@ Este posibil sa fie nevoie sa incercati de cateva ori refresh la pagina cu CTRL+
     <tr>
         <td class="p-2" style="border:1px solid black;">
             VASLUI ↔ OTOPENI
+            <br>
+            <br>
+            Oferta grupuri dus-intors
         </td>
         <td class="p-2" style="border:1px solid black;">
              100 lei/adult  (60 lei/copil)
@@ -179,6 +191,9 @@ Este posibil sa fie nevoie sa incercati de cateva ori refresh la pagina cu CTRL+
     <tr>
         <td class="p-2" style="border:1px solid black;">
             BARLAD ↔ OTOPENI
+            <br>
+            <br>
+            Oferta grupuri dus-intors
         </td>
         <td class="p-2" style="border:1px solid black;">
              90 lei/adult  (50 lei/copil)
@@ -188,6 +203,18 @@ Este posibil sa fie nevoie sa incercati de cateva ori refresh la pagina cu CTRL+
         </td>
     </tr>
 </table>
-<p style="text-align:center;">*copil cu vârstă cuprinsă între 2 și 7 ani</p>
+<p style="">*copil cu vârstă cuprinsă între 2 și 7 ani</p>
 
+<p class="mb-0">**Oferta dus-intors este valabila cu urmatoarele conditii:</p>
+<ul>
+    <li>rezervare tur-retur,</li>
+    <li>grupuri de minim 5 adulti,</li>
+    <li>plata integrala la agentie,</li>
+    <li>doar pentru aeroport Otopeni (pentru debarcare sau imbarcare din Bucuresti nu se aplica oferta),</li>
+    <li>contravaloarea transportului nu se returneaza daca se anuleaza rezervarea.</li>
+</ul>
+<p>Oferta apare cand introduceti rezervarea si sunt indeplinite toate conditiile, <b>exista posibilitatea de a inregistra rezervarea si fara a accesa oferta</b> daca nu o doriti. </p>
+
+</div>
+</div>
 @endsection
