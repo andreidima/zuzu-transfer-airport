@@ -87,121 +87,165 @@ Este posibil sa fie nevoie sa incercati de cateva ori refresh la pagina cu CTRL+
  
 <p><b>REZERVĂRILE PT A DOUA ZI (aceasta începând cu ora 00:00) SE FAC PÂNĂ LA ORA 20:50, IAR PT ZIUA ÎN CURS SE VOR ANUNȚA TELEFONIC LA DISPECERAT   0767 335 558 / 0748 836 345 PT A VERIFICA DISPONIBILITATEA LOCURILOR!</b></p>
 
-<p>&nbsp;</p>
-<table style="border:1px solid black; border-collapse: collapse; text-align:center;" align="center">
-    <tr>
-        <td class="p-2" style="border:1px solid black;">
-            <b>TRASEU</b>
-        </td>
-        <td class="p-2" style="border:1px solid black;">
-            <b>PRET</b>
-        </td>
-        <td class="p-2" style="border:1px solid black;">
-            <b>COMISION AGENTIE</b>
-        </td>
-    </tr>
-    <tr>
-        <td class="p-2" style="border:1px solid black;">
-            TECUCI,  PANCIU,  ADJUD 
-            <br>
-            ↔ OTOPENI
-            <br>
-            <br>
-            Oferta grupuri dus-intors*
-        </td>
-        <td class="p-2" style="border:1px solid black;">
-            80 lei/adult (40 lei/copil*)
-        </td>
-        <td class="p-2" style="border:1px solid black;">
-            25lei (5 lei)
-        </td>
-    </tr>
-    <tr>
-        <td class="p-2" style="border:1px solid black;">
-            MARASESTI ↔ OTOPENI
-        </td>
-        <td class="p-2" style="border:1px solid black;">
-            70 lei/adult (35 lei/copil*)
-        </td>
-        <td class="p-2" style="border:1px solid black;">
-            15 lei (5 lei)
-        </td>
-    </tr>
-    <tr>
-        <td class="p-2" style="border:1px solid black;">
-            FOCSANI ↔ OTOPENI
-        </td>
-        <td class="p-2" style="border:1px solid black;">
-            60 lei/adult  (30 lei/copil)
-        </td>
-        <td class="p-2" style="border:1px solid black;">
-            15 lei (5 lei)
-        </td>
-    </tr>
-    <tr>
-        <td class="p-2" style="border:1px solid black;">
-            RM. SARAT ↔ OTOPENI
-        </td>
-        <td class="p-2" style="border:1px solid black;">
-            50 lei/adult  (25 lei/copil)
-        </td>
-        <td class="p-2" style="border:1px solid black;">
-            10 lei (5 lei)
-        </td>
-    </tr>
-    <tr>
-        <td class="p-2" style="border:1px solid black;">
-            BUZAU ↔ OTOPENI
-        </td>
-        <td class="p-2" style="border:1px solid black;">
-             40 lei/adult  (20 lei/copil)
-        </td>
-        <td class="p-2" style="border:1px solid black;">
-            10 lei   (5 lei)
-        </td>
-    </tr>
-    <tr>
-        <td class="p-2" style="border:1px solid black;">
-            GALATI/BRAILA ↔ OTOPENI
-            <br>
-            <br>
-            Oferta grupuri dus-intors
-        </td>
-        <td class="p-2" style="border:1px solid black;">
-             70 lei/adult  (40 lei/copil)
-        </td>
-        <td class="p-2" style="border:1px solid black;">
-            20 lei (10 lei)
-        </td>
-    </tr>
-    <tr>
-        <td class="p-2" style="border:1px solid black;">
-            VASLUI ↔ OTOPENI
-            <br>
-            <br>
-            Oferta grupuri dus-intors
-        </td>
-        <td class="p-2" style="border:1px solid black;">
-             100 lei/adult  (60 lei/copil)
-        </td>
-        <td class="p-2" style="border:1px solid black;">
-            20 lei (10 lei)
-        </td>
-    </tr>
-    <tr>
-        <td class="p-2" style="border:1px solid black;">
-            BARLAD ↔ OTOPENI
-            <br>
-            <br>
-            Oferta grupuri dus-intors
-        </td>
-        <td class="p-2" style="border:1px solid black;">
-             90 lei/adult  (50 lei/copil)
-        </td>
-        <td class="p-2" style="border:1px solid black;">
-            20 lei (10 lei)
-        </td>
-    </tr>
+{{-- <p>&nbsp;</p> --}}
+
+<style>
+table.table-bordered{
+    border:1px solid black;
+    margin-top:20px;
+  }
+table.table-bordered > thead > tr > th{
+    border:1px solid black;
+}
+table.table-bordered > tbody > tr > td{
+    border:1px solid black;
+}
+</style>
+
+<table class="table table-bordered table-striped col-sm-8 border border-dark" style=" border-collapse: collapse; text-align:center;" align="center">
+    <thead>
+        <tr class="bg-primary text-white">
+            <th class="p-2" style="">
+                <b>TRASEU</b>
+            </th>
+            <th class="p-2" style="">
+                <b>PRET</b>
+            </th>
+            <th class="p-2" style="">
+                <b>COMISION AGENTIE</b>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="p-2" style="">
+                TECUCI,  PANCIU,  ADJUD 
+                <br>
+                ↔ OTOPENI
+                <br>
+                <p class="mb-0">____________________</p>
+                Oferta grupuri dus-intors**
+            </td>
+            <td class="p-2" style="">
+                80 lei/adult (40 lei/copil*)
+                <br>
+                <br>
+                <p class="mb-0">___________________</p>
+                120 lei/adult (60 lei/copil) 
+            </td>
+            <td class="p-2" style="">
+                25lei (5 lei)
+                <br>
+                <br>
+                <p class="mb-0">_________</p>
+                25 lei (10 lei)
+            </td>
+        </tr>
+        <tr>
+            <td class="p-2" style="">
+                MARASESTI ↔ OTOPENI
+            </td>
+            <td class="p-2" style="">
+                70 lei/adult (35 lei/copil)
+            </td>
+            <td class="p-2" style="">
+                15 lei (5 lei)
+            </td>
+        </tr>
+        <tr>
+            <td class="p-2" style="">
+                FOCSANI ↔ OTOPENI
+            </td>
+            <td class="p-2" style="">
+                60 lei/adult  (30 lei/copil)
+            </td>
+            <td class="p-2" style="">
+                15 lei (5 lei)
+            </td>
+        </tr>
+        <tr>
+            <td class="p-2" style="">
+                RM. SARAT ↔ OTOPENI
+            </td>
+            <td class="p-2" style="">
+                50 lei/adult  (25 lei/copil)
+            </td>
+            <td class="p-2" style="">
+                10 lei (5 lei)
+            </td>
+        </tr>
+        <tr>
+            <td class="p-2" style="">
+                BUZAU ↔ OTOPENI
+            </td>
+            <td class="p-2" style="">
+                40 lei/adult  (20 lei/copil)
+            </td>
+            <td class="p-2" style="">
+                10 lei   (5 lei)
+            </td>
+        </tr>
+        <tr>
+            <td class="p-2" style="">
+                GALATI/BRAILA ↔ OTOPENI
+                <br>
+                <p class="mb-0">____________________</p>
+                Oferta grupuri dus-intors
+            </td>
+            <td class="p-2" style="">
+                70 lei/adult (40 lei/copil)
+                <br>
+                <p class="mb-0">___________________</p>
+                100 lei/adult (60 lei/copil) 
+            </td>
+            <td class="p-2" style="">
+                20 lei (10 lei)
+                <br>
+                <p class="mb-0">_________</p>
+                20 lei (10 lei)
+            </td>
+        </tr>
+        <tr>
+            <td class="p-2" style="">
+                VASLUI ↔ OTOPENI 
+                <br>
+                <p class="mb-0">____________________</p>
+                Oferta grupuri dus-intors
+            </td>
+            <td class="p-2" style="">
+                100 lei/adult (60 lei/copil)
+                <br>
+                <p class="mb-0">___________________</p>
+                150 lei/adult (90 lei/copil) 
+            </td>
+            <td class="p-2" style="">
+                20 lei (10 lei)
+                <br>
+                <p class="mb-0">_________</p>
+                20 lei (10 lei)
+            </td>
+        </tr>
+        <tr>
+            <td class="p-2" style="">
+                BARLAD ↔ OTOPENI 
+                <br>
+                <p class="mb-0">____________________</p>
+                Oferta grupuri dus-intors
+            </td>
+            <td class="p-2" style="">
+                90 lei/adult (50 lei/copil)
+                <br>
+                <p class="mb-0">___________________</p>
+                140 lei/adult (80 lei/copil) 
+            </td>
+            <td class="p-2" style="">
+                20 lei (10 lei)
+                <br>
+                <p class="mb-0">_________</p>
+                20 lei (10 lei)
+            </td>
+        </tr>
+    </tbody>
 </table>
 <p style="">*copil cu vârstă cuprinsă între 2 și 7 ani</p>
 
