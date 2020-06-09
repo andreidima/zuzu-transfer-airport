@@ -269,7 +269,7 @@
 
 
                 
-                <div class="col-lg-7 container-fluid px-0 table-responsive-lg border">    
+                <div class="col-lg-5 container-fluid px-0 table-responsive-lg border">    
                     @forelse ($trasee_nume_galati_otopeni as $traseu_nume)                     
                         <h5 class="p-2 bg-secondary text-white mb-0 text-center">{{$traseu_nume->nume}}</h5>
                         <table class="table table-sm table-striped text-center mb-2">
