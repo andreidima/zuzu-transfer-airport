@@ -40,7 +40,7 @@
 
         <div class="card-body">
             <div class="row justify-content-center">
-                <div class="col-lg-3 container-fluid px-0 table-responsive-lg border"> 
+                <div class="col-lg-2 container-fluid px-0 table-responsive-lg border"> 
                     <h5 class="p-2 bg-secondary text-white mb-0 text-center">Otopeni</h5>
                         <table class="table table-sm table-striped text-center mb-2">   
                             @php
@@ -67,25 +67,31 @@
                                                 $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_copii')                                     
                                         @endphp  --}}
                                         <tr>  
-                                            <td style="padding: 0.1em 1em;">
-                                                {{ \Carbon\Carbon::parse($traseu->curse_ore->first()->ora)->format('H:i') }}     
-                                            </td>
-                                            <td style="padding: 0.1em 1em;" class="text-danger">
-                                                <span title="Total pasageri">
-                                                    {{-- {{ $nr_rezervari[$loop->index] }} --}}
-                                                    {{
-                                                    $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_adulti')
-                                                    +
-                                                    $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_copii') 
-                                                    }}
-                                                </span>
-                                            </td>
-                                            <td style="padding: 0.1em 1em;">
+                                            <td class="" style="line-height:1;">
                                                 <a href="{{ $traseu->path() }}/{{ \Carbon\Carbon::createFromFormat('Y-m-d', $search)->format('d-m-Y') }}"
-                                                    class="btn btn-sm btn-primary"
+                                                    class="text-dark"
                                                     role="button"
+                                                    style="line-height:1;"
                                                     >
-                                                    Raport
+                                                    <div class="row align-items-center">
+                                                        <div class="col-lg-5">
+                                                            {{ \Carbon\Carbon::parse($traseu->curse_ore->first()->ora)->format('H:i') }}     
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            @php 
+                                                                $nr_persoane = 
+                                                                    $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_adulti')
+                                                                    +
+                                                                    $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_copii') 
+                                                            @endphp
+                                                            <span title="Total pasageri" class={{ $nr_persoane > 0 ? "text-danger" : '' }}>
+                                                                {{ $nr_persoane }}
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <i class="fas fa-file-pdf fa-2x text-primary bg-white"></i>
+                                                        </div>
+                                                    </div>
                                                 </a>        
                                             </td>
                                         </tr> 
