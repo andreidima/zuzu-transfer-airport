@@ -219,10 +219,10 @@ table.table-bordered > tbody > tr > td{
                 150 lei/adult (90 lei/copil) 
             </td>
             <td class="p-2" style="">
-                20 lei (10 lei)
+                25 lei (10 lei)
                 <br>
                 <p class="mb-0">_________</p>
-                20 lei (10 lei)
+                25 lei (10 lei)
             </td>
         </tr>
         <tr>
@@ -239,10 +239,10 @@ table.table-bordered > tbody > tr > td{
                 140 lei/adult (80 lei/copil) 
             </td>
             <td class="p-2" style="">
-                20 lei (10 lei)
+                25 lei (10 lei)
                 <br>
                 <p class="mb-0">_________</p>
-                20 lei (10 lei)
+                25 lei (10 lei)
             </td>
         </tr>
     </tbody>
