@@ -74,10 +74,10 @@
                                                     style="line-height:1;"
                                                     >
                                                     <div class="row align-items-center">
-                                                        <div class="col-lg-5">
+                                                        <div class="col-5">
                                                             {{ \Carbon\Carbon::parse($traseu->curse_ore->first()->ora)->format('H:i') }}     
                                                         </div>
-                                                        <div class="col-lg-4">
+                                                        <div class="col-4">
                                                             @php 
                                                                 $nr_persoane = 
                                                                     $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_adulti')
@@ -88,7 +88,7 @@
                                                                 {{ $nr_persoane }}
                                                             </span>
                                                         </div>
-                                                        <div class="col-lg-3">
+                                                        <div class="col-3">
                                                             <i class="fas fa-file-pdf fa-2x text-primary bg-white"></i>
                                                         </div>
                                                     </div>
