@@ -89,10 +89,18 @@
                                     </a>
                                 </li>
                             @endif
-                            <li class="nav-item active mr-4">
+                            <li class="nav-item active mr-4 btn-group">
                                 <a class="nav-link" href="/instructiuni-rezervari">
                                     <i class="fas fa-chalkboard-teacher mr-1"></i>Instrucțiuni Rezervări
                                 </a>
+                                @if (auth()->user()->isDispecer())
+                                    <button class="btn dropdown-toggle dropdown-toggle-split p-0 text-white" data-toggle="dropdown"></button>
+                                    <div class="dropdown-menu">
+                                        <a class="nav-link text-dark" href="{{ route('notificari.index') }}">
+                                            <i class="fas fa-calendar-check mr-1"></i>Notificări
+                                        </a>
+                                    </div>
+                                @endif
                             </li>
                             @if (auth()->user()->isDispecer())
                                 <li class="nav-item active mr-4">
@@ -167,6 +175,7 @@
         </nav>
 
         <main class="container my-2 py-2" style="min-height:450px;">
+            @include('notificari.afisare-notificari')
             @yield('content')
         </main>
         

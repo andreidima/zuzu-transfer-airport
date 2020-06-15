@@ -245,14 +245,19 @@ if (document.querySelector('#orase-ore-plecare')) {
                 this.comision_agentie = this.pret_total;
             },
             oferta_5_adulti() {
-                if (
-                    (this.retur == true) && 
-                    (this.nr_adulti > 4) &&
-                    (this.tip_plata_la_agentie == true) && 
-                    ((this.oras_plecare == 2) || (this.oras_plecare == 5) || (this.oras_plecare == 6))
-                    ){
-                    this.oferta = true;
-                }else{
+                if ((this.retur == true) && (this.nr_adulti > 4) && (this.tip_plata_la_agentie == true)) {
+                    if ((this.oras_plecare == 11) || (this.oras_plecare == 9) || (this.oras_plecare == 1)) {
+                        this.oferta = 'Tecuci_Panciu_Adjud'
+                    } else if ((this.oras_plecare == 2) || (this.oras_plecare == 5) || (this.oras_plecare == 6)) {
+                        this.oferta = 'Galati_Ianca_Braila'
+                    } else if (this.oras_plecare == 12) {
+                        this.oferta = 'Vaslui'
+                    } else if (this.oras_plecare == 13) {
+                        this.oferta = 'Barlad'
+                    } else {
+                        this.oferta = false;
+                    }
+                } else{
                     this.oferta = false;
                 }         
             }

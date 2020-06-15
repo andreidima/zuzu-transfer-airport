@@ -92,6 +92,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('agentii/{agentii}/rezervari', 'UserFirmaController@rezervari');
         Route::get('agentii/{agentii}/rezervari/export/{view_type}/{search_data_inceput}/{search_data_sfarsit}', 'UserFirmaController@pdfexport_rezervari_dispecer');  // Generare PDF
 
+        // Inchide avans dupa finalizare reparatie si predare restul de bani si produs
+        Route::any('/notificari/activeaza-dezactiveaza/{notificari}', 'NotificareController@update_activa_inactiva');
+        Route::resource('notificari', 'NotificareController');
+
         Route::get('/acasa', 'AcasaController@index')->name('acasa');
 
         Route::get('/home', 'HomeController@index')->name('home');

@@ -420,12 +420,33 @@ class RezervareController extends Controller
             //     $rezervare_tur->cursa->oras_plecare->nume,
             //     $rezervare_retur->id);
             // dd($request);
+            // if (($request->action == "cu_oferta") &&
+            //     ($rezervare_tur->oferta == null) && ($rezervare_retur->oferta == null) &&
+            //     ($rezervare_tur->nr_adulti > 4) && ($rezervare_tur->tip_plata_id = 2) && 
+            //     ($rezervare_tur->tur_retur == $rezervare_retur->id) && 
+            //     (($rezervare_tur->cursa->oras_plecare->id == 2) || ($rezervare_tur->cursa->oras_plecare->id == 5) || ($rezervare_tur->cursa->oras_plecare->id == 6))
+            //     ){
+            //         $rezervare_tur->oferta = 1;
+            //         $rezervare_tur->pret_total = ($rezervare_tur->nr_adulti * 100) + ($rezervare_tur->nr_copii * 60);
+            //         $rezervare_tur->update();
+
+            //         $rezervare_retur->oferta = 1;
+            //         $rezervare_retur->pret_total = 0;
+            //         $rezervare_retur->update();
+            // }
             if (($request->action == "cu_oferta") &&
                 ($rezervare_tur->oferta == null) && ($rezervare_retur->oferta == null) &&
                 ($rezervare_tur->nr_adulti > 4) && ($rezervare_tur->tip_plata_id = 2) && 
-                ($rezervare_tur->tur_retur == $rezervare_retur->id) && 
-                (($rezervare_tur->cursa->oras_plecare->id == 2) || ($rezervare_tur->cursa->oras_plecare->id == 5) || ($rezervare_tur->cursa->oras_plecare->id == 6))
-                ){
+                ($rezervare_tur->tur_retur == $rezervare_retur->id)) {
+                if (($rezervare_tur->cursa->oras_plecare->id == 11) || ($rezervare_tur->cursa->oras_plecare->id == 9) || ($rezervare_tur->cursa->oras_plecare->id == 1)) {
+                    $rezervare_tur->oferta = 1;
+                    $rezervare_tur->pret_total = ($rezervare_tur->nr_adulti * 120) + ($rezervare_tur->nr_copii * 60);
+                    $rezervare_tur->update();
+
+                    $rezervare_retur->oferta = 1;
+                    $rezervare_retur->pret_total = 0;
+                    $rezervare_retur->update();
+                } else if (($rezervare_tur->cursa->oras_plecare->id == 2) || ($rezervare_tur->cursa->oras_plecare->id == 5) || ($rezervare_tur->cursa->oras_plecare->id == 6)) {
                     $rezervare_tur->oferta = 1;
                     $rezervare_tur->pret_total = ($rezervare_tur->nr_adulti * 100) + ($rezervare_tur->nr_copii * 60);
                     $rezervare_tur->update();
@@ -433,7 +454,24 @@ class RezervareController extends Controller
                     $rezervare_retur->oferta = 1;
                     $rezervare_retur->pret_total = 0;
                     $rezervare_retur->update();
-            }
+                } else if ($rezervare_tur->cursa->oras_plecare->id == 12) {
+                    $rezervare_tur->oferta = 1;
+                    $rezervare_tur->pret_total = ($rezervare_tur->nr_adulti * 150) + ($rezervare_tur->nr_copii * 90);
+                    $rezervare_tur->update();
+
+                    $rezervare_retur->oferta = 1;
+                    $rezervare_retur->pret_total = 0;
+                    $rezervare_retur->update();
+                } else if ($rezervare_tur->cursa->oras_plecare->id == 13) {
+                    $rezervare_tur->oferta = 1;
+                    $rezervare_tur->pret_total = ($rezervare_tur->nr_adulti * 140) + ($rezervare_tur->nr_copii * 80);
+                    $rezervare_tur->update();
+
+                    $rezervare_retur->oferta = 1;
+                    $rezervare_retur->pret_total = 0;
+                    $rezervare_retur->update();
+                }
+            } 
 
             return redirect('/rezervari/tur_retur/'.$rezervare_tur->id.'/'.$rezervare_retur->id)->with('status', 'Rezervările tur si retur pentru clientul "' . $rezervare_tur->nume . '" au fost adăugate cu succes!');
         }
