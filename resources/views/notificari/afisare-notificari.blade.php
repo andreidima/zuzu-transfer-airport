@@ -4,10 +4,13 @@
 @endphp
 
 @forelse ($notificari as $notificare)
-                <div class="form-row mb-2 d-flex justify-content-center">
-                    <div class="form-group col-lg-11 card text-dark shadow-sm p-0 mb-1 text-center" style="background-color:#dedede">
+            <div class="row mb-1">
+                <div class="col-lg-11 mx-auto d-flex justify-content-center">
+                    <div class="card text-dark shadow-sm px-2 p-0 mb-1 text-center" 
+                        style="background-color:#dedede; border-color:orange; display: inline-block">
                         <h6 class="m-0 p-0">{{ $notificare->text }}</h6>
                     </div>
                 </div>
+            </div>
 @empty
 @endif
