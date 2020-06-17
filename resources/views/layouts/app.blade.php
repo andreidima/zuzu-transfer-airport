@@ -48,7 +48,7 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto nav-fill mr-4">
+                    <ul class="navbar-nav mr-auto mr-4">
                         @guest
                         @else
                             <li class="nav-item active mr-4 btn-group">
@@ -56,14 +56,16 @@
                                     <i class="fas fa-address-card mr-1"></i>Rezervări
                                 </a>
                                 @if ((auth()->user()->id == 355) || (auth()->user()->id == 356))
-                                    <button class="btn dropdown-toggle dropdown-toggle-split p-0 text-white" data-toggle="dropdown"></button>
+                                    {{-- <button class="btn dropdown-toggle dropdown-toggle-split p-0 text-white mr-auto" data-toggle="dropdown"></button> --}}
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"></a>
                                     <div class="dropdown-menu">
-                                        <a class="nav-link text-dark" href="{{ route('rezervari-istoric.index') }}">
+                                        <a class="dropdown-item nav-link text-dark" href="{{ route('rezervari-istoric.index') }}">
                                             Rezervări istoric
                                         </a>
                                     </div>
                                 @endif
                             </li>
+                            <li class="nav-item active ml-auto mr-4 dropdown">
                             @if (auth()->user()->isDispecer())
                                 <li class="nav-item active mr-4 dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
