@@ -52,7 +52,7 @@
                         @guest
                         @else
                             <li class="nav-item active mr-4 btn-group">
-                                <a class="nav-link" href="/rezervari">
+                                <a class="nav-link pr-0 mr-1" href="/rezervari">
                                     <i class="fas fa-address-card mr-1"></i>Rezervări
                                 </a>
                                 @if ((auth()->user()->id == 355) || (auth()->user()->id == 356))
@@ -65,7 +65,7 @@
                                     </div>
                                 @endif
                             </li>
-                            <li class="nav-item active ml-auto mr-4 dropdown">
+                            {{-- <li class="nav-item active ml-auto mr-4 dropdown"> --}}
                             @if (auth()->user()->isDispecer())
                                 <li class="nav-item active mr-4 dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -100,13 +100,14 @@
                                 </li>
                             @endif
                             <li class="nav-item active mr-4 btn-group">
-                                <a class="nav-link" href="/instructiuni-rezervari">
+                                <a class="nav-link pr-0 mr-1" href="/instructiuni-rezervari">
                                     <i class="fas fa-chalkboard-teacher mr-1"></i>Instrucțiuni Rezervări
                                 </a>
                                 @if (auth()->user()->isDispecer())
-                                    <button class="btn dropdown-toggle dropdown-toggle-split p-0 text-white" data-toggle="dropdown"></button>
+                                    {{-- <button class="btn dropdown-toggle dropdown-toggle-split p-0 text-white" data-toggle="dropdown"></button> --}}
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"></a>
                                     <div class="dropdown-menu">
-                                        <a class="nav-link text-dark" href="{{ route('notificari.index') }}">
+                                        <a class="dropdown-item nav-link text-dark" href="{{ route('notificari.index') }}">
                                             <i class="fas fa-calendar-check mr-1"></i>Notificări
                                         </a>
                                     </div>
