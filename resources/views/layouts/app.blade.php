@@ -51,10 +51,18 @@
                     <ul class="navbar-nav mr-auto nav-fill mr-4">
                         @guest
                         @else
-                            <li class="nav-item active mr-4">
+                            <li class="nav-item active mr-4 btn-group">
                                 <a class="nav-link" href="/rezervari">
                                     <i class="fas fa-address-card mr-1"></i>Rezervări
                                 </a>
+                                @if ((auth()->user()->id == 355) || (auth()->user()->id == 356))
+                                    <button class="btn dropdown-toggle dropdown-toggle-split p-0 text-white" data-toggle="dropdown"></button>
+                                    <div class="dropdown-menu">
+                                        <a class="nav-link text-dark" href="{{ route('rezervari-istoric.index') }}">
+                                            Rezervări istoric
+                                        </a>
+                                    </div>
+                                @endif
                             </li>
                             @if (auth()->user()->isDispecer())
                                 <li class="nav-item active mr-4 dropdown">

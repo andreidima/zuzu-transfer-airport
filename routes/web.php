@@ -48,6 +48,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('rezervari', 'RezervareController')->only([
             'index', 'show', 'create', 'edit', 'store', 'update', 'destroy'
         ]);
+        
+        Route::resource('rezervari-istoric', 'RezervareIstoricController')->only([
+            'index', 'show'
+        ]);
 
     Route::get('agentii/rezervari', 'UserFirmaController@rezervari');
     Route::get('agentii/rezervari/export/{view_type}/{search_data_inceput}/{search_data_sfarsit}', 'UserFirmaController@pdfexport_rezervari_agentie');  // Generare PDF
