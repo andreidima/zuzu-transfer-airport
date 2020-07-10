@@ -991,7 +991,7 @@ class RezervareController extends Controller
         if ($rezervare->cursa->plecare_id !== 8) {
             // verificare pentru Vaslui(22:15 si 23:15) si Barlad(23:00), care se calculeaza in ziua urmatoare
             if (!in_array($rezervare->ora_id, [293, 294, 307])){
-                if ($rezervare->updated_at->isoFormat('HH') > 21){
+                if ($rezervare->updated_at->isoFormat('HH') > 20){
                     if (
                         \Carbon\Carbon::parse($rezervare->data_cursa)->isoFormat('D.MM.YYYY') == \Carbon\Carbon::now()->isoFormat('D.MM.YYYY')
                         ||
@@ -1004,7 +1004,7 @@ class RezervareController extends Controller
                     $trimite_sms = true;
                 }
             } else {
-                if ($rezervare->updated_at->isoFormat('HH') > 21){
+                if ($rezervare->updated_at->isoFormat('HH') > 20){
                     if (\Carbon\Carbon::parse($rezervare->data_cursa)->isoFormat('D.MM.YYYY') == \Carbon\Carbon::now()->isoFormat('D.MM.YYYY')) {
                         $trimite_sms = true;
                     }
