@@ -1041,7 +1041,7 @@ class RezervareController extends Controller
             if (in_array($rezervare->cursa->plecare_id, [2, 5, 6])){
                 $telefoane = ['0752926589'];
             } else {
-                $telefoane = ['0767931404', '0762646917'];
+                $telefoane = ['0767931404'];
             }
 
             // Setare variabila test pentru ANDREI DIMA TESTȘ
