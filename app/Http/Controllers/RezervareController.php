@@ -1052,7 +1052,7 @@ class RezervareController extends Controller
             }
 
             // $rezervare->created_at = \Carbon\Carbon::now();
-            // $telefoane = ['0752926589', '0767931404', '0762646917'];
+            // $telefoane = ['0752926589', '0767931404'];
             // $telefoane = ['0765296796'];
             $mesaj = (\Carbon\Carbon::parse($rezervare->ora->ora)->format('H:i') ?? '') . '. ' .
                 ($rezervare->cursa->oras_plecare->nume ?? '') .
