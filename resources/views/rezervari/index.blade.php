@@ -449,7 +449,7 @@
 
             <nav>
                 <ul class="pagination justify-content-center">
-                    {{$rezervari->links()}}
+                        {{$rezervari->appends(Request::except('page'))->links()}}
                 </ul>
             </nav> 
 

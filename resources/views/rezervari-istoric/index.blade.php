@@ -10,18 +10,21 @@
                 <form class="needs-validation" novalidate method="GET" action="/rezervari-istoric">
                     @csrf                    
                     <div class="input-group custom-search-form">
-                        <div class="w-50">
+                        <div class="col-lg-5">
                             <input type="text" class="form-control" name="search_nume_telefon" placeholder="Caută nume sau telefon...">
                         </div>
-                        <div class="mx-4">
+                        <div class="col-lg-1">
                             <span class="input-group-btn">
                                 <button class="btn btn-default-sm" type="submit" style="background-color:#408080">
                                     <i class="fas fa-search text-white"></i>
                                 </button>
                             </span>
                         </div>
-                        <div class="w-25">                            
+                        <div class="col-lg-3">                            
                             <input type="text" class="form-control" name="search_cod_bilet" placeholder="Caută cod bilet...">
+                        </div>
+                        <div class="col-lg-3">                            
+                            <input type="text" class="form-control" name="search_user" placeholder="Caută utilizator...">
                         </div>
                     </div>
                 </form>
@@ -316,7 +319,7 @@
 
             <nav>
                 <ul class="pagination justify-content-center">
-                    {{$rezervari->links()}}
+                    {{$rezervari->appends(Request::except('page'))->links()}}
                 </ul>
             </nav> 
 
