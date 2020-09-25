@@ -29,8 +29,8 @@ class RezervareIstoricController extends Controller
             ->join('users', 'user_id', '=', 'users.id')
             ->select('rezervari_istoric.*', 'curse_ore.ora', 'users.username')
             ->when($search_nume_telefon, function ($query, $search_nume_telefon) {
-                return $query   ->where('nume', 'like', '%' . $search_nume_telefon . '%')
-                                ->orWhere('telefon', 'like', '%' . $search_nume_telefon . '%');
+                return $query   ->where('rezervari_istoric.nume', 'like', '%' . $search_nume_telefon . '%')
+                                ->orWhere('rezervari_istoric.telefon', 'like', '%' . $search_nume_telefon . '%');
             })
             ->when($search_cod_bilet, function ($query, $search_cod_bilet) {
                 return $query->where( 'rezervari_istoric.id', $search_cod_bilet);
