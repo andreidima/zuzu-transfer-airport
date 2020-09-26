@@ -90,8 +90,10 @@
     </div>
 
     <div class="container-fluid px-0 table-responsive-lg">
-        {{-- Traseu Otopeni - Tecuci/Galati --}} 
-                @php ($total_persoane = 0)
+        {{-- Traseu Otopeni - Tecuci/Galati  --}}
+                @php 
+                    ($total_persoane = 0)
+                @endphp
                     @forelse ($rezervari as $rezervare)    
 
                         @if ($loop->first)
@@ -120,7 +122,9 @@
                                 <tbody>                             
                         @endif
 
-                        @php ($total_persoane = $total_persoane + $rezervare->nr_adulti + $rezervare->nr_copii)
+                        @php 
+                            ($total_persoane = $total_persoane + $rezervare->nr_adulti + $rezervare->nr_copii)
+                        @endphp
                         @if ($rezervare->activa == 0)
                             <tr style="color:black; height:15px; line-height:30px; border-bottom:solid 1px #99F; background:#99F;">
                         @elseif (empty($rezervare->created_at))
@@ -133,7 +137,7 @@
                         @endif    
                         
                             <td align="center">
-                                {{ $loop->iteration }}
+                                {{ ($rezervari ->currentpage()-1) * $rezervari ->perpage() + $loop->index + 1 }}
                             </td>
                             <td align="center">
                                 @if (empty($rezervare->user))
@@ -339,11 +343,8 @@
 
                                     <div style="float:right;" class="">
                                         <a href="{{ $rezervare->path() }}/modifica"
-                                            {{-- class="btn btn-primary btn-sm"
-                                            role="button" --}}
                                             title="Editează Rezervarea"
                                             >
-                                            {{-- <i class="fas fa-edit"></i> --}}
                                             <img src="{{ asset('images/icon-edit.jpg') }}" height="26px">
                                         </a>
                                     </div>
@@ -356,35 +357,17 @@
                             </table>
                         @endif
                     @empty
-                            {{-- <p>
-                                Nu exista rezervari dupa aceste campuri de cautare
-                            </p> --}}
                     @endforelse 
                     
                     <p class="text-center">
                         <b>TOTAL PERSOANE: {{ $total_persoane }}</b>
                     </p>
                       
-                {{-- <nav>
-                    <ul class="pagination justify-content-center">
-                        @if ($rezervari instanceof \Illuminate\Pagination\LengthAwarePaginator)
-                            {{$rezervari->links('vendor.pagination.bootstrap-4')}}
-                        @endif
+                <nav>
+                    <ul class="pagination pagination-sm justify-content-center">
+                        {{$rezervari->appends(Request::except('page'))->links()}}
                     </ul>
-                </nav>  --}}
-
-                {{-- @if ($rezervari->isEmpty())
-                @else
-                    <p class="text-center">
-                    Pagina nr. {{$rezervari->currentPage()}}
-                    </p>
-
-                    <nav>
-                        <ul class="pagination justify-content-center">
-                            {{$rezervari->links()}}
-                        </ul>
-                    </nav> 
-                @endif --}}
+                </nav>
 
     </div>
 @endsection

@@ -56,8 +56,7 @@ class RezervareRaportZiController extends Controller
                         }
                     })
                     ->latest('rezervari.created_at')
-                    ->limit(1000)
-                    ->get();
+                    ->simplePaginate(100);
             } else {
                 $rezervari = auth()->user()->rezervari()
                     ->with('cursa', 'statie', 'tip_plata', 'user')
@@ -66,13 +65,14 @@ class RezervareRaportZiController extends Controller
                     ->where('data_cursa', '>=', $search_data_inceput)
                     ->where('data_cursa', '<=', $search_data_sfarsit)
                     ->latest('rezervari.created_at')
-                    ->limit(1000)
-                    ->get();
+                    ->simplePaginate(100);
             }
         }
         else {
-            $rezervari = collect(new Rezervare);
+            // $rezervari = collect(new Rezervare)->simplePaginate(100);
+            $rezervari = Rezervare::where('nume', 'xxxxxxxxxxxxxxxxx')->simplePaginate(100);
         }
+        // dd($rezervari);
 
         // dd ($search_oras, $rezervari);
         return view('rezervari-raport-zi.index', compact('rezervari', 'search_data_inceput', 'search_data_sfarsit', 'orase', 'search_oras', 'search_ora'));
