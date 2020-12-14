@@ -72,7 +72,108 @@ class RezervareRaportZiController extends Controller
             // $rezervari = collect(new Rezervare)->simplePaginate(100);
             $rezervari = Rezervare::where('nume', 'xxxxxxxxxxxxxxxxx')->simplePaginate(100);
         }
-        // dd($rezervari);
+
+
+        $search_data_inceput = '2020/08/01';
+        $search_data_sfarsit = '2020/08/01';
+        $search = '2020/08/01';
+        $search_ieri = \Carbon\Carbon::parse($search)->subDay()->format('Y-m-d');
+
+        $rezervari_test = Rezervare::where('data_cursa', '>=', '2020.08.01')
+            ->where('data_cursa', '<=', '2020.08.01')
+            ->get();
+
+
+        $trasee_nume_tecuci_otopeni = \App\TraseuNume::select('id', 'nume')
+            ->where('id', 1)
+            ->with(
+                'trasee.curse_ore.cursa.oras_plecare',
+                'trasee.curse_ore.cursa.oras_sosire',
+                'trasee.curse_ore.cursa'
+            )
+            ->with(
+                ['trasee.rezervari' => function ($query) use ($search, $search_ieri) {
+                    $query
+                        ->select('data_cursa', 'activa', 'nr_adulti', 'nr_copii')
+                        ->where(function ($query) use ($search_ieri) {
+                            $query->whereIn('ora_id', [293, 294, 307])
+                                ->where('data_cursa', $search_ieri)
+                                ->where('activa', 1);
+                        })
+                        ->orWhere(function ($query) use ($search) {
+                            $query->whereNotIn('ora_id', [293, 294, 307])
+                                ->where('data_cursa', $search)
+                                ->where('activa', 1);
+                        });
+                }]
+            )
+            ->with(
+                ['trasee.curse_ore.rezervari' => function ($query) use ($search, $search_ieri) {
+                    $query->where(function ($query) use ($search_ieri) {
+                        $query
+                            ->select('data_cursa', 'activa', 'nr_adulti', 'nr_copii')
+                            ->whereIn('ora_id', [293, 294, 307])
+                            ->where('data_cursa', $search_ieri)
+                            ->where('activa', 1);
+                    })
+                        ->orWhere(function ($query) use ($search) {
+                            $query->whereNotIn('ora_id', [293, 294, 307])
+                                ->where('data_cursa', $search)
+                                ->where('activa', 1);
+                        });
+                }]
+            )
+            ->get();
+        $trasee_nume_galati_otopeni = \App\TraseuNume::select('id', 'nume')
+            ->where('id', 2)
+            ->with(
+                ['trasee.rezervari' => function ($query) use ($search) {
+                    $query
+                        ->select('data_cursa', 'activa', 'nr_adulti', 'nr_copii')
+                        ->where('data_cursa', $search)
+                        ->where('activa', 1);
+                }]
+            )
+            ->with(
+                'trasee.curse_ore.cursa.oras_plecare',
+                'trasee.curse_ore.cursa.oras_sosire',
+                'trasee.curse_ore.cursa'
+            )
+            ->with(
+                ['trasee.curse_ore.rezervari' => function ($query) use ($search) {
+                    $query
+                        ->select('data_cursa', 'activa', 'nr_adulti', 'nr_copii')
+                        ->where('data_cursa', $search)
+                        ->where('activa', 1);
+                }]
+            )
+            ->get();
+        $trasee_nume_otopeni = \App\TraseuNume::select('id', 'nume')
+            ->where('id', 3)
+            ->with(
+                ['trasee.rezervari' => function ($query) use ($search) {
+                    $query
+                        ->select('data_cursa', 'activa', 'nr_adulti', 'nr_copii')
+                        ->where('data_cursa', $search)
+                        ->where('activa', 1);
+                }]
+            )
+            ->with(
+                'trasee.curse_ore.cursa.oras_plecare',
+                'trasee.curse_ore.cursa.oras_sosire',
+                'trasee.curse_ore.cursa'
+            )
+            ->with(
+                ['trasee.curse_ore.rezervari' => function ($query) use ($search) {
+                    $query
+                        ->select('data_cursa', 'activa', 'nr_adulti', 'nr_copii')
+                        ->where('data_cursa', $search)
+                        ->where('activa', 1);
+                }]
+            )
+            ->get();
+
+
 
         // dd ($search_oras, $rezervari);
         return view('rezervari-raport-zi.index', compact('rezervari', 'search_data_inceput', 'search_data_sfarsit', 'orase', 'search_oras', 'search_ora'));
