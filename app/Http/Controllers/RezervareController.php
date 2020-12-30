@@ -192,7 +192,8 @@ class RezervareController extends Controller
         switch ($_GET['request']) {
             case 'orase_plecare':
                 $raspuns = Oras::select('id', 'nume')
-                    ->where('id', '!=', '8')
+                    ->where('id', '!=', '8') // Fara Otopeni
+                    ->whereNotIn('id', [12, 13]) // Fara Barlad sau Vaslui
                     ->wherehas('curse_plecare')
                     ->orderBy('nume')
                     ->get();
@@ -200,6 +201,7 @@ class RezervareController extends Controller
             case 'orase_sosire':        
                 $oras_plecare = $request->oras_plecare;
                 $raspuns = Oras::select('id', 'nume')
+                    ->whereNotIn('id', [12, 13]) // Fara Barlad sau Vaslui
                     ->wherehas('curse_sosire', function ($query) use ($oras_plecare) {
                         $query->where('plecare_id', $oras_plecare);
                     })
