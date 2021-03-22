@@ -142,29 +142,29 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    
+
                                     @if (Auth::user()->id == 355)
 
                                         <form action='{{ url('users/loginas') }}' method='post'>
                                             @csrf
-                                        
+
                                             <select class="form-control" name='user_id' onchange='this.form.submit()'>
                                                 <option value="">Cont Agentie</option>
                                                 @foreach (\App\User::select('id', 'user_firma_id', 'username')->with('firma:id,nume')->orderBy('username', 'asc')->get() as $row)
                                                     <option value='{{{ $row->id }}}'>{{ $row->username }} - {{ $row->firma->nume }}</option>
                                                 @endforeach
-                                            </select>                                        
-                                        </form>                            
+                                            </select>
+                                        </form>
                                     @endif
-                                    
+
                                     @if (Session::get('hasClonedUser') == 355)
                                         <a class="dropdown-item" href="{{ route('loginas') }}"
                                             onclick="event.preventDefault(); document.getElementById('cloneuser-form').submit();"><span>Revenire la cont Dispecer</span></a>
                                         <form id="cloneuser-form" action="{{ url('users/loginas') }}" method="post">
                                             @csrf
-                                        </form>      
-                                    
-                                        <div class="dropdown-divider"></div>                                    
+                                        </form>
+
+                                        <div class="dropdown-divider"></div>
                                     @endif
 
 
@@ -189,7 +189,7 @@
             @include('notificari.afisare-notificari')
             @yield('content')
         </main>
-        
+
         <footer class="container mb-2 pb-2">
             <div class="row mb-0">
                 <div class="col-lg-4 my-1 py-1">
@@ -222,15 +222,13 @@
                         <li>
                             <a href="http://www.zuzu-transfer-aeroport.ro/cum-se-face-o-rezervare/" target="_blank">Cum se face o rezervare?</a>
                         </li>
-                    </ul>                    
+                    </ul>
                 </div>
                 <div class="col-lg-4 my-1 py-1">
                     <h5>Contact</h5>
-                    <b>Telefon Dispecerat:</b> +40 748 836 345
+                    <b>Telefon Dispecerat:</b> +40 766 862 890
                     <br>
-                    <span style="margin-left:163px;">+40 766 862 890</span> 
-                    <br>
-                    <span style="margin-left:163px;">+40 767 335 558</span>
+                    <span style="margin-left:154px;">+40 767 335 558</span>
                     <br>
                     <b>E-mail:</b> carabus25@yahoo.com
                     <br>

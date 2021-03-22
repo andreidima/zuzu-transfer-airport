@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('content')   
+@section('content')
 
         @include ('errors')
 
@@ -24,7 +24,7 @@
                             <br>
                                 Observații: <b>{{ $clienti_neseriosi->observatii }}</b>
                             </td>
-                        </tr>                       
+                        </tr>
                     </table>
 
             <div class="row justify-content-center">
@@ -45,13 +45,13 @@
 
 {{-- @extends('layouts.app')
 
-@section('content')   
+@section('content')
     <div class="">
 
         <div class="">
             <div class="row justify-content-center">
                 <div class="col-lg-7 bg-light border" style="word-break: break-word;">
-        
+
                     @if (session('status'))
                     <div class="alert alert-success">
                         {{ session('status') }}
@@ -60,14 +60,14 @@
 
                     {{ $rezervari->nume }}
                     <br>
-                    {{ $rezervari->telefon }} 
-                    <hr class="">          
+                    {{ $rezervari->telefon }}
+                    <hr class="">
                     <div class="row justify-content-between mb-3">
                         <div class="col-lg-6">
                             Imbarcare
                             <h5 class="d-inline">
-                                <span class="badge badge-danger"> 
-                                    @if(!empty($rezervari->cursa)) 
+                                <span class="badge badge-danger">
+                                    @if(!empty($rezervari->cursa))
                                         {{ $rezervari->cursa->oras_plecare->nume }}
                                     @endif
                                 </span>
@@ -76,17 +76,17 @@
                             Debarcare
                             <h5 class="d-inline">
                                 <span class="badge badge-danger">
-                                    @if(!empty($rezervari->cursa)) 
+                                    @if(!empty($rezervari->cursa))
                                         {{ $rezervari->cursa->oras_sosire->nume }}
                                     @endif
                                 </span>
                             </h5>
                         </div>
                         <div class="col-lg-6 text-center">
-                            Data: 
+                            Data:
                             <h5 class="d-inline">
                                 <span class="badge badge-primary">
-                                    @if(!empty($rezervari->ora_id)) 
+                                    @if(!empty($rezervari->ora_id))
                                         {{ \Carbon\Carbon::parse($rezervari->data_cursa)->format('d.m.Y') }}
                                     @endif
                                 </span>
@@ -95,7 +95,7 @@
                             Plecare
                             <h5 class="d-inline">
                                 <span class="badge badge-primary">
-                                    @if(!empty($rezervari->data_cursa)) 
+                                    @if(!empty($rezervari->data_cursa))
                                         Ora: {{ \Carbon\Carbon::parse($rezervari->ora->ora)->format('H:i') }}
                                     @endif
                                 </span>
@@ -106,11 +106,11 @@
                     <div class="row justify-content-between">
                         <div class="col-lg-12">
                             Stație îmbarcare:
-                            @if(!empty($rezervari->statie)) 
+                            @if(!empty($rezervari->statie))
                                 {{ $rezervari->statie->nume }}
                             @endif
                             {{ $rezervari->statie_imbarcare }}
-                            
+
                             <br>
 
                             Detalii zbor:
@@ -141,7 +141,7 @@
                                 <span class="badge badge-success">
                                     @if (($rezervari->comision_agentie == 0) && ($rezervari->tip_plata_id == 2))
                                         {{ $rezervari->pret_total }}
-                                    @else 
+                                    @else
                                         {{ $rezervari->comision_agentie - 0}}
                                     @endif
                                     lei
@@ -153,7 +153,7 @@
                                 <span class="badge badge-success">
                                     @if (($rezervari->comision_agentie == 0) && ($rezervari->tip_plata_id == 2))
                                         0
-                                    @else 
+                                    @else
                                         {{ $rezervari->pret_total - $rezervari->comision_agentie }}
                                     @endif
                                     lei
@@ -166,10 +166,10 @@
                         <div class="col-lg-10 text-center">
                             <hr>
                             <a class="btn btn-sm btn-primary mr-2" href="/rezervari/adauga" role="button">Adaugă o nouă Rezervare</a>
-                            
-                            
+
+
                                 <a class="btn btn-sm btn-primary mr-4" href="{{ $rezervari->path() }}/modifica" role="button">Modifică Rezervarea</a>
-                            
+
 
                                 <a href="{{ $rezervari->path() }}/export/rezervare-pdf"
                                     title="Descarcă bilet"
@@ -193,13 +193,13 @@
                                 <br>
                                 <p class="m-0">
                                     În funcție de numărul de pasageri circulă microbuz / autocar. Rezervarea este valabilă numai cu confirmarea agenției transportatoare.
-                                    Detalii la +40 786 574 788, +40 748 836 345, +40 766 862 890
+                                    Detalii la +40 766 862 890, +40 767 335 558
                                 </p>
                             </small>
                         </div>
                     </div>
 
-                </div>    
+                </div>
 
                 </div>
             </div>

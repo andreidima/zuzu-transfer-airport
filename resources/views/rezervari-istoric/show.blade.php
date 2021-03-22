@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('content')   
+@section('content')
 
         @include ('errors')
 
@@ -15,7 +15,7 @@
                                 Informații Călător
                                 </h4>
                             </td>
-                        </tr>                     
+                        </tr>
                         @if (in_array($rezervari->telefon, $telefoane_clienti_neseriosi))
                             <tr style="border-bottom:0px;">
                                 <td class="text-danger">
@@ -31,7 +31,7 @@
                             <br>
                                 E-mail: <b>{{ $rezervari->email }}</b>
                             </td>
-                        </tr>                       
+                        </tr>
                     </table>
 
                     <div class="p-0 text-center" style="border:5px solid #efe3b1; border-bottom:0px; border-top:0px;">
@@ -42,7 +42,7 @@
 
                     <div class="d-flex" style="border:5px solid #efe3b1; border-bottom:0px; border-top:0px;">
                         <div class="flex-fill">
-                            Imbarcare: 
+                            Imbarcare:
                             <br>
                             @if (!empty($rezervari->cursa->oras_plecare))
                                 @if ($rezervari->cursa->oras_plecare->nume == "Otopeni")
@@ -65,7 +65,7 @@
                                 </span>
                             @endif
                             <br>
-                            
+
                                 <span style="font-size:1rem;">
                                     {{ \Carbon\Carbon::parse($rezervari->data_cursa)->isoFormat('dddd') }}
                                 </span>
@@ -101,24 +101,24 @@
                                     {{ \Carbon\Carbon::parse($rezervari->ora->ora)
                                         ->addHours(\Carbon\Carbon::parse($rezervari->cursa->durata)->hour)
                                         ->addMinutes(\Carbon\Carbon::parse($rezervari->cursa->durata)->minute)
-                                        ->format('H:i') }}   
-                                </span>                          
+                                        ->format('H:i') }}
+                                </span>
                             @endif
                             <br>
-                            
+
                                 <span style="font-size:1rem;">
                                     {{ \Carbon\Carbon::parse($rezervari->data_cursa)
                                         ->addHours(\Carbon\Carbon::parse($rezervari->ora->ora)->hour)
-                                        ->addMinutes(\Carbon\Carbon::parse($rezervari->ora->ora)->minute) 
+                                        ->addMinutes(\Carbon\Carbon::parse($rezervari->ora->ora)->minute)
                                         ->addHours(\Carbon\Carbon::parse($rezervari->cursa->durata)->hour)
-                                        ->addMinutes(\Carbon\Carbon::parse($rezervari->cursa->durata)->minute)                               
+                                        ->addMinutes(\Carbon\Carbon::parse($rezervari->cursa->durata)->minute)
                                         ->isoFormat('dddd') }}
                                 </span>
                                 <br>
                                     <b>
                                     {{ \Carbon\Carbon::parse($rezervari->data_cursa)
                                         ->addHours(\Carbon\Carbon::parse($rezervari->ora->ora)->hour)
-                                        ->addMinutes(\Carbon\Carbon::parse($rezervari->ora->ora)->minute) 
+                                        ->addMinutes(\Carbon\Carbon::parse($rezervari->ora->ora)->minute)
                                         ->addHours(\Carbon\Carbon::parse($rezervari->cursa->durata)->hour)
                                         ->addMinutes(\Carbon\Carbon::parse($rezervari->cursa->durata)->minute)
                                         ->isoFormat('D MMM YYYY') }}
@@ -127,7 +127,7 @@
                         </div>
                     </div>
 
-                    {{-- <table class="table m-0" style="border:5px solid #efe3b1; border-bottom:0px; border-top:0px;">    
+                    {{-- <table class="table m-0" style="border:5px solid #efe3b1; border-bottom:0px; border-top:0px;">
                         <tr style="text-align:center; font-weight:bold;">
                             <td colspan="5" style="padding:0rem;">
                                 <h4 style="background-color:#e7d790; color:black; margin:0px 0px 2px 0px; padding:2px 0px">
@@ -137,7 +137,7 @@
                         </tr>
                         <tr valign="top">
                             <td style="">
-                                Imbarcare: 
+                                Imbarcare:
                                 <br>
                                 @if (!empty($rezervari->cursa->oras_plecare))
                                     @if ($rezervari->cursa->oras_plecare->nume == "Otopeni")
@@ -160,7 +160,7 @@
                                     </span>
                                 @endif
                                 <br>
-                                
+
                                     <span style="font-size:1rem;">
                                         {{ \Carbon\Carbon::parse($rezervari->data_cursa)->isoFormat('dddd') }}
                                     </span>
@@ -194,23 +194,23 @@
                                         {{ \Carbon\Carbon::parse($rezervari->ora->ora)
                                             ->addHours(\Carbon\Carbon::parse($rezervari->cursa->durata)->hour)
                                             ->addMinutes(\Carbon\Carbon::parse($rezervari->cursa->durata)->minute)
-                                            ->format('H:i') }}   
-                                    </span>                          
+                                            ->format('H:i') }}
+                                    </span>
                                 @endif
                                 <br>
-                                
+
                                     <span style="font-size:1rem;">
                                         {{ \Carbon\Carbon::parse($rezervari->data_cursa)
                                             ->addHours(\Carbon\Carbon::parse($rezervari->ora->ora)->hour)
-                                            ->addMinutes(\Carbon\Carbon::parse($rezervari->ora->ora)->minute) 
+                                            ->addMinutes(\Carbon\Carbon::parse($rezervari->ora->ora)->minute)
                                             ->addHours(\Carbon\Carbon::parse($rezervari->cursa->durata)->hour)
-                                            ->addMinutes(\Carbon\Carbon::parse($rezervari->cursa->durata)->minute)                               
+                                            ->addMinutes(\Carbon\Carbon::parse($rezervari->cursa->durata)->minute)
                                             ->isoFormat('dddd') }}
                                     </span>
                                     <br>
                                         {{ \Carbon\Carbon::parse($rezervari->data_cursa)
                                             ->addHours(\Carbon\Carbon::parse($rezervari->ora->ora)->hour)
-                                            ->addMinutes(\Carbon\Carbon::parse($rezervari->ora->ora)->minute) 
+                                            ->addMinutes(\Carbon\Carbon::parse($rezervari->ora->ora)->minute)
                                             ->addHours(\Carbon\Carbon::parse($rezervari->cursa->durata)->hour)
                                             ->addMinutes(\Carbon\Carbon::parse($rezervari->cursa->durata)->minute)
                                             ->isoFormat('D MMM YYYY') }}
@@ -218,28 +218,28 @@
                             </td>
                         </tr>
                     </table> --}}
-                              
-                    <table class="table m-0 mb-2" style="border:5px solid #efe3b1;"> 
+
+                    <table class="table m-0 mb-2" style="border:5px solid #efe3b1;">
                         <tr>
                             <td>
                                 Nr. persoane: <b>{{ $rezervari->nr_adulti +  $rezervari->nr_copii }}</b>
                             </td>
-                            <td>                          
+                            <td>
                                 Total plata acum:
                                     <b>
                                     @if (($rezervari->comision_agentie == 0) && ($rezervari->tip_plata_id == 2))
                                         {{ $rezervari->pret_total }}
-                                    @else 
+                                    @else
                                         {{ $rezervari->comision_agentie - 0}}
                                     @endif
                                     </b>
-                                    lei                                
-                                <br>                                
+                                    lei
+                                <br>
                                 Total plata la imbarcare:
                                     <b>
                                     @if (($rezervari->comision_agentie == 0) && ($rezervari->tip_plata_id == 2))
                                         0
-                                    @else 
+                                    @else
                                         {{ $rezervari->pret_total - $rezervari->comision_agentie }}
                                     @endif
                                     </b>
@@ -270,14 +270,14 @@
                                 <small>
                                     <p class="m-0">
                                         Prin finalizarea rezervării sunteți de acord cu <a href="https://www.zuzu-transfer-aeroport.ro/termeni-si-conditii/" target="_blank">termenii și condițiile</a> acestui site, precum și cu prelucrarea datelor cu caracter personal.
-                                    </p>                                
+                                    </p>
                                     <span class="text-danger">
                                         Neanunțarea telefonică cu minim 12 ore înainte de îmbarcare poate duce la pierderea biletelor rezervate!
                                     </span>
                                     <br>
                                     <p class="m-0">
                                         În funcție de numărul de pasageri circulă microbuz / autocar. Rezervarea este valabilă numai cu confirmarea agenției transportatoare.
-                                        Detalii la +40 786 574 788, +40 748 836 345, +40 766 862 890
+                                        Detalii la +40 766 862 890, +40 767 335 558
                                     </p>
                                 </small>
                             </td>
@@ -297,13 +297,13 @@
 
 {{-- @extends('layouts.app')
 
-@section('content')   
+@section('content')
     <div class="">
 
         <div class="">
             <div class="row justify-content-center">
                 <div class="col-lg-7 bg-light border" style="word-break: break-word;">
-        
+
                     @if (session('status'))
                     <div class="alert alert-success">
                         {{ session('status') }}
@@ -312,14 +312,14 @@
 
                     {{ $rezervari->nume }}
                     <br>
-                    {{ $rezervari->telefon }} 
-                    <hr class="">          
+                    {{ $rezervari->telefon }}
+                    <hr class="">
                     <div class="row justify-content-between mb-3">
                         <div class="col-lg-6">
                             Imbarcare
                             <h5 class="d-inline">
-                                <span class="badge badge-danger"> 
-                                    @if(!empty($rezervari->cursa)) 
+                                <span class="badge badge-danger">
+                                    @if(!empty($rezervari->cursa))
                                         {{ $rezervari->cursa->oras_plecare->nume }}
                                     @endif
                                 </span>
@@ -328,17 +328,17 @@
                             Debarcare
                             <h5 class="d-inline">
                                 <span class="badge badge-danger">
-                                    @if(!empty($rezervari->cursa)) 
+                                    @if(!empty($rezervari->cursa))
                                         {{ $rezervari->cursa->oras_sosire->nume }}
                                     @endif
                                 </span>
                             </h5>
                         </div>
                         <div class="col-lg-6 text-center">
-                            Data: 
+                            Data:
                             <h5 class="d-inline">
                                 <span class="badge badge-primary">
-                                    @if(!empty($rezervari->ora_id)) 
+                                    @if(!empty($rezervari->ora_id))
                                         {{ \Carbon\Carbon::parse($rezervari->data_cursa)->format('d.m.Y') }}
                                     @endif
                                 </span>
@@ -347,7 +347,7 @@
                             Plecare
                             <h5 class="d-inline">
                                 <span class="badge badge-primary">
-                                    @if(!empty($rezervari->data_cursa)) 
+                                    @if(!empty($rezervari->data_cursa))
                                         Ora: {{ \Carbon\Carbon::parse($rezervari->ora->ora)->format('H:i') }}
                                     @endif
                                 </span>
@@ -358,11 +358,11 @@
                     <div class="row justify-content-between">
                         <div class="col-lg-12">
                             Stație îmbarcare:
-                            @if(!empty($rezervari->statie)) 
+                            @if(!empty($rezervari->statie))
                                 {{ $rezervari->statie->nume }}
                             @endif
                             {{ $rezervari->statie_imbarcare }}
-                            
+
                             <br>
 
                             Detalii zbor:
@@ -393,7 +393,7 @@
                                 <span class="badge badge-success">
                                     @if (($rezervari->comision_agentie == 0) && ($rezervari->tip_plata_id == 2))
                                         {{ $rezervari->pret_total }}
-                                    @else 
+                                    @else
                                         {{ $rezervari->comision_agentie - 0}}
                                     @endif
                                     lei
@@ -405,7 +405,7 @@
                                 <span class="badge badge-success">
                                     @if (($rezervari->comision_agentie == 0) && ($rezervari->tip_plata_id == 2))
                                         0
-                                    @else 
+                                    @else
                                         {{ $rezervari->pret_total - $rezervari->comision_agentie }}
                                     @endif
                                     lei
@@ -418,10 +418,10 @@
                         <div class="col-lg-10 text-center">
                             <hr>
                             <a class="btn btn-sm btn-primary mr-2" href="/rezervari/adauga" role="button">Adaugă o nouă Rezervare</a>
-                            
-                            
+
+
                                 <a class="btn btn-sm btn-primary mr-4" href="{{ $rezervari->path() }}/modifica" role="button">Modifică Rezervarea</a>
-                            
+
 
                                 <a href="{{ $rezervari->path() }}/export/rezervare-pdf"
                                     title="Descarcă bilet"
@@ -445,13 +445,13 @@
                                 <br>
                                 <p class="m-0">
                                     În funcție de numărul de pasageri circulă microbuz / autocar. Rezervarea este valabilă numai cu confirmarea agenției transportatoare.
-                                    Detalii la +40 786 574 788, +40 748 836 345, +40 766 862 890
+                                    Detalii la +40 766 862 890, +40 767 335 558
                                 </p>
                             </small>
                         </div>
                     </div>
 
-                </div>    
+                </div>
 
                 </div>
             </div>

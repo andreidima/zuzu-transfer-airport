@@ -6,11 +6,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Bilet</title>
     <style>
-        html { 
+        html {
             margin: 40px 30px;
         }
 
-        body { 
+        body {
             font-family: DejaVu Sans, sans-serif;
             /* font-family: Arial, Helvetica, sans-serif; */
             font-size: 12px;
@@ -32,18 +32,18 @@
             width: 100%;
             word-wrap:break-word;
         }
-        
+
         th, td {
             padding: 1px 1px;
             border-width: 0px;
             border-style: solid;
-            
+
         }
         tr {
             border-style: solid;
             border-width: 0px;
         }
-        hr { 
+        hr {
             display: block;
             margin-top: 0.5em;
             margin-bottom: 0.5em;
@@ -51,15 +51,15 @@
             margin-right: auto;
             border-style: inset;
             border-width: 0.5px;
-        } 
+        }
     </style>
 </head>
 
 <body>
     {{-- <div style="width:730px; height: 1030px; border-style: dashed ; border-width:2px; border-radius: 15px;">      --}}
     <div style="border:dashed #999;
-        width:710px; 
-        min-height:600px;            
+        width:710px;
+        min-height:600px;
         padding: 0px 8px 0px 8px;
         margin:0px 0px;
             -moz-border-radius: 10px;
@@ -78,8 +78,8 @@
                         </td>
                     </tr>
                 </table>
-            
-                            
+
+
             <table>
                 <tr style="text-align:center; font-weight:bold;">
                     <td colspan="3" style="border-width:0px; padding:0rem;">
@@ -101,7 +101,7 @@
                 </tr>
             </table>
 
-            <table>    
+            <table>
                 <tr style="text-align:center; font-weight:bold;">
                     <td colspan="5" style="padding:0rem;">
                         <h3 style="background-color:#e7d790; color:black; margin:10px 0px 2px 0px; padding:2px 0px">
@@ -111,7 +111,7 @@
                 </tr>
                 <tr valign="top">
                     <td style="">
-                        Imbarcare: 
+                        Imbarcare:
                         <br>
                         @if (!empty($rezervari->cursa->oras_plecare))
                             @if ($rezervari->cursa->oras_plecare->nume == "Otopeni")
@@ -183,23 +183,23 @@
                                 {{ \Carbon\Carbon::parse($rezervari->ora->ora)
                                     ->addHours(\Carbon\Carbon::parse($rezervari->cursa->durata)->hour)
                                     ->addMinutes(\Carbon\Carbon::parse($rezervari->cursa->durata)->minute)
-                                    ->format('H:i') }}   
-                            </span>                          
+                                    ->format('H:i') }}
+                            </span>
                         @endif
                         <br>
-                        
+
                             <span style="font-size:1.2rem;">
                                 {{ \Carbon\Carbon::parse($rezervari->data_cursa)
                                     ->addHours(\Carbon\Carbon::parse($rezervari->ora->ora)->hour)
-                                    ->addMinutes(\Carbon\Carbon::parse($rezervari->ora->ora)->minute) 
+                                    ->addMinutes(\Carbon\Carbon::parse($rezervari->ora->ora)->minute)
                                     ->addHours(\Carbon\Carbon::parse($rezervari->cursa->durata)->hour)
-                                    ->addMinutes(\Carbon\Carbon::parse($rezervari->cursa->durata)->minute)                               
+                                    ->addMinutes(\Carbon\Carbon::parse($rezervari->cursa->durata)->minute)
                                     ->isoFormat('dddd') }}
                             </span>
                             <br>
                                 {{ \Carbon\Carbon::parse($rezervari->data_cursa)
                                     ->addHours(\Carbon\Carbon::parse($rezervari->ora->ora)->hour)
-                                    ->addMinutes(\Carbon\Carbon::parse($rezervari->ora->ora)->minute) 
+                                    ->addMinutes(\Carbon\Carbon::parse($rezervari->ora->ora)->minute)
                                     ->addHours(\Carbon\Carbon::parse($rezervari->cursa->durata)->hour)
                                     ->addMinutes(\Carbon\Carbon::parse($rezervari->cursa->durata)->minute)
                                     ->isoFormat('D MMM YYYY') }}
@@ -207,15 +207,15 @@
                             <span style="font-size:1.2rem;">
                                 {{ \Carbon\Carbon::createFromFormat('Y.m.d H:i', $rezervari->data_cursa)
                                     ->addHours(\Carbon\Carbon::parse($rezervari->ora->ora)->hour)
-                                    ->addMinutes(\Carbon\Carbon::parse($rezervari->ora->ora)->minute) 
+                                    ->addMinutes(\Carbon\Carbon::parse($rezervari->ora->ora)->minute)
                                     ->addHours(\Carbon\Carbon::parse($rezervari->cursa->durata)->hour)
-                                    ->addMinutes(\Carbon\Carbon::parse($rezervari->cursa->durata)->minute)                               
+                                    ->addMinutes(\Carbon\Carbon::parse($rezervari->cursa->durata)->minute)
                                     ->isoFormat('dddd') }}
                             </span>
                             <br>
                                 {{ \Carbon\Carbon::createFromFormat('Y.m.d H:i', $rezervari->data_cursa)
                                     ->addHours(\Carbon\Carbon::parse($rezervari->ora->ora)->hour)
-                                    ->addMinutes(\Carbon\Carbon::parse($rezervari->ora->ora)->minute) 
+                                    ->addMinutes(\Carbon\Carbon::parse($rezervari->ora->ora)->minute)
                                     ->addHours(\Carbon\Carbon::parse($rezervari->cursa->durata)->hour)
                                     ->addMinutes(\Carbon\Carbon::parse($rezervari->cursa->durata)->minute)
                                     ->isoFormat('D MMM YYYY') }}
@@ -225,7 +225,7 @@
                 </tr>
                 <tr>
                     <td colspan="5">
-                        Statie imbarcare: 
+                        Statie imbarcare:
                         @if (!empty($rezervari->statie))
                             {{ $rezervari->statie->nume }}
                         @else
@@ -234,7 +234,7 @@
                     </td>
                 </tr>
             </table>
-                            
+
             <table>
                 <tr style="text-align:center; font-weight:bold;">
                     <td colspan="6" style="border-width:0px; padding:0rem;">
@@ -277,21 +277,21 @@
                         {{ $rezervari->pret_total }} lei
                     </td>
                     <td style="border-style: solid; border-width:1px; padding: 0 0 0 5px;">
-                        
+
                     </td>
                 </tr>
-                {{-- <tr>                    
+                {{-- <tr>
                     <td style="border-style: solid; border-width:0px; padding: 0 0 0 5px;">
-                        
+
                     </td>
                     <td style="border-style: solid; border-width:0px; padding: 0 0 0 5px;">
-                        
+
                     </td>
                     <td style="border-style: solid; border-width:0px; padding: 0 0 0 5px;">
-                        
+
                     </td>
                     <td style="border-style: solid; border-width:0px; padding: 0 0 0 5px;">
-                        
+
                     </td>
                     <td style="border-style: solid; border-width:1px; padding: 0 5px 0 5px; text-align:right;">
                         Total
@@ -300,18 +300,18 @@
                         {{ $rezervari->pret_total }} lei
                     </td>
                 </tr> --}}
-                <tr>                    
+                <tr>
                     <td style="border-style: solid; border-width:0px; padding: 0 0 0 5px;">
-                        
+
                     </td>
                     <td style="border-style: solid; border-width:0px; padding: 0 0 0 5px;">
-                        
+
                     </td>
                     <td style="border-style: solid; border-width:0px; padding: 0 0 0 5px;">
-                        
+
                     </td>
                     <td style="border-style: solid; border-width:0px; padding: 0 0 0 5px;">
-                        
+
                     </td>
                     <td style="border-style: solid; border-width:1px; padding: 0 5px 0 5px; text-align:right;">
                         Achitat:
@@ -321,24 +321,24 @@
                             {{ $rezervari->pret_total }}
                         @elseif (($rezervari->comision_agentie == 0) && ($rezervari->tip_plata_id == 2))
                             {{ $rezervari->pret_total }}
-                        @else 
+                        @else
                             {{ $rezervari->comision_agentie - 0}}
                         @endif
                         lei
                     </td>
                 </tr>
-                <tr>                    
+                <tr>
                     <td style="border-style: solid; border-width:0px; padding: 0 0 0 5px;">
-                        
+
                     </td>
                     <td style="border-style: solid; border-width:0px; padding: 0 0 0 5px;">
-                        
+
                     </td>
                     <td style="border-style: solid; border-width:0px; padding: 0 0 0 5px;">
-                        
+
                     </td>
                     <td style="border-style: solid; border-width:0px; padding: 0 0 0 5px;">
-                        
+
                     </td>
                     <td style="border-style: solid; border-width:1px; padding: 0 5px 0 5px; text-align:right;">
                         Rest de plata:
@@ -348,14 +348,14 @@
                             0
                         @elseif (($rezervari->comision_agentie == 0) && ($rezervari->tip_plata_id == 2))
                             0
-                        @else 
+                        @else
                             {{ $rezervari->pret_total - $rezervari->comision_agentie }}
                         @endif
                         lei
                     </td>
                 </tr>
             </table>
-                            
+
             <table>
                 <tr style="text-align:center; font-weight:bold;">
                     <td style="border-width:0px; padding:0rem;">
@@ -369,14 +369,14 @@
                         <b>S.C. INTER LEMALIAN S.R.L.</b><br>
                         Traseu 1: Tecuci - Focsani - Rm. Sarat - Buzau - Otopeni si retur<br>
                         Traseu 2: Galati - Braila - Ianca - Buzau - Otopeni si retur<br>
-                        Telefon sofer: +40 762 646 917, +40 767 931 404<br>
-                        Telefon Dispecerat: +40 767 335 558, +40 748 836 345, +40 766 862 890<br>
-                        E-mail: carabus25@yahoo.com | 
+                        {{-- Telefon sofer: +40 762 646 917, +40 767 931 404<br> --}}
+                        Telefon Dispecerat: +40 767 335 558, +40 766 862 890<br>
+                        E-mail: carabus25@yahoo.com |
                         Website: www.zuzu-transfer-aeroport.ro
                     </td>
                 </tr>
             </table>
-                            
+
             <table>
                 <tr style="text-align:center; font-weight:bold;">
                     <td style="border-width:0px; padding:0rem;">
@@ -387,7 +387,7 @@
                 </tr>
                 <tr>
                     <td style="font-size:0.6rem">
-                        In functie de numarul de pasageri circula microbus/autocar.Rezervarea este valabila numai cu confirmarea agentiei transportatoare. 
+                        In functie de numarul de pasageri circula microbus/autocar.Rezervarea este valabila numai cu confirmarea agentiei transportatoare.
                         <br>
                         <b>Conditii generale de calatorie:</b> Rezervarile on-line trebuie facute cu cel putin 24 ore inaintea plecarii. In cazul in care datele personale/ datele si orele de calatorie au fost completate gresit pasagerul risca sa isi piarda rezervarea .Este necesar sa va prezentati la locul plecarii cu minim 15 minute inainte de plecarea catre Otopeni.  Orice intarziere, atrage responsabilitatea unilaterala a pasagerului intarziat.
                         <br>
@@ -397,11 +397,11 @@
                         <br>
                         <b>Obligatiile pasagerului:</b> Este interzis pasagerilor: deteriorarea sau murdarirea autocarului (microbuzului), obstructionarea in orice fel a conducatorului auto sau a celorlalte persoane din echipaj in indeplinirea in bune conditii a atributiilor specifice, cauzarea de neplaceri sau disconfort calatorilor din autocar (microbuz) sau altor participanti la trafic. Fumatul, comportamentul inadecvat si consumul bauturilor alcoolice si alimentelor in microbuz sunt strict interzise.
                         <br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Transportatorul  isi rezerva dreptul de a refuza transportul sau de a-l intrerupe fara dreptul la o despagubire sau rambursare a pretului biletului , in cazul in care pasagerul nu respecta conditiile de calatorie. 
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Transportatorul  isi rezerva dreptul de a refuza transportul sau de a-l intrerupe fara dreptul la o despagubire sau rambursare a pretului biletului , in cazul in care pasagerul nu respecta conditiile de calatorie.
 
                         {{-- In functie de numarul de pasageri circula microbuz / autocar. Rezervarea este valabila numai cu confirmarea agentiei transportatoare.<br>
-                        Detalii Dispecerat: <b>+40 748 836 345, +40 766 862 890, +40 767 335 558</b><br>
-                        
+                        Detalii Dispecerat: <br>
+
                         <b>Conditii generale de calatorie:</b><br>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         Rezervarile on-line trebuie facute cu cel putin 24 ore inaintea plecarii pentru a putea fi procesate in timp util.
@@ -412,7 +412,7 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         Orice intarziere, atrage responsabilitatea unilateral a pasagerului intarziat.
                         <br>
-                        
+
                         Intarzieri / anulari / modificari
                         <br>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -423,7 +423,7 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         S.C. INTER LEMALIAN SRL isi rezerva dreptul sa anuleze o cursa in cazul unui atac terorist, blocada, greva, conditii meteo nefavorabile, miscari sociale, probleme tehnice ale autocarului (microbuzului) sau alte circumstante ce ar putea constitui un impediment pentru efectuarea calatoriei.
                         <br>
-                        
+
                         <b>Bagaje:</b>
                         <br>
                         S.C. INTER LEMALIAN SRL nu isi asuma nici o responsabilitate pentru transportul bagajelor.
@@ -453,4 +453,3 @@
 </body>
 
 </html>
-    
