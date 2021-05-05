@@ -366,12 +366,12 @@
                 </tr>
                 <tr>
                     <td>
-                        <b>S.C. INTER LEMALIAN S.R.L.</b><br>
+                        <b>SC Gandalagi SRL</b><br>
                         Traseu 1: Tecuci - Focsani - Rm. Sarat - Buzau - Otopeni si retur<br>
                         Traseu 2: Galati - Braila - Ianca - Buzau - Otopeni si retur<br>
                         {{-- Telefon sofer: +40 762 646 917, +40 767 931 404<br> --}}
                         Telefon Dispecerat: +40 767 335 558, +40 766 862 890<br>
-                        E-mail: carabus25@yahoo.com |
+                        E-mail: rezervari@autoviptransfer.ro |
                         Website: www.zuzu-transfer-aeroport.ro
                     </td>
                 </tr>
