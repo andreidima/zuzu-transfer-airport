@@ -1,16 +1,4 @@
 <?php return array (
-  'adrianbarbos/mobilpay' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Adrianbarbos\\Mobilpay\\MobilpayServiceProvider',
-    ),
-    'aliases' => 
-    array (
-      'Omnipay' => 'Omnipay\\Omnipay',
-      'Mobilpay' => 'Adrianbarbos\\Mobilpay\\Mobilpay',
-    ),
-  ),
   'barryvdh/laravel-debugbar' => 
   array (
     'providers' => 
@@ -33,11 +21,15 @@
       'PDF' => 'Barryvdh\\DomPDF\\Facade',
     ),
   ),
-  'beyondcode/laravel-dump-server' => 
+  'facade/ignition' => 
   array (
     'providers' => 
     array (
-      0 => 'BeyondCode\\DumpServer\\DumpServerServiceProvider',
+      0 => 'Facade\\Ignition\\IgnitionServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Flare' => 'Facade\\Ignition\\Facades\\Flare',
     ),
   ),
   'fideloper/proxy' => 
@@ -45,6 +37,20 @@
     'providers' => 
     array (
       0 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
+    ),
+  ),
+  'fruitcake/laravel-cors' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Fruitcake\\Cors\\CorsServiceProvider',
+    ),
+  ),
+  'laravel/sail' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laravel\\Sail\\SailServiceProvider',
     ),
   ),
   'laravel/telescope' => 
@@ -59,6 +65,13 @@
     'providers' => 
     array (
       0 => 'Laravel\\Tinker\\TinkerServiceProvider',
+    ),
+  ),
+  'laravel/ui' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laravel\\Ui\\UiServiceProvider',
     ),
   ),
   'nesbot/carbon' => 
