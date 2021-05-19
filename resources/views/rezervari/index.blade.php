@@ -1,33 +1,43 @@
 @extends ('layouts.app')
 
-@section('content')   
+@section('content')
     <div class="container card">
         <div class="row card-header px-0">
             <div class="col-lg-2">
-                <h4 class="mt-2"><a href="/rezervari" style="color:#408080"><i class="fas fa-file-alt mr-1"></i>Rezervări</a></h4>
-            </div> 
-            <div class="col-lg-8 mb-2">             
+                <h4 class="mt-2"><a href="/rezervari"
+                    {{-- style="color:#408080" --}}
+                >
+                    <i class="fas fa-file-alt mr-1"></i>Rezervări</a>
+                </h4>
+            </div>
+            <div class="col-lg-8 mb-2">
                 <form class="needs-validation" novalidate method="GET" action="/rezervari">
-                    @csrf                    
+                    @csrf
                     <div class="input-group custom-search-form">
                         <div class="w-50">
                             <input type="text" class="form-control" name="search_nume_telefon" placeholder="Caută nume sau telefon...">
                         </div>
                         <div class="mx-4">
                             <span class="input-group-btn">
-                                <button class="btn btn-default-sm" type="submit" style="background-color:#408080">
+                                <button class="btn btn-default-sm btn-primary" type="submit"
+                                    {{-- style="background-color:#408080" --}}
+                                >
                                     <i class="fas fa-search text-white"></i>
                                 </button>
                             </span>
                         </div>
-                        <div class="w-25">                            
+                        <div class="w-25">
                             <input type="text" class="form-control" name="search_cod_bilet" placeholder="Caută cod bilet...">
                         </div>
                     </div>
                 </form>
             </div>
             <div class="col-lg-2">
-                <a class="btn text-white" href="/rezervari/adauga" role="button" style="background-color:#408080">Adaugă Rezervare</a>
+                <a class="btn btn-success text-white" href="/rezervari/adauga" role="button"
+                    {{-- style="background-color:#408080" --}}
+                >
+                    Adaugă Rezervare
+                </a>
             </div>
         </div>
     </div>
@@ -38,10 +48,10 @@
     </div>
     @endif
 
-    <div>
-        <table class="table table-sm" style="border:1px solid #333; width:100%;"> 
+    <div class="py-3">
+        <table class="table table-sm" style="border:1px solid #333; width:100%;">
             <thead>
-                <tr style="height:35px; background-color:#408080; text-align:center; color:white; font-size:0.7rem">
+                <tr style="height:35px; background-color:#EF9A3E; text-align:center; color:white; font-size:0.7rem">
                 <th class="px-0">Nr.<br>crt.</th>
                 @if (auth()->user()->isDispecer())
                     <th class="px-0">User</th>
@@ -75,8 +85,8 @@
                 @endif
                 </tr>
             </thead>
-            <tbody>               
-                @forelse ($rezervari as $rezervare)                         
+            <tbody>
+                @forelse ($rezervari as $rezervare)
                     @if ($rezervare->activa == 0)
                         <tr style="color:black; height:15px; line-height:30px; border-bottom:solid 1px #99F; background:#99F;">
                     @elseif (\Carbon\Carbon::parse($rezervare->created_at)->format('Y-m-d') === $rezervare->data_cursa
@@ -89,11 +99,11 @@
                                 && (!in_array($rezervare->ora_id, [293, 294, 307])))
                         <tr style="color:black; height:35px; line-height:30px; border-bottom:solid 1px #99F; background-color:palegoldenrod">
                     @elseif (in_array($rezervare->telefon, $telefoane_clienti_neseriosi))
-                        <tr style="color:black; height:35px; line-height:30px; border-bottom:solid 1px #99F; background:#c6fabf"> 
+                        <tr style="color:black; height:35px; line-height:30px; border-bottom:solid 1px #99F; background:#c6fabf">
                     @else
                         <tr style="color:black; height:35px; line-height:30px; border-bottom:solid 1px #99F;">
-                    @endif    
-                    
+                    @endif
+
                         <td align="center" class="px-0">
                             {{ $loop->iteration }}
                         </td>
@@ -104,17 +114,17 @@
                                             <span style="color:#3672ED; font-size:1.5rem; font-weight: bold;">
                                                 C
                                             </span>
-                                @elseif ($rezervare->user->firma->id == 1)                                                                                
-                                    <a href="#" 
+                                @elseif ($rezervare->user->firma->id == 1)
+                                    <a href="#"
                                         role="button"
-                                        data-toggle="modal" 
+                                        data-toggle="modal"
                                         data-target="#userRezervare{{ $rezervare->id }}"
                                         title="{{ $rezervare->user->nume }}"
                                         >
                                             <span style="color:#ed8336; font-size:1.5rem; font-weight: bold;">
                                                 D
                                             </span>
-                                    </a>                                    
+                                    </a>
 
                                     <!-- The Modal -->
                                     <div class="modal" id="userRezervare{{ $rezervare->id }}" >
@@ -140,17 +150,17 @@
                                             </div>
                                         </div>
                                     </div>
-                                @else                                                                            
-                                    <a href="#" 
+                                @else
+                                    <a href="#"
                                         role="button"
-                                        data-toggle="modal" 
+                                        data-toggle="modal"
                                         data-target="#userRezervare{{ $rezervare->id }}"
                                         title="{{ $rezervare->user->firma->nume }}"
                                         >
                                             <span style="color:#36BE39; font-size:1.5rem; font-weight: bold;">
                                                 A
                                             </span>
-                                    </a>                                    
+                                    </a>
 
                                     <!-- The Modal -->
                                     <div class="modal" id="userRezervare{{ $rezervare->id }}" >
@@ -179,7 +189,7 @@
                                 @endif
                             </td>
                         @endif
-                        
+
                         <td align="center" style="text-align:left; word-break: break-word;">
                                 <span title="Cod bilet: RO{{ $rezervare->id }}">
                                         {{ $rezervare->nume }}
@@ -211,7 +221,7 @@
                         <td align="center">
                             {{ $rezervare->zbor_ora_aterizare }}
                         </td>
-                        <td align="center">                                
+                        <td align="center">
                             {{ \Carbon\Carbon::parse($rezervare->ora)->format('H:i') }}
                         </td>
                         <td class="px-0" align="center">
@@ -221,7 +231,7 @@
                                 {{ $rezervare->tip_plata->nume }}
                             @else
                                 -
-                            @endif                                
+                            @endif
                         </td>
                         <td align="center">
                             {{ $rezervare->nr_adulti + $rezervare->nr_copii}}</a>
@@ -264,9 +274,9 @@
                                     </div>
                                 @elseif(!empty($rezervare->statie))
                                     <!-- Button to Open the Modal -->
-                                    <button type="button" 
-                                        class="btn btn-white btn-sm" 
-                                        data-toggle="modal" 
+                                    <button type="button"
+                                        class="btn btn-white btn-sm"
+                                        data-toggle="modal"
                                         data-target="#rezervareStatie{{ $rezervare->id }}"
                                         title="{{ $rezervare->statie->nume }}">
                                         <img src="{{ asset('images/icon-details.png') }}" height="">
@@ -314,31 +324,31 @@
                                 </a>
                             </div>
                         </td>
-                        <td align="center" style="border-right:#333 1px solid;" class="px-0">   
+                        <td align="center" style="border-right:#333 1px solid;" class="px-0">
                             @if (auth()->user()->isDispecer())
                                 <div style="min-width:90px;">
-                                    <div style="float:right; ">  
-                                        @if ($rezervare->activa == 1)  
-                                            <a class="btn btn-dark btn-sm" 
-                                                href="#" 
+                                    <div style="float:right; ">
+                                        @if ($rezervare->activa == 1)
+                                            <a class="btn btn-dark btn-sm"
+                                                href="#"
                                                 role="button"
-                                                data-toggle="modal" 
+                                                data-toggle="modal"
                                                 data-target="#activeazaAnuleazaRezervare{{ $rezervare->id }}"
                                                 title="Anulează Rezervarea"
                                                 >
                                                 <i class="fas fa-ban"></i>
                                             </a>
                                         @else
-                                            <a class="btn btn-success btn-sm" 
-                                                href="#" 
+                                            <a class="btn btn-success btn-sm"
+                                                href="#"
                                                 role="button"
-                                                data-toggle="modal" 
+                                                data-toggle="modal"
                                                 data-target="#activeazaAnuleazaRezervare{{ $rezervare->id }}"
                                                 title="Activează Rezervarea"
                                                 >
                                                 <i class="fas fa-check-circle"></i>
                                             </a>
-                                        @endif 
+                                        @endif
 
                                             <div class="modal fade text-dark" id="activeazaAnuleazaRezervare{{ $rezervare->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -350,7 +360,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body" style="text-align:left;">
-                                                        @if ($rezervare->activa == 1) 
+                                                        @if ($rezervare->activa == 1)
                                                             Ești sigur ca vrei să anulezi rezervarea?
                                                         @else
                                                             Ești sigur ca vrei să activezi rezervarea?
@@ -358,32 +368,32 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Renunță</button>
-                                                        
+
                                                         <form method="POST" action="{{ url('rezervari/activa', $rezervare->id) }}">
                                                             @method('PATCH')
-                                                            @csrf 
-                                                                @if ($rezervare->activa == 1)  
+                                                            @csrf
+                                                                @if ($rezervare->activa == 1)
                                                                     <button type="submit" class="btn btn-warning">
                                                                         Anulează Rezervare
-                                                                    </button> 
+                                                                    </button>
                                                                 @else
                                                                     <button type="submit" class="btn btn-success">
                                                                         Activează Rezervare
-                                                                    </button> 
-                                                                @endif                     
+                                                                    </button>
+                                                                @endif
                                                         </form>
-                                                    
+
                                                     </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                    </div> 
+                                    </div>
 
                                     <div style="float:right;" class="">
-                                        <a class="btn btn-danger btn-sm" 
-                                            href="#" 
+                                        <a class="btn btn-danger btn-sm"
+                                            href="#"
                                             role="button"
-                                            data-toggle="modal" 
+                                            data-toggle="modal"
                                             data-target="#stergeRezervare{{ $rezervare->id }}"
                                             title="Șterge Rezervarea"
                                             >
@@ -403,23 +413,23 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Renunță</button>
-                                                        
+
                                                         <form method="POST" action="{{ $rezervare->path() }}">
-                                                            @method('DELETE')  
-                                                            @csrf   
-                                                            <button 
-                                                                type="submit" 
-                                                                class="btn btn-danger"  
+                                                            @method('DELETE')
+                                                            @csrf
+                                                            <button
+                                                                type="submit"
+                                                                class="btn btn-danger"
                                                                 >
                                                                 Șterge Rezervare
-                                                            </button>                    
+                                                            </button>
                                                         </form>
-                                                    
+
                                                     </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                    </div> 
+                                    </div>
 
                                     <div style="float:right;" class="">
                                         <a href="{{ $rezervare->path() }}/modifica"
@@ -437,7 +447,7 @@
                                         </a>
                             @endif
                         </td>
-                    </tr>                                          
+                    </tr>
                 @empty
                     {{-- <div>Nu s-au gasit rezervări în baza de date. Încearcă alte date de căutare</div> --}}
                 @endforelse
@@ -451,7 +461,7 @@
                 <ul class="pagination justify-content-center">
                         {{$rezervari->appends(Request::except('page'))->links()}}
                 </ul>
-            </nav> 
+            </nav>
 
     </div>
 @endsection

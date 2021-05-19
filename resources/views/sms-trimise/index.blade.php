@@ -1,19 +1,19 @@
 @extends ('layouts.app')
 
-@section('content')   
+@section('content')
 <div class="container card" style="border-radius: 40px 40px 40px 40px;">
         <div class="row card-header justify-content-between py-1" style="border-radius: 40px 40px 0px 0px;">
             <div class="col-lg-3 align-self-center">
                 <h4 class=" mb-0">
                     <a href="{{ route('sms-trimise.index') }}"><i class="fas fa-sms mr-1"></i>SMS trimise</a>
                 </h4>
-            </div> 
+            </div>
             <div class="col-lg-8" id="app1">
                 <form class="needs-validation" novalidate method="GET" action="{{ route('sms-trimise.index') }}">
-                    @csrf                    
+                    @csrf
                     <div class="row input-group custom-search-form justify-content-end align-self-end">
                         <div class="col-md-3">
-                            <input type="text" class="form-control form-control-sm border rounded-pill mb-1 py-0" 
+                            <input type="text" class="form-control form-control-sm border rounded-pill mb-1 py-0"
                             id="search_nume" name="search_nume" placeholder="Nume" autofocus
                                     value="{{ $search_nume }}">
                         </div>
@@ -57,8 +57,8 @@
             @endif
 
             <div class="table-responsive rounded">
-                <table class="table table-striped table-hover table-sm rounded"> 
-                    <thead class="text-white rounded" style="background-color:#408080;">
+                <table class="table table-striped table-hover table-sm rounded">
+                    <thead class="text-white rounded" style="background-color:#EF9A3E;">
                         <tr class="" style="padding:2rem">
                             <th style="font-size:0.8rem">Nr. Crt.</th>
                             <th class="" style="">Rezervare</th>
@@ -68,14 +68,14 @@
                             <th class="text-right">Data trimitere</th>
                         </tr>
                     </thead>
-                    <tbody>               
-                        @forelse ($sms_trimise as $sms_trimis) 
-                            <tr>                  
+                    <tbody>
+                        @forelse ($sms_trimise as $sms_trimis)
+                            <tr>
                                 <td align="">
                                     {{ ($sms_trimise ->currentpage()-1) * $sms_trimise ->perpage() + $loop->index + 1 }}
                                 </td>
                                 <td>
-                                    <a class="" data-toggle="collapse" href="#collapse{{ $sms_trimis->id }}" role="button" 
+                                    <a class="" data-toggle="collapse" href="#collapse{{ $sms_trimis->id }}" role="button"
                                         aria-expanded="false" aria-controls="collapse{{ $sms_trimis->id }}"
                                         title="RO{{ $sms_trimis->rezervare->id ?? '' }}"
                                     >
@@ -101,14 +101,14 @@
                                 <td class="text-right">
                                     {{ \Carbon\Carbon::parse($sms_trimis->created_at)->isoFormat('HH:mm - DD.MM.YYYY') ?? '' }}
                                 </td>
-                            </tr> 
-                            <tr class="collapse bg-white" id="collapse{{ $sms_trimis->id }}" 
+                            </tr>
+                            <tr class="collapse bg-white" id="collapse{{ $sms_trimis->id }}"
                                 {{-- style="background-color:cornsilk" --}}
                             >
                                 <td colspan="6">
                                     <table class="table table-sm table-striped table-hover col-lg-6 mx-auto border"
                                 {{-- style="background-color:#008282" --}}
-                                    > 
+                                    >
                                         <tr>
                                             <td>
                                                 Confirmare SMS
@@ -139,12 +139,12 @@
                                         </tr> --}}
                                     </table>
                                 </td>
-                            </tr> 
+                            </tr>
                             <tr class="collapse">
                                 <td colspan="6">
 
-                                </td>                                       
-                            </tr> 
+                                </td>
+                            </tr>
                         @empty
                             <div>Nu s-au gasit rezervări în baza de date. Încearcă alte date de căutare</div>
                         @endforelse

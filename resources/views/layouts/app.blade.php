@@ -25,7 +25,7 @@
 </head>
 <body>
     <div>
-        <nav class="navbar navbar-expand-md navbar-dark py-0" style="background-color:#408080; font-size:1rem">
+        <nav class="navbar navbar-expand-lg navbar-dark py-4" style="background-color:#EF9A3E; font-size:1rem">
             <div class="container">
                 @guest
                 @else
@@ -46,7 +46,7 @@
                                 <a class="nav-link pr-0 mr-1" href="/rezervari">
                                     <i class="fas fa-address-card mr-1"></i>Rezervări
                                 </a>
-                                @if ((auth()->user()->id == 355) || (auth()->user()->id == 356))
+                                @if ((auth()->user()->id == 1) || (auth()->user()->id == 1))
                                     {{-- <button class="btn dropdown-toggle dropdown-toggle-split p-0 text-white mr-auto" data-toggle="dropdown"></button> --}}
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"></a>
                                     <div class="dropdown-menu">
@@ -67,7 +67,7 @@
                                         <a class="dropdown-item" href="/trasee/retur">Raport Retur</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="/rezervari-raport-zi">Raport / zi</a>
-                                        @if ((auth()->user()->id == 355) || (auth()->user()->id == 356))
+                                        @if ((auth()->user()->id == 1) || (auth()->user()->id == 1))
                                             <a class="dropdown-item" href="/rezervari/delete/mass-select">Ștergere rezervări</a>
                                         @endif
                                         <div class="dropdown-divider"></div>
@@ -134,7 +134,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-                                    @if (Auth::user()->id == 355)
+                                    @if (Auth::user()->id == 1)
 
                                         <form action='{{ url('users/loginas') }}' method='post'>
                                             @csrf
@@ -148,7 +148,7 @@
                                         </form>
                                     @endif
 
-                                    @if (Session::get('hasClonedUser') == 355)
+                                    @if (Session::get('hasClonedUser') == 1)
                                         <a class="dropdown-item" href="{{ route('loginas') }}"
                                             onclick="event.preventDefault(); document.getElementById('cloneuser-form').submit();"><span>Revenire la cont Dispecer</span></a>
                                         <form id="cloneuser-form" action="{{ url('users/loginas') }}" method="post">
@@ -181,7 +181,7 @@
             @yield('content')
         </main>
 
-        <footer class="container mb-2 pb-2">
+        {{-- <footer class="container mb-2 pb-2">
             <div class="row mb-0">
                 <div class="col-lg-4 my-1 py-1">
                     <ul class="my-0" style="list-style-image: url({{ asset('images/arrow.gif') }});"><h5>Informații</h5>
@@ -228,7 +228,7 @@
                     </a>
                 </div>
             </div>
-        </footer>
+        </footer> --}}
     </div>
 </body>
 </html>
