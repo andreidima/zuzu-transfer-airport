@@ -2,8 +2,9 @@
 
 @section('content')
 <div class="container p-0">
-    <div class="card p-0 mb-4" id="orase-ore-plecare">
-        <div class="d-flex justify-content-between card-header mb-1 text-white" style="background-color:#EF9A3E;">
+<div class="row justify-content-center">
+    <div class="card col-lg-8 p-0 mb-4" id="orase-ore-plecare">
+        <div class="d-flex justify-content-between card-header text-white" style="background-color:#EF9A3E;">
             <div class="flex flex-vertical-center">
                 <h4 class="mt-2">
                     {{-- <a href="/rezervari"><i class="fas fa-file-alt mr-1"></i>Rezervări</a> - Adaugă o rezervare nouă --}}
@@ -20,7 +21,9 @@
 
         @include ('errors')
 
-        <div class="card-body m-0 py-1 pb-4">
+        <div class="card-body m-0 py-1 pb-4"
+            style="background-color:#EF9A3E;"
+        >
             <form  class="needs-validation" novalidate method="POST" action="/adauga-rezervare-pasul-1" style="font-size:0.8rem">
                 @csrf
 
@@ -43,10 +46,13 @@
                     </div>
                 </div> --}}
 
-                <div class="form-row mb-0 d-flex justify-content-center">
-                    <div class="form-group col-lg-6 card bg-warning text-dark shadow-sm px-2 mb-0">
-                        <div class="form-row mb-2 d-flex justify-content-between">
-                            <div class="form-group col-lg-5 m-0">
+                <div class="form-row mb-0 d-flex justify-content-center text-white"
+                >
+                    <div class="form-group col-lg-12 card shadow-sm p-3 mb-1"
+                        style="background-color:#2C7996;"
+                    >
+                        <div class="form-row d-flex justify-content-between">
+                            <div class="form-group col-lg-5">
                                 <script type="application/javascript">
                                     orasPlecareVechi={!! json_encode(old('oras_plecare', "0")) !!}
                                     statieImbarcareVeche = 0
@@ -56,7 +62,7 @@
                                     pretTotal = 0
                                 </script>
                                 <label for="oras_plecare" class="mb-0">Plecare din:<span class="text-danger">*</span></label>
-                                    <select class="custom-select-sm custom-select {{ $errors->has('oras_plecare') ? 'is-invalid' : '' }}"
+                                    <select class="custom-select {{ $errors->has('oras_plecare') ? 'is-invalid' : '' }}"
                                         name="oras_plecare"
                                         v-model="oras_plecare"
                                         v-if="oras_plecare.id = 8"
@@ -452,5 +458,6 @@
             </div>
         </div>
     </div> --}}
+</div>
 </div>
 @endsection
