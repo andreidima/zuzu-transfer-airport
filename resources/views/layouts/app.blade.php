@@ -25,26 +25,29 @@
 </head>
 <body>
     <div>
-        <nav class="navbar navbar-expand-lg navbar-dark py-4" style="background-color:#EF9A3E; font-size:1rem">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#2C7996; font-size:1rem">
             <div class="container">
                 @guest
                 @else
                 {{-- <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Zuzu') }}
                 </a> --}}
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                {{-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                    <span class="navbar-toggler-icon"></span>
+                </button> --}}
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 @endguest
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto mr-4">
+                    <ul class="navbar-nav me-auto mr-4">
                         @guest
                         @else
-                            <li class="nav-item active mr-4 btn-group">
-                                <a class="nav-link pr-0 mr-1" href="/rezervari">
-                                    <i class="fas fa-address-card mr-1"></i>Rezervări
+                            <li class="nav-item mx-2">
+                                <a class="nav-link active" href="/rezervari">
+                                    <i class="fas fa-address-card mx-1"></i>Rezervări
                                 </a>
                                 @if ((auth()->user()->id == 1) || (auth()->user()->id == 1))
                                     {{-- <button class="btn dropdown-toggle dropdown-toggle-split p-0 text-white mr-auto" data-toggle="dropdown"></button> --}}
@@ -58,58 +61,54 @@
                             </li>
                             {{-- <li class="nav-item active ml-auto mr-4 dropdown"> --}}
                             @if (auth()->user()->isDispecer())
-                                <li class="nav-item active mr-4 dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-book mr-1"></i>Raport
+                                <li class="nav-item dropdown mx-2">
+                                    <a class="nav-link active dropdown-toggle" href="#" id="raport" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fas fa-book mx-1"></i>Raport
                                     </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="/trasee">Raport Tur</a>
-                                        <a class="dropdown-item" href="/trasee/retur">Raport Retur</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="/rezervari-raport-zi">Raport / zi</a>
+                                    <ul class="dropdown-menu" aria-labelledby="raport">
+                                        <li><a class="dropdown-item" href="/trasee">Raport Tur</a></li>
+                                        <li><a class="dropdown-item" href="/trasee/retur">Raport Retur</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="/rezervari-raport-zi">Raport / zi</a></li>
                                         @if ((auth()->user()->id == 1) || (auth()->user()->id == 1))
-                                            <a class="dropdown-item" href="/rezervari/delete/mass-select">Ștergere rezervări</a>
+                                            <li><a class="dropdown-item" href="/rezervari/delete/mass-select">Ștergere rezervări</a></li>
                                         @endif
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="/sms-trimise">Sms trimise</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="/statistica">Statistică</a>
-                                    </div>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="/sms-trimise">Sms trimise</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="/statistica">Statistică</a></li>
+                                    </ul>
                                 </li>
                             @endif
                             @if (auth()->user()->isDispecer())
-                                <li class="nav-item active mr-4">
-                                    <a class="nav-link" href="/agentii">
-                                        <i class="fas fa-handshake mr-1"></i>Agenții
+                                <li class="nav-item mx-2">
+                                    <a class="nav-link active" href="/agentii">
+                                        <i class="fas fa-handshake mx-1"></i>Agenții
                                     </a>
                                 </li>
                             @else
-                                <li class="nav-item active mr-4">
-                                    <a class="nav-link" href="/agentii/rezervari">
-                                        <i class="fas fa-book mr-1"></i>Raport
+                                <li class="nav-item mx-2">
+                                    <a class="nav-link active" href="/agentii/rezervari">
+                                        <i class="fas fa-book mx-1"></i>Raport
                                     </a>
                                 </li>
                             @endif
-                            <li class="nav-item active mr-4 btn-group">
-                                <a class="nav-link pr-0 mr-1" href="/instructiuni-rezervari">
-                                    <i class="fas fa-chalkboard-teacher mr-1"></i>Instrucțiuni Rezervări
+                            <li class="nav-item mx-2">
+                                <a class="nav-link active" href="/instructiuni-rezervari">
+                                    <i class="fas fa-chalkboard-teacher mx-1"></i>Instrucțiuni Rezervări
                                 </a>
-                                @if (auth()->user()->isDispecer())
-                                    {{-- <button class="btn dropdown-toggle dropdown-toggle-split p-0 text-white" data-toggle="dropdown"></button> --}}
-                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"></a>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item nav-link text-dark" href="{{ route('notificari.index') }}">
-                                            <i class="fas fa-calendar-check mr-1"></i>Notificări
-                                        </a>
-                                    </div>
-                                @endif
                             </li>
                             @if (auth()->user()->isDispecer())
-                                <li class="nav-item active mr-4">
-                                    <a class="nav-link" href="/clienti-neseriosi">
-                                        <i class="fas fa-user-slash mr-1"></i>Clienți neserioși
+                                <li class="nav-item dropdown mx-2">
+                                    <a class="nav-link active dropdown-toggle" href="#" id="utile" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fas fa-book mx-1"></i>Utile
                                     </a>
+                                    <ul class="dropdown-menu" aria-labelledby="utile">
+                                        <li><a class="dropdown-item" href="{{ route('notificari.index') }}">Notificări</a></li>
+                                        <li><a class="dropdown-item" href="/clienti-neseriosi">Clienți neserioși</a></li>
+                                    </ul>
                                 </li>
+
                             @endif
                         @endguest
                     </ul>
@@ -127,43 +126,24 @@
                                 </li>
                             @endif --}}
                         @else
-                            <li class="nav-item active dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->firma->nume }} <span class="caret"></span>
+                            <li class="nav-item dropdown mx-2">
+                                <a class="nav-link active dropdown-toggle" href="#" id="utile" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{ Auth::user()->firma->nume }}
                                 </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-
-                                    @if (Auth::user()->id == 1)
-
-                                        <form action='{{ url('users/loginas') }}' method='post'>
-                                            @csrf
-
-                                            <select class="form-control" name='user_id' onchange='this.form.submit()'>
-                                                <option value="">Cont Agentie</option>
-                                                @foreach (\App\User::select('id', 'user_firma_id', 'username')->with('firma:id,nume')->orderBy('username', 'asc')->get() as $row)
-                                                    <option value='{{{ $row->id }}}'>{{ $row->username }} - {{ $row->firma->nume }}</option>
-                                                @endforeach
-                                            </select>
-                                        </form>
-                                    @endif
-
-                                    @if (Session::get('hasClonedUser') == 1)
-                                        <a class="dropdown-item" href="{{ route('loginas') }}"
-                                            onclick="event.preventDefault(); document.getElementById('cloneuser-form').submit();"><span>Revenire la cont Dispecer</span></a>
-                                        <form id="cloneuser-form" action="{{ url('users/loginas') }}" method="post">
-                                            @csrf
-                                        </form>
-
-                                        <div class="dropdown-divider"></div>
-                                    @endif
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                {{ __('Logout') }}
+                                            </a>
+                                        </li>
+                                    </ul>
 
 
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                    {{-- <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
-                                    </a>
+                                    </a> --}}
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
