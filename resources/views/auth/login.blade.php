@@ -10,7 +10,7 @@
                         {{ __('Login') }}
                     </div>
                     <div>
-                        Zuzu Transfer Aeroport
+                        Zuzu Transfer Airport
                     </div>
                 </div>
 
@@ -83,33 +83,16 @@
         </div>
     </div>
 
-        {{-- <div class="row justify-content-center">
-            <span class="badge badge-info">Suport Tehnic:</span> Elena Lemnaru +40 765 296 796
-            <b>Suport Tehnic</b>: Elena Lemnaru +40 765 296 796
-        </div> --}}
 
     {{-- <div class="row justify-content-center">
-        <div class="col-md-4">    
-            <div class="card text-white bg-info mx-0  mb-4 p-0" style="max-width: 19rem;">
-                <div class="card-header my-0 py-0">
-                    <h5 class="my-0 py-0 text-center">Suport Tehnic</h5>
-                </div>
-                <div class="card-body my-0 py-0 text-center">
-                    Elena Lemnaru: +40 765 296 796
-                </div>
-            </div>
-        </div>    
-    </div> --}}
-
-    <div class="row justify-content-center">
-        <div class="col-md-4 text-center"> 
+        <div class="col-md-4 text-center">
             <div style="max-width: 19rem;">
                 <a href="{{ route('register') }}">
                     Înregistrare Agenție de Turism
-                </a> 
-            </div>              
-        </div>    
-    </div>
+                </a>
+            </div>
+        </div>
+    </div> --}}
 
 </div>
 @endsection

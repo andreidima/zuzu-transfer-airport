@@ -3,6 +3,15 @@
 @section('content')
 <div class="container p-0">
 <div class="row justify-content-center">
+    {{-- <div class="col-lg-1 p-0 mb-4" style="background-color:#EF9A3E; display: inline-block;">
+        <p class="text-white" style="transform: rotate(90deg); font-size:5rem;
+
+    white-space: nowrap;
+        "
+        >
+            Zuzu Transfer Airport
+        </p>
+    </div> --}}
     <div class="card col-lg-6 p-0 mb-4 " id="orase-ore-plecare">
         <div class="d-flex justify-content-between card-header text-white border border-dark" style="background-color:#2C7996;">
             <div class="flex flex-vertical-center">
@@ -404,8 +413,14 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-12 mb-0 d-flex justify-content-center">
-                        <button type="submit" class="btn btn-primary text-white border border-2 border-light">Verifică Rezervare</button>
+                    <div class="col-lg-12 mb-0">
+                        <div class="d-grid gap-2 col-6 mx-auto">
+                            <button type="submit" class="btn btn-lg btn-success text-white border border-4 border-light">
+                                <h4 class="mb-0">
+                                    Verifică Rezervarea
+                                </h4>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
