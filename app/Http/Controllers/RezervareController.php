@@ -29,15 +29,15 @@ class RezervareController extends Controller
     {
         // $rezervare = Rezervare::latest()->first();
         // dd($rezervare->updated_at->isoFormat('HH'));
-        // if (($rezervare->cursa->plecare_id !== 8) && 
-        //     (($rezervare->updated_at->isoFormat('HH') > 22) ? 
+        // if (($rezervare->cursa->plecare_id !== 8) &&
+        //     (($rezervare->updated_at->isoFormat('HH') > 22) ?
         //         (
         //             // dd('aici')
         //             $rezervare->updated_at->isoFormat('D.MM.YYYY') == \Carbon\Carbon::now()->isoFormat('D.MM.YYYY')
         //             ||
         //             $rezervare->updated_at->isoFormat('D.MM.YYYY') == \Carbon\Carbon::tomorrow()->isoFormat('D.MM.YYYY')
         //         )
-        //         : 
+        //         :
         //         $rezervare->updated_at->isoFormat('D.MM.YYYY') == \Carbon\Carbon::now()->isoFormat('D.MM.YYYY'))
         // ){
         //     dd('aici');
@@ -163,12 +163,12 @@ class RezervareController extends Controller
     {
         // $statii_imbarcare = OrasStatie::select('id', 'nume')
         //     ->where('oras_id', 4)
-        //     ->get(); 
+        //     ->get();
         // dd($statii_imbarcare);
         $curse = Cursa::select('id', 'plecare_id', 'sosire_id')
             ->get();
         $orase = Oras::has('curse_plecare')
-            ->orderBy('nume')        
+            ->orderBy('nume')
             ->get();
         $statii = OrasStatie::select('id', 'nume')
             ->orderBy('nume')
@@ -186,7 +186,7 @@ class RezervareController extends Controller
     public function orase_ore_rezervari(Request $request)
     {
         $pret_adult = 0;
-        $pret_copil = 0; 
+        $pret_copil = 0;
         $statii_imbarcare = '';
         $raspuns = '';
         switch ($_GET['request']) {
@@ -198,7 +198,7 @@ class RezervareController extends Controller
                     ->orderBy('nume')
                     ->get();
                 break;
-            case 'orase_sosire':        
+            case 'orase_sosire':
                 $oras_plecare = $request->oras_plecare;
                 $raspuns = Oras::select('id', 'nume')
                     ->whereNotIn('id', [12, 13]) // Fara Barlad sau Vaslui
@@ -209,9 +209,9 @@ class RezervareController extends Controller
                     ->get();
                 $statii_imbarcare = OrasStatie::select('id', 'nume')
                     ->where('oras_id', $oras_plecare)
-                    ->get();          
+                    ->get();
                 break;
-            case 'ore_plecare': 
+            case 'ore_plecare':
                 $cursa = Cursa::select('id', 'pret_adult', 'pret_copil')
                     ->where([
                         ['plecare_id', $request->oras_plecare],
@@ -291,7 +291,7 @@ class RezervareController extends Controller
                 }
                 break;
             default:
-                break;        
+                break;
         }
         return response()->json([
             'raspuns' => $raspuns,
@@ -321,13 +321,13 @@ class RezervareController extends Controller
         unset($rezervare_retur['oras_plecare'], $rezervare_retur['oras_sosire'], $rezervare_retur['ora_plecare'],
             $rezervare_retur['retur'], $rezervare_retur['retur_ora_id'], $rezervare_retur['retur_data_cursa'], $rezervare_retur['retur_zbor_oras_decolare'], $rezervare_retur['retur_zbor_ora_decolare'], $rezervare_retur['retur_zbor_ora_aterizare'],
             $rezervare_retur['plata_online'], $rezervare_retur['adresa']);
-        
+
         $rezervare_tur->user_id = auth()->user()->id;
         $rezervare_retur->user_id = auth()->user()->id;
-        
+
         $this->authorize('update', $rezervare_tur);
         $this->authorize('update', $rezervare_retur);
-        
+
         // $rezervare_tur->ora_id = $request->ora_id;
 
         $rezervare_retur->ora_id = $request->retur_ora_id;
@@ -360,7 +360,7 @@ class RezervareController extends Controller
         // setarea id-ului cursei in functie de orasele introduse
         $rezervare_tur->cursa_id = $cursa_id_tur->id;
         $rezervare_retur->cursa_id = $cursa_id_retur->id;
-        
+
         // Calcularea pretului total
         $pret_total = 0;
         $cursa = Cursa::select('id', 'pret_adult', 'pret_copil')
@@ -378,22 +378,22 @@ class RezervareController extends Controller
         $rezervare_retur->pret_total = $pret_total;
 
         // daca se bifeaza plata la agentie, automat comision = pret_tatal
-        // daca se introduce comision, automat se bifeaza plata la agentie        
+        // daca se introduce comision, automat se bifeaza plata la agentie
         if (is_numeric($request->comision_agentie) && ($request->comision_agentie > 0)) {
             $rezervare_tur->tip_plata_id = 2;
             $rezervare_retur->tip_plata_id = 2;
         }
         else if(empty($request->tip_plata_id)){
             $rezervare_tur->tip_plata_id = 1;
-            $rezervare_retur->tip_plata_id = 1;            
-        }        
+            $rezervare_retur->tip_plata_id = 1;
+        }
 
         // Trimitere email pentru rezervare tur si retur daca este cazul
         if (!empty($rezervare_tur->email)) {
             \Mail::to($rezervare_tur->email)->send(
                 new BiletClient($rezervare_tur, ($request->retur == "true" ? $rezervare_retur : null ))
             );
-        }   
+        }
 
         if ($request->retur == "false") {
             $rezervare_tur->save();
@@ -412,7 +412,7 @@ class RezervareController extends Controller
 
             $rezervare_tur->tur_retur = $rezervare_retur->id;
             $rezervare_tur->update();
-            
+
             $rezervare_retur->tur_retur = $rezervare_tur->id;
             $rezervare_retur->update();
 
@@ -424,8 +424,8 @@ class RezervareController extends Controller
             // dd($request);
             // if (($request->action == "cu_oferta") &&
             //     ($rezervare_tur->oferta == null) && ($rezervare_retur->oferta == null) &&
-            //     ($rezervare_tur->nr_adulti > 4) && ($rezervare_tur->tip_plata_id = 2) && 
-            //     ($rezervare_tur->tur_retur == $rezervare_retur->id) && 
+            //     ($rezervare_tur->nr_adulti > 4) && ($rezervare_tur->tip_plata_id = 2) &&
+            //     ($rezervare_tur->tur_retur == $rezervare_retur->id) &&
             //     (($rezervare_tur->cursa->oras_plecare->id == 2) || ($rezervare_tur->cursa->oras_plecare->id == 5) || ($rezervare_tur->cursa->oras_plecare->id == 6))
             //     ){
             //         $rezervare_tur->oferta = 1;
@@ -438,7 +438,7 @@ class RezervareController extends Controller
             // }
             if (($request->action == "cu_oferta") &&
                 ($rezervare_tur->oferta == null) && ($rezervare_retur->oferta == null) &&
-                ($rezervare_tur->nr_adulti > 4) && ($rezervare_tur->tip_plata_id = 2) && 
+                ($rezervare_tur->nr_adulti > 4) && ($rezervare_tur->tip_plata_id = 2) &&
                 ($rezervare_tur->tur_retur == $rezervare_retur->id)) {
                 if (($rezervare_tur->cursa->oras_plecare->id == 11) || ($rezervare_tur->cursa->oras_plecare->id == 9) || ($rezervare_tur->cursa->oras_plecare->id == 1)) {
                     $rezervare_tur->oferta = 1;
@@ -473,7 +473,7 @@ class RezervareController extends Controller
                     $rezervare_retur->pret_total = 0;
                     $rezervare_retur->update();
                 }
-            } 
+            }
 
             return redirect('/rezervari/tur_retur/'.$rezervare_tur->id.'/'.$rezervare_retur->id)->with('status', 'Rezervările tur si retur pentru clientul "' . $rezervare_tur->nume . '" au fost adăugate cu succes!');
         }
@@ -502,7 +502,7 @@ class RezervareController extends Controller
     }
     public function show_rezervare_tur_retur(Rezervare $rezervare_tur, Rezervare $rezervare_retur)
     {
-        $this->authorize('update', $rezervare_tur);        
+        $this->authorize('update', $rezervare_tur);
         $this->authorize('update', $rezervare_retur);
 
         $telefoane_clienti_neseriosi = ClientNeserios::pluck('telefon')->all();
@@ -531,9 +531,9 @@ class RezervareController extends Controller
      */
     public function update(Request $request, Rezervare $rezervari)
     {
-        if (auth()->user()->isDispecer()){ 
+        if (auth()->user()->isDispecer()){
             $this->validateRequest($request, $rezervari);
-            $this->authorize('update', $rezervari);    
+            $this->authorize('update', $rezervari);
 
             // aflarea id-ului cursei in functie de orasele introduse
             $cursa_id = Cursa::select('id')
@@ -565,7 +565,7 @@ class RezervareController extends Controller
             );
 
             $this->authorize('update', $rezervari);
-            
+
             $rezervari->update( $request->only(['telefon', 'statie_imbarcare']));
         }
 
@@ -600,7 +600,7 @@ class RezervareController extends Controller
                 //Trimitere sms
                 $this->trimiteSms($rezervari, ' Anulata');
             }
-            
+
             return redirect('/rezervari');
         }
     }
@@ -629,7 +629,7 @@ class RezervareController extends Controller
         $delete_rows_mesaj = '';
 
         if(isset($search_data_sfarsit)) {
-            $deleted_rows_number = Rezervare::where('data_cursa', '<', $search_data_sfarsit)->count();            
+            $deleted_rows_number = Rezervare::where('data_cursa', '<', $search_data_sfarsit)->count();
         }
 
         return view('rezervari.mass-delete', compact('search_data_sfarsit', 'deleted_rows_number', 'delete_rows_mesaj'));
@@ -683,7 +683,7 @@ class RezervareController extends Controller
                         return $query->where('telefon', $request->telefon)
                                     ->where('data_cursa', $request->data_cursa)
                                     ->where('ora_id', $request->ora_id);
-                    }),        
+                    }),
                 ]
                 :
                 ['required', 'max:200',
@@ -691,7 +691,7 @@ class RezervareController extends Controller
                         return $query->where('telefon', $request->telefon)
                                     ->where('data_cursa', $request->data_cursa)
                                     ->where('ora_id', $request->ora_id);
-                    }),        
+                    }),
                 ],
             'telefon' => (auth()->user() === null) ? [ 'required', 'regex:/^[0-9 ]+$/', 'max: 100'] : (auth()->user()->isDispecer() ? [ 'required', 'max:100'] : [ 'required ', 'regex:/^[0-9 ]+$/', 'max: 100']),
             // 'telefon' => [''],
@@ -710,7 +710,7 @@ class RezervareController extends Controller
             'retur_zbor_oras_decolare' => ['max:100'],
             'retur_zbor_ora_decolare' => ['max:100'],
             'retur_zbor_ora_aterizare' => ['max:100'],
-            
+
             'plata_online' => [''],
             // 'adresa' => ['required_if:plata_online,true', 'nullable', 'max:99'],
 
@@ -719,6 +719,7 @@ class RezervareController extends Controller
             'status' => [''],
             'plata_cu_card' => [''],
             'acord_de_confidentialitate' => auth()->user() === null ? ['required'] : [''],
+            'termeni_si_conditii' => auth()->user() === null ? ['required'] : [''],
             // 'oferta' => [''],
         ],
         [
@@ -746,7 +747,7 @@ class RezervareController extends Controller
         //     return $pdf->download($registru->id.'.pdf');
         // }
         // else{
-        // } 
+        // }
     }
 
 
@@ -763,7 +764,7 @@ class RezervareController extends Controller
         $curse = Cursa::select('id', 'plecare_id', 'sosire_id')
             ->get();
         $orase = Oras::has('curse_plecare')
-            ->orderBy('nume')        
+            ->orderBy('nume')
             ->get();
         $statii = OrasStatie::select('id', 'nume')
             ->orderBy('nume')
@@ -785,9 +786,9 @@ class RezervareController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function postAdaugaRezervare1(Request $request)
-    {       
+    {
             $request->session()->forget('rezervare');
-            $rezervare = Rezervare::make($this->validateRequest($request)); 
+            $rezervare = Rezervare::make($this->validateRequest($request));
 
                 // aflarea id-ului cursei in functie de orasele introduse
                 $cursa = Cursa::select('id', 'pret_adult', 'pret_copil')
@@ -796,7 +797,7 @@ class RezervareController extends Controller
                         ['sosire_id', $request->oras_sosire]
                     ])
                     ->first();
-                
+
                 // setarea id-ului cursei in functie de orasele introduse
                 $rezervare->cursa_id = $cursa->id;
 
@@ -835,7 +836,7 @@ class RezervareController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function postAdaugaRezervare2(Request $request)
-    {       
+    {
         // if(empty($request->session()->get('rezervare'))){
         //     $rezervare = new Rezervare();
         //     $rezervare->fill($this->validateRequest());
@@ -865,8 +866,8 @@ class RezervareController extends Controller
         $plata_online = $rezervare_array['plata_online'];
         unset($rezervare_array['cursa'], $rezervare_array['statie'], $rezervare_array['ora'], $rezervare_array['tip_plata'], $rezervare_array['id'],
             $rezervare_array['plata_online'], $rezervare_array['adresa']);
-            
-        
+
+
         // Verificare rezervare duplicat
         $request_verificare_duplicate = new Request([
             'nume' => $request->session()->get('rezervare.nume'),
@@ -882,12 +883,12 @@ class RezervareController extends Controller
             'nume.unique' => 'Această Rezervare este deja înregistrată.'
         ]);
 
-        
+
         //Inserarea rezervarii in baza de date
         $id = DB::table('rezervari')->insertGetId($rezervare_array);
-        
+
         // $id = $rezervari->save->insertGetId;
-        
+
         $rezervare->id = $id;
 
         // $rezervare->data_cursa = \Carbon\Carbon::createFromFormat('Y.m.d H:i', $rezervare->data_cursa)->format('d.m.Y');
@@ -905,7 +906,7 @@ class RezervareController extends Controller
         //     $rezervare->data_cursa = \Carbon\Carbon::createFromFormat('Y.m.d H:i', $rezervare->data_cursa)->format('d.m.Y');
         // }
         // $request->session()->put('rezervare', $rezervare);
-        // dd($request->session()->get('rezervare'));        
+        // dd($request->session()->get('rezervare'));
 
         // Trimitere email
         if (!empty($rezervare->email)) {
@@ -942,7 +943,7 @@ class RezervareController extends Controller
         //     $rezervare = DB::table('rezervari')->where('id', $payment->rezervare_id)->first();
         // }
 
-        if ($request->has('orderId')) {            
+        if ($request->has('orderId')) {
 
             $plata_online = \App\PlataOnline::where('order_id', $request->orderId)->latest()->first();
             $rezervare = \App\Rezervare::where('id', $plata_online->rezervare_id)->first();
@@ -960,13 +961,13 @@ class RezervareController extends Controller
 
         } else {
             $rezervare = $request->session()->get('rezervare');
-            
+
             return view('rezervari.guest-create/adauga-rezervare3', compact('rezervare'));
         }
 
         // $request->session()->forget('rezervare');
         // $request->session()->flush();
-        // dd (session()); 
+        // dd (session());
     }
 
     public function pdfexportguest(Request $request)
@@ -1001,7 +1002,7 @@ class RezervareController extends Controller
                     ) {
                         $trimite_sms = true;
                     }
-                    
+
                 } elseif (\Carbon\Carbon::parse($rezervare->data_cursa)->isoFormat('D.MM.YYYY') == \Carbon\Carbon::now()->isoFormat('D.MM.YYYY')) {
                     $trimite_sms = true;
                 }
@@ -1020,8 +1021,8 @@ class RezervareController extends Controller
         //             ||
         //             \Carbon\Carbon::parse($rezervare->data_cursa)->isoFormat('D.MM.YYYY') == \Carbon\Carbon::tomorrow()->isoFormat('D.MM.YYYY')
         //         )
-        //         : 
-        //         (    
+        //         :
+        //         (
         //             if (!in_array($rezervare->ora_id, [293, 294, 307])){
         //                 \Carbon\Carbon::parse($rezervare->data_cursa)->isoFormat('D.MM.YYYY') == \Carbon\Carbon::now()->isoFormat('D.MM.YYYY')
         //             }
@@ -1031,7 +1032,7 @@ class RezervareController extends Controller
 
         if ($trimite_sms) {
 
-            // Stabilirea pretului rezervarii - daca a fost platita sau nu, sau avans            
+            // Stabilirea pretului rezervarii - daca a fost platita sau nu, sau avans
             if ($rezervare->tip_plata_id == 3) {
                 $rezervare->pret_ramas_de_plata = 0;
             } elseif (($rezervare->comision_agentie == 0) && ($rezervare->tip_plata_id == 2)) {
@@ -1059,12 +1060,12 @@ class RezervareController extends Controller
             // $telefoane = ['0765296796'];
             $mesaj = (\Carbon\Carbon::parse($rezervare->ora->ora)->format('H:i') ?? '') . '. ' .
                 ($rezervare->cursa->oras_plecare->nume ?? '') .
-                (isset($rezervare->statie->nume) ? (' (' . $rezervare->statie->nume . ') ') : '') . 
-                ($rezervare->statie_imbarcare ? (' (' . $rezervare->statie_imbarcare . ') ') : '') . 
+                (isset($rezervare->statie->nume) ? (' (' . $rezervare->statie->nume . ') ') : '') .
+                ($rezervare->statie_imbarcare ? (' (' . $rezervare->statie_imbarcare . ') ') : '') .
                 $rezervare->nume . ' ' .
                 $rezervare->telefon . '. ' .
                 $rezervare->nr_adulti . ' adulti ' .
-                (($rezervare->nr_copii > 0) ? ('+ ' . $rezervare->nr_copii . ' copii') : '') . 
+                (($rezervare->nr_copii > 0) ? ('+ ' . $rezervare->nr_copii . ' copii') : '') .
                 ' = ' . $rezervare->pret_ramas_de_plata . ' lei. ' .
                 \Carbon\Carbon::parse($rezervare->data_cursa)->isoFormat('D.MM.YY') .
                 ($mesaj_aditional ? '. ' . $mesaj_aditional : '');
@@ -1072,17 +1073,17 @@ class RezervareController extends Controller
             foreach ($telefoane as $telefon) {
 
                 // ----------------------------------------------------------------------------
-                // 
+                //
                 //    Exemplu minimal pentru trimiterea de SMS-uri (PHP)
                 //    Serviciul SMS Gateway
                 //    Versiunea 1.1 / 12.04.2010
-                //    Distribuit gratuit    
+                //    Distribuit gratuit
                 //
                 // ----------------------------------------------------------------------------
 
                 // ----------------------------------------------------------------------------
-                //  Pasul 1    
-                //  Interogam SMS Gateway si salvam rezultatul trimis de acesta in variabila 
+                //  Pasul 1
+                //  Interogam SMS Gateway si salvam rezultatul trimis de acesta in variabila
                 //  pentru a putea interpreta statutul trimiterii
                 //   - Pentru HTTPS utilizati https://secure.smslink.ro
                 // ----------------------------------------------------------------------------
@@ -1103,7 +1104,7 @@ class RezervareController extends Controller
                 //  string Nivel;int ID Rezultat;string Mesaj;string[optional] Variabile
                 // ----------------------------------------------------------------------------
                 //  Pasul 2.1
-                //  Extragem din rezultat toate variabilele separate prin punct si virgula 
+                //  Extragem din rezultat toate variabilele separate prin punct si virgula
                 // ----------------------------------------------------------------------------
                 list($level, $id, $response, $variabiles) = explode(";", $content . ';');
 
@@ -1112,21 +1113,21 @@ class RezervareController extends Controller
                 //  Verificam daca mesajul trimis a fost transmis cu succes prin compararea
                 //  Nivelului si ID Rezultat
                 // ----------------------------------------------------------------------------
-                //  Daca mesajul este transmis atunci Nivelul va fi MESSAGE si ID- rezultat 
-                //  va avea valoarea numerica 1    
+                //  Daca mesajul este transmis atunci Nivelul va fi MESSAGE si ID- rezultat
+                //  va avea valoarea numerica 1
                 // ----------------------------------------------------------------------------
                 if (($level == "MESSAGE") and ($id == 1)) {
-                    // ------------------------------------------------------------------------    
+                    // ------------------------------------------------------------------------
                     //  Variabilele optionale transmise optional sunt separate prin virgula
                     //  si vor avea forma urmatoare:
-                    //  mixed Variabila 1,mixed Variabila 2 ... mixed Variabila 3                
+                    //  mixed Variabila 1,mixed Variabila 2 ... mixed Variabila 3
                     // ------------------------------------------------------------------------
                     $variabiles = explode(",", $variabiles);
 
                     // ------------------------------------------------------------------------
                     //  Extragem ID-ul Mesajului alocat de gateway pentru a il salva pentru
-                    //  utilizare ulterioara. Message ID  va fi intotdeauna prima variabila 
-                    //  trimisa, restul fiind explicate complet in documentatia de pe site. 
+                    //  utilizare ulterioara. Message ID  va fi intotdeauna prima variabila
+                    //  trimisa, restul fiind explicate complet in documentatia de pe site.
                     // ------------------------------------------------------------------------
                     $message_id = $variabiles[0];
 

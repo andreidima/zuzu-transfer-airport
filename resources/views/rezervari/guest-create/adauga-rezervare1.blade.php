@@ -3,28 +3,22 @@
 @section('content')
 <div class="container p-0">
 <div class="row justify-content-center">
-    {{-- <div class="col-lg-1 p-0 mb-4" style="background-color:#EF9A3E; display: inline-block;">
-        <p class="text-white" style="transform: rotate(90deg); font-size:5rem;
-
-    white-space: nowrap;
-        "
-        >
-            Zuzu Transfer Airport
-        </p>
-    </div> --}}
-    <div class="card col-lg-6 p-0 mb-4 " id="orase-ore-plecare">
-        <div class="d-flex justify-content-between card-header text-white border border-dark" style="background-color:#2C7996;">
+    <div class="col-lg-6 p-0 mb-4 " id="orase-ore-plecare">
+    <div class="shadow-lg bg-white" style="border-radius: 40px 40px 40px 40px;">
+        <div class="p-2 d-flex justify-content-between align-items-end"
+            style="border-radius: 40px 40px 0px 0px; border:2px solid #2C7996">
             <div class="flex flex-vertical-center">
-                <h3 class="mt-2">
+                <h3 class="mt-2" style="color:#2C7996">
                     {{-- <a href="/rezervari"><i class="fas fa-file-alt mr-1"></i>Rezervări</a> - Adaugă o rezervare nouă --}}
-                    Rezervare cursă
+                    <i class="fas fa-ticket-alt fa-lg mx-1"></i>Rezervare bilet călătorie</h3>
                 </h3>
             </div>
             <div>
                 {{-- <a class="btn btn-secondary" href="/rezervari" role="button">Renunță</a> --}}
-                <h3 class="mt-2">
+                {{-- <h3 class="mt-2">
                     Zuzu Transfer Airport
-                </h3>
+                </h3> --}}
+                <img src="{{ asset('images/logo_alb.jpg') }}" height="70" class="mx-3 border border-light border-2">
             </div>
         </div>
 
@@ -61,6 +55,9 @@
                         style="background-color:#2C7996;"
                     >
                         <div class="row justify-content-between">
+                            <div class="col-lg-12 mb-2 d-flex justify-content-center border-bottom">
+                                    <h4 class="mb-2">Detalii călătorie:</h4>
+                            </div>
                             <div class="col-lg-6 mb-3">
                                 <script type="application/javascript">
                                     orasPlecareVechi={!! json_encode(old('oras_plecare', "0")) !!}
@@ -101,36 +98,33 @@
                                     </select>
                             </div>
                         </div>
-                        <div class="row justify-content-between">
-                            <div class="col-lg-6 mb-3 d-flex">
-                                    <label for="pret_adult" class="col-form-label">Preț adult:</label>
-                                    <div class="mx-1" style="width:60px">
-                                        <input
-                                            type="text"
-                                            class="form-control {{ $errors->has('pret_adult') ? 'is-invalid' : '' }}"
-                                            name="pret_adult"
-                                            v-model="pret_adult"
-                                            value="{{ old('pret_adult') }}"
-                                            required
-                                            disabled>
-                                    </div>
-                                    <label for="pret_adult" class="col-form-label">lei</label>
+
+                        <div class="row">
+                            <div class="col-lg-6 mb-3">
+                                <label for="data_cursa" class="form-label mb-0">Data plecării:<span class="text-light">*</span></label>
+                                <vue2-datepicker
+                                    data-veche="{{ old('data_cursa') == '' ? '' : old('data_cursa') }}"
+                                    nume-camp-db="data_cursa"
+                                    tip="date"
+                                    latime="150"
+                                    not-before="{{ \Carbon\Carbon::today() }}"
+                                ></vue2-datepicker>
                             </div>
-                            <div class="col-lg-6 mb-3 d-flex">
-                                <label for="pret_copil" class="col-form-label">Preț copil <small>(2-7 ani)</small>:</label>
-                                <div class="mx-1" style="width:60px">
-                                    <input
-                                        type="text"
-                                        class="form-control {{ $errors->has('pret_copil') ? 'is-invalid' : '' }}"
-                                        name="pret_copil"
-                                        v-model="pret_copil"
-                                        value="{{ old('pret_copil') }}"
-                                        required
-                                        disabled>
-                                </div>
-                                <label id="pret_copil" class="col-form-label">
-                                    lei
-                                </label>
+                            <div class="col-lg-6 mb-2">
+                                <script type="application/javascript">
+                                    statieImbarcareVeche={!! json_encode(old('statie_id', "0")) !!}
+                                </script>
+                                <label for="statie_id" class="form-label mb-0">Stația de îmbarcare:</label>
+                                    <select class="form-select {{ $errors->has('statie_id') ? 'is-invalid' : '' }}"
+                                        name="statie_id"
+                                        v-model="statie_id"
+                                    >
+                                        <option v-for='statie_id in statii_imbarcare'
+                                            :value='statie_id.id'
+                                            >
+                                            @{{statie_id.nume}}
+                                        </option>
+                                    </select>
                             </div>
                         </div>
 
@@ -165,24 +159,6 @@
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-lg-6 mb-2">
-                                <script type="application/javascript">
-                                    statieImbarcareVeche={!! json_encode(old('statie_id', "0")) !!}
-                                </script>
-                                <label for="statie_id" class="form-label mb-0">Stația de îmbarcare:</label>
-                                    <select class="form-select {{ $errors->has('statie_id') ? 'is-invalid' : '' }}"
-                                        name="statie_id"
-                                        v-model="statie_id"
-                                    >
-                                        <option v-for='statie_id in statii_imbarcare'
-                                            :value='statie_id.id'
-                                            >
-                                            @{{statie_id.nume}}
-                                        </option>
-                                    </select>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -192,28 +168,9 @@
                         style="background-color:#2C7996;"
                     >
                         <div class="row justify-content-between">
-                            <div class="col-lg-6 mb-3">
-                                <label for="data_cursa" class="form-label mb-0">Data plecării:<span class="text-light">*</span></label>
-                                <vue2-datepicker
-                                    data-veche="{{ old('data_cursa') == '' ? '' : old('data_cursa') }}"
-                                    nume-camp-db="data_cursa"
-                                    tip="date"
-                                    latime="150"
-                                    not-before="{{ \Carbon\Carbon::today() }}"
-                                ></vue2-datepicker>
+                            <div class="col-lg-12 mb-2 d-flex justify-content-center border-bottom">
+                                    <h4 class="mb-2">Detalii despre călătoria cu avionul:</h4>
                             </div>
-                            <div class="col-lg-6 mb-3">
-                                <label for="zbor_ora_decolare" class="form-label mb-0">Oră decolare:</label>
-                                <input
-                                    type="text"
-                                    class="form-control {{ $errors->has('zbor_ora_decolare') ? 'is-invalid' : '' }}"
-                                    name="zbor_ora_decolare"
-                                    placeholder="00:00"
-                                    value="{{ old('zbor_ora_decolare') }}"
-                                    required>
-                            </div>
-                        </div>
-                        <div class="row">
                             <div class="col-lg-6 mb-3">
                                 <label for="zbor_oras_decolare" class="form-label mb-0">Oraș decolare avion:</label>
                                 <input
@@ -223,6 +180,18 @@
                                     placeholder=""
                                     value="{{ old('zbor_oras_decolare') }}"
                                     style="text-transform:uppercase"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 mb-3">
+                                <label for="zbor_ora_decolare" class="form-label mb-0">Oră decolare:</label>
+                                <input
+                                    type="text"
+                                    class="form-control {{ $errors->has('zbor_ora_decolare') ? 'is-invalid' : '' }}"
+                                    name="zbor_ora_decolare"
+                                    placeholder="00:00"
+                                    value="{{ old('zbor_ora_decolare') }}"
                                     required>
                             </div>
                             <div class="col-lg-6 mb-2">
@@ -236,6 +205,14 @@
                                     required>
                             </div>
                         </div>
+                        <div class="col-lg-12 px-2 border-start border-warning border-5"
+                            {{-- style="border-width:5px !important" --}}
+                        >
+
+                            <small>
+                                *Aceste informații ne ajută să vă transportăm în timp util și cât mai eficient pentru dumneavoastră.
+                            </small>
+                        </div>
                     </div>
                 </div>
 
@@ -243,7 +220,52 @@
                 <div class="row mb-3 justify-content-center text-white border border-white"
                 >
                     <div class="col-lg-12 shadow-sm p-3"
-                        style="background-color:#2C7996;"
+                        style="background-color:#006366;"
+                    >
+                        <div class="row justify-content-between">
+                            <div class="col-lg-12 mb-2 d-flex justify-content-center border-bottom">
+                                    <h4 class="mb-2">Prețuri bilete:</h4>
+                            </div>
+                        </div>
+                        <div class="row justify-content-between">
+                            <div class="col-lg-6 mb-0 d-flex">
+                                    <label for="pret_adult" class="col-form-label">Preț adult:</label>
+                                    <div class="mx-1" style="width:60px">
+                                        <input
+                                            type="text"
+                                            class="form-control {{ $errors->has('pret_adult') ? 'is-invalid' : '' }}"
+                                            name="pret_adult"
+                                            v-model="pret_adult"
+                                            value="{{ old('pret_adult') }}"
+                                            required
+                                            disabled>
+                                    </div>
+                                    <label for="pret_adult" class="col-form-label">lei</label>
+                            </div>
+                            <div class="col-lg-6 mb-0 d-flex">
+                                <label for="pret_copil" class="col-form-label">Preț copil <small>(2-7 ani)</small>:</label>
+                                <div class="mx-1" style="width:60px">
+                                    <input
+                                        type="text"
+                                        class="form-control {{ $errors->has('pret_copil') ? 'is-invalid' : '' }}"
+                                        name="pret_copil"
+                                        v-model="pret_copil"
+                                        value="{{ old('pret_copil') }}"
+                                        required
+                                        disabled>
+                                </div>
+                                <label id="pret_copil" class="col-form-label">
+                                    lei
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3 justify-content-center text-white border border-white"
+                >
+                    <div class="col-lg-12 shadow-sm p-3"
+                        style="background-color:#006366;"
                     >
                         <div class="row mb-3">
                             <label for="nume" class="col-lg-3 col-form-label pb-0">Nume client:<span class="text-light">*</span></label>
@@ -396,8 +418,8 @@
                             <div class="col-lg-12 my-2 px-2 border-start border-5 border-warning">
                                 <label for="" class="form-check-label small">Termeni și condiții:</label>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" name="acord_de_confidentialitate" value="1" required
-                                    {{ old('acord_de_confidentialitate') == '1' ? 'checked' : '' }}>
+                                    <input type="checkbox" class="form-check-input" name="termeni_si_conditii" value="1" required
+                                    {{ old('termeni_si_conditii') == '1' ? 'checked' : '' }}>
                                         <label class="form-check-label" for="termeni_si_conditii" style="font-size: 0.7rem">
                                             *Sunt de acord cu condițiile generale de transport persoane -
                                             <a href="/termeni-si-conditii" target="_blank">
@@ -415,7 +437,7 @@
 
                     <div class="col-lg-12 mb-0">
                         <div class="d-grid gap-2 col-6 mx-auto">
-                            <button type="submit" class="btn btn-lg btn-success text-white border border-4 border-light">
+                            <button type="submit" class="btn btn-lg btn-primary text-white border border-4 border-light">
                                 <h4 class="mb-0">
                                     Verifică Rezervarea
                                 </h4>
@@ -430,18 +452,8 @@
         </div>
     </div>
 
-    @include ('layouts.grila-ore')
-
-    {{-- <div class="justify-content">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <img src="{{ asset('images/grile-ore/Galati - Otopeni.jpg') }}" width="245px">
-                <img src="{{ asset('images/grile-ore/Otopeni - Galati.jpg') }}" width="237px">
-                <img src="{{ asset('images/grile-ore/Tecuci - Otopeni.jpg') }}" width="277px">
-                <img src="{{ asset('images/grile-ore/Otopeni - Tecuci.jpg') }}" width="275px">
-            </div>
-        </div>
-    </div> --}}
+    {{-- @include ('layouts.grila-ore') --}}
+    </div>
 </div>
 </div>
 @endsection

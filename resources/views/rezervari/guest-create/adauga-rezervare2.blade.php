@@ -158,7 +158,7 @@
                         @endif
                     </form>
 
-                    <a class="btn btn-secondary border border-2 border-light" href="https://www.zuzu-transfer-airoport.ro/" role="button">Anulează rezervarea</a>
+                    <a class="btn btn-secondary border border-2 border-light" href="https://www.zuzu-transfer-airport.ro/" role="button">Anulează rezervarea</a>
 
                 </div>
             </div>
