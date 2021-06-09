@@ -209,7 +209,7 @@
                             {{-- style="border-width:5px !important" --}}
                         >
 
-                            <small>
+                            <small style="font-size: 0.7rem">
                                 *Aceste informații ne ajută să vă transportăm în timp util și cât mai eficient pentru dumneavoastră.
                             </small>
                         </div>

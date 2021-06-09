@@ -811,7 +811,7 @@ class RezervareController extends Controller
                 // stergerea oraselor din request, se foloseste id-ul cursei in DB
                 // stergerea ore_plecare din request, se foloseste ora_id orei in DB
                 unset($rezervare['oras_plecare'], $rezervare['oras_sosire'], $rezervare['ora_plecare'], $rezervare['cursa'], $rezervare['statie'], $rezervare['ora'],
-                    $rezervare['acord_de_confidentialitate']);
+                    $rezervare['acord_de_confidentialitate'], $rezervare['termeni_si_conditii']);
 
             $request->session()->put('rezervare', $rezervare);
 
@@ -846,10 +846,10 @@ class RezervareController extends Controller
         //     $rezervare->fill($this->validateRequest());
         //     $request->session()->put('rezervare', $rezervare);
         // }
-
+        // $rezervare = new Rezervare();
         $rezervare = $request->session()->get('rezervare');
-        $rezervare->created_at = \Carbon\Carbon::now();
-        $rezervare->updated_at = \Carbon\Carbon::now();
+        // $rezervare->created_at = \Carbon\Carbon::now()->toDateTimeString();
+        // $rezervare->updated_at = \Carbon\Carbon::now();
         $rezervare->tip_plata_id = 1;
 
 
@@ -885,11 +885,15 @@ class RezervareController extends Controller
 
 
         //Inserarea rezervarii in baza de date
-        $id = DB::table('rezervari')->insertGetId($rezervare_array);
+        $rezervare->save();
+
+        dd($rezervare);
+        // $id = DB::table('rezervari')->insertGetId($rezervare_array);
+
 
         // $id = $rezervari->save->insertGetId;
 
-        $rezervare->id = $id;
+        // $rezervare->id = $id;
 
         // $rezervare->data_cursa = \Carbon\Carbon::createFromFormat('Y.m.d H:i', $rezervare->data_cursa)->format('d.m.Y');
 
