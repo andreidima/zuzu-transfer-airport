@@ -1,40 +1,36 @@
 @extends('layouts.app')
 
-@section('content')   
-    <div class="container card px-0">
-        <div class="d-flex justify-content-between card-header mb-4">
+@section('content')
+<div class="container p-0">
+<div class="row justify-content-center">
+    <div class="col-lg-6 p-0 mb-4">
+    <div class="shadow-lg bg-white" style="border-radius: 40px 40px 40px 40px;">
+        <div class="p-2 d-flex justify-content-between align-items-end"
+            style="border-radius: 40px 40px 0px 0px; border:2px solid #2C7996">
             <div class="flex flex-vertical-center">
-                <h4 class="mt-2">
-                    Rezervare cursă
-                </h4>
+                <h3 class="mt-2" style="color:#2C7996">
+                    <i class="fas fa-ticket-alt fa-lg mx-1"></i>Rezervare finalizată</h3>
+                </h3>
             </div>
             <div>
-                <h4 class="mt-2">                    
-                    Zuzu Transfer Aeroport
-                </h4>
-
+                <img src="{{ asset('images/logo_alb.jpg') }}" height="70" class="mx-3 border border-light border-2">
             </div>
-        </div>    
-{{-- 
-        <div>
-            @php
-                dd( $rezervare->statie_id);
-            @endphp
-        </div> --}}
+        </div>
 
-        <div class="card-body">
-            <div class="form-row">
-                <div class="col-sm-2">
-                </div>
-                <div class="col-sm-8 text-center p-0" style="border:5px solid #efe3b1;">
-                    <h4 style="background-color:#e7d790; color:black; padding:2px 0px;">
-                    Rezervarea a fost înregistrată cu codul RO{{ $rezervare->id }}
-                    </h4>
+        @include ('errors')
+
+        <div class="py-4 px-5 border border-dark" style="background-color:#EF9A3E; border-radius: 0px 0px 40px 40px">
+            <div class="row" style="background-color:#EF9A3E;">
+
+                <div class="col-lg-12 border rounded" style="background-color:#2C7996;">
+                    <h5 class="text-white p-1 m-0 text-center">
+                        Rezervarea a fost înregistrată cu codul RO{{ $rezervare->id }}
+                    </h5>
                     @isset($plata_online)
                         <br>
                         @if ($plata_online->error_code == 0 )
                             Plata rezervării s-a efectuat cu succes!
-                        @else                            
+                        @else
                             Plata rezervării nu s-a efectuat cu succes!
                             <br>
                             Aveți posibilitatea să faceți plata la șofer.
@@ -44,35 +40,40 @@
                         Starea plății pentru această rezervare este: {{ $plata_online->error_message }}
                         <br> --}}
                     @endisset
-                    <br>
-                    Biletul de rezervare v-a fost trimis pe email, dar îl puteți salva și tipări și de aici                     
-                    <div class="form-row">
-                        <div class="col-sm-12 text-center"> 
-                            <a href="/bilet-rezervat"
-                                class="btn btn-success"
-                                role="button"
-                                target="_blank"
-                                title="Descarcă bilet"
-                                >
-                                <h5 class="p-0 m-0">Descarcă Biletul</h5>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <br>
-                    <br>
-                    
-                    <a href="https://search.google.com/local/writereview?placeid=ChIJpewnP6UYtEARTNdthvoB5vk" target="_blank">
-                        Ești mulțumit de serviciile noastre? Lasă-ne te rog un review!
-                        <br>
-                        <img src="{{ asset('images/review-stars.png') }}" width="50px">
-                    </a>
+                </div>
 
-                    <hr>
-                    <a href="https://www.zuzu-transfer-aeroport.ro/">INAPOI LA PAGINA PRINCIPALĂ</a>
+                <div class="col-lg-12 py-4 rounded border bg-white text-center">
+                    <a href="/bilet-rezervat"
+                        class="btn btn-success text-white"
+                        role="button"
+                        target="_blank"
+                        title="Descarcă bilet"
+                        >
+                        <h5 class="p-0 m-0">Descărcați și tipăriți biletul de rezervare</h5>
+                    </a>
                 </div>
-                <div class="col-sm-2">
+
+                <div class="col-lg-12 p-4 rounded border bg-white">
+                    Pentru orice detalii legate de această rezervare, ne puteți contacta la:
+                    <ul>
+                        <li>
+                            Telefon: 0761 329 420
+                        </li>
+                        <li>
+                            Email: <a href="mailto:office@transportcorsica.ro">office@transportcorsica.ro</a>
+                        </li>
+                    </ul>
+
+                    <div class="text-center">
+                        <a href="https://www.zuzu-transfer-airport.ro/"
+                            class="btn btn-primary text-white"
+                            role="button"
+                            >
+                            INAPOI LA PAGINA PRINCIPALĂ
+                        </a>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>

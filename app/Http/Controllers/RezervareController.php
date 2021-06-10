@@ -887,7 +887,7 @@ class RezervareController extends Controller
         //Inserarea rezervarii in baza de date
         $rezervare->save();
 
-        dd($rezervare);
+        // dd($rezervare);
         // $id = DB::table('rezervari')->insertGetId($rezervare_array);
 
 
