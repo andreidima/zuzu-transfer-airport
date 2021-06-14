@@ -332,8 +332,8 @@
                                             <a class="btn btn-dark btn-sm"
                                                 href="#"
                                                 role="button"
-                                                data-toggle="modal"
-                                                data-target="#activeazaAnuleazaRezervare{{ $rezervare->id }}"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#activeazaAnuleazaRezervare{{ $rezervare->id }}"
                                                 title="Anulează Rezervarea"
                                                 >
                                                 <i class="fas fa-ban"></i>
@@ -342,22 +342,20 @@
                                             <a class="btn btn-success btn-sm"
                                                 href="#"
                                                 role="button"
-                                                data-toggle="modal"
-                                                data-target="#activeazaAnuleazaRezervare{{ $rezervare->id }}"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#activeazaAnuleazaRezervare{{ $rezervare->id }}"
                                                 title="Activează Rezervarea"
                                                 >
                                                 <i class="fas fa-check-circle"></i>
                                             </a>
                                         @endif
 
-                                            <div class="modal fade text-dark" id="activeazaAnuleazaRezervare{{ $rezervare->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal fade text-dark" id="activeazaAnuleazaRezervare{{ $rezervare->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                     <div class="modal-header bg-warning">
                                                         <h5 class="modal-title" id="exampleModalLabel">Client: <b>{{ $rezervare->nume }}</b></h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                        </button>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body" style="text-align:left;">
                                                         @if ($rezervare->activa == 1)
@@ -367,7 +365,7 @@
                                                         @endif
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Renunță</button>
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Renunță</button>
 
                                                         <form method="POST" action="{{ url('rezervari/activa', $rezervare->id) }}">
                                                             @method('PATCH')
@@ -390,11 +388,11 @@
                                     </div>
 
                                     <div style="float:right;" class="">
-                                        <a class="btn btn-danger btn-sm"
+                                        <a class="btn btn-danger btn-sm text-white"
                                             href="#"
                                             role="button"
-                                            data-toggle="modal"
-                                            data-target="#stergeRezervare{{ $rezervare->id }}"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#stergeRezervare{{ $rezervare->id }}"
                                             title="Șterge Rezervarea"
                                             >
                                             <i class="far fa-trash-alt"></i>
@@ -404,22 +402,20 @@
                                                     <div class="modal-content">
                                                     <div class="modal-header bg-danger">
                                                         <h5 class="modal-title text-white" id="exampleModalLabel">Client: <b>{{ $rezervare->nume }}</b></h5>
-                                                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                        </button>
+                                                        <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body" style="text-align:left;">
                                                         Ești sigur ca vrei să ștergi rezervarea?
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Renunță</button>
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Renunță</button>
 
                                                         <form method="POST" action="{{ $rezervare->path() }}">
                                                             @method('DELETE')
                                                             @csrf
                                                             <button
                                                                 type="submit"
-                                                                class="btn btn-danger"
+                                                                class="btn btn-danger text-white"
                                                                 >
                                                                 Șterge Rezervare
                                                             </button>

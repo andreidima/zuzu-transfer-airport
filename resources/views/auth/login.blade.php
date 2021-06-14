@@ -3,9 +3,9 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-lg-6">
             <div class="card">
-                <div class="card-header d-flex justify-content-between">
+                <div class="card-header text-white d-flex justify-content-between" style="background-color:#2C7996">
                     <div>
                         {{ __('Login') }}
                     </div>
@@ -18,7 +18,7 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
-                        <div class="form-group row">
+                        <div class="row mb-2">
                             <label for="username" class="col-md-4 col-form-label text-md-right">Email / Username</label>
 
                             <div class="col-md-6">
@@ -32,7 +32,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="row mb-2">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
@@ -46,7 +46,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="row mb-2">
                             <div class="col-md-6 offset-md-4">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
@@ -60,7 +60,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary text-white">
                                     {{ __('Login') }}
                                 </button>
 
@@ -78,8 +78,8 @@
     </div>
 
     <div class="row justify-content-center">
-        <div class="col-md-4">
-            <img class="my-3 py-3" src="{{ asset('images/logo-zuzu.png') }}" style="width:300px; padding:0rem; margin:0rem;">
+        <div class="col-lg-6 mx-auto text-center">
+            <img class="my-3 py-3" src="{{ asset('images/logo_alb.jpg') }}" style="width:300px; padding:0rem; margin:0rem;">
         </div>
     </div>
 

@@ -75,15 +75,15 @@
                                     {{ ($sms_trimise ->currentpage()-1) * $sms_trimise ->perpage() + $loop->index + 1 }}
                                 </td>
                                 <td>
-                                    <a class="" data-toggle="collapse" href="#collapse{{ $sms_trimis->id }}" role="button"
+                                    {{-- <a class="" data-toggle="collapse" href="#collapse{{ $sms_trimis->id }}" role="button"
                                         aria-expanded="false" aria-controls="collapse{{ $sms_trimis->id }}"
                                         title="RO{{ $sms_trimis->rezervare->id ?? '' }}"
                                     >
                                         <b>{{ $sms_trimis->rezervare->nume ?? '' }}</b>
-                                    </a>
-                                    {{-- <a href="{{ isset($sms_trimis->client) ? $sms_trimis->client->path() : ''}}">
-                                        <b>{{ $sms_trimis->client->nume ?? '' }}</b>
                                     </a> --}}
+                                    <a href="{{ isset($sms_trimis->rezervare) ? $sms_trimis->rezervare->path() : ''}}">
+                                        <b>{{ $sms_trimis->rezervare->nume ?? '' }}</b>
+                                    </a>
                                 </td>
                                 <td class="">
                                     {{ $sms_trimis->telefon }}

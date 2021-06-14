@@ -1,19 +1,19 @@
 @extends ('layouts.app')
 
-@section('content')   
+@section('content')
     <div class="container card px-0">
         <div class="card-header">
             <div class="">
                 <h4 class="mt-2"><i class="fas fa-file-alt mr-1"></i>Rezervari - extragere rapoarte</h4>
-            </div> 
+            </div>
         </div>
         <div class="card-body">
             <div class="" id="rezervari-raport-zi">
                 <form class="needs-validation" novalidate method="GET" action="/rezervari-raport-zi">
-                    @csrf                    
+                    @csrf
                     <div class="input-group custom-search-form row d-flex justify-content-center m-0">
-                        <div class="form-group d-flex col-8 justify-content-center">
-                        <div class="row">
+                        <div class="form-group col-lg-8 justify-content-center">
+                        <div class="row mb-4">
                             <div class="col-lg-3">
                                 <label for="search_data_inceput" class="mb-0">Data început</label>
                                 <vue2-datepicker
@@ -39,32 +39,32 @@
                                 ></vue2-datepicker>
                             </div>
                             <div class="col-lg-3">
-                                <script type="application/javascript"> 
+                                <script type="application/javascript">
                                     searchOrasVechi={!! json_encode($search_oras, "0") !!}
-                                </script>  
+                                </script>
                                 <label for="search_oras" class="mb-0">Plecare din:</label>
-                                    <select class="custom-select"
+                                    <select class="form-select"
                                         name="search_oras"
                                         v-model="search_oras"
                                     @change='getOrePlecare()'
                                     >
-                                            <option v-for='search_oras in orase_plecare'                                
-                                            :value='search_oras.id'                                       
+                                            <option v-for='search_oras in orase_plecare'
+                                            :value='search_oras.id'
                                             >@{{search_oras.nume}}</option>
                                     </select>
                             </div>
                             <div class="col-lg-3">
-                                <script type="application/javascript"> 
+                                <script type="application/javascript">
                                     searchOraVeche={!! json_encode($search_ora, "0") !!}
-                                </script>        
+                                </script>
                                 <label for="search_ora" class="mb-0">Ora plecare:</label>
-                                    <select class="custom-select"
+                                    <select class="form-select"
                                         name="search_ora"
                                         v-model="search_ora"
                                     >
                                         {{-- <option value="0">Selectează Oras sosire</option> --}}
-                                        <option v-for='search_ora in ore_plecare'                                
-                                            :value='search_ora.id'                                       
+                                        <option v-for='search_ora in ore_plecare'
+                                            :value='search_ora.id'
                                             >
                                             @{{search_ora.ora}}
                                         </option>
@@ -72,14 +72,14 @@
                             </div>
                         </div>
                         </div>
-                        <div class="form-group d-flex align-self-end col-12 justify-content-center"> 
-                            <button class="btn bg-primary text-white mr-4" type="submit">
+                        <div class="form-group d-flex align-self-end col-12 justify-content-center">
+                            <button class="btn bg-primary text-white mx-4" type="submit">
                                 <i class="fas fa-search"></i>Caută rezervări
                             </button>
                             <a class="btn bg-secondary text-white" href="/rezervari-raport-zi" role="button">
                                 Resetează
                             </a>
-                        </div>                  
+                        </div>
                     </div>
 
                     <div>
@@ -91,13 +91,13 @@
 
     <div class="container-fluid px-0 table-responsive-lg">
         {{-- Traseu Otopeni - Tecuci/Galati  --}}
-                @php 
+                @php
                     ($total_persoane = 0)
                 @endphp
-                    @forelse ($rezervari as $rezervare)    
+                    @forelse ($rezervari as $rezervare)
 
                         @if ($loop->first)
-                            <table class="table table-sm" style="border:1px solid #333; width:100%;"> 
+                            <table class="table table-sm" style="border:1px solid #333; width:100%;">
                                 <thead>
                                     <tr style="height:35px; background-color:#336699; text-align:center; color:white;">
                                     <th>Nr.<br>crt.</th>
@@ -116,13 +116,13 @@
                                     <th>Plata</th>
                                     <th>Nr.<br />pers.</th>
                                     <th align="center">Statie<br />imbarcare</th>
-                                    <th colspan="3">Diverse</th>
+                                    {{-- <th colspan="3">Diverse</th> --}}
                                     </tr>
                                 </thead>
-                                <tbody>                             
+                                <tbody>
                         @endif
 
-                        @php 
+                        @php
                             ($total_persoane = $total_persoane + $rezervare->nr_adulti + $rezervare->nr_copii)
                         @endphp
                         @if ($rezervare->activa == 0)
@@ -134,8 +134,8 @@
                             <tr bgcolor=yellow style="color:black; height:35px; line-height:30px; border-bottom:solid 1px #99F;">
                         @else
                             <tr style="color:black; height:35px; line-height:30px; border-bottom:solid 1px #99F;">
-                        @endif    
-                        
+                        @endif
+
                             <td align="center">
                                 {{ ($rezervari ->currentpage()-1) * $rezervari ->perpage() + $loop->index + 1 }}
                             </td>
@@ -144,17 +144,17 @@
                                             <span style="color:#3672ED; font-size:1.5rem; font-weight: bold;">
                                                 C
                                             </span>
-                                @elseif ($rezervare->user->firma->id == 1)                                                                                
-                                    <a href="#" 
+                                @elseif ($rezervare->user->firma->id == 1)
+                                    <a href="#"
                                         role="button"
-                                        data-toggle="modal" 
+                                        data-toggle="modal"
                                         data-target="#userRezervare{{ $rezervare->id }}"
                                         title="{{ $rezervare->user->nume }}"
                                         >
                                             <span style="color:#ed8336; font-size:1.5rem; font-weight: bold;">
                                                 D
                                             </span>
-                                    </a>                                    
+                                    </a>
 
                                     <!-- The Modal -->
                                     <div class="modal" id="userRezervare{{ $rezervare->id }}" >
@@ -180,17 +180,17 @@
                                             </div>
                                         </div>
                                     </div>
-                                @else                                                                            
-                                    <a href="#" 
+                                @else
+                                    <a href="#"
                                         role="button"
-                                        data-toggle="modal" 
+                                        data-toggle="modal"
                                         data-target="#userRezervare{{ $rezervare->id }}"
                                         title="{{ $rezervare->user->firma->nume }}"
                                         >
                                             <span style="color:#36BE39; font-size:1.5rem; font-weight: bold;">
                                                 A
                                             </span>
-                                    </a>                                    
+                                    </a>
 
                                     <!-- The Modal -->
                                     <div class="modal" id="userRezervare{{ $rezervare->id }}" >
@@ -245,17 +245,17 @@
                             <td align="center">
                                 {{ $rezervare->data_cursa }}
                             </td>
-                            <td align="center">  
-                                @if(!empty($rezervare->ora))    
+                            <td align="center">
+                                @if(!empty($rezervare->ora))
                                     {{ \Carbon\Carbon::parse($rezervare->ora)->format('H:i') }}
                                 @endif
                             </td>
                             <td align="center">
-                                @if(!empty($rezervare->ora))    
+                                @if(!empty($rezervare->ora))
                                     {{ \Carbon\Carbon::parse($rezervare->ora)
                                         ->addHours(\Carbon\Carbon::parse($rezervare->cursa->durata)->hour)
                                         ->addMinutes(\Carbon\Carbon::parse($rezervare->cursa->durata)->minute)
-                                        ->format('H:i') }}  
+                                        ->format('H:i') }}
                                 @endif
                             </td>
                             <td align="center">
@@ -265,7 +265,7 @@
                                     {{ $rezervare->tip_plata->nume }}
                                 @else
                                     -
-                                @endif                                
+                                @endif
                             </td>
                             <td align="center">
                                 {{ $rezervare->nr_adulti + $rezervare->nr_copii}}</a>
@@ -277,16 +277,16 @@
                                     {{ $rezervare->statie_imbarcare }}
                                 @endif
                             </td>
-                            <td align="center" style="border-right:#333 1px solid;">   
+                            {{-- <td align="center" style="border-right:#333 1px solid;">
                                 <div style="min-width:90px;">
-                                    <div style="float:right; ">  
-                                        <form  
-                                            class="needs-validation" novalidate 
+                                    <div style="float:right; ">
+                                        <form
+                                            class="needs-validation" novalidate
                                             method="POST" action="{{ url('rezervari/activa', $rezervare->id) }}">
                                                 @method('PATCH')
-                                                @csrf  
-                                            
-                                            @if ($rezervare->activa == 1) 
+                                                @csrf
+
+                                            @if ($rezervare->activa == 1)
                                                 <button type="submit" class="btn btn-dark btn-sm" title="Anulează Rezervarea">
                                                     <i class="fas fa-ban"></i>
                                                 </button>
@@ -295,15 +295,15 @@
                                                     <i class="fas fa-check-circle"></i>
                                                 </button>
                                             @endif
-                                            
-                                        </form> 
-                                    </div> 
+
+                                        </form>
+                                    </div>
 
                                     <div style="float:right;" class="">
-                                        <a class="btn btn-danger btn-sm" 
-                                            href="#" 
+                                        <a class="btn btn-danger btn-sm"
+                                            href="#"
                                             role="button"
-                                            data-toggle="modal" 
+                                            data-toggle="modal"
                                             data-target="#stergeRezervare{{ $rezervare->id }}"
                                             title="Șterge Rezervarea"
                                             >
@@ -323,23 +323,23 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Renunță</button>
-                                                        
+
                                                         <form method="POST" action="{{ $rezervare->path() }}">
-                                                            @method('DELETE')  
-                                                            @csrf   
-                                                            <button 
-                                                                type="submit" 
-                                                                class="btn btn-danger"  
+                                                            @method('DELETE')
+                                                            @csrf
+                                                            <button
+                                                                type="submit"
+                                                                class="btn btn-danger"
                                                                 >
                                                                 Șterge Rezervare
-                                                            </button>                    
+                                                            </button>
                                                         </form>
-                                                    
+
                                                     </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                    </div> 
+                                    </div>
 
                                     <div style="float:right;" class="">
                                         <a href="{{ $rezervare->path() }}/modifica"
@@ -349,20 +349,20 @@
                                         </a>
                                     </div>
                                 </div>
-                            </td>
-                        </tr>  
-                        
-                        @if ($loop->last) 
+                            </td> --}}
+                        </tr>
+
+                        @if ($loop->last)
                                 </tbody>
                             </table>
                         @endif
                     @empty
-                    @endforelse 
-                    
+                    @endforelse
+
                     <p class="text-center">
                         <b>TOTAL PERSOANE: {{ $total_persoane }}</b>
                     </p>
-                      
+
                 <nav>
                     <ul class="pagination pagination-sm justify-content-center">
                         {{$rezervari->appends(Request::except('page'))->links()}}

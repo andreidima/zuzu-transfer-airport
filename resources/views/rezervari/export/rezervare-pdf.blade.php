@@ -69,7 +69,7 @@
                 <table style="">
                     <tr style="">
                         <td style="border-width:0px; padding:0rem; margin:0rem; width:40%">
-                            <img src="{{ asset('images/logo-zuzu.png') }}" width="300px">
+                            <img src="{{ asset('images/logo_alb.jpg') }}" width="300px">
                         </td>
                         <td style="border-width:0px; padding:0rem; margin:0rem; width:60%; text-align:center; font-size:16px">
                             REZERVA BILET
@@ -366,13 +366,13 @@
                 </tr>
                 <tr>
                     <td>
-                        <b>SC Gandalagi SRL</b><br>
+                        <b>Zuzu Transfer Airport</b><br>
                         Traseu 1: Tecuci - Focsani - Rm. Sarat - Buzau - Otopeni si retur<br>
                         Traseu 2: Galati - Braila - Ianca - Buzau - Otopeni si retur<br>
                         {{-- Telefon sofer: +40 762 646 917, +40 767 931 404<br> --}}
-                        Telefon Dispecerat: +40 767 335 558, +40 766 862 890<br>
-                        E-mail: rezervari@autoviptransfer.ro |
-                        Website: www.zuzu-transfer-aeroport.ro
+                        Telefon Dispecerat: <br>
+                        E-mail:  |
+                        Website: www.zuzu-transfer-airport.ro
                     </td>
                 </tr>
             </table>

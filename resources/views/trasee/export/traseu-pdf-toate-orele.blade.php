@@ -6,8 +6,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Raport</title>
     <style>
-        body { 
-            font-family: DejaVu Sans, sans-serif; 
+        body {
+            font-family: DejaVu Sans, sans-serif;
             font-size: 11px;
         }
 
@@ -23,26 +23,26 @@
             margin-top: 0px;
             border-style: solid;
             border-width:0px;
-            width: 100%; 
+            width: 100%;
             word-wrap:break-word;
             /* word-break: break-all; */
             /* table-layout: fixed; */
         }
-        
+
         th, td {
             padding: 1px 1px;
             border-width:1px;
             border-style: solid;
             table-layout:fixed;
             font-weight: normal;
-            
+
         }
         tr {
             /* text-align:; */
             /* border-style: solid;
             border-width:1px; */
         }
-        hr { 
+        hr {
             display: block;
             margin-top: 0.5em;
             margin-bottom: 0.5em;
@@ -50,15 +50,15 @@
             margin-right: auto;
             border-style: inset;
             border-width: 0.5px;
-        } 
+        }
     </style>
 </head>
 
 <body>
     {{-- <div style="width:730px; height: 1030px; border-style: dashed ; border-width:2px; border-radius: 15px;">      --}}
     <div style="border:dashed #999;
-        width:690px; 
-        min-height:600px;            
+        width:690px;
+        min-height:600px;
         padding: 15px 10px 15px 10px;
         margin:0px 0px;
             -moz-border-radius: 10px;
@@ -66,14 +66,14 @@
             border-radius: 10px;">
 
         @switch($trasee_nume->id)
-            @case(1) 
-            @case(2)   
+            @case(1)
+            @case(2)
                 @break
-            @case(3)                       
+            @case(3)
                 <table style="">
                     <tr style="">
                         <td style="border-width:0px; padding:0rem; width:40%">
-                                <img src="{{ asset('images/logo-zuzu.png') }}" width="150px">
+                                <img src="{{ asset('images/logo_alb.jpg') }}" width="150px">
                         </td>
                         <td style="border-width:0px; padding:0rem; width:60%; text-align:center; font-size:16px">
                             Tip traseu: RETUR
@@ -91,7 +91,7 @@
                 </p> --}}
 
                 <br>
-                
+
                 <table style="width:660px;">
                     <tr style="background-color:#e7d790;">
                         <th style="width:20px;">Nr. crt.</th>
@@ -106,13 +106,13 @@
                         <th style="width:30px;">Plata</th>
                         <th style="width:25px;">Nr. pers</th>
                     </tr>
-                    @php 
+                    @php
                         $nrcrt = 1;
                         $nr_persoane = 0;
-                        $suma = 0;    
+                        $suma = 0;
                     @endphp
-                    
-                @forelse ($trasee_nume->trasee as $traseu) 
+
+                @forelse ($trasee_nume->trasee as $traseu)
                     @forelse ($traseu->curse_ore as $cursa_ora)
                         @forelse ($cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1) as $rezervare)
                             @if (in_array($rezervare->telefon, $telefoane_clienti_neseriosi))
@@ -143,19 +143,19 @@
                                         {{ $rezervare->statie_imbarcare }}
                                     @elseif(!empty($rezervare->statie))
                                         {{ $rezervare->statie->nume }}
-                                    @endif 
+                                    @endif
                                 </td>
                                 <td>
                                     @if (empty($rezervare->user))
                                         <span style="color:#3672ED; font-size:2rem; margin:0px; padding:0px;">
                                             C
                                         </span>
-                                    @elseif ($rezervare->user->firma->id == 1) 
+                                    @elseif ($rezervare->user->firma->id == 1)
                                         <span style="color:#ed8336; font-size:2rem;">
                                             D
-                                        </span>  
-                                    @else 
-                                        {{ $rezervare->user->firma->nume }}                               
+                                        </span>
+                                    @else
+                                        {{ $rezervare->user->firma->nume }}
                                     @endif
                                 </td>
                                 <td>
@@ -166,7 +166,7 @@
                                                 0
                                             @elseif ($rezervare->tip_plata_id == 3)
                                                 0
-                                            @else 
+                                            @else
                                                 {{ $rezervare->pret_total - $rezervare->comision_agentie }}
                                             @endif
                                             lei
@@ -180,7 +180,7 @@
                                             0
                                         @elseif ($rezervare->tip_plata_id == 3)
                                             0
-                                        @else 
+                                        @else
                                             {{ $rezervare->pret_total - $rezervare->comision_agentie }}
                                         @endif
                                         lei
@@ -203,11 +203,11 @@
                         @php
                             $nr_persoane = $nr_persoane +
                                 $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sum('nr_adulti') +
-                                $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sum('nr_copii');     
+                                $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sum('nr_copii');
                             $suma = $suma + $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sum('pret_total')
                                 -
-                                $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sum('comision_agentie') 
-                                - 
+                                $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sum('comision_agentie')
+                                -
                                 $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)
                                     ->where('tip_plata_id', 2)->where('comision_agentie', 0)->sum('pret_total')
                                 -
@@ -217,7 +217,7 @@
                     @empty
                     @endforelse
                 @empty
-                @endforelse      
+                @endforelse
 
                     <tr>
                         <td colspan="9" style="text-align:right; padding-right:5px;">
@@ -239,4 +239,3 @@
 </body>
 
 </html>
-    

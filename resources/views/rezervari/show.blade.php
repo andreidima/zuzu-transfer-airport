@@ -5,9 +5,8 @@
         @include ('errors')
 
         <div class="card-body p-0">
-            <div class="form-row">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
                     <table class="table m-0" style="border:5px solid #efe3b1; border-bottom:0px">
                         <tr style="text-align:center; font-weight:bold;">
                             <td colspan="" style="border-width:0px; padding:0rem;">
@@ -289,10 +288,10 @@
 
             <div class="row justify-content-center">
                 <div class="col-lg-10 text-center">
-                    <a class="btn btn-sm btn-primary mr-2" href="/rezervari/adauga" role="button">Adaugă o nouă Rezervare</a>
+                    <a class="btn btn-sm btn-primary text-white mr-2" href="/rezervari/adauga" role="button">Adaugă o nouă Rezervare</a>
 
                     @if (auth()->user()->isDispecer())
-                        <a class="btn btn-sm btn-primary mr-4" href="{{ $rezervari->path() }}/modifica" role="button">Modifică Rezervarea</a>
+                        <a class="btn btn-sm btn-primary text-white mr-4" href="{{ $rezervari->path() }}/modifica" role="button">Modifică Rezervarea</a>
                     @endif
 
                         <a href="{{ $rezervari->path() }}/export/rezervare-pdf"

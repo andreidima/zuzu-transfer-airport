@@ -5,9 +5,8 @@
         @include ('errors')
 
         <div class="card-body p-0">
-            <div class="form-row">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-8 mx-auto">
                     <table class="table" style="border:5px solid #efe3b1;">
                         <tr style="text-align:center; font-weight:bold;">
                             <td colspan="" style="border-width:0px; padding:0rem;">
@@ -29,8 +28,8 @@
 
             <div class="row justify-content-center">
                 <div class="col-lg-10 text-center">
-                    <a class="btn btn-sm btn-primary mr-2" href="/clienti-neseriosi/adauga" role="button">Adaugă un nou Client Neserios</a>
-                    <a class="btn btn-sm btn-primary mr-4" href="{{ $clienti_neseriosi->path() }}/modifica" role="button">Modifică Client Neserios</a>
+                    <a class="btn btn-sm btn-primary text-white mr-2" href="/clienti-neseriosi/adauga" role="button">Adaugă un nou Client Neserios</a>
+                    <a class="btn btn-sm btn-primary text-white mr-4" href="{{ $clienti_neseriosi->path() }}/modifica" role="button">Modifică Client Neserios</a>
 
                 </div>
             </div>
