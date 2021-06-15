@@ -10,7 +10,7 @@
                         {{ __('Înregistrare') }}
                     </div>
                     <div>
-                        Zuzu Transfer Aeroport
+                        Zuzu Transfer Airport
                     </div>
                 </div>
 
@@ -157,7 +157,7 @@
                         <div class="row d-flex justify-content-center mb-2">
                             <div class="form-check">
                                 <div>
-                                    <input type="checkbox" class="form-check-input" name="acord_de_confidentialitate" value="1" 
+                                    <input type="checkbox" class="form-check-input" name="acord_de_confidentialitate" value="1"
                                     {{ old('acord_de_confidentialitate') == '1' ? 'checked' : '' }}>
                                 </div>
                                 <div>
@@ -174,7 +174,7 @@
                                 </div>
 
                             </div>
-                            
+
                         </div>
 
                         <div class="form-group row mb-0">

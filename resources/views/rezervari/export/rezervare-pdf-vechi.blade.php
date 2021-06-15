@@ -4,11 +4,10 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-    <title>Bilet rezervat</title>
+    <title>Bilet</title>
     <style>
         html {
-            margin: 20px 20px;
+            margin: 40px 30px;
         }
 
         body {
@@ -26,7 +25,7 @@
         table{
             border-collapse:collapse;
             margin: 0px;
-            padding: 5px;
+            padding: 0px;
             margin-top: 0px;
             border-style: solid;
             border-width: 0px;
@@ -35,7 +34,7 @@
         }
 
         th, td {
-            padding: 1px 10px;
+            padding: 1px 1px;
             border-width: 0px;
             border-style: solid;
 
@@ -59,21 +58,21 @@
 <body>
     {{-- <div style="width:730px; height: 1030px; border-style: dashed ; border-width:2px; border-radius: 15px;">      --}}
     <div style="border:dashed #999;
-        width:745px;
-        min-height:500px;
-        padding: 0px 5px 0px 5px;
+        width:710px;
+        min-height:600px;
+        padding: 0px 8px 0px 8px;
         margin:0px 0px;
             -moz-border-radius: 10px;
             -webkit-border-radius: 10px;
             border-radius: 10px;">
 
-                <table style="margin:0px 0 0px 0">
+                <table style="">
                     <tr style="">
                         <td style="border-width:0px; padding:0rem; margin:0rem; width:40%">
-                            <img src="{{ asset('images/logo_alb.jpg') }}" width="200px">
+                            <img src="{{ asset('images/logo_alb.jpg') }}" width="300px">
                         </td>
                         <td style="border-width:0px; padding:0rem; margin:0rem; width:60%; text-align:center; font-size:16px">
-                            BILET REZERVAT
+                            REZERVA BILET
                             <br>
                             Cod bilet: RO{{ $rezervari->id }}
                         </td>
@@ -81,108 +80,157 @@
                 </table>
 
 
-            <table style="margin-bottom:10px">
+            <table>
                 <tr style="text-align:center; font-weight:bold;">
                     <td colspan="3" style="border-width:0px; padding:0rem;">
-                        <h3 style="background-color:#e7d790; color:black; margin:0px 0px 5px 0px; padding:5px 0px;">
-                        Informații Client
+                        <h3 style="background-color:#e7d790; color:black; margin:0px 0px 2px 0px; padding:2px 0px;">
+                        Informatii Calator
                         </h3>
                     </td>
                 </tr>
                 <tr>
-                    <td width="" style="">
-                        Client:
-                        <br>
-                        <b>{{ $rezervari->nume }}</b>
+                    <td width="35%" style="">
+                        Calator: <b>{{ $rezervari->nume }}</b>
                     </td>
-                    <td width="" style="text-align:center;">
-                        Telefon:
-                        <br>
-                        <b>{{ $rezervari->telefon }}</b>
+                    <td width="25%" style="text-align:center;">
+                        Telefon: <b>{{ $rezervari->telefon }}</b>
                     </td>
-                    <td width="" style="text-align:center;">
-                        E-mail:
-                        <br>
-                        <b>{{ $rezervari->email }}</b>
+                    <td width="40%" style="text-align:right;">
+                        E-mail: <b>{{ $rezervari->email }}</b>
                     </td>
                 </tr>
             </table>
 
-            <table style="margin-bottom:10px">
+            <table>
                 <tr style="text-align:center; font-weight:bold;">
-                    <td colspan="3" style="padding:0rem;">
-                        <h3 style="background-color:#e7d790; color:black; margin:10px 0px 5px 0px; padding:5px 0px">
-                        Informații Rezervare bilet
+                    <td colspan="5" style="padding:0rem;">
+                        <h3 style="background-color:#e7d790; color:black; margin:10px 0px 2px 0px; padding:2px 0px">
+                        Informatii Rezervare bilet
                         </h3>
                     </td>
                 </tr>
-                <tr style="">
-                    <td style="text-align: center">
-                            Plecare:
-                            <br>
-                            @if (!empty($rezervari->cursa->oras_plecare))
-                                @if ($rezervari->cursa->oras_plecare->nume == "Otopeni")
-                                    <span style="font-size:1.2rem; font-weight:bold;">
-                                        Otopeni Aeroport
-                                    </span>
+                <tr valign="top">
+                    <td style="">
+                        Imbarcare:
+                        <br>
+                        @if (!empty($rezervari->cursa->oras_plecare))
+                            @if ($rezervari->cursa->oras_plecare->nume == "Otopeni")
+                                <span style="font-size:1.5rem; font-weight:bold;">
+                                    Otopeni Aeroport
+                                </span>
+                            @else
+                            <span style="font-size:1.5rem; font-weight:bold;">
+                                {{ $rezervari->cursa->oras_plecare->nume }}
+                            </span>
+                            {{-- <br>
+                            <span style="font-size:1.2rem;">
+                                @if (!empty($rezervari->statie))
+                                    {{ $rezervari->statie->nume }}
                                 @else
-                                <span style="font-size:1.2rem; font-weight:bold;">
-                                    {{ $rezervari->cursa->oras_plecare->nume }}
-                                </span>
+                                    {{ $rezervari->statie_imbarcare }}
                                 @endif
+                            </span> --}}
                             @endif
-                            <br>
-                            @if (!empty($rezervari->ora))
-                                <span style="font-size:1.2rem; font-weight:bold;">
-                                    {{ \Carbon\Carbon::parse($rezervari->ora->ora)->format('H:i') }}
-                                </span>
-                            @endif
-                            <br>
-
-                            {{ \Carbon\Carbon::parse($rezervari->data_cursa)->isoFormat('dddd') }},
-                            {{ \Carbon\Carbon::parse($rezervari->data_cursa)->isoFormat('DD MMMM YYYY') }}
+                        @endif
                     </td>
-                    <td style="text-align: center">
-                        <img src="{{ asset('images/Black_Right_Arrow.jpg') }}" width="100px">
+                    <td style="">
+                        Plecare:
+                        <br>
+                        @if (!empty($rezervari->ora))
+                            <span style="font-size:1.5rem; font-weight:bold;">
+                                {{ \Carbon\Carbon::parse($rezervari->ora->ora)->format('H:i') }}
+                            </span>
+                        @endif
+                        <br>
+                        {{-- @if (!empty(auth()->user())) --}}
+                            <span style="font-size:1.2rem;">
+                                {{ \Carbon\Carbon::parse($rezervari->data_cursa)->isoFormat('dddd') }}
+                            </span>
+                            <br>
+                            {{ \Carbon\Carbon::parse($rezervari->data_cursa)->isoFormat('D MMM YYYY') }}
+                        {{-- @else
+                            <span style="font-size:1.2rem;">
+                                {{ \Carbon\Carbon::createFromFormat('Y.m.d H:i', $rezervari->data_cursa)->isoFormat('dddd') }}
+                            </span>
+                            <br>
+                            {{ \Carbon\Carbon::createFromFormat('Y.m.d H:i', $rezervari->data_cursa)->isoFormat('D MMM YYYY') }}
+                        @endif --}}
                     </td>
-                    <td style="text-align: center">
-                            Sosire:
-                            <br>
-                            @if (!empty($rezervari->cursa->oras_sosire))
-                                @if ($rezervari->cursa->oras_sosire->nume == "Otopeni")
-                                    <span style="font-size:1.2rem; font-weight:bold;">
-                                        Otopeni Aeroport
-                                    </span>
-                                @else
-                                <span style="font-size:1.2rem; font-weight:bold;">
-                                    {{ $rezervari->cursa->oras_sosire->nume }}
+                    <td>
+                        <br>
+                        <img src="{{ asset('images/sageata.gif') }}" width="50px">
+                    </td>
+                    <td style="">
+                        Debarcare:
+                        <br>
+                        @if (!empty($rezervari->cursa->oras_sosire))
+                            @if ($rezervari->cursa->oras_sosire->nume == "Otopeni")
+                                <span style="font-size:1.5rem; font-weight:bold;">
+                                    Otopeni Aeroport
                                 </span>
-                                @endif
+                            @else
+                            <span style="font-size:1.5rem; font-weight:bold;">
+                                {{ $rezervari->cursa->oras_sosire->nume }}
+                            </span>
                             @endif
+                        @endif
+                    </td>
+                    <td style="">
+                        Sosire:
+                        <br>
+                        @if (!empty($rezervari->ora && $rezervari->cursa->durata))
+                            <span style="font-size:1.5rem; font-weight:bold;">
+                                {{ \Carbon\Carbon::parse($rezervari->ora->ora)
+                                    ->addHours(\Carbon\Carbon::parse($rezervari->cursa->durata)->hour)
+                                    ->addMinutes(\Carbon\Carbon::parse($rezervari->cursa->durata)->minute)
+                                    ->format('H:i') }}
+                            </span>
+                        @endif
+                        <br>
 
+                            <span style="font-size:1.2rem;">
+                                {{ \Carbon\Carbon::parse($rezervari->data_cursa)
+                                    ->addHours(\Carbon\Carbon::parse($rezervari->ora->ora)->hour)
+                                    ->addMinutes(\Carbon\Carbon::parse($rezervari->ora->ora)->minute)
+                                    ->addHours(\Carbon\Carbon::parse($rezervari->cursa->durata)->hour)
+                                    ->addMinutes(\Carbon\Carbon::parse($rezervari->cursa->durata)->minute)
+                                    ->isoFormat('dddd') }}
+                            </span>
                             <br>
-                            @if (!empty($rezervari->ora->ora && $rezervari->cursa->durata))
-                                <span style="font-size:1.2rem; font-weight:bold;">
-                                    {{ \Carbon\Carbon::parse($rezervari->ora->ora)
-                                        ->addHours(\Carbon\Carbon::parse($rezervari->cursa->durata)->hour)
-                                        ->addMinutes(\Carbon\Carbon::parse($rezervari->cursa->durata)->minute)
-                                        ->format('H:i') }}
-                                </span>
-                            @endif
+                                {{ \Carbon\Carbon::parse($rezervari->data_cursa)
+                                    ->addHours(\Carbon\Carbon::parse($rezervari->ora->ora)->hour)
+                                    ->addMinutes(\Carbon\Carbon::parse($rezervari->ora->ora)->minute)
+                                    ->addHours(\Carbon\Carbon::parse($rezervari->cursa->durata)->hour)
+                                    ->addMinutes(\Carbon\Carbon::parse($rezervari->cursa->durata)->minute)
+                                    ->isoFormat('D MMM YYYY') }}
+                        {{-- @else
+                            <span style="font-size:1.2rem;">
+                                {{ \Carbon\Carbon::createFromFormat('Y.m.d H:i', $rezervari->data_cursa)
+                                    ->addHours(\Carbon\Carbon::parse($rezervari->ora->ora)->hour)
+                                    ->addMinutes(\Carbon\Carbon::parse($rezervari->ora->ora)->minute)
+                                    ->addHours(\Carbon\Carbon::parse($rezervari->cursa->durata)->hour)
+                                    ->addMinutes(\Carbon\Carbon::parse($rezervari->cursa->durata)->minute)
+                                    ->isoFormat('dddd') }}
+                            </span>
                             <br>
-                                    {{ \Carbon\Carbon::parse($rezervari->data_cursa)
-                                        ->addHours(\Carbon\Carbon::parse($rezervari->ora->ora)->hour)
-                                        ->addMinutes(\Carbon\Carbon::parse($rezervari->ora->ora)->minute)
-                                        ->addHours(\Carbon\Carbon::parse($rezervari->cursa->durata)->hour)
-                                        ->addMinutes(\Carbon\Carbon::parse($rezervari->cursa->durata)->minute)
-                                        ->isoFormat('dddd') }}
-                                    ,
-                                    {{ \Carbon\Carbon::parse($rezervari->data_cursa)
-                                        ->addHours(\Carbon\Carbon::parse($rezervari->ora->ora)->hour)
-                                        ->addMinutes(\Carbon\Carbon::parse($rezervari->ora->ora)->minute)
-                                        ->addHours(\Carbon\Carbon::parse($rezervari->cursa->durata)->hour)
-                                        ->addMinutes(\Carbon\Carbon::parse($rezervari->cursa->durata)->minute)
-                                        ->isoFormat('D MMM YYYY') }}
+                                {{ \Carbon\Carbon::createFromFormat('Y.m.d H:i', $rezervari->data_cursa)
+                                    ->addHours(\Carbon\Carbon::parse($rezervari->ora->ora)->hour)
+                                    ->addMinutes(\Carbon\Carbon::parse($rezervari->ora->ora)->minute)
+                                    ->addHours(\Carbon\Carbon::parse($rezervari->cursa->durata)->hour)
+                                    ->addMinutes(\Carbon\Carbon::parse($rezervari->cursa->durata)->minute)
+                                    ->isoFormat('D MMM YYYY') }}
+                        @endif --}}
+                        <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="5">
+                        Statie imbarcare:
+                        @if (!empty($rezervari->statie))
+                            {{ $rezervari->statie->nume }}
+                        @else
+                            {{ $rezervari->statie_imbarcare }}
+                        @endif
                     </td>
                 </tr>
             </table>
@@ -322,8 +370,8 @@
                         Traseu 1: Tecuci - Focsani - Rm. Sarat - Buzau - Otopeni si retur<br>
                         Traseu 2: Galati - Braila - Ianca - Buzau - Otopeni si retur<br>
                         {{-- Telefon sofer: +40 762 646 917, +40 767 931 404<br> --}}
-                        Telefon Dispecerat: 0768 112 244 / 0768 112 255 / 0768 112 288<br>
-                        E-mail: rezervari@zuzu-transfer-airport.ro <br>
+                        Telefon Dispecerat: <br>
+                        E-mail:  |
                         Website: www.zuzu-transfer-airport.ro
                     </td>
                 </tr>
@@ -349,7 +397,7 @@
                         <br>
                         <b>Obligatiile pasagerului:</b> Este interzis pasagerilor: deteriorarea sau murdarirea autocarului (microbuzului), obstructionarea in orice fel a conducatorului auto sau a celorlalte persoane din echipaj in indeplinirea in bune conditii a atributiilor specifice, cauzarea de neplaceri sau disconfort calatorilor din autocar (microbuz) sau altor participanti la trafic. Fumatul, comportamentul inadecvat si consumul bauturilor alcoolice si alimentelor in microbuz sunt strict interzise.
                         <br>
-                        <b>Transportatorul  isi rezerva dreptul de a refuza transportul sau de a-l intrerupe fara dreptul la o despagubire sau rambursare a pretului biletului , in cazul in care pasagerul nu respecta conditiile de calatorie.</b>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Transportatorul  isi rezerva dreptul de a refuza transportul sau de a-l intrerupe fara dreptul la o despagubire sau rambursare a pretului biletului , in cazul in care pasagerul nu respecta conditiile de calatorie.
 
                         {{-- In functie de numarul de pasageri circula microbuz / autocar. Rezervarea este valabila numai cu confirmarea agentiei transportatoare.<br>
                         Detalii Dispecerat: <br>
@@ -398,6 +446,8 @@
                     </td>
                 </tr>
             </table>
+
+
 
     </div>
 </body>

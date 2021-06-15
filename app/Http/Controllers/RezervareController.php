@@ -1050,7 +1050,7 @@ class RezervareController extends Controller
             // } else {
             //     $telefoane = ['0767931404'];
             // }
-            $telefoane = ['0752926589'];
+            $telefoane = ['0749262658'];
 
             // Setare variabila test pentru ANDREI DIMA TESTȘ
             if (($rezervare->nume == "ANDREI DIMA TESTȘ") || ($rezervare->nume == "ANDREI DIMA TESTș")){

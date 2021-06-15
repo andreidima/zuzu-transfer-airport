@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
 </head>
-<body style="background-color:#c2e5f1">
+<body style="background-color:#d9eff7">
     <div>
         <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#2C7996; font-size:1rem">
             <div class="container">
@@ -161,15 +161,15 @@
             @yield('content')
         </main>
 
-        {{-- <footer class="container mb-2 pb-2">
+        <footer class="container mb-2 pb-2 shadow" style="background-color:#faf7e7">
             <div class="row mb-0">
                 <div class="col-lg-4 my-1 py-1">
-                    <ul class="my-0" style="list-style-image: url({{ asset('images/arrow.gif') }});"><h5>Informații</h5>
+                    <ul class="my-0" style=""><h5>Informații</h5>
                         <li>
-                            <a href="http://www.zuzu-transfer-aeroport.ro/contact/" target="_blank">Contact</a>
+                            <a href="https://www.zuzu-transfer-airport.ro/contact/" target="_blank">Contact</a>
                         </li>
                         <li>
-                            <a href="http://www.anpc.gov.ro/" target="_blank">ANPC - Protectia consumatorului</a>
+                            <a href="http://www.anpc.gov.ro/" target="_blank">ANPC - Protecția consumatorului</a>
                         </li>
                         <li>
                             Copyright © <a href="http://validsoftware.ro/" target="_blank"><b>validsoftware.ro</b></a>
@@ -179,36 +179,28 @@
                 <div class="col-lg-4 my-1 py-1">
                     <ul class="my-0" style="list-style-image: url({{ asset('images/arrow.gif') }});"><h5>Meniu</h5>
                         <li>
-                            <a href="https://www.zuzu-transfer-aeroport.ro/" target="_blank"><b>Acasa</b></a>
+                            <a href="https://www.zuzu-transfer-airport.ro/" target="_blank"><b>Acasă</b></a>
                         </li>
                         <li>
-                            <a href="http://www.zuzu-transfer-aeroport.ro/rent-a-car/" target="_blank">Inchirieri autocare</a>
+                            <a href="/termeni-si-conditii" target="_blank">Termeni și condiții</a>
                         </li>
                         <li>
-                            <a href="http://www.zuzu-transfer-aeroport.ro/termeni-si-conditii-2/" target="_blank">Termeni si conditii</a>
-                        </li>
-                        <li>
-                            <a href="http://www.zuzu-transfer-aeroport.ro/politica-de-confidentialitate-a-datelor-cu-caracter-personal/" target="_blank">Politica de confidentialitate</a>
-                        </li>
-                        <li>
-                            <a href="http://www.zuzu-transfer-aeroport.ro/cum-se-face-o-rezervare/" target="_blank">Cum se face o rezervare?</a>
+                            <a href="/termeni-si-conditii#politica-de-confidentialitate" target="_blank">Politica de confidențialitate</a>
                         </li>
                     </ul>
                 </div>
                 <div class="col-lg-4 my-1 py-1">
                     <h5>Contact</h5>
-                    <b>Telefon Dispecerat:</b> +40 766 862 890
+                    <b>Telefon Dispecerat:</b> +40 0768 112 244
                     <br>
-                    <span style="margin-left:154px;">+40 767 335 558</span>
+                    <span style="margin-left:154px;">+40 0768 112 255</span>
+                    <br>
+                    <span style="margin-left:154px;">+40 0768 112 288</span>
                     <br>
                     <b>E-mail:</b> rezervari@zuzu-transfer-airport.ro
-                    <br>
-                    <a href="https://www.facebook.com/ZuZu-Transfer-Aeroport-763182890435066/" target="_blank">
-                        <img src="{{ asset('images/logo-facebook.png') }}" width="">
-                    </a>
                 </div>
             </div>
-        </footer> --}}
+        </footer>
     </div>
 </body>
 </html>
