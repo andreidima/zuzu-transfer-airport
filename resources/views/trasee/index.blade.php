@@ -141,7 +141,6 @@
                                                     <th style="width: 9%; background-color:gainsboro; ">
                                                 @else
                                                     <th style="width: 9%">
-                                                            {{ $key_cursa_ora }}
                                                 @endif
                                                         @switch($cursa_ora->cursa->oras_plecare->nume)
                                                             {{-- Vaslui si Barlad vor fi ascunse --}}
