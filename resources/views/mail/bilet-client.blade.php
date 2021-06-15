@@ -13,11 +13,10 @@ Do not respond to this message. Your reply will go nowhere.
 <br><br>
 ZUZU Transfer-Aeroport <br>
 Contact: <br>
-{{-- +40 748 836 345 <br> --}}
-+40 766 862 890 <br>
-+40 767335 558 <br>
-{{-- +40 786 574 788 <br> --}}
-Email: carabus25@yahoo.com
++40 0768 112 244 <br>
++40 0768 112 255 <br>
++40 0768 112 288 <br>
+Email: rezervari@zuzu-transfer-airport.ro
 
 {{-- Multumim,<br>
 {{ config('app.name') }} --}}

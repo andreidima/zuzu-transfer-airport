@@ -201,7 +201,7 @@
                     <br>
                     <span style="margin-left:154px;">+40 767 335 558</span>
                     <br>
-                    <b>E-mail:</b> carabus25@yahoo.com
+                    <b>E-mail:</b> rezervari@zuzu-transfer-airport.ro
                     <br>
                     <a href="https://www.facebook.com/ZuZu-Transfer-Aeroport-763182890435066/" target="_blank">
                         <img src="{{ asset('images/logo-facebook.png') }}" width="">

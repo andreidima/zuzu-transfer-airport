@@ -57,10 +57,10 @@
                     Pentru orice detalii legate de această rezervare, ne puteți contacta la:
                     <ul>
                         <li>
-                            Telefon: 0761 329 420
+                            Telefon: 0768 112 244 / 0768 112 255 / 0768 112 288
                         </li>
                         <li>
-                            Email: <a href="mailto:office@transportcorsica.ro">office@transportcorsica.ro</a>
+                            Email: <a href="mailto:rezervari@zuzu-transfer-airport.ro">rezervari@zuzu-transfer-airport.ro</a>
                         </li>
                     </ul>
 

@@ -1,13 +1,13 @@
 @extends ('layouts.app')
 
-@section('content') 
+@section('content')
 
 <div class="card">
 <div class="card-body rounded px-5 shadow-lg">
 
 <p><em>Pe această pagină gășiți instrucțiunile pt rezervări. Vor fi afișate și noutăți, schimbări de program sau modificări ale site-ului.</em></p>
 
-<p><strong>PENTRU O MAI BUNĂ FUNCȚIONARE A SISTEMULUI VA RUGĂM SĂ FOLOSIȚI MOZILLA SAU CHROME!</strong></p>
+{{-- <p><strong>PENTRU O MAI BUNĂ FUNCȚIONARE A SISTEMULUI VA RUGĂM SĂ FOLOSIȚI MOZILLA SAU CHROME!</strong></p> --}}
 {{-- <p>___________________________________</p> --}}
 
 {{-- <p class="text-danger"><b>Program de sarbatori 2019 - 2020:</b></p>
@@ -52,11 +52,11 @@ Este posibil sa fie nevoie sa incercati de cateva ori refresh la pagina cu CTRL+
 <ul style="list-style-type: square">
     <li><b>BRĂILA</b>: Plantelor, Penny pe Bz-ului, Catedrala la covrigaria Panda,</li>
     <li><b>IANCA</b>: la Avion.</li>
-    <li><b>GALAȚI</b>:  la McDonald`s.</li>
+    <li><b>GALAȚI</b>: la McDonald`s.</li>
     <li><b>BUZĂU</b>: McDonald`s</li>
-    <li><b>FOCȘANI</b>:  la Lidl sau Lukoil în centru,</li>
-    <li><b>RÂMNICU SĂRAT</b>:  la Turist-Profi,</li>
-    <li><b>TECUCI</b>:  în parcare la Kaufland,</li>
+    <li><b>FOCȘANI</b>: la Lidl sau Lukoil în centru,</li>
+    <li><b>RÂMNICU SĂRAT</b>: la Turist-Profi,</li>
+    <li><b>TECUCI</b>: în parcare la Kaufland,</li>
     <li><b>PANCIU</b>: Notar,</li>
     <li><b>ADJUD</b>: Atlantic sau Lukoil,</li>
     <li><b>MĂRĂȘEȘTI</b>: Gara.</li>
@@ -75,17 +75,17 @@ Este posibil sa fie nevoie sa incercati de cateva ori refresh la pagina cu CTRL+
 </ul>
 
 <p><b>Aveți posibilitatea de a modifică nr. de telefon și stația de îmbarcare după ce ați făcut rezervarea, de la iconiță de editare din dreptul rezervarii.</b></p>
-<p><b>Pentru alte modificări, rezervări greșite sau anulări ne puteți contacta telefonic sau pe mail la adresa <a href="mailto:carabus25@yahoo.com">carabus25@yahoo.com.</a></b></p>
+<p><b>Pentru alte modificări, rezervări greșite sau anulări ne puteți contacta telefonic sau pe mail la adresa <a href="mailto:rezervari@zuzu-transfer-airport.ro">rezervari@zuzu-transfer-airport.ro.</a></b></p>
 <p>În meniul de sus la „<b>Raport</b>” se pot lista rezervările pe un interval de timp pe care îl selectați din calendar.</p>
 <ul>
     <li>Orice altă observație (îmbarcare/debarcare, altă ora dacă e cursa specială, etc )  care trebuie adăugată la rezervare și pt care nu există o căsuța de completare să o scrieți la “<b>Stație de îmbarcare</b>. Este la fel de important să scrieți stația de îmbarcare la plecările către Otopeni, sunt cazuri, mai ales în Brăila, când persoanele nu răspund la telefon și șoferul nu știe de unde să le ia.</li>
     <li>Rezervările care va apar evidențiate cu albastru, sunt anulate de către noi pe motiv că nu s-au prezentat sau au fost anulate la cerere de către clienți telefonic.</li>
 </ul>
-      
+
 <p><b>Noi sunăm persoanele înainte cu o zi pentru a confirmă rezervările pentru plecările spre Otopeni, pentru retur se trimit sms-uri, nu vor fi sunați cei care fac rezervarea cu o zi înainte sau în aceeași zi cu plecarea, scopul este de a verifica datele înregistrate pe rezervare: ora, dată, stație îmbarcare unde de multe ori nu este scrisă.</b></p>
 <p><b>Dacă datele rezervarii nu sunt corecte există riscul că acea rezervare să fie nulă. Rezervările sunt și rămân valabile și fără o confirmare dacă acestea sunt introduse corect. </b></p>
- 
-<p><b>REZERVĂRILE PT A DOUA ZI (aceasta începând cu ora 00:00) SE FAC PÂNĂ LA ORA 20:50, IAR PT ZIUA ÎN CURS SE VOR ANUNȚA TELEFONIC LA DISPECERAT   0767 335 558 / 0748 836 345 PT A VERIFICA DISPONIBILITATEA LOCURILOR!</b></p>
+
+<p><b>REZERVĂRILE PT A DOUA ZI (aceasta începând cu ora 00:00) SE FAC PÂNĂ LA ORA 20:50, IAR PT ZIUA ÎN CURS SE VOR ANUNȚA TELEFONIC LA DISPECERAT 0768 112 244 / 0768 112 255 / 0768 112 288 PT A VERIFICA DISPONIBILITATEA LOCURILOR!</b></p>
 
 {{-- <p>&nbsp;</p> --}}
 
@@ -119,7 +119,7 @@ table.table-bordered > tbody > tr > td{
     <tbody>
         <tr>
             <td class="p-2" style="">
-                TECUCI,  PANCIU,  ADJUD 
+                TECUCI,  PANCIU,  ADJUD
                 <br>
                 ↔ OTOPENI
                 <br>
@@ -131,7 +131,7 @@ table.table-bordered > tbody > tr > td{
                 <br>
                 <br>
                 <p class="mb-0">___________________</p>
-                120 lei/adult (60 lei/copil) 
+                120 lei/adult (60 lei/copil)
             </td>
             <td class="p-2" style="">
                 25lei (5 lei)
@@ -196,7 +196,7 @@ table.table-bordered > tbody > tr > td{
                 70 lei/adult (40 lei/copil)
                 <br>
                 <p class="mb-0">___________________</p>
-                100 lei/adult (60 lei/copil) 
+                100 lei/adult (60 lei/copil)
             </td>
             <td class="p-2" style="">
                 20 lei (10 lei)
@@ -207,7 +207,7 @@ table.table-bordered > tbody > tr > td{
         </tr>
         <tr>
             <td class="p-2" style="">
-                VASLUI ↔ OTOPENI 
+                VASLUI ↔ OTOPENI
                 <br>
                 <p class="mb-0">____________________</p>
                 Oferta grupuri dus-intors
@@ -216,7 +216,7 @@ table.table-bordered > tbody > tr > td{
                 100 lei/adult (60 lei/copil)
                 <br>
                 <p class="mb-0">___________________</p>
-                150 lei/adult (90 lei/copil) 
+                150 lei/adult (90 lei/copil)
             </td>
             <td class="p-2" style="">
                 25 lei (10 lei)
@@ -227,7 +227,7 @@ table.table-bordered > tbody > tr > td{
         </tr>
         <tr>
             <td class="p-2" style="">
-                BARLAD ↔ OTOPENI 
+                BARLAD ↔ OTOPENI
                 <br>
                 <p class="mb-0">____________________</p>
                 Oferta grupuri dus-intors
@@ -236,7 +236,7 @@ table.table-bordered > tbody > tr > td{
                 90 lei/adult (50 lei/copil)
                 <br>
                 <p class="mb-0">___________________</p>
-                140 lei/adult (80 lei/copil) 
+                140 lei/adult (80 lei/copil)
             </td>
             <td class="p-2" style="">
                 25 lei (10 lei)

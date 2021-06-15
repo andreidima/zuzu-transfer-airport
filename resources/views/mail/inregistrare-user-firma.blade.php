@@ -1,5 +1,5 @@
 @component('mail::message')
-# Buna Elena,
+# Buna Zuzu,
 <br><br>
 A fost creat un nou cont in aplicatia de Rezervari.
 <br><br>

@@ -94,8 +94,8 @@ class RegisterController extends Controller
             'username' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-        
-        \Mail::to('carabus25@yahoo.com')->send(
+
+        \Mail::to('rezervari@zuzu-transfer-airport.ro')->send(
             new InregistrareUserFirma($firma, $user)
         );
 
