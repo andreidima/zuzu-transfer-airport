@@ -6,8 +6,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Raport</title>
     <style>
-        body { 
-            font-family: DejaVu Sans, sans-serif; 
+        body {
+            font-family: DejaVu Sans, sans-serif;
             font-size: 11px;
         }
 
@@ -23,26 +23,26 @@
             margin-top: 0px;
             border-style: solid;
             border-width:0px;
-            width: 100%; 
+            width: 100%;
             word-wrap:break-word;
             /* word-break: break-all; */
             /* table-layout: fixed; */
         }
-        
+
         th, td {
             padding: 1px 1px;
             border-width:1px;
             border-style: solid;
             table-layout:fixed;
              font-weight: normal;
-            
+
         }
         tr {
             /* text-align:; */
             /* border-style: solid;
             border-width:1px; */
         }
-        hr { 
+        hr {
             display: block;
             margin-top: 0.5em;
             margin-bottom: 0.5em;
@@ -50,14 +50,14 @@
             margin-right: auto;
             border-style: inset;
             border-width: 0.5px;
-        } 
+        }
     </style>
 </head>
 
-<body>         
+<body>
                     <div style="border:dashed #999;
-                        width:690px; 
-                        min-height:600px;            
+                        width:690px;
+                        min-height:600px;
                         padding: 15px 10px 15px 10px;
                         margin:0px 0px;
                             -moz-border-radius: 10px;
@@ -66,7 +66,7 @@
                         <table style="">
                             <tr>
                                 <td style="border-width:0px; padding:0rem;">
-                                    <img src="{{ asset('images/logo-zuzu.png') }}" style="width:150px; padding:0rem; margin:0rem;">
+                                    <img src="{{ asset('images/logo_alb.jpg') }}" style="width:150px; padding:0rem; margin:0rem;">
                                 </td>
                                 <td style="border-width:0px; padding:0rem; text-align:center; font-size:16px">
                                     Raport: {{ $agentie->nume }}
@@ -114,7 +114,7 @@
                                         </td>
                                     @if (($rezervare->tip_plata_id == 2) && ($rezervare->comision_agentie == 0))
                                         <td>
-                                            
+
                                         </td>
                                         <td>
                                             @if ($rezervare->oferta == 1)
@@ -174,18 +174,18 @@
                                     </tr>
                                 @empty
                                 @endforelse
-                        
+
                             {{-- @php
-                                $nr_persoane = 0;    
+                                $nr_persoane = 0;
                             @endphp
 
                             @forelse ($traseu->curse_ore as $cursa_ora)
                                 @php
                                     $nr_persoane = $nr_persoane +
                                         $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sum('nr_adulti') +
-                                        $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sum('nr_copii');     
+                                        $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sum('nr_copii');
                                     $suma = $suma + $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sum('pret_total') -
-                                        $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sum('comision_agentie') - 
+                                        $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->sum('comision_agentie') -
                                         $cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)
                                             ->where('tip_plata_id', 2)->where('comision_agentie', 0)->sum('pret_total');
                                 @endphp
@@ -206,4 +206,3 @@
 </body>
 
 </html>
-    

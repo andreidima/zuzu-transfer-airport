@@ -71,7 +71,7 @@
                 <table style="">
                     <tr style="">
                         <td style="border-width:0px; padding:0rem; width:25%">
-                                <img src="{{ asset('images/logo+alb.jpg') }}" width="150px">
+                                <img src="{{ asset('images/logo_alb.jpg') }}" width="150px">
                         </td>
                         <td style="border-width:0px; padding:0rem; width:30%; font-size:16px">
                             Tip traseu: TUR
