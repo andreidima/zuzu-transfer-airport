@@ -356,6 +356,11 @@
                                     </div>
                                 </div>
                             </div>
+
+
+            <script type="application/javascript">
+                plataOnlineVeche={!! json_encode(old('plata_online') == "true" ? true : false) !!}
+            </script>
             <input type="hidden" name="plata_online" value="0" />
                             {{-- <div class="col-lg-12 py-1 border-bottom ">
                                 <div class="row">
