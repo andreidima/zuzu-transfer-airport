@@ -293,7 +293,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="email" class="col-lg-3 col-form-label pb-0">E-mail:</label>
+                            <label for="email" class="col-lg-3 col-form-label pb-0">E-mail:<span class="text-light">*</span></label>
                             <div class="col-lg-9">
                                 <input
                                     type="text"
@@ -356,7 +356,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-12 py-1 border-bottom ">
+            <input type="hidden" name="plata_online" value="0" />
+                            {{-- <div class="col-lg-12 py-1 border-bottom ">
                                 <div class="row">
                                     <div class="col-lg-4 d-flex align-items-center">
                                         <script type="application/javascript">
@@ -373,7 +374,7 @@
                                         <img src="{{ asset('images/netopia_banner_blue.jpg') }}" class="border border-white" width="350px">
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                                     {{-- <div class="form-group col-lg-12 mb-0 mt-1 d-flex justify-content-center border-bottom">
                                         <label for="" class="pr-2">Modalitate de plată:</label>
 
