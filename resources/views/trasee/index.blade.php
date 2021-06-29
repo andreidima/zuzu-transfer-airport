@@ -16,6 +16,7 @@
                                             nume-camp-db="search"
                                             tip="date"
                                             latime="150"
+                                            type="submit"
                                             {{-- data-veche="{{\Carbon\Carbon::today()}}" --}}
                                         ></vue2-datepicker>
                             <span class="input-group-btn">

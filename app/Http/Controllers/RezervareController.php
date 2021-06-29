@@ -1045,12 +1045,13 @@ class RezervareController extends Controller
                 $rezervare->pret_ramas_de_plata =  $rezervare->pret_total - $rezervare->comision_agentie;
             }
 
-            // if (in_array($rezervare->cursa->plecare_id, [2, 5, 6])){
-            //     $telefoane = ['0752926589'];
-            // } else {
-            //     $telefoane = ['0767931404'];
-            // }
-            $telefoane = ['0786827777'];
+            // Pentru orasele Braila, Galati, Ianca, sms-urile se trimit la alt numar
+            if (in_array($rezervare->cursa->plecare_id, [2, 5, 6])){
+                $telefoane = ['0786870629'];
+            } else {
+                $telefoane = ['0786827777'];
+            }
+            // $telefoane = ['0786827777'];
 
             // Setare variabila test pentru ANDREI DIMA TESTȘ
             if (($rezervare->nume == "ANDREI DIMA TESTȘ") || ($rezervare->nume == "ANDREI DIMA TESTș")){
