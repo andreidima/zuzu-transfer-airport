@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\SmsTrimis;
 use Illuminate\Http\Request;
 
+use Illuminate\Database\Eloquent\Builder;
+
 class SmsTrimisController extends Controller
 {
     /**
@@ -14,13 +16,18 @@ class SmsTrimisController extends Controller
      */
     public function index()
     {
-        $search_nume = \Request::get('search_nume'); //<-- we use global request to get the param of URI   
+        $search_nume = \Request::get('search_nume'); //<-- we use global request to get the param of URI
         $search_data_inceput = \Request::get('search_data_inceput');
         $search_data_sfarsit = \Request::get('search_data_sfarsit');
         $sms_trimise = SmsTrimis::with('rezervare')
-            ->whereHas('rezervare', function ($query) use ($search_nume) {
-                $query->where('nume', 'like', '%' . $search_nume . '%');
+            ->when($search_nume, function (Builder $query, $search_nume) {
+                $query->whereHas('rezervare', function (Builder $query) use ($search_nume) {
+                    $query->where('nume', 'like', '%' . $search_nume . '%');
+                });
             })
+            // ->whereHas('rezervare', function ($query) use ($search_nume) {
+            //     $query->where('nume', 'like', '%' . $search_nume . '%');
+            // })
             ->when($search_data_inceput, function ($query, $search_data_inceput) {
                 return $query->whereDate('created_at', '>=', $search_data_inceput);
             })

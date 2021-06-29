@@ -106,6 +106,9 @@
                                     <ul class="dropdown-menu" aria-labelledby="utile">
                                         <li><a class="dropdown-item" href="{{ route('notificari.index') }}">Notificări</a></li>
                                         <li><a class="dropdown-item" href="/clienti-neseriosi">Clienți neserioși</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="{{ route('masini.index') }}"><i class="fas fa-bus mx-1"></i>Mașini</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('soferi.index') }}"><i class="fas fa-users mx-1"></i>Șoferi</a></li>
                                     </ul>
                                 </li>
 

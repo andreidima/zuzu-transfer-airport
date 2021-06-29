@@ -32,6 +32,9 @@ Route::post('/confirmare-plata', 'PlataOnlineController@confirmarePlata')->name(
 // Termeni si conditii
 Route::view('/termeni-si-conditii', 'diverse/termeni_si_conditii');
 
+// Trimitere Cron joburi din Cpanel
+Route::any('/cron-jobs/trimitere-automata/{key}', 'CronJobTrimitereController@trimitere')->name('cronjob.trimitere.automata');
+
 Route::group(['middleware' => 'auth'], function () {
 
     // Route::get('/', 'AcasaController@index')->name('acasa');
@@ -108,6 +111,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/home', 'HomeController@index')->name('home');
 
         Route::resource('sms-trimise', 'SmsTrimisController');
+
+        Route::resource('masini', MasinaController::class,  ['parameters' => ['masini' => 'masina']]);
+        Route::resource('soferi', SoferController::class,  ['parameters' => ['soferi' => 'sofer']]);
 
         // Route::view('/testare_cod', 'testare_cod');
 
