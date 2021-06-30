@@ -16,11 +16,16 @@
                                             nume-camp-db="search"
                                             tip="date"
                                             latime="150"
-                                            type="submit"
                                             {{-- data-veche="{{\Carbon\Carbon::today()}}" --}}
+
+                                            {{-- Submiterea automata a formei la updatarea calendarului --}}
+                                            @updated="submit_form"
                                         ></vue2-datepicker>
                             <span class="input-group-btn">
-                                <button class="btn btn-default-sm bg-primary" style="height: 34px;" type="submit">
+                                <button class="btn btn-default-sm bg-primary" style="height: 34px;" type="submit"
+                                    {{-- Referinta pentru trimiterea automata a comenzii de submit  --}}
+                                    ref="submitBtn"
+                                >
                                     <i class="fas fa-search text-white"></i>
                                 </button>
                             </span>

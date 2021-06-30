@@ -42,7 +42,7 @@
                                         name="oras_plecare"
                                         v-model="oras_plecare"
                                         v-if="oras_plecare.id = 8"
-                                        {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
+                                        {{ (auth()->user()->isDispecer()) || (\Carbon\Carbon::parse($rezervari->created_at)->diffInMinutes(\Carbon\Carbon::now()) < 30) ?  '' : 'disabled'}}
                                     @change='getOraseSosire()'>
                                             <optgroup label="Oraș">
                                                 <option v-for='oras_plecare in orase_plecare'
@@ -63,7 +63,7 @@
                                     <select class="form-select {{ $errors->has('oras_sosire') ? 'is-invalid' : '' }}"
                                         name="oras_sosire"
                                         v-model="oras_sosire"
-                                        {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
+                                        {{ (auth()->user()->isDispecer()) || (\Carbon\Carbon::parse($rezervari->created_at)->diffInMinutes(\Carbon\Carbon::now()) < 30) ?  '' : 'disabled'}}
                                     @change='getOrePlecare();getReturOrePlecare();'>
                                             <option v-for='oras_sosire in orase_sosire'
                                             :value='oras_sosire.id'
@@ -81,7 +81,7 @@
                                     <select class="form-select {{ $errors->has('ora_id') ? 'is-invalid' : '' }}"
                                         name="ora_id"
                                         v-model="ora_plecare"
-                                        {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
+                                        {{ (auth()->user()->isDispecer()) || (\Carbon\Carbon::parse($rezervari->created_at)->diffInMinutes(\Carbon\Carbon::now()) < 30) ?  '' : 'disabled'}}
                                     @change='getOraSosire()'>
                                         <option v-for='ora_plecare in ore_plecare'
                                             :value='ora_plecare.id'
@@ -128,7 +128,7 @@
                                     name="zbor_ora_decolare"
                                     placeholder="00:00"
                                     value="{{ old('zbor_ora_decolare') == '' ? $rezervari->zbor_ora_decolare : old('zbor_ora_decolare') }}"
-                                    {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
+                                    {{ (auth()->user()->isDispecer()) || (\Carbon\Carbon::parse($rezervari->created_at)->diffInMinutes(\Carbon\Carbon::now()) < 30) ?  '' : 'disabled'}}
                                     required>
                             </div>
                         </div>
@@ -142,7 +142,7 @@
                                     placeholder=""
                                     value="{{ old('zbor_oras_decolare') == '' ? $rezervari->zbor_oras_decolare : old('zbor_oras_decolare') }}"
                                     style="text-transform:uppercase"
-                                    {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
+                                    {{ (auth()->user()->isDispecer()) || (\Carbon\Carbon::parse($rezervari->created_at)->diffInMinutes(\Carbon\Carbon::now()) < 30) ?  '' : 'disabled'}}
                                     required>
                             </div>
                             <div class="form-group col-lg-5 mb-0">
@@ -153,7 +153,7 @@
                                     name="zbor_ora_aterizare"
                                     placeholder="00:00"
                                     value="{{ old('zbor_ora_aterizare') == '' ? $rezervari->zbor_ora_aterizare : old('zbor_ora_aterizare') }}"
-                                    {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
+                                    {{ (auth()->user()->isDispecer()) || (\Carbon\Carbon::parse($rezervari->created_at)->diffInMinutes(\Carbon\Carbon::now()) < 30) ?  '' : 'disabled'}}
                                     required>
                             </div>
                         </div>
@@ -173,7 +173,7 @@
                                     placeholder="Nume client"
                                     value="{{ old('nume') == '' ? $rezervari->nume : old('nume') }}"
                                     style="text-transform:uppercase"
-                                    {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
+                                    {{ (auth()->user()->isDispecer()) || (\Carbon\Carbon::parse($rezervari->created_at)->diffInMinutes(\Carbon\Carbon::now()) < 30) ?  '' : 'disabled'}}
                                     required>
                             </div>
                             <div class="form-group col-lg-12 mb-2">
@@ -195,7 +195,7 @@
                                     name="email"
                                     placeholder="E-mail"
                                     value="{{ old('email') == '' ? $rezervari->email : old('email') }}"
-                                    {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
+                                    {{ (auth()->user()->isDispecer()) || (\Carbon\Carbon::parse($rezervari->created_at)->diffInMinutes(\Carbon\Carbon::now()) < 30) ?  '' : 'disabled'}}
                                     required>
                             </div>
                             <div class="form-group col-lg-12 mb-1">
@@ -233,12 +233,12 @@
                                                         value="{{ old('nr_adulti') }}"
                                                         required
                                                         v-on:input='getPretTotal()'
-                                                        {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
+                                                        {{ (auth()->user()->isDispecer()) || (\Carbon\Carbon::parse($rezervari->created_at)->diffInMinutes(\Carbon\Carbon::now()) < 30) ?  '' : 'disabled'}}
                                                         >
                                                     {{-- <select class="custom-select custom-select-sm {{ $errors->has('nr_adulti') ? 'is-invalid' : '' }}"
                                                         name="nr_adulti"
                                                         v-model="nr_adulti"
-                                                        {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
+                                                        {{ (auth()->user()->isDispecer()) || (\Carbon\Carbon::parse($rezervari->created_at)->diffInMinutes(\Carbon\Carbon::now()) < 30) ?  '' : 'disabled'}}
                                                     @change='getPretTotal()'>
                                                         @for ($i = 1; $i < 16; $i++)
                                                             <option>{{ $i }}</option>
@@ -262,12 +262,12 @@
                                                     value="{{ old('nr_copii') }}"
                                                     required
                                                     v-on:input='getPretTotal()'
-                                                    {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
+                                                    {{ (auth()->user()->isDispecer()) || (\Carbon\Carbon::parse($rezervari->created_at)->diffInMinutes(\Carbon\Carbon::now()) < 30) ?  '' : 'disabled'}}
                                                     >
                                                 {{-- <select class="custom-select custom-select-sm {{ $errors->has('nr_copii') ? 'is-invalid' : '' }}"
                                                     name="nr_copii"
                                                     v-model="nr_copii"
-                                                    {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
+                                                    {{ (auth()->user()->isDispecer()) || (\Carbon\Carbon::parse($rezervari->created_at)->diffInMinutes(\Carbon\Carbon::now()) < 30) ?  '' : 'disabled'}}
                                                 @change='getPretTotal()'>
                                                     @for ($i = 1; $i < 11; $i++)
                                                         <option>{{ $i }}</option>
@@ -293,7 +293,7 @@
                                                 name="comision_agentie"
                                                 placeholder="0"
                                                 value="{{ old('comision_agentie') == '' ? $rezervari->comision_agentie : old('comision_agentie') }}"
-                                                {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
+                                                {{ (auth()->user()->isDispecer()) || (\Carbon\Carbon::parse($rezervari->created_at)->diffInMinutes(\Carbon\Carbon::now()) < 30) ?  '' : 'disabled'}}
                                                 {{-- {{ old('statie_imbarcare') == '' ? $rezervari->statie_imbarcare : old('statie_imbarcare') }} --}}
                                                 >
                                         </div>
@@ -317,7 +317,7 @@
                                             placeholder="0"
                                             value="{{ old('pret_total') == '' ? $rezervari->pret_total : old('pret_total') }}"
                                             required
-                                            {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
+                                            {{ (auth()->user()->isDispecer()) || (\Carbon\Carbon::parse($rezervari->created_at)->diffInMinutes(\Carbon\Carbon::now()) < 30) ?  '' : 'disabled'}}
                                             >
                                         <label class="col-form-label mx-1">lei</label>
                                     </div>
@@ -325,14 +325,14 @@
                                     <div class="form-check mr-4 mt-1">
                                         <input type="checkbox" class="form-check-input" name="tip_plata_id" value="1"
                                         {{ old('tip_plata_id', $rezervari->tip_plata_id) == '1' ? 'checked' : '' }}
-                                        {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
+                                        {{ (auth()->user()->isDispecer()) || (\Carbon\Carbon::parse($rezervari->created_at)->diffInMinutes(\Carbon\Carbon::now()) < 30) ?  '' : 'disabled'}}
                                         >
                                         <label class="form-check-label" for="tip_plata_id">La șofer</label>
                                     </div>
                                     <div class="form-check ml-4 mt-1">
                                         <input type="checkbox" class="form-check-input" name="tip_plata_id" value="2"
                                         {{ old('tip_plata_id', $rezervari->tip_plata_id) == '2' ? 'checked' : '' }}
-                                        {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
+                                        {{ (auth()->user()->isDispecer()) || (\Carbon\Carbon::parse($rezervari->created_at)->diffInMinutes(\Carbon\Carbon::now()) < 30) ?  '' : 'disabled'}}
                                         >
                                         <label class="form-check-label" for="tip_plata_id">La agenție</label>
                                     </div>
@@ -350,7 +350,7 @@
                                         placeholder="0"
                                         value="{{ old('pret_total') == '' ? $rezervari->pret_total : old('pret_total') }}"
                                         required
-                                        {{ auth()->user()->isDispecer() ? '' : 'disabled'}}
+                                        {{ (auth()->user()->isDispecer()) || (\Carbon\Carbon::parse($rezervari->created_at)->diffInMinutes(\Carbon\Carbon::now()) < 30) ?  '' : 'disabled'}}
                                         >
                                 </div>
                                 <label class="col-form-label mb-0 pb-0">

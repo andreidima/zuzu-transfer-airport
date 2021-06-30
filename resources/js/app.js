@@ -31,7 +31,13 @@ Vue.component('vue2-datepicker', require('./components/DatePicker.vue').default)
 
 if (document.querySelector('#app1')) {
     const app1 = new Vue({
-        el: '#app1'
+        el: '#app1',
+        methods: {
+            // Atunci cand se selecteaza o data din calendar, calendarul emite un event ce apeleaza aceasta functie, care apasa automat butonul de submit
+            submit_form() {
+                this.$refs.submitBtn.click();
+            }
+        }
     });
 }
 
@@ -54,7 +60,7 @@ if (document.querySelector('#orase-ore-plecare')) {
             // numarul de adulti si copii
             nr_adulti: nrAdultiVechi,
             nr_copii: nrCopiiVechi,
-            // preturile per adult si per copil pentru curse            
+            // preturile per adult si per copil pentru curse
             pret_adult: 0,
             pret_copil: 0,
             pret_total: pretTotal,
@@ -259,7 +265,7 @@ if (document.querySelector('#orase-ore-plecare')) {
                     }
                 } else{
                     this.oferta = false;
-                }         
+                }
             }
         }
     });

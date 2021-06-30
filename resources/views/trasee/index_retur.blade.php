@@ -1,14 +1,14 @@
 @extends ('layouts.app')
 
-@section('content')   
+@section('content')
     <div class="container card px-0">
         <div class="d-flex justify-content-between card-header">
             <div class="flex flex-vertical-center">
                 <h4 class="mt-2"><a href="/trasee/retur"><i class="fas fa-route mr-1"></i>Traseu RETUR</a></h4>
-            </div> 
-                <div class="">             
+            </div>
+                <div class="">
                     <form class="needs-validation" novalidate method="GET" action="/trasee/retur">
-                        @csrf                    
+                        @csrf
                         <div class="input-group custom-search-form" id="app1">
                             {{-- <input type="text" class="form-control" name="search" placeholder="Caută..."> --}}
                                         <vue2-datepicker
@@ -17,9 +17,15 @@
                                             tip="date"
                                             latime="150"
                                             {{-- data-veche="{{\Carbon\Carbon::today()}}" --}}
+
+                                            {{-- Submiterea automata a formei la updatarea calendarului --}}
+                                            @updated="submit_form"
                                         ></vue2-datepicker>
                             <span class="input-group-btn">
-                                <button class="btn btn-default-sm bg-primary" style="height: 34px;" type="submit">
+                                <button class="btn btn-default-sm bg-primary" style="height: 34px;" type="submit"
+                                    {{-- Referinta pentru trimiterea automata a comenzii de submit  --}}
+                                    ref="submitBtn"
+                                >
                                     <i class="fas fa-search text-white"></i>
                                 </button>
                             </span>
@@ -32,7 +38,7 @@
         </div>
 
         {{-- <form action="{{ route('trasee.store') }}" method="POST">
-            @csrf 
+            @csrf
         <input type="hidden" name="search" value="{{ $search }}">
             <input type="submit" value="Send.">
         </form> --}}
@@ -40,33 +46,33 @@
 
         <div class="card-body">
             <div class="row justify-content-center">
-                <div class="col-lg-2 container-fluid px-0 table-responsive-lg border"> 
+                <div class="col-lg-2 container-fluid px-0 table-responsive-lg border">
                     <h5 class="p-2 bg-secondary text-white mb-0 text-center">Otopeni</h5>
-                        <table class="table table-sm table-striped text-center mb-2">   
+                        <table class="table table-sm table-striped text-center mb-2">
                             @php
-                                $nr_rezervari[] = array();    
+                                $nr_rezervari[] = array();
                             @endphp
                             @forelse ($trasee_nume_otopeni as $traseu_nume)
                                 {{-- @if ($loop->first)
                                     @forelse ($traseu_nume->trasee as $traseu)
-                                        @php 
-                                            $nr_rezervari[$loop->index] = 
+                                        @php
+                                            $nr_rezervari[$loop->index] =
                                                 $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_adulti')
                                                 +
-                                                $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_copii')                                     
-                                        @endphp 
+                                                $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_copii')
+                                        @endphp
                                     @empty
                                     @endforelse
                                 @elseif ($loop->last) --}}
                                     @forelse ($traseu_nume->trasee as $traseu)
-                                        {{-- @php 
+                                        {{-- @php
                                             dd($loop->index);
-                                            $nr_rezervari[$loop->index] += 
+                                            $nr_rezervari[$loop->index] +=
                                                 $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_adulti')
                                                 +
-                                                $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_copii')                                     
+                                                $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_copii')
                                         @endphp  --}}
-                                        <tr>  
+                                        <tr>
                                             <td class="" style="line-height:1;">
                                                 <a href="{{ $traseu->path() }}/{{ \Carbon\Carbon::createFromFormat('Y-m-d', $search)->format('d-m-Y') }}"
                                                     class="text-dark"
@@ -75,14 +81,14 @@
                                                     >
                                                     <div class="row align-items-center">
                                                         <div class="col-5">
-                                                            {{ \Carbon\Carbon::parse($traseu->curse_ore->first()->ora)->format('H:i') }}     
+                                                            {{ \Carbon\Carbon::parse($traseu->curse_ore->first()->ora)->format('H:i') }}
                                                         </div>
                                                         <div class="col-4">
-                                                            @php 
-                                                                $nr_persoane = 
+                                                            @php
+                                                                $nr_persoane =
                                                                     $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_adulti')
                                                                     +
-                                                                    $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_copii') 
+                                                                    $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_copii')
                                                             @endphp
                                                             <span title="Total pasageri" class={{ $nr_persoane > 0 ? "text-danger" : '' }}>
                                                                 {{ $nr_persoane }}
@@ -92,19 +98,19 @@
                                                             <i class="fas fa-file-pdf fa-2x text-primary bg-white"></i>
                                                         </div>
                                                     </div>
-                                                </a>        
+                                                </a>
                                             </td>
-                                        </tr> 
+                                        </tr>
                                     @empty
                                     @endforelse
                                 {{-- @else
                                     @forelse ($traseu_nume->trasee as $traseu)
-                                        @php 
-                                            $nr_rezervari[$loop->index] = 
+                                        @php
+                                            $nr_rezervari[$loop->index] =
                                                 $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_adulti')
                                                 +
-                                                $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_copii')                                     
-                                        @endphp 
+                                                $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_copii')
+                                        @endphp
                                     @empty
                                     @endforelse
                                 @endif --}}
@@ -112,7 +118,7 @@
                             @endforelse
                         </table>
                     <div class="d-flex justify-content-between">
-                        <div class="flex flex-vertical-center mx-auto">  
+                        <div class="flex flex-vertical-center mx-auto">
                                     <a href="/trasee/toate_orele/3/{{ \Carbon\Carbon::createFromFormat('Y-m-d', $search)->format('d-m-Y') }}"
                                         class="btn btn-success"
                                         role="button"
@@ -121,16 +127,16 @@
                                     </a>
                         </div>
                     </div>
-                </div> 
-            </div>   
-            
-            
+                </div>
+            </div>
+
+
             {{-- Afisarea initiala pentru Otopeni-Tecuci --}}
             {{-- <div class="row justify-content-center mb-4">
-                <div class="col-12 mb-4">    
-                    @forelse ($trasee_nume_otopeni_tecuci as $traseu_nume)                      
+                <div class="col-12 mb-4">
+                    @forelse ($trasee_nume_otopeni_tecuci as $traseu_nume)
                     <div class="d-flex justify-content-between bg-secondary text-white">
-                        <div class="flex flex-vertical-center">                     
+                        <div class="flex flex-vertical-center">
                             <h5 class="p-3 mb-0">Traseu: {{$traseu_nume->nume}}</h5>
                         </div>
                         <div>
@@ -141,7 +147,7 @@
                         @forelse ($traseu_nume->trasee as $traseu)
                             @if ($loop->first)
                                 <tr>
-                                        @forelse ($traseu->curse_ore as $cursa_ora) 
+                                        @forelse ($traseu->curse_ore as $cursa_ora)
                                             @if ($loop->first)
                                                 <td>
                                                     {{$cursa_ora->cursa->oras_plecare->nume}}
@@ -157,10 +163,10 @@
                                         @empty
                                         @endforelse
                                 </tr>
-                            @endif 
+                            @endif
 
                             <tr>
-                            @forelse ($traseu->curse_ore as $cursa_ora)  
+                            @forelse ($traseu->curse_ore as $cursa_ora)
                                 @if ($loop->first)
                                     <td>
                                         {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}}
@@ -201,21 +207,21 @@
                             @endforelse
                             </tr>
                         @empty
-                        @endforelse 
+                        @endforelse
                     </table>
                     @empty
                         <div>Nu există trasee în baza de date. Încearcă alte date de căutare.</div>
                     @endforelse
-                </div>      
+                </div>
             </div>     --}}
-            
+
 
             {{-- Afisarea initiala pentru Otopeni-Galati --}}
             {{-- <div class="row justify-content-center mb-4">
-                <div class="col-12 mb-4">    
-                    @forelse ($trasee_nume_otopeni_galati as $traseu_nume)                      
+                <div class="col-12 mb-4">
+                    @forelse ($trasee_nume_otopeni_galati as $traseu_nume)
                     <div class="d-flex justify-content-between bg-secondary text-white">
-                        <div class="flex flex-vertical-center">                     
+                        <div class="flex flex-vertical-center">
                             <h5 class="p-3 mb-0">Traseu: {{$traseu_nume->nume}}</h5>
                         </div>
                         <div>
@@ -226,7 +232,7 @@
                         @forelse ($traseu_nume->trasee as $traseu)
                             @if ($loop->first)
                                 <tr>
-                                        @forelse ($traseu->curse_ore as $cursa_ora) 
+                                        @forelse ($traseu->curse_ore as $cursa_ora)
                                             @if ($loop->first)
                                                 <td>
                                                     {{$cursa_ora->cursa->oras_plecare->nume}}
@@ -242,10 +248,10 @@
                                         @empty
                                         @endforelse
                                 </tr>
-                            @endif 
+                            @endif
 
                             <tr>
-                            @forelse ($traseu->curse_ore as $cursa_ora)  
+                            @forelse ($traseu->curse_ore as $cursa_ora)
                                 @if ($loop->first)
                                     <td>
                                         {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}}
@@ -286,12 +292,12 @@
                             @endforelse
                             </tr>
                         @empty
-                        @endforelse 
+                        @endforelse
                     </table>
                     @empty
                         <div>Nu există trasee în baza de date. Încearcă alte date de căutare.</div>
                     @endforelse
-                </div>      
+                </div>
             </div> --}}
         </div>
     </div>
