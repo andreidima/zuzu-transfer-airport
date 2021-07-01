@@ -67,8 +67,8 @@
                                         <a
                                             href="#"
                                             data-bs-toggle="modal"
-                                            data-bs-target="#stergeMasina{{ $sofer->id }}"
-                                            title="Șterge Masina"
+                                            data-bs-target="#stergeSofer{{ $sofer->id }}"
+                                            title="Șterge Sofer"
                                             >
                                             <span class="badge  bg-danger">Șterge</span>
                                         </a>
@@ -94,7 +94,7 @@
     {{-- Modalele pentru stergere sofer --}}
     @foreach ($soferi as $sofer)
         <div class="modal fade text-dark" id="stergeSofer{{ $sofer->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                 <div class="modal-header bg-danger">
                     <h5 class="modal-title text-white" id="exampleModalLabel">Șofer: <b>{{ $sofer->nume }}</b></h5>
@@ -104,7 +104,7 @@
                     Ești sigur ca vrei să ștergi Șoferul?
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Renunță</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Renunță</button>
 
                     <form method="POST" action="{{ $sofer->path() }}">
                         @method('DELETE')
