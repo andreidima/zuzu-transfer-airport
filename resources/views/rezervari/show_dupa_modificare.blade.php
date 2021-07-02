@@ -115,7 +115,7 @@
                                     tip="date"
                                     latime="150"
                                     not-before="{{ \Carbon\Carbon::today() }}"
-                                    disabled-date
+                                    disabled
                                 ></vue2-datepicker>
                             </div>
                             <div class="form-group col-lg-5 mb-0">

@@ -49,6 +49,11 @@
     @endif
 
     <div class="py-3">
+        @if (!auth()->user()->isDispecer())
+            <span class="mx-3">
+                *Rezervările pot fi modificate integral timp de 30 de minute de la adăugare!
+            </span>
+        @endif
         <table class="table table-sm" style="border:1px solid #333; width:100%;">
             <thead>
                 <tr style="height:35px; background-color:#EF9A3E; text-align:center; color:white; font-size:0.7rem">

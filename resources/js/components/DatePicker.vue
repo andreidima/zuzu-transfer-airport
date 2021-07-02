@@ -4,7 +4,7 @@ import moment from 'moment';
 
 export default {
   components: { DatePicker },
-  props: ['dataVeche', 'numeCampDb', 'tip', 'latime', 'notBefore'],
+  props: ['dataVeche', 'numeCampDb', 'tip', 'latime', 'notBefore', 'disabled'],
   data() {
     return {
       time1: '',
@@ -120,6 +120,7 @@ export default {
       :lang="lang"
       :time-picker-options="timePickerOptions"
       :disabled-days="['2019-12-25','2020-01-01']"
+      :disabled="disabled"
       >
     </date-picker>
     <!-- <button ref="submitBtn" type="submit">Save name</button> -->

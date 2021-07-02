@@ -531,7 +531,7 @@ class RezervareController extends Controller
      */
     public function update(Request $request, Rezervare $rezervari)
     {
-        if (auth()->user()->isDispecer()){
+        if ((auth()->user()->isDispecer()) || (\Carbon\Carbon::parse($rezervari->created_at)->diffInMinutes(\Carbon\Carbon::now()) < 30)){
             $this->validateRequest($request, $rezervari);
             $this->authorize('update', $rezervari);
 
