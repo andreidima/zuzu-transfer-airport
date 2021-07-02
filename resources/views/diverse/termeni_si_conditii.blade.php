@@ -47,6 +47,47 @@
                                 <li>La cumparare, pasagerul trebuie sa verifice corectitudinea datelor de calatorie si de identitate inscrise pe bilet si sa solicite pe loc corectarea, in cazul unei neconformitati. Transportatorul nu raspunde pentru erorile descoperite la imbarcare si poate refuza imbarcarea.</li>
                                 <li>Prezentarea documentului de identitate valabil este absolut obligatorie pentru imbarcare, in caz contrar firma isi rezerva dreptul de a refuza imbarcarea.</li>
                                 <li>Copiii cu varsta mai mica de 12 ani vor fi transportati numai daca sunt insotiti, si beneficiaza de reduceri, astfel: Pretul biletului este cel stabilit de tariful in vigoare, la data eliberarii si poate fi achitat in moneda LEI, la cursul BNR, din ziua efectuarii platii</li>
+                                <li>
+                                    Tarife:
+                                    @php
+                                        $tarife = \App\Cursa::with('oras_plecare', 'oras_sosire')
+                                                ->whereNotIn('plecare_id', [8,12,13]) // fara plecarile din aeroportul Otopeni (8), sau Vaslui (12), sau Barlad (13)
+                                                ->orderBy('durata')
+                                                ->get();
+                                        // dd($tarife);
+                                    @endphp
+                                    <table class="table table-striped table-hover text-center">
+                                        <thead>
+                                            <th  scope="col" colspan="2">
+                                                Traseu
+                                            </th>
+                                            <th scope="col">
+                                                Preț adult
+                                            </th>
+                                            <th scope="col">
+                                                Preț copil (2-7 ani)
+                                            </th>
+                                        </thead>
+                                        @forelse($tarife as $tarif)
+                                        <tr>
+                                            <td>
+                                                {{ $tarif->oras_plecare->nume }}
+                                            </td>
+                                            <td>
+                                                {{ $tarif->oras_sosire->nume }}
+                                            </td>
+                                            <td>
+                                                {{ $tarif->pret_adult }}
+                                            </td>
+                                            <td>
+                                                {{ $tarif->pret_copil }}
+                                            </td>
+                                        </tr>
+                                        @empty
+                                            *Tarifele nu pot fi afișate din baza de date
+                                        @endforelse
+                                    </table>
+                                </li>
                                 <li>Biletele de calatorie se pot plati astfel:
                                     <ul>
                                     <li>Direct la sofer, la urcarea in mijlocul de transport.</li>
