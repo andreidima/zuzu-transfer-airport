@@ -22,7 +22,7 @@
                                             @updated="submit_form"
                                         ></vue2-datepicker>
                             <span class="input-group-btn">
-                                <button class="btn btn-default-sm bg-primary" style="height: 34px;" type="submit"
+                                <button class="btn btn-default-sm bg-primary d-none" style="height: 34px;" type="submit"
                                     {{-- Referinta pentru trimiterea automata a comenzii de submit  --}}
                                     ref="submitBtn"
                                 >
