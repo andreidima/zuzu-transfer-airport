@@ -16,15 +16,20 @@ class TraseuController extends Controller
      * Display a listing of the resource.
      *
      * Se afiseaza rapoartele tur
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $search = \Request::get('search');
+        // $search = \Request::get('search');
+        $date = \Request::get('date');
+        $search = $date;
         if (empty($search)) {
             $search = \Carbon\Carbon::today()->format('Y-m-d');
+        } else {
+            $search = \Carbon\Carbon::parse($search)->format('Y-m-d');
         }
+
         $search_ieri = \Carbon\Carbon::parse($search)->subDay()->format('Y-m-d');
         // dd($search, $search_ieri);
 
@@ -46,7 +51,7 @@ class TraseuController extends Controller
                                 $query->whereNotIn('ora_id', [293, 294, 307])
                                     ->where('data_cursa', $search)
                                     ->where('activa', 1);
-                                });        
+                                });
                     }]
                 )
                 ->with(
@@ -87,7 +92,7 @@ class TraseuController extends Controller
         //             'rezervari.user'
         //         )
         //         ->get();
-        
+
         // dd($trasee_tecuci_otopeni);
 
         $trasee_nume_galati_otopeni = TraseuNume::select('id', 'nume')
@@ -114,7 +119,7 @@ class TraseuController extends Controller
         // $trasee_nume_otopeni = TraseuNume::select('id', 'nume')
         //     ->where('id', 3)
         //     ->get();
-            
+
         // return view('trasee.index', compact('trasee_nume_tecuci_otopeni', 'trasee_tecuci_otopeni', 'trasee_nume_galati_otopeni', 'search'));
         return view('trasee.index', compact('trasee_nume_tecuci_otopeni', 'trasee_nume_galati_otopeni', 'search'));
     }
@@ -127,10 +132,15 @@ class TraseuController extends Controller
      */
     public function index_retur()
     {
-        $search = \Request::get('search');
+        // $search = \Request::get('search');
+        $date = \Request::get('date');
+        $search = $date;
         if (empty($search)) {
             $search = \Carbon\Carbon::today()->format('Y-m-d');
+        } else {
+            $search = \Carbon\Carbon::parse($search)->format('Y-m-d');
         }
+
         $trasee_nume_otopeni = TraseuNume::select('id', 'nume')
             ->where('id', 3)
             ->with(
@@ -163,9 +173,13 @@ class TraseuController extends Controller
      */
     public function index_statistica()
     {
-        $search = \Request::get('search');
+        // $search = \Request::get('search');
+        $date = \Request::get('date');
+        $search = $date;
         if (empty($search)) {
             $search = \Carbon\Carbon::today()->format('Y-m-d');
+        } else {
+            $search = \Carbon\Carbon::parse($search)->format('Y-m-d');
         }
         $search_ieri = \Carbon\Carbon::parse($search)->subDay()->format('Y-m-d');
 
@@ -274,7 +288,7 @@ class TraseuController extends Controller
             )
             ->with(
                 ['trasee.curse_ore.rezervari' => function ($query) use ($search) {
-                    $query 
+                    $query
                         ->select('data_cursa', 'activa', 'nr_adulti', 'nr_copii')
                         ->where('data_cursa', $search)
                         ->where('activa', 1);
@@ -396,7 +410,7 @@ class TraseuController extends Controller
         // if (($traseu_nume_id == 2) or ( $traseu_nume_id == 4) ) {
         //     $trasee_nume = TraseuNume::select('id', 'nume')
         //         ->where('id', 2)
-        //         ->first();            
+        //         ->first();
 
         //     $rezervari = Rezervare::with('cursa', 'ora')
         //         ->whereHas('cursa', function ($query) {
@@ -427,7 +441,7 @@ class TraseuController extends Controller
                 'trasee.curse_ore.rezervari.user.firma',
                 'trasee.curse_ore.rezervari.tip_plata',
                 // 'trasee.curse_ore.rezervari.statie',
-                'trasee.curse_ore.cursa.oras_plecare',            
+                'trasee.curse_ore.cursa.oras_plecare',
                 'trasee.curse_ore.cursa.oras_sosire'
                 // 'trasee.curse_ore.cursa.oras_sosire',
                 // 'trasee.curse_ore.cursa'
@@ -449,16 +463,16 @@ class TraseuController extends Controller
                         });
                 }]
             )
-            // ->with( 
+            // ->with(
             //         'trasee.curse_ore.rezervari.ora', 'trasee.curse_ore.rezervari.tip_plata', 'trasee.curse_ore.rezervari.statie:id,nume',
             //         'trasee.curse_ore.rezervari.cursa.oras_plecare', 'trasee.curse_ore.rezervari.cursa.oras_sosire',
             //         'trasee.curse_ore.rezervari.user:id,user_firma_id,nume'
             // )
-        // ->with('trasee.curse_ore', 'trasee.curse_ore.cursa', 'trasee.curse_ore.cursa.oras_plecare', 'trasee.curse_ore.cursa.oras_sosire', 
+        // ->with('trasee.curse_ore', 'trasee.curse_ore.cursa', 'trasee.curse_ore.cursa.oras_plecare', 'trasee.curse_ore.cursa.oras_sosire',
         //     'trasee.rezervari', 'trasee.rezervari.user', 'trasee.rezervari.user.firma'
         // )
         // ->with('trasee.rezervari')
-        // ->with('trasee.curse_ore.cursa', 'trasee.rezervari', 'trasee.rezervari.tip_plata')        
+        // ->with('trasee.curse_ore.cursa', 'trasee.rezervari', 'trasee.rezervari.tip_plata')
         // ->with('trasee.curse_ore.cursa', 'trasee.curse_ore', 'trasee.rezervari:data_cursa,activa,nr_adulti,nr_copii')
         ->get();
 
@@ -557,16 +571,16 @@ class TraseuController extends Controller
 
             $pdf = \PDF::loadView('trasee.export.traseu-pdf', compact('trasee', 'data_traseu', 'data_traseu_Ymd', 'telefoane_clienti_neseriosi'))
                 ->setPaper('a4');
-            return $pdf->download('Raport ' . $trasee->traseu_nume->nume . ', ' . $data_traseu . ', ' . 
-                \Carbon\Carbon::parse($trasee->curse_ore->first()->ora)->format('H_i') 
+            return $pdf->download('Raport ' . $trasee->traseu_nume->nume . ', ' . $data_traseu . ', ' .
+                \Carbon\Carbon::parse($trasee->curse_ore->first()->ora)->format('H_i')
                 . ' - ' .
                 \Carbon\Carbon::parse($trasee->curse_ore->first()->ora)
                     ->addHours(\Carbon\Carbon::parse($trasee->curse_ore->first()->cursa->durata)->hour)
                     ->addMinutes(\Carbon\Carbon::parse($trasee->curse_ore->first()->cursa->durata)->minute)
                     ->format('H_i')
-                    . 
+                    .
                     '.pdf');
-            
+
         }
     }
 
@@ -584,7 +598,7 @@ class TraseuController extends Controller
                 'trasee.curse_ore.rezervari.user.firma',
                 'trasee.curse_ore.rezervari.tip_plata',
                 // 'trasee.curse_ore.rezervari.statie',
-                'trasee.curse_ore.cursa.oras_plecare',            
+                'trasee.curse_ore.cursa.oras_plecare',
                 'trasee.curse_ore.cursa.oras_sosire'
                 // 'trasee.curse_ore.cursa.oras_sosire',
                 // 'trasee.curse_ore.cursa'
@@ -618,21 +632,21 @@ class TraseuController extends Controller
                 }]
             )
             ->first();
-        
+
         if ($request->view_type === 'traseu-html-toate-orele') {
             return view('trasee.export.traseu-pdf-toate-orele', compact('trasee_nume', 'data_traseu', 'data_traseu_Ymd', 'telefoane_clienti_neseriosi'));
-        } elseif ($request->view_type === 'traseu-pdf-toate-orele') {            
+        } elseif ($request->view_type === 'traseu-pdf-toate-orele') {
             $pdf = \PDF::loadView('trasee.export.traseu-pdf-toate-orele', compact('trasee_nume', 'data_traseu', 'data_traseu_Ymd', 'telefoane_clienti_neseriosi'))
                 ->setPaper('a4');
             return $pdf->download('Raport ' . $trasee_nume->nume . ', ' . $data_traseu . '.pdf');
-            
+
         } elseif ($request->view_type === 'traseu-html-toate-orele-per-ora') {
             return view('trasee.export.traseu-pdf-toate-orele-per-ora', compact('trasee_nume', 'data_traseu', 'data_traseu_Ymd', 'telefoane_clienti_neseriosi'));
         } elseif ($request->view_type === 'traseu-pdf-toate-orele-per-ora') {
             $pdf = \PDF::loadView('trasee.export.traseu-pdf-toate-orele-per-ora', compact('trasee_nume', 'data_traseu', 'data_traseu_Ymd', 'telefoane_clienti_neseriosi'))
                 ->setPaper('a4');
             return $pdf->download('Raport ' . $trasee_nume->nume . ', ' . $data_traseu . '.pdf');
-            
+
         }
     }
 }
