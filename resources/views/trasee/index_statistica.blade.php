@@ -1,7 +1,6 @@
 @extends ('layouts.app')
 
 @section('content')
-    <h5>{{ $search }}</h5>
     <div class="container card px-0">
         <div class="d-flex justify-content-between card-header">
             <div class="flex flex-vertical-center">
@@ -23,7 +22,7 @@
                                             @updated="submit_form"
                                         ></vue2-datepicker>
                             <span class="input-group-btn">
-                                <button class="btn btn-default-sm bg-primary" style="height: 34px;" type="submit"
+                                <button class="btn btn-default-sm bg-primary d-none" style="height: 34px;" type="submit"
                                     {{-- Referinta pentru trimiterea automata a comenzii de submit  --}}
                                     ref="submitBtn"
                                 >
