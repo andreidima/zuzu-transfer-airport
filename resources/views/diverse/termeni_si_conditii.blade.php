@@ -14,7 +14,7 @@
             <div>
                 {{-- <a class="btn btn-secondary" href="/rezervari" role="button">Renunță</a> --}}
                 <h3 class="mt-2">
-                    Zuzu Transfer Airport
+                    Zuzulica Trans
                 </h3>
             </div>
         </div>

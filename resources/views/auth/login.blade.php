@@ -10,7 +10,7 @@
                         {{ __('Login') }}
                     </div>
                     <div>
-                        Zuzu Transfer Airport
+                        Zuzulica Trans
                     </div>
                 </div>
 

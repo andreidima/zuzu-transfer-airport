@@ -11,7 +11,7 @@ Iti multumim pentru ca ai folosit serviciile noastre.
 Nu raspunde la acest email. Raspunsul tau nu va fi citit.<br>
 Do not respond to this message. Your reply will go nowhere.
 <br><br>
-Zuzu Transfer Airport <br>
+Zuzulica Trans <br>
 Contact: <br>
 +40 0768 112 244 <br>
 +40 0768 112 255 <br>

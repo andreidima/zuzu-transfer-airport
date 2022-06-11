@@ -45,14 +45,14 @@ class BiletClient extends Mailable
 
         if($rezervare_retur === null){
             return $this->markdown('mail.bilet-client')
-                ->subject('Rezervare Zuzu Transfer Airport')
-                ->attachData($pdf->output(), 'Rezervare Zuzu Transfer Airport.pdf');
+                ->subject('Rezervare Zuzulica Trans')
+                ->attachData($pdf->output(), 'Rezervare Zuzulica Trans.pdf');
         }
         else{
             return $this->markdown('mail.bilet-client')
-                ->subject('Rezervare Zuzu Transfer Airport')
-                ->attachData($pdf->output(), 'Rezervare tur Zuzu Transfer Airport.pdf')
-                ->attachData($pdf_retur->output(), 'Rezervare retur Zuzu Transfer Airport.pdf');
+                ->subject('Rezervare Zuzulica Trans')
+                ->attachData($pdf->output(), 'Rezervare tur Zuzulica Trans.pdf')
+                ->attachData($pdf_retur->output(), 'Rezervare retur Zuzulica Trans.pdf');
         }
     }
 }
