@@ -280,7 +280,7 @@
 
 
 
-                <div class="col-lg-5 container-fluid px-0 table-responsive-lg border">
+                {{-- <div class="col-lg-5 container-fluid px-0 table-responsive-lg border">
                     @forelse ($trasee_nume_galati_otopeni as $traseu_nume)
                         <h5 class="p-2 bg-secondary text-white mb-0 text-center">{{$traseu_nume->nume}}</h5>
                         <table class="table table-sm table-striped text-center mb-2">
@@ -344,23 +344,6 @@
                                     </td>
                                 @empty
                                 @endforelse
-                                    {{-- <td style="line-height:1">
-                                        <a href="{{ $traseu->path() }}/{{ \Carbon\Carbon::createFromFormat('Y-m-d', $search)->format('d-m-Y') }}"
-                                            class="text-dark">
-                                            {{ \Carbon\Carbon::parse($cursa_ora->ora)
-                                                ->addHours(\Carbon\Carbon::parse($cursa_ora->cursa->durata)->hour)
-                                                ->addMinutes(\Carbon\Carbon::parse($cursa_ora->cursa->durata)->minute)
-                                                ->format('H:i') }}
-                                        </a>
-                                        <br>
-                                            <small class="text-danger">
-                                                ={{
-                                                    $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_adulti')
-                                                    +
-                                                    $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_copii')
-                                                }}
-                                            </small>
-                                    </td> --}}
                                     <td class="">
                                         <a href="{{ $traseu->path() }}/{{ \Carbon\Carbon::createFromFormat('Y-m-d', $search)->format('d-m-Y') }}"
                                             class="btn btn btn-light p-0"
@@ -408,7 +391,7 @@
                     @empty
                         <div>Nu există trasee în baza de date. Încearcă alte date de căutare.</div>
                     @endforelse
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

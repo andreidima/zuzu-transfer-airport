@@ -113,7 +113,7 @@
 
 
 
-                <div class="col-lg-2 container-fluid px-0 table-responsive-lg border mb-4">
+                {{-- <div class="col-lg-2 container-fluid px-0 table-responsive-lg border mb-4">
                     @forelse ($trasee_nume_galati_otopeni as $traseu_nume)
                         <h5 class="p-2 bg-secondary text-white mb-0 text-center">{{$traseu_nume->nume}}</h5>
                         <table class="table table-sm table-striped text-center mb-0">
@@ -164,7 +164,7 @@
                     @empty
                         <div>Nu există trasee în baza de date. Încearcă alte date de căutare.</div>
                     @endforelse
-                </div>
+                </div> --}}
 
 
                 <div class="col-lg-2 container-fluid px-0 table-responsive-lg border">

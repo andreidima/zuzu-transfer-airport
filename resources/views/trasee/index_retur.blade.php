@@ -65,13 +65,10 @@
                                     @endforelse
                                 @elseif ($loop->last) --}}
                                     @forelse ($traseu_nume->trasee as $traseu)
-                                        {{-- @php
-                                            dd($loop->index);
-                                            $nr_rezervari[$loop->index] +=
-                                                $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_adulti')
-                                                +
-                                                $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_copii')
-                                        @endphp  --}}
+                                        {{-- {{ $traseu->numar }}
+                                        <br>
+                                        {{ $traseu->curse_ore->first() }}
+                                        <br><br> --}}
                                         <tr>
                                             <td class="" style="line-height:1;">
                                                 <a href="{{ $traseu->path() }}/{{ \Carbon\Carbon::createFromFormat('Y-m-d', $search)->format('d-m-Y') }}"
@@ -81,7 +78,7 @@
                                                     >
                                                     <div class="row align-items-center">
                                                         <div class="col-5">
-                                                            {{ \Carbon\Carbon::parse($traseu->curse_ore->first()->ora)->format('H:i') }}
+                                                            {{ $traseu->curse_ore->first() ? \Carbon\Carbon::parse($traseu->curse_ore->first()->ora)->format('H:i') : ''}}
                                                         </div>
                                                         <div class="col-4">
                                                             @php
@@ -103,23 +100,15 @@
                                         </tr>
                                     @empty
                                     @endforelse
-                                {{-- @else
-                                    @forelse ($traseu_nume->trasee as $traseu)
-                                        @php
-                                            $nr_rezervari[$loop->index] =
-                                                $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_adulti')
-                                                +
-                                                $traseu->rezervari->where('data_cursa', $search)->where('activa', 1)->sum('nr_copii')
-                                        @endphp
-                                    @empty
-                                    @endforelse
-                                @endif --}}
+                                    {{-- @php
+                                        dd($traseu, $traseu->curse_ore->first());
+                                    @endphp --}}
                             @empty
                             @endforelse
                         </table>
                     <div class="d-flex justify-content-between">
                         <div class="flex flex-vertical-center mx-auto">
-                                    <a href="/trasee/toate_orele/3/{{ \Carbon\Carbon::createFromFormat('Y-m-d', $search)->format('d-m-Y') }}"
+                                    <a href="/trasee/toate_orele/2/{{ \Carbon\Carbon::createFromFormat('Y-m-d', $search)->format('d-m-Y') }}"
                                         class="btn btn-success"
                                         role="button"
                                         >

@@ -50,9 +50,9 @@ Este posibil sa fie nevoie sa incercati de cateva ori refresh la pagina cu CTRL+
 </ul>
 
 <ul style="list-style-type: square">
-    <li><b>BRĂILA</b>: Plantelor, Penny pe Bz-ului, Catedrala la covrigaria Panda,</li>
-    <li><b>IANCA</b>: la Avion.</li>
-    <li><b>GALAȚI</b>: la McDonald`s.</li>
+    {{-- <li><b>BRĂILA</b>: Plantelor, Penny pe Bz-ului, Catedrala la covrigaria Panda,</li> --}}
+    {{-- <li><b>IANCA</b>: la Avion.</li> --}}
+    {{-- <li><b>GALAȚI</b>: la McDonald`s.</li> --}}
     <li><b>BUZĂU</b>: McDonald`s</li>
     <li><b>FOCȘANI</b>: la Lidl sau Lukoil în centru,</li>
     <li><b>RÂMNICU SĂRAT</b>: la Turist-Profi,</li>
@@ -60,8 +60,8 @@ Este posibil sa fie nevoie sa incercati de cateva ori refresh la pagina cu CTRL+
     <li><b>PANCIU</b>: Notar,</li>
     <li><b>ADJUD</b>: Atlantic sau Lukoil,</li>
     <li><b>MĂRĂȘEȘTI</b>: Gara.</li>
-    <li><b>VASLUI</b>: Piața Traian, OMV</li>
-    <li><b>BÂRLAD</b>: Electrica</li>
+    {{-- <li><b>VASLUI</b>: Piața Traian, OMV</li> --}}
+    {{-- <li><b>BÂRLAD</b>: Electrica</li> --}}
 </ul>
 
 <ul style="list-style-type: circle">
@@ -89,7 +89,7 @@ Este posibil sa fie nevoie sa incercati de cateva ori refresh la pagina cu CTRL+
 
 {{-- <p>&nbsp;</p> --}}
 
-<style>
+{{-- <style>
 table.table-bordered{
     border:1px solid black;
     margin-top:20px;
@@ -247,9 +247,9 @@ table.table-bordered > tbody > tr > td{
         </tr>
     </tbody>
 </table>
-<p style="">*copil cu vârstă cuprinsă între 2 și 7 ani</p>
+<p style="">*copil cu vârstă cuprinsă între 2 și 7 ani</p> --}}
 
-<p class="mb-0">**Oferta dus-intors este valabila cu urmatoarele conditii:</p>
+{{-- <p class="mb-0">**Oferta dus-intors este valabila cu urmatoarele conditii:</p>
 <ul>
     <li>rezervare tur-retur,</li>
     <li>grupuri de minim 5 adulti,</li>
@@ -257,7 +257,7 @@ table.table-bordered > tbody > tr > td{
     <li>doar pentru aeroport Otopeni (pentru debarcare sau imbarcare din Bucuresti nu se aplica oferta),</li>
     <li>contravaloarea transportului nu se returneaza daca se anuleaza rezervarea.</li>
 </ul>
-<p>Oferta apare cand introduceti rezervarea si sunt indeplinite toate conditiile, <b>exista posibilitatea de a inregistra rezervarea si fara a accesa oferta</b> daca nu o doriti. </p>
+<p>Oferta apare cand introduceti rezervarea si sunt indeplinite toate conditiile, <b>exista posibilitatea de a inregistra rezervarea si fara a accesa oferta</b> daca nu o doriti. </p> --}}
 
 </div>
 </div>
