@@ -169,7 +169,7 @@
                 <div class="col-lg-4 my-1 py-1">
                     <ul class="my-0" style=""><h5>Informații</h5>
                         <li>
-                            <a href="https://www.zuzu-transfer-airport.ro/contact/" target="_blank">Contact</a>
+                            <a href="https://www.zuzulicatrans.ro/contact/" target="_blank">Contact</a>
                         </li>
                         <li>
                             <a href="http://www.anpc.gov.ro/" target="_blank">ANPC - Protecția consumatorului</a>
@@ -182,7 +182,7 @@
                 <div class="col-lg-4 my-1 py-1">
                     <ul class="my-0" style="list-style-image: url({{ asset('images/arrow.gif') }});"><h5>Meniu</h5>
                         <li>
-                            <a href="https://www.zuzu-transfer-airport.ro/" target="_blank"><b>Acasă</b></a>
+                            <a href="https://www.zuzulicatrans.ro/" target="_blank"><b>Acasă</b></a>
                         </li>
                         <li>
                             <a href="/termeni-si-conditii" target="_blank">Termeni și condiții</a>
@@ -200,7 +200,7 @@
                     <br>
                     <span style="margin-left:154px;">+40 0768 112 288</span>
                     <br>
-                    <b>E-mail:</b> rezervari@zuzu-transfer-airport.ro
+                    <b>E-mail:</b> rezervari@zuzulicatrans.ro
                 </div>
             </div>
         </footer>

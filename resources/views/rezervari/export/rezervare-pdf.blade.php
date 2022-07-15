@@ -323,8 +323,8 @@
                         Traseu 2: Galati - Braila - Ianca - Buzau - Otopeni si retur<br>
                         {{-- Telefon sofer: +40 762 646 917, +40 767 931 404<br> --}}
                         Telefon Dispecerat: 0768 112 244 / 0768 112 255 / 0768 112 288<br>
-                        E-mail: rezervari@zuzu-transfer-airport.ro <br>
-                        Website: www.zuzu-transfer-airport.ro
+                        E-mail: rezervari@zuzulicatrans.ro <br>
+                        Website: www.zuzulicatrans.ro
                     </td>
                 </tr>
             </table>

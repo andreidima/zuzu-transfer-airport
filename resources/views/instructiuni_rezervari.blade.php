@@ -75,7 +75,7 @@ Este posibil sa fie nevoie sa incercati de cateva ori refresh la pagina cu CTRL+
 </ul>
 
 <p><b>Aveți posibilitatea de a modifică nr. de telefon și stația de îmbarcare după ce ați făcut rezervarea, de la iconiță de editare din dreptul rezervarii.</b></p>
-<p><b>Pentru alte modificări, rezervări greșite sau anulări ne puteți contacta telefonic sau pe mail la adresa <a href="mailto:rezervari@zuzu-transfer-airport.ro">rezervari@zuzu-transfer-airport.ro.</a></b></p>
+<p><b>Pentru alte modificări, rezervări greșite sau anulări ne puteți contacta telefonic sau pe mail la adresa <a href="mailto:rezervari@zuzulicatrans.ro">rezervari@zuzulicatrans.ro.</a></b></p>
 <p>În meniul de sus la „<b>Raport</b>” se pot lista rezervările pe un interval de timp pe care îl selectați din calendar.</p>
 <ul>
     <li>Orice altă observație (îmbarcare/debarcare, altă ora dacă e cursa specială, etc )  care trebuie adăugată la rezervare și pt care nu există o căsuța de completare să o scrieți la “<b>Stație de îmbarcare</b>. Este la fel de important să scrieți stația de îmbarcare la plecările către Otopeni, sunt cazuri, mai ales în Brăila, când persoanele nu răspund la telefon și șoferul nu știe de unde să le ia.</li>

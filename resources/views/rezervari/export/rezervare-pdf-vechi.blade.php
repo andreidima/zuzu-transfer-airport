@@ -372,7 +372,7 @@
                         {{-- Telefon sofer: +40 762 646 917, +40 767 931 404<br> --}}
                         Telefon Dispecerat: <br>
                         E-mail:  |
-                        Website: www.zuzu-transfer-airport.ro
+                        Website: www.zuzulicatrans.ro
                     </td>
                 </tr>
             </table>

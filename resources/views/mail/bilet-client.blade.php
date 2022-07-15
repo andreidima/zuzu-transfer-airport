@@ -16,7 +16,7 @@ Contact: <br>
 +40 0768 112 244 <br>
 +40 0768 112 255 <br>
 +40 0768 112 288 <br>
-Email: rezervari@zuzu-transfer-airport.ro
+Email: rezervari@zuzulicatrans.ro
 
 {{-- Multumim,<br>
 {{ config('app.name') }} --}}

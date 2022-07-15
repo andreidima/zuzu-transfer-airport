@@ -60,12 +60,12 @@
                             Telefon: 0768 112 244 / 0768 112 255 / 0768 112 288
                         </li>
                         <li>
-                            Email: <a href="mailto:rezervari@zuzu-transfer-airport.ro">rezervari@zuzu-transfer-airport.ro</a>
+                            Email: <a href="mailto:rezervari@zuzulicatrans.ro">rezervari@zuzulicatrans.ro</a>
                         </li>
                     </ul>
 
                     <div class="text-center">
-                        <a href="https://www.zuzu-transfer-airport.ro/"
+                        <a href="https://www.zuzulicatrans.ro/"
                             class="btn btn-primary text-white"
                             role="button"
                             >
