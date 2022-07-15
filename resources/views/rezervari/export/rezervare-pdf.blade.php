@@ -175,8 +175,7 @@
                                         ->addMinutes(\Carbon\Carbon::parse($rezervari->ora->ora)->minute)
                                         ->addHours(\Carbon\Carbon::parse($rezervari->cursa->durata)->hour)
                                         ->addMinutes(\Carbon\Carbon::parse($rezervari->cursa->durata)->minute)
-                                        ->isoFormat('dddd') }}
-                                    ,
+                                        ->isoFormat('dddd') }},
                                     {{ \Carbon\Carbon::parse($rezervari->data_cursa)
                                         ->addHours(\Carbon\Carbon::parse($rezervari->ora->ora)->hour)
                                         ->addMinutes(\Carbon\Carbon::parse($rezervari->ora->ora)->minute)
