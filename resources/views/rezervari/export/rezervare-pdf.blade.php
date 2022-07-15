@@ -318,7 +318,7 @@
                 <tr>
                     <td>
                         <b>Zuzulica Trans</b><br>
-                        Traseu 1: Tecuci - Focsani - Rm. Sarat - Buzau - Otopeni si retur<br>
+                        Traseu: Tecuci - Focsani - Rm. Sarat - Buzau - Otopeni si retur<br>
                         {{-- Traseu 2: Galati - Braila - Ianca - Buzau - Otopeni si retur<br> --}}
                         {{-- Telefon sofer: +40 762 646 917, +40 767 931 404<br> --}}
                         Telefon Dispecerat: 0768 112 244 / 0768 112 255 / 0768 112 288<br>
