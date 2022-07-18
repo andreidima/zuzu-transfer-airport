@@ -996,8 +996,7 @@ class RezervareController extends Controller
         $trimite_sms = false;
 
         if ($rezervare->cursa->plecare_id !== 8) {
-            // verificare pentru Vaslui(22:15 si 23:15) si Barlad(23:00), care se calculeaza in ziua urmatoare
-            if (!in_array($rezervare->ora_id, [293, 294, 307])){
+            // if (!in_array($rezervare->ora_id, [293, 294, 307])){ // verificare pentru Vaslui(22:15 si 23:15) si Barlad(23:00), care se calculeaza in ziua urmatoare
                 if ($rezervare->updated_at->isoFormat('HH') > 20){
                     if (
                         \Carbon\Carbon::parse($rezervare->data_cursa)->isoFormat('D.MM.YYYY') == \Carbon\Carbon::now()->isoFormat('D.MM.YYYY')
@@ -1010,29 +1009,16 @@ class RezervareController extends Controller
                 } elseif (\Carbon\Carbon::parse($rezervare->data_cursa)->isoFormat('D.MM.YYYY') == \Carbon\Carbon::now()->isoFormat('D.MM.YYYY')) {
                     $trimite_sms = true;
                 }
-            } else {
-                if ($rezervare->updated_at->isoFormat('HH') > 20){
-                    if (\Carbon\Carbon::parse($rezervare->data_cursa)->isoFormat('D.MM.YYYY') == \Carbon\Carbon::now()->isoFormat('D.MM.YYYY')) {
-                        $trimite_sms = true;
-                    }
-                }
-            }
+            // } else {
+            //     if ($rezervare->updated_at->isoFormat('HH') > 20){
+            //         if (\Carbon\Carbon::parse($rezervare->data_cursa)->isoFormat('D.MM.YYYY') == \Carbon\Carbon::now()->isoFormat('D.MM.YYYY')) {
+            //             $trimite_sms = true;
+            //         }
+            //     }
+            // }
         }
 
-        //     (($rezervare->updated_at->isoFormat('HH') > 21) ?
-        //         (
-        //             \Carbon\Carbon::parse($rezervare->data_cursa)->isoFormat('D.MM.YYYY') == \Carbon\Carbon::now()->isoFormat('D.MM.YYYY')
-        //             ||
-        //             \Carbon\Carbon::parse($rezervare->data_cursa)->isoFormat('D.MM.YYYY') == \Carbon\Carbon::tomorrow()->isoFormat('D.MM.YYYY')
-        //         )
-        //         :
-        //         (
-        //             if (!in_array($rezervare->ora_id, [293, 294, 307])){
-        //                 \Carbon\Carbon::parse($rezervare->data_cursa)->isoFormat('D.MM.YYYY') == \Carbon\Carbon::now()->isoFormat('D.MM.YYYY')
-        //             }
-        //         )
-        //     )
-        // ){
+
 
         if ($trimite_sms) {
 
@@ -1046,12 +1032,12 @@ class RezervareController extends Controller
             }
 
             // Pentru orasele Braila, Galati, Ianca, sms-urile se trimit la alt numar
-            if (in_array($rezervare->cursa->plecare_id, [2, 5, 6])){
-                $telefoane = ['0786870629'];
-            } else {
-                $telefoane = ['0786827777'];
-            }
-            // $telefoane = ['0786827777'];
+            // if (in_array($rezervare->cursa->plecare_id, [2, 5, 6])){
+            //     $telefoane = ['0786870629'];
+            // } else {
+            //     $telefoane = ['0786827777'];
+            // }
+            $telefoane = ['0749262658'];
 
             // Setare variabila test pentru ANDREI DIMA TESTȘ
             if (($rezervare->nume == "ANDREI DIMA TESTȘ") || ($rezervare->nume == "ANDREI DIMA TESTș")){

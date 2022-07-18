@@ -49,15 +49,14 @@
                                 <a class="nav-link active" href="/rezervari">
                                     <i class="fas fa-address-card mx-1"></i>Rezervări
                                 </a>
-                                @if ((auth()->user()->id == 1) || (auth()->user()->id == 1))
-                                    {{-- <button class="btn dropdown-toggle dropdown-toggle-split p-0 text-white mr-auto" data-toggle="dropdown"></button> --}}
+                                {{-- @if ((auth()->user()->id == 1) || (auth()->user()->id == 1))
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"></a>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item nav-link text-dark" href="{{ route('rezervari-istoric.index') }}">
                                             Rezervări istoric
                                         </a>
                                     </div>
-                                @endif
+                                @endif --}}
                             </li>
                             {{-- <li class="nav-item active ml-auto mr-4 dropdown"> --}}
                             @if (auth()->user()->isDispecer())
