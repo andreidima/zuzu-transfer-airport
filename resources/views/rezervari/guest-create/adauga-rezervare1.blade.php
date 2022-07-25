@@ -172,7 +172,7 @@
                                     <h4 class="mb-2">Detalii despre călătoria cu avionul:</h4>
                             </div>
                             <div class="col-lg-6 mb-3">
-                                <label for="zbor_oras_decolare" class="form-label mb-0">Oraș decolare avion:</label>
+                                <label for="zbor_oras_decolare" class="form-label mb-0">Oraș decolare avion:<span class="text-light">*</span></label>
                                 <input
                                     type="text"
                                     class="form-control {{ $errors->has('zbor_oras_decolare') ? 'is-invalid' : '' }}"
@@ -195,7 +195,7 @@
                                     required>
                             </div>
                             <div class="col-lg-6 mb-2">
-                                <label for="zbor_ora_aterizare" class="form-label mb-0">Ora aterizare:</label>
+                                <label for="zbor_ora_aterizare" class="form-label mb-0">Ora aterizare:<span class="text-light">*</span></label>
                                 <input
                                     type="text"
                                     class="form-control {{ $errors->has('zbor_ora_aterizare') ? 'is-invalid' : '' }}"

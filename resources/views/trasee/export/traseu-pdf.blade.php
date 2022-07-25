@@ -57,7 +57,7 @@
 <body>
     @switch($trasee->traseu_nume->id)
         @case(1)
-        @case(2)
+        {{-- @case(2) --}}
     {{-- <div style="width:730px; height: 1030px; border-style: dashed ; border-width:2px; border-radius: 15px;">      --}}
     <div style="border:dashed #999;
         width:690px;
@@ -280,7 +280,7 @@
     </div>
 
             @break
-        @case(3)
+        @case(2)
                     <div style="border:dashed #999;
                         width:690px;
                         min-height:600px;
@@ -319,11 +319,11 @@
                                 <th style="width:20px;">Nr. crt.</th>
                                 <th style="width:85px;">Nume si prenume</th>
                                 <th style="width:105px;">Telefon</th>
-                                <th style="width:45px;">Sosire</th>
+                                <th style="width:55px;">Destinație</th>
                                 <th style="width:35px;">Ora at.</th>
-                                <th style="width:75px;">Aterizare</th>
-                                <th style="width:120px;">Statie imbarcare</th>
-                                <th style="width:75px;">Observatii</th>
+                                <th style="width:75px;">Oraș decolare</th>
+                                {{-- <th style="width:120px;">Statie imbarcare</th> --}}
+                                <th style="width:65px;">Obs</th>
                                 <th style="width:35px;">Suma</th>
                                 <th style="width:30px;">Plata</th>
                                 <th style="width:25px;">Nr. pers</th>
@@ -356,13 +356,13 @@
                                         <td>
                                             {{ $rezervare->zbor_oras_decolare}}
                                         </td>
-                                        <td>
+                                        {{-- <td>
                                             @if(!empty($rezervare->statie_imbarcare))
                                                 {{ $rezervare->statie_imbarcare }}
                                             @elseif(!empty($rezervare->statie))
                                                 {{ $rezervare->statie->nume }}
                                             @endif
-                                        </td>
+                                        </td> --}}
                                         <td>
                                             @if (empty($rezervare->user))
                                                 <span style="color:#3672ED; font-size:2rem; margin:0px; padding:0px;">
@@ -446,7 +446,7 @@
                             @endforelse
 
                             <tr>
-                                <td colspan="9" style="text-align:right; padding-right:5px;">
+                                <td colspan="8" style="text-align:right; padding-right:5px;">
                                     Total: {{ $suma }} lei
                                 </td>
                                 <td>

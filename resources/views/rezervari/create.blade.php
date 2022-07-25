@@ -132,7 +132,7 @@
                         </div>
                         <div class="form-row mb-2 d-flex justify-content-between">
                             <div class="form-group col-lg-5 m-0">
-                                <label for="zbor_oras_decolare" class="mb-0">Oraș decolare avion:</label>
+                                <label for="zbor_oras_decolare" class="mb-0">Oraș decolare avion:<span class="text-light">*</span></label>
                                 <input
                                     type="text"
                                     class="form-control {{ $errors->has('zbor_oras_decolare') ? 'is-invalid' : '' }}"
@@ -143,7 +143,7 @@
                                     required>
                             </div>
                             <div class="form-group col-lg-5 m-0">
-                                <label for="zbor_ora_aterizare" class="mb-0">Ora aterizare:</label>
+                                <label for="zbor_ora_aterizare" class="mb-0">Ora aterizare:<span class="text-light">*</span></label>
                                 <input
                                     type="text"
                                     class="form-control {{ $errors->has('zbor_ora_aterizare') ? 'is-invalid' : '' }}"
