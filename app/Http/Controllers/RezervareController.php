@@ -670,12 +670,9 @@ class RezervareController extends Controller
             'data_cursa' => [ 'required', 'max:50'],
             'ora_id' =>[ 'required', 'nullable', 'max:99'],
             // 'ora_plecare' => [''] // pastrata pentru old(ora_plecare) in formular
-            // 'zbor_oras_decolare' => ['required_if:oras_plecare,8', 'max:18'],
-            // 'zbor_ora_decolare' => ['max:15'],
-            // 'zbor_ora_aterizare' => ['max:15'],
-            'zbor_oras_decolare' => ['required', 'max:18'],
+            'zbor_oras_decolare' => ['required_if:oras_plecare,8', 'max:18'],
             'zbor_ora_decolare' => ['max:15'],
-            'zbor_ora_aterizare' => ['required', 'max:15'],
+            'zbor_ora_aterizare' => ['required_if:oras_plecare,8', 'max:15'],
             // 'nume' => ($request->_method === "PATCH") ?
             //     ['required', 'max:200', 'unique:rezervari,nume,' . $rezervari->id . ',id,telefon,' . $request->telefon . ',data_cursa,' . $request->data_cursa . ',ora_id,' . $request->ora_id]
             //     :
