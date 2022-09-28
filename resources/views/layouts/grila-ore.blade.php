@@ -403,7 +403,7 @@
         </div> --}}
 
 
-        <div class="col-lg-6">
+        <div class="col-lg-6 mx-auto">
             <table class="table table-bordered table-striped table-sm text-center">
                 <thead class="text-white p-0" style="background-color:#EF9A3E" width="100%">
                     <tr>
