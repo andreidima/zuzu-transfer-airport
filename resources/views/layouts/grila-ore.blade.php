@@ -519,20 +519,11 @@
                     <tr>
                         {{-- <td class="p-0">14:15</td>
                         <td class="p-0">15:00</td> --}}
-                        <td class="p-0">16:00</td>
                         <td class="p-0">17:00</td>
-                        <td class="p-0">17:30</td>
-                        <td class="p-0">20:00</td>
+                        <td class="p-0">18:00</td>
+                        <td class="p-0">18:30</td>
+                        <td class="p-0">21:00</td>
                         <td class="p-0 text-white" style="background-color:#EF9A3E">20:00</td>
-                    </tr>
-                    <tr>
-                        {{-- <td class="p-0">17:15</td>
-                        <td class="p-0">18:00</td> --}}
-                        <td class="p-0">19:00</td>
-                        <td class="p-0">20:00</td>
-                        <td class="p-0">20:30</td>
-                        <td class="p-0">23:00</td>
-                        <td class="p-0 text-white" style="background-color:#EF9A3E">21:30</td>
                     </tr>
                     <tr>
                         {{-- <td class="p-0">19:45</td>
@@ -541,14 +532,14 @@
                         <td class="p-0">22:30</td>
                         <td class="p-0">23:00</td>
                         <td class="p-0">01:30</td>
-                        <td class="p-0 text-white" style="background-color:#EF9A3E">23:00</td>
+                        <td class="p-0 text-white" style="background-color:#EF9A3E">22:30</td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
 
-        <div class="col-lg-6">
+        {{-- <div class="col-lg-6">
             <table class="table table-bordered table-striped table-sm text-center">
                 <thead class="text-white p-0" width="100%" style="background-color:#2C7996">
                     <tr>
@@ -675,7 +666,7 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
+        </div> --}}
 
 
     </div>
