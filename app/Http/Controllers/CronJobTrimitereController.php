@@ -26,55 +26,55 @@ class CronJobTrimitereController extends Controller
             $soferi = Sofer::all();
 
             // Se calculeaza zilele ramase pana la data din DB. Valoarea poate fi negativa daca a trecut deja data
-            // Se verifica daca mai sunt 15 zile pana la data din DB, daca mai sunt maxim 5 zile, sau daca deja a trecut data din DB.
+            // Se verifica daca mai sunt 10 zile pana la data din DB, daca mai sunt maxim 3 zile, sau daca deja a trecut data din DB.
 
             foreach ($masini as $masina) {
                 $mesaj_per_masina = '';
                 if($masina->itp) {
                     $zile_ramase = Carbon::parse(Carbon::today())->diffInDays($masina->itp, false);
-                    if(($zile_ramase < 5) || ($zile_ramase == 15)){
+                    if(($zile_ramase < 3) || ($zile_ramase == 10)){
                         $mesaj_per_masina .= 'ITP ' . Carbon::parse($masina->itp)->isoFormat('DD.MM.YYYY') . ', ';
                     }
                 }
                 if($masina->asigurare_rca) {
                     $zile_ramase = Carbon::parse(Carbon::today())->diffInDays($masina->asigurare_rca, false);
-                    if(($zile_ramase < 5) || ($zile_ramase == 15)){
+                    if(($zile_ramase < 3) || ($zile_ramase == 10)){
                         $mesaj_per_masina .= 'RCA ' . Carbon::parse($masina->asigurare_rca)->isoFormat('DD.MM.YYYY') . ', ';
                     }
                 }
                 if($masina->asigurari_persoane_colete) {
                     $zile_ramase = Carbon::parse(Carbon::today())->diffInDays($masina->asigurari_persoane_colete, false);
-                    if(($zile_ramase < 5) || ($zile_ramase == 15)){
+                    if(($zile_ramase < 3) || ($zile_ramase == 10)){
                         $mesaj_per_masina .= 'Asigurari persoane colete ' . Carbon::parse($masina->asigurari_persoane_colete)->isoFormat('DD.MM.YYYY') . ', ';
                     }
                 }
                 if($masina->copie_conforma) {
                     $zile_ramase = Carbon::parse(Carbon::today())->diffInDays($masina->copie_conforma, false);
-                    if(($zile_ramase < 5) || ($zile_ramase == 15)){
+                    if(($zile_ramase < 3) || ($zile_ramase == 10)){
                         $mesaj_per_masina .= 'Copie conforma ' . Carbon::parse($masina->copie_conforma)->isoFormat('DD.MM.YYYY') . ', ';
                     }
                 }
                 if($masina->clasificare) {
                     $zile_ramase = Carbon::parse(Carbon::today())->diffInDays($masina->clasificare, false);
-                    if(($zile_ramase < 5) || ($zile_ramase == 15)){
+                    if(($zile_ramase < 3) || ($zile_ramase == 10)){
                         $mesaj_per_masina .= 'Clasificare ' . Carbon::parse($masina->clasificare)->isoFormat('DD.MM.YYYY') . ', ';
                     }
                 }
                 if($masina->verificare_tahograf) {
                     $zile_ramase = Carbon::parse(Carbon::today())->diffInDays($masina->verificare_tahograf, false);
-                    if(($zile_ramase < 5) || ($zile_ramase == 15)){
+                    if(($zile_ramase < 3) || ($zile_ramase == 10)){
                         $mesaj_per_masina .= 'Verificare tahograf ' . Carbon::parse($masina->verificare_tahograf)->isoFormat('DD.MM.YYYY') . ', ';
                     }
                 }
                 if($masina->rovinieta_romania) {
                     $zile_ramase = Carbon::parse(Carbon::today())->diffInDays($masina->rovinieta_romania, false);
-                    if(($zile_ramase < 5) || ($zile_ramase == 15)){
+                    if(($zile_ramase < 3) || ($zile_ramase == 10)){
                         $mesaj_per_masina .= 'Rovinieta Romania ' . Carbon::parse($masina->rovinieta_romania)->isoFormat('DD.MM.YYYY') . ', ';
                     }
                 }
                 if($masina->revizie) {
                     $zile_ramase = Carbon::parse(Carbon::today())->diffInDays($masina->revizie, false);
-                    if(($zile_ramase < 5) || ($zile_ramase == 15)){
+                    if(($zile_ramase < 3) || ($zile_ramase == 10)){
                         $mesaj_per_masina .= 'Revizie ' . Carbon::parse($masina->revizie)->isoFormat('DD.MM.YYYY') . ', ';
                     }
                 }
@@ -89,37 +89,37 @@ class CronJobTrimitereController extends Controller
                 $mesaj_per_sofer = '';
                 if($sofer->fisa_medicala) {
                     $zile_ramase = Carbon::parse(Carbon::today())->diffInDays($sofer->fisa_medicala, false);
-                    if(($zile_ramase < 5) || ($zile_ramase == 15)){
+                    if(($zile_ramase < 3) || ($zile_ramase == 10)){
                         $mesaj_per_sofer .= 'Fisa medicala ' . Carbon::parse($sofer->fisa_medicala)->isoFormat('DD.MM.YYYY') . ', ';
                     }
                 }
                 if($sofer->examen_psihologic) {
                     $zile_ramase = Carbon::parse(Carbon::today())->diffInDays($sofer->examen_psihologic, false);
-                    if(($zile_ramase < 5) || ($zile_ramase == 15)){
+                    if(($zile_ramase < 3) || ($zile_ramase == 10)){
                         $mesaj_per_sofer .= 'Examen Psihologic ' . Carbon::parse($sofer->examen_psihologic)->isoFormat('DD.MM.YYYY') . ', ';
                     }
                 }
                 if($sofer->medicina_muncii) {
                     $zile_ramase = Carbon::parse(Carbon::today())->diffInDays($sofer->medicina_muncii, false);
-                    if(($zile_ramase < 5) || ($zile_ramase == 15)){
+                    if(($zile_ramase < 3) || ($zile_ramase == 10)){
                         $mesaj_per_sofer .= 'Medicina muncii ' . Carbon::parse($sofer->medicina_muncii)->isoFormat('DD.MM.YYYY') . ', ';
                     }
                 }
                 if($sofer->permis) {
                     $zile_ramase = Carbon::parse(Carbon::today())->diffInDays($sofer->permis, false);
-                    if(($zile_ramase < 5) || ($zile_ramase == 15)){
+                    if(($zile_ramase < 3) || ($zile_ramase == 10)){
                         $mesaj_per_sofer .= 'Permis ' . Carbon::parse($sofer->permis)->isoFormat('DD.MM.YYYY') . ', ';
                     }
                 }
                 if($sofer->atestat) {
                     $zile_ramase = Carbon::parse(Carbon::today())->diffInDays($sofer->atestat, false);
-                    if(($zile_ramase < 5) || ($zile_ramase == 15)){
+                    if(($zile_ramase < 3) || ($zile_ramase == 10)){
                         $mesaj_per_sofer .= 'Atestat ' . Carbon::parse($sofer->atestat)->isoFormat('DD.MM.YYYY') . ', ';
                     }
                 }
                 if($sofer->card) {
                     $zile_ramase = Carbon::parse(Carbon::today())->diffInDays($sofer->card, false);
-                    if(($zile_ramase < 5) || ($zile_ramase == 15)){
+                    if(($zile_ramase < 3) || ($zile_ramase == 10)){
                         $mesaj_per_sofer .= 'Card ' . Carbon::parse($sofer->card)->isoFormat('DD.MM.YYYY') . ', ';
                     }
                 }
@@ -150,7 +150,8 @@ class CronJobTrimitereController extends Controller
                     $mesaj_per_total = $transliterator->transliterate($mesaj_per_total);
 
                     // Trait continand functie cu argumentele: categorie(string), subcategorie(string), referinta_id(integer), telefoane(array), mesaj(string)
-                    $this->trimiteSms('alerte masini soferi', null, null, ['0765518668'], $mesaj_per_total);
+                    // $this->trimiteSms('alerte masini soferi', null, null, ['0765518668'], $mesaj_per_total);
+                    $this->trimiteSms('alerte masini soferi', null, null, ['0749262658'], $mesaj_per_total);
 
                     echo 'Mesajul fara diacritice este: ' . $mesaj_per_total;
 
