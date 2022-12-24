@@ -478,7 +478,7 @@
                         <td class="p-0">09:30</td>
                         <td class="p-0">10:00</td>
                         <td class="p-0">12:30</td>
-                        <td class="p-0 text-white" style="background-color:#EF9A3E">12:30</td>
+                        <td class="p-0 text-white" style="background-color:#EF9A3E">13:00</td>
                     </tr>
                     <tr>
                         {{-- <td class="p-0">08:45</td>
