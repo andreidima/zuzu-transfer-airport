@@ -121,29 +121,6 @@ Route::group(['middleware' => 'auth'], function () {
         // Route::post('/confirmare-plata', 'PlataOnlineController@confirmarePlata')->name('confirmare-plata');
         // Route::get('/return-url', 'PlataOnlineController@returnUrl')->name('return-url');
 
-        // Route::get('/clear', function() {
-        //     Artisan::call('cache:clear');
-        //     Artisan::call('config:clear');
-        //     Artisan::call('config:cache');
-        //     Artisan::call('view:clear');
-        // return "Cleared!";
-        // });
-        // Route::get('teste', function() {
-        //     // Artisan::call('backup:run'
-        //     //     , ['--only-db' => true]
-        //     // );
-        //     Artisan::call('db:seed');
-        //         \DB::table('teste')->insert([
-        //         [
-        //             'text' => 'manual'
-        //         ],
-        //     ]);
-
-        //     // Artisan::call('inspire');
-        //     // dd("Backup facut local");
-        //     Artisan::call('inspire');
-        //     dd(Artisan::output());
-        // });
     });
 });
 

@@ -1,17 +1,17 @@
 @extends ('layouts.app')
 
-@section('content')   
+@section('content')
     <div class="container card px-0">
         <div class="d-flex justify-content-between card-header">
             <div class="flex flex-vertical-center">
                 <h4 class="mt-2"><a href="/agentii"><i class="fas fa-handshake mr-1"></i>Agenții</a></h4>
-            </div> 
+            </div>
         </div>
 
 
         <div class="card-body">
             <div class="row justify-content-center">
-                <div class="col-12 container-fluid px-0 table-responsive-lg">    
+                <div class="col-12 container-fluid px-0 table-responsive-lg">
                     <table class="table table-sm table-striped mb-2" style="font-size:0.8rem">
                         <tr style="height:35px; background-color:#336699; text-align:center; color:white;">
                             <th>
@@ -33,19 +33,19 @@
                                 Telefon
                             </th>
                             <th>
-
+                                Acțiuni
                             </th>
                         </tr>
                         @forelse ($agentii as $agentie)
-                            <tr>   
+                            <tr>
                                 <td>
                                     {{ $loop->iteration }}.
-                                </td>  
+                                </td>
                                 <td>
                                     <a href="{{ $agentie->path() }}/rezervari" title="Vezi Rezervările Agenției" class="text-dark">
                                         {{ $agentie->nume }}
                                     </a>
-                                </td>    
+                                </td>
                                 <td>
                                     {{ $agentie->punct_lucru }}
                                 </td>
@@ -61,7 +61,7 @@
                                 <td style="min-width:105px;">
                                     <div style="float:left;">
                                         <a href="{{ $agentie->path() }}/rezervari"
-                                        class="btn btn-success btn-sm"
+                                        class="btn btn-success text-white btn-sm"
                                         title="Vezi Bilete"
                                             >
                                             <i class="fas fa-ticket-alt"></i>
@@ -75,10 +75,10 @@
                                         </a>
                                     </div>
                                     <div style="float:left;">
-                                        <a class="btn btn-danger btn-sm" 
-                                            href="#" 
+                                        <a class="btn btn-danger text-white btn-sm"
+                                            href="#"
                                             role="button"
-                                            data-toggle="modal" 
+                                            data-toggle="modal"
                                             data-target="#stergeAgentia{{ $agentie->id }}"
                                             title="Șterge Agenția"
                                             >
@@ -98,18 +98,18 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Renunță</button>
-                                                        
+
                                                         <form method="POST" action="{{ $agentie->path() }}">
-                                                            @method('DELETE')  
-                                                            @csrf   
-                                                            <button 
+                                                            @method('DELETE')
+                                                            @csrf
+                                                            <button
                                                                 type="submit"
-                                                                class="btn btn-danger"  
+                                                                class="btn btn-danger"
                                                                 >
                                                                 Șterge Agentie
-                                                            </button>                    
+                                                            </button>
                                                         </form>
-                                                    
+
                                                     </div>
                                                     </div>
                                                 </div>
@@ -118,12 +118,24 @@
                                     </div>
                                 </td>
                             </tr>
+                            <tr>
+                            </tr>
+                            <tr>
+                                <td colspan="7">
+                                    @forelse ($agentie->useri as $user)
+                                        Conturi:
+                                    @empty
+                                </td>
+                            </tr>
+                            <tr>
+                            </tr>
+                            @endforelse
                         @empty
                             Nu sunt agenții în baza de date de afișat
-                        @endforelse 
+                        @endforelse
                     </table>
-                </div> 
-            </div>   
+                </div>
+            </div>
         </div>
     </div>
 @endsection
