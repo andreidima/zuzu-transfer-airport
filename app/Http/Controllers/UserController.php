@@ -110,7 +110,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $this->authorize('update', $agentii);
+        // $this->authorize('update', $user);
         if ($user->rezervari->count() === 0){
             $user->delete();
             return redirect('/agentii')->with('status', 'Utilizatorul a fost șters cu succes');
