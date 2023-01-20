@@ -15,7 +15,7 @@ class UserFirmaController extends Controller
      */
     public function index()
     {
-        $agentii = UserFirma::with('useri')->get();
+        $agentii = UserFirma::with('useri')->orderBy('nume')->get();
 
         return view('agentii.index', compact('agentii'));
     }
@@ -27,7 +27,7 @@ class UserFirmaController extends Controller
      */
     public function create()
     {
-        //
+        return view('agentii.create');
     }
 
     /**
@@ -38,7 +38,9 @@ class UserFirmaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $agentie = UserFirma::create($this->validateRequest($request));
+
+        return redirect('/agentii')->with('status', 'Agenția „' . ($agentie->nume ?? '') . '” a fost adăugată cu succes!');
     }
 
     /**
@@ -61,9 +63,9 @@ class UserFirmaController extends Controller
      * @param  \App\UserFirma  $userFirma
      * @return \Illuminate\Http\Response
      */
-    public function edit(UserFirma $userFirma)
+    public function edit(UserFirma $agentii)
     {
-        //
+        return view('agentii.edit', compact('agentii'));
     }
 
     /**
@@ -73,9 +75,11 @@ class UserFirmaController extends Controller
      * @param  \App\UserFirma  $userFirma
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserFirma $userFirma)
+    public function update(Request $request, UserFirma $agentii)
     {
-        //
+        $agentii->update($this->validateRequest($request));
+
+        return redirect('/agentii')->with('status', 'Agenția „' . ($agentii->nume ?? '') . '” a fost modificată cu succes!');
     }
 
     /**
@@ -87,8 +91,36 @@ class UserFirmaController extends Controller
     public function destroy(UserFirma $agentii)
     {
         $this->authorize('update', $agentii);
-        $agentii->delete();
-        return redirect('/agentii');
+        if ($agentii->useri->count() === 0){
+            $agentii->delete();
+            return redirect('/agentii')->with('status', 'Agenția a fost ștearsă cu succes');
+        } else{
+            return redirect('/agentii')->with('error', 'Agenția nu poate fi ștearsă pentru că are conturi adăugate. Ștergeți întâi conturile acestei agenții. Đacă doriți doar ca agenția sa nu mai aibă acces în sistem, este de ajuns să-i modificați conturile (utilizator sau parolă)');
+        }
+
+    }
+
+    /**
+     * Validate the request attributes.
+     *
+     * @return array
+     */
+    protected function validateRequest(Request $request)
+    {
+        return $request->validate(
+            [
+                'nume' => 'required|max:150',
+                'punct_lucru' => 'nullable|max:150',
+                'cif' => 'nullable|max:100',
+                'nr_orc' => 'nullable|max:100',
+                'persoana_contact' => 'nullable|max:150',
+                'telefon' => 'nullable|max:100',
+                'email' => 'nullable|max:150',
+            ],
+            [
+
+            ]
+        );
     }
 
     /**

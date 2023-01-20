@@ -98,6 +98,10 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::resource('trasee', 'TraseuController');
 
+        Route::resource('useri', UserController::class,  ['parameters' => ['useri' => 'user']]);
+
+        Route::get('agentii/{agentie}/useri/adauga', 'UserController@create');
+
         Route::resource('agentii', 'UserFirmaController');
         Route::get('agentii/{agentii}/rezervari', 'UserFirmaController@rezervari');
         Route::get('agentii/{agentii}/rezervari/export/{view_type}/{search_data_inceput}/{search_data_sfarsit}', 'UserFirmaController@pdfexport_rezervari_dispecer');  // Generare PDF
