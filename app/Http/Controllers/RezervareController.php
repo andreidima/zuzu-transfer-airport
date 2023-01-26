@@ -71,7 +71,7 @@ class RezervareController extends Controller
                 ->when($search_cod_bilet, function ($query, $search_cod_bilet) {
                     return $query->where( 'rezervari.id', $search_cod_bilet);
                 })
-                ->with('cursa.oras_plecare' ,'cursa.oras_sosire', 'tip_plata', 'statie', 'user.firma:id,nume')
+                ->with('cursa.oras_plecare' ,'cursa.oras_sosire', 'tip_plata', 'statie', 'user.firma:id,nume,telefon')
                 // ->where('nume', '<>', 'ANDREI DIMA TEST')
                 ->latest('rezervari.created_at')
                 ->simplePaginate(100);
@@ -193,7 +193,8 @@ class RezervareController extends Controller
             case 'orase_plecare':
                 $raspuns = Oras::select('id', 'nume')
                     ->where('id', '!=', '8') // Fara Otopeni
-                    ->whereNotIn('id', [12, 13]) // Fara Barlad sau Vaslui
+                    // ->whereNotIn('id', [12, 13]) // Fara Barlad sau Vaslui
+                    ->whereNotIn('id', [12]) // Fara Vaslui
                     ->wherehas('curse_plecare')
                     ->orderBy('nume')
                     ->get();
@@ -201,7 +202,8 @@ class RezervareController extends Controller
             case 'orase_sosire':
                 $oras_plecare = $request->oras_plecare;
                 $raspuns = Oras::select('id', 'nume')
-                    ->whereNotIn('id', [12, 13]) // Fara Barlad sau Vaslui
+                    // ->whereNotIn('id', [12, 13]) // Fara Barlad sau Vaslui
+                    ->whereNotIn('id', [12]) // Fara Vaslui
                     ->wherehas('curse_sosire', function ($query) use ($oras_plecare) {
                         $query->where('plecare_id', $oras_plecare);
                     })

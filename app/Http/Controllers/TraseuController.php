@@ -121,6 +121,7 @@ class TraseuController extends Controller
         //     ->get();
 
         // return view('trasee.index', compact('trasee_nume_tecuci_otopeni', 'trasee_nume_galati_otopeni', 'search'));
+        // dd($trasee_nume_tecuci_otopeni);
         return view('trasee.index', compact('trasee_nume_tecuci_otopeni', 'search'));
     }
 

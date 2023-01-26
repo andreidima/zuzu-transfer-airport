@@ -193,6 +193,7 @@
                                                 <h5 class="modal-title">Dispecer: {{ $rezervare->user->nume ?? ''}}</h5>
                                             @else
                                                 <h6 class="modal-title">Agenție: {{ $rezervare->user->firma->nume ?? '' }}</h6>
+                                                <h4><a href="tel:{{ $rezervare->user->firma->telefon ?? '' }}"> {{ $rezervare->user->firma->telefon ?? '' }}</a></h4>
                                             @endif
                                         </div>
                                     </div>

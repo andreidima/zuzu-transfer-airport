@@ -142,7 +142,8 @@
                                 @if ($loop->first)
                                     <tr>
                                         @forelse ($traseu->curse_ore->sortByDesc('cursa.durata') as $key_cursa_ora => $cursa_ora)
-                                            @if ($key_cursa_ora < 7) {{-- Ultimile 2 nu se afiseaza (7 si 8), adica Vaslui si Barlad --}}
+                                        {{-- Ultimile 2 nu se afiseaza (7 si 8), adica Vaslui si Barlad
+                                        @if ($key_cursa_ora < 7)  --}}
                                                 @if ($cursa_ora->cursa->oras_plecare->nume == "Tecuci")
                                                     <th style="width: 9%; background-color:gainsboro; ">
                                                 @else
@@ -177,11 +178,14 @@
                                                             @case("Buzau")
                                                                 BUZ
                                                                 @break
+                                                            @case("Urziceni")
+                                                                URZ
+                                                                @break
                                                             @default
-                                                                {{$cursa_ora->cursa->oras_plecare->nume}}
+                                                                {{$cursa_ora->cursa->oras_plecare->nume ?? ''}}
                                                         @endswitch
                                                     </th>
-                                            @endif
+                                            {{-- @endif --}}
                                         @empty
                                         @endforelse
                                         <th style="width: 11%">
@@ -190,7 +194,7 @@
                                                     OTO
                                                     @break
                                                 @default
-                                                    {{$cursa_ora->cursa->oras_sosire->nume}}
+                                                    {{$cursa_ora->cursa->oras_sosire->nume ?? ''}}
                                             @endswitch
                                         </th>
                                     </tr>
@@ -199,7 +203,8 @@
 
                                 <tr>
                                 @forelse ($traseu->curse_ore->sortByDesc('cursa.durata') as $key => $cursa_ora)
-                                    @if ($key < 7) {{-- Ultimile 2 nu se afiseaza (7 si 8), adica Vaslui si Barlad --}}
+                                    {{-- Ultimile 2 nu se afiseaza (7 si 8), adica Vaslui si Barlad
+                                    @if ($key_cursa_ora < 7)  --}}
                                         @if ($cursa_ora->cursa->oras_plecare->nume == "Tecuci")
                                             <td style="line-height:0.9rem; background-color:gainsboro ">
                                         @else
@@ -222,7 +227,7 @@
                                                     {{ $nr_persoane }}
                                                 </small>
                                         </td>
-                                    @endif
+                                    {{-- @endif --}}
                                 @empty
                                 @endforelse
                                     <td class="" style="line-height:1; white-space:nowrap;">
