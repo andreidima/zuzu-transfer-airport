@@ -212,7 +212,7 @@
                                                     nrAdultiVechi={!! json_encode(old('nr_adulti', " ")) !!}
                                                 </script>
                                                 <label for="nr_adulti" class="col-form-label pr-0">Număr de locuri:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Adulți:<span class="text-danger">*</span></label>
-                                                    <div class="pl-0" style="width:80px">
+                                                    <div class="pl-0" style="width:100px">
                                                     {{-- <input
                                                         type="number"
                                                         min="0"
@@ -231,6 +231,7 @@
                                                         @for ($i = 1; $i < 16; $i++)
                                                             <option>{{ $i }}</option>
                                                         @endfor
+
                                                     </select>
                                                     </div>
                                         </div>
