@@ -119,7 +119,7 @@
                                             <span style="color:#3672ED; font-size:1.5rem; font-weight: bold;">
                                                 C
                                             </span>
-                                @else
+                                {{-- @else
                                     <a
                                         href="#"
                                         role="button"
@@ -165,7 +165,38 @@
 
                                             </div>
                                         </div>
+                                    </div> --}}
+                                @else
+                                    <a
+                                        data-bs-toggle="collapse"
+                                        href="#userRezervare{{ $rezervare->id }}"
+                                        role="button"
+                                        aria-expanded="false"
+                                        aria-controls="#userRezervare{{ $rezervare->id }}"
+                                        title="{{ $rezervare->user->nume }}"
+                                        >
+                                            @if ($rezervare->user->firma->id == 1)
+                                                <span style="color:#ed8336; font-size:1.5rem; font-weight: bold;">
+                                                    D
+                                                </span>
+                                            @else
+                                                <span style="color:#36BE39; font-size:1.5rem; font-weight: bold;">
+                                                    A
+                                                </span>
+                                            @endif
+                                    </a>
+
+                                    <!-- Collapse -->
+                                    <div class="collapse" id="userRezervare{{ $rezervare->id }}" style="min-width: 200px;">
+                                        <div class="card card-body">
+                                            @if ($rezervare->user->firma->id == 1)
+                                                <h5 class="modal-title">Dispecer: {{ $rezervare->user->nume ?? ''}}</h5>
+                                            @else
+                                                <h6 class="modal-title">Agenție: {{ $rezervare->user->firma->nume ?? '' }}</h6>
+                                            @endif
+                                        </div>
                                     </div>
+
                                 @endif
                             </td>
                         @endif
