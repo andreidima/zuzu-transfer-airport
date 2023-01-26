@@ -119,73 +119,48 @@
                                             <span style="color:#3672ED; font-size:1.5rem; font-weight: bold;">
                                                 C
                                             </span>
-                                @elseif ($rezervare->user->firma->id == 1)
-                                    <a href="#"
+                                @else
+                                    <a
+                                        href="#"
                                         role="button"
-                                        data-toggle="modal"
-                                        data-target="#userRezervare{{ $rezervare->id }}"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#userRezervare{{ $rezervare->id }}"
                                         title="{{ $rezervare->user->nume }}"
                                         >
-                                            <span style="color:#ed8336; font-size:1.5rem; font-weight: bold;">
-                                                D
-                                            </span>
+                                            @if ($rezervare->user->firma->id == 1)
+                                                <span style="color:#ed8336; font-size:1.5rem; font-weight: bold;">
+                                                    D
+                                                </span>
+                                            @else
+                                                <span style="color:#36BE39; font-size:1.5rem; font-weight: bold;">
+                                                    A
+                                                </span>
+                                            @endif
                                     </a>
 
                                     <!-- The Modal -->
-                                    <div class="modal" id="userRezervare{{ $rezervare->id }}" >
+                                    <div class="modal fade" id="userRezervare{{ $rezervare->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
+                                            <div class="modal-content border border-success border-5" style="background-color: rgb(202, 252, 211)">
 
                                             <!-- Modal Header -->
                                             <div class="modal-header">
-                                                <h6 class="modal-title">Client: {{ $rezervare->nume }}</h6>
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h5 class="modal-title">Client: {{ $rezervare->nume }}</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                             </div>
 
                                             <!-- Modal body -->
                                             <div class="modal-body">
-                                                <h6 class="modal-title">Dispecer: {{ $rezervare->user->nume }}</h6>
+                                                @if ($rezervare->user->firma->id == 1)
+                                                    <h5 class="modal-title">Dispecer: {{ $rezervare->user->nume ?? ''}}</h5>
+                                                @else
+                                                    <h6 class="modal-title">Agenție: {{ $rezervare->user->firma->nume ?? '' }}</h6>
+                                                @endif
                                             </div>
 
                                             <!-- Modal footer -->
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                            </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                @else
-                                    <a href="#"
-                                        role="button"
-                                        data-toggle="modal"
-                                        data-target="#userRezervare{{ $rezervare->id }}"
-                                        title="{{ $rezervare->user->firma->nume }}"
-                                        >
-                                            <span style="color:#36BE39; font-size:1.5rem; font-weight: bold;">
-                                                A
-                                            </span>
-                                    </a>
-
-                                    <!-- The Modal -->
-                                    <div class="modal" id="userRezervare{{ $rezervare->id }}" >
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-
-                                            <!-- Modal Header -->
-                                            <div class="modal-header">
-                                                <h6 class="modal-title">Client: {{ $rezervare->nume }}</h6>
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            </div>
-
-                                            <!-- Modal body -->
-                                            <div class="modal-body">
-                                                <h6 class="modal-title">Agenție: {{ $rezervare->user->firma->nume }}</h6>
-                                            </div>
-
-                                            <!-- Modal footer -->
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                             </div>
 
                                             </div>
@@ -214,7 +189,7 @@
                             @endif
                         </td>
                         <td align="center">
-                            {{ $rezervare->data_cursa }}
+                            {{ $rezervare->data_cursa ? \Carbon\Carbon::parse($rezervare->data_cursa)->isoFormat('DD.MM.YYYY') : '' }}
                         </td>
 
                         @if (!auth()->user()->isDispecer())
@@ -331,7 +306,7 @@
                         </td>
                         <td align="center" style="border-right:#333 1px solid;" class="px-0">
                             @if (auth()->user()->isDispecer())
-                                <div style="min-width:90px;">
+                                <div style="min-width:100px;">
                                     <div style="float:right; ">
                                         @if ($rezervare->activa == 1)
                                             <a class="btn btn-dark btn-sm"
