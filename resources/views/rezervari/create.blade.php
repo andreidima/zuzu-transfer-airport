@@ -552,7 +552,7 @@
                 </div> --}}
 
 
-    @include ('layouts.grila-ore')
+    {{-- @include ('layouts.grila-ore') --}}
 
     {{-- <div class="justify-content">
         <div class="row">
