@@ -141,7 +141,7 @@
                                     <!-- The Modal -->
                                     <div class="modal fade" id="userRezervare{{ $rezervare->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content border border-success border-5" style="background-color: rgb(202, 252, 211)">
+                                            <div class="modal-content border border-success border-5" style="background-color: rgb(225, 253, 230)">
 
                                             <!-- Modal Header -->
                                             <div class="modal-header">
