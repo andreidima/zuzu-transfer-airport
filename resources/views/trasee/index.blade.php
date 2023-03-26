@@ -214,7 +214,7 @@
                                                     <a href="{{ $traseu->path() }}/{{ \Carbon\Carbon::createFromFormat('Y-m-d', $search)->format('d-m-Y') }}"
                                                         class="text-dark">
                                                         {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}}
-                                                        {{$cursa_ora->ora}}
+                                                        {{-- {{$cursa_ora->ora}} --}}
                                                     </a>
                                                 @endif
                                                 <br>
