@@ -67,7 +67,8 @@ return [
     |
     */
 
-    'timezone' => 'Europe/Bucharest',
+    // 'timezone' => 'Europe/Bucharest',
+    'timezone' => '',
 
     /*
     |--------------------------------------------------------------------------
