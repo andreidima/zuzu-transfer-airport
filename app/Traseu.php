@@ -57,16 +57,22 @@ class Traseu extends Model
     public function rezervari_ziua($ziua)
     {
         $ziua_anterioara = \Carbon\Carbon::parse($ziua)->subDay()->format('Y-m-d');
+        $ziua_maine = \Carbon\Carbon::parse($ziua)->subDay()->format('Y-m-d');
         return $this->rezervari()
-                            ->where(function ($query) use ($ziua_anterioara) {
-                                $query->whereIn('ora_id', [293, 294, 307])
-                                    ->where('data_cursa', $ziua_anterioara)
+                            // ->where(function ($query) use ($ziua_anterioara) {
+                            //     $query->whereIn('ora_id', [293, 294, 307])
+                            //         ->where('data_cursa', $ziua_anterioara)
+                            //         ->where('activa', 1);
+                            //     })
+                            ->where(function ($query) use ($ziua_maine) {
+                                $query->whereIn('ora_id', [40,53,66,79,183])
+                                    ->where('data_cursa', $ziua_maine)
                                     ->where('activa', 1);
                                 })
                             ->orWhere(function ($query) use ($ziua) {
-                                $query->whereNotIn('ora_id', [293, 294, 307])
+                                $query->whereNotIn('ora_id', [40,53,66,79,183])
                                     ->where('data_cursa', $ziua)
                                     ->where('activa', 1);
-                                });  
+                                });
     }
 }

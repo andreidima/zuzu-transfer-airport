@@ -115,7 +115,7 @@
                         $suma = 0;
                     @endphp
 
-                @forelse ($trasee_nume->trasee as $traseu)
+                @forelse ($trasee_nume->trasee->sortBy('numar') as $traseu)
                     @forelse ($traseu->curse_ore as $cursa_ora)
                         @forelse ($cursa_ora->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1) as $rezervare)
                             @if (in_array($rezervare->telefon, $telefoane_clienti_neseriosi))

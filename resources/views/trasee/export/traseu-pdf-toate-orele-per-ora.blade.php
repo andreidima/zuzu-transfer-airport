@@ -61,7 +61,7 @@
             @php
                 $nr_pagina = 1;
             @endphp
-            @forelse ($trasee_nume->trasee as $traseu)
+            @forelse ($trasee_nume->trasee->sortBy('numar') as $traseu)
                 @if ($traseu->rezervari->count() > 0)
                     @if ($nr_pagina > 1)
                         <div style="page-break-after: always;"></div>
@@ -300,7 +300,7 @@
             @php
                 $nr_pagina = 1;
             @endphp
-            @forelse ($trasee_nume->trasee as $traseu)
+            @forelse ($trasee_nume->trasee->sortBy('numar') as $traseu)
                 @if ($traseu->rezervari->where('data_cursa', $data_traseu_Ymd)->where('activa', 1)->count() > 0)
                     @if ($nr_pagina > 1)
                         <div style="page-break-after: always;"></div>

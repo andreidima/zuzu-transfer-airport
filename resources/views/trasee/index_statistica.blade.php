@@ -53,7 +53,7 @@
                             @php
                                 $total_persoane_tecuci_otopeni = 0;
                             @endphp
-                            @forelse ($traseu_nume->trasee as $traseu)
+                            @forelse ($traseu_nume->trasee->sortBy('numar') as $traseu)
 
                                 <tr>
                                 @php

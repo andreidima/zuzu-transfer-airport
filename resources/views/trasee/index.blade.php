@@ -138,7 +138,7 @@
                     @forelse ($trasee_nume_tecuci_otopeni as $traseu_nume)
                         <h5 class="p-2 bg-secondary text-white mb-0 text-center">{{$traseu_nume->nume}}</h5>
                         <table class="table table-sm table-striped text-center mb-2">
-                            @forelse ($traseu_nume->trasee as $traseu)
+                            @forelse ($traseu_nume->trasee->sortBy('numar') as $traseu)
                                 @if ($loop->first)
                                     <tr>
                                         @forelse ($traseu->curse_ore->sortByDesc('cursa.durata') as $key_cursa_ora => $cursa_ora)

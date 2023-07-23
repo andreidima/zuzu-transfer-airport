@@ -79,7 +79,7 @@
                             Data: <u>{{ $data_traseu }}</u>
                         </td>
                         <td style="border-width:0px; padding:0rem; width:25%; font-size:16px;">
-                            @forelse ($trasee->curse_ore->sortByDesc('cursa.durata') as $cursa_ora)
+                            @forelse ($trasee->sortBy('numar')->curse_ore->sortByDesc('cursa.durata') as $cursa_ora)
                                 @if ($cursa_ora->cursa->oras_plecare->nume == "Vaslui")
                                     <u>VAS</u>:
                                     {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}},
@@ -107,7 +107,7 @@
                             @endforelse
                         </td>
                         <td style="border-width:0px; padding:0rem; width:20%; font-size:16px;">
-                            @forelse ($trasee->curse_ore->sortByDesc('cursa.durata') as $cursa_ora)
+                            @forelse ($trasee->sortBy('numar')->curse_ore->sortByDesc('cursa.durata') as $cursa_ora)
                                 @if ($cursa_ora->cursa->oras_plecare->nume == "Focsani")
                                     <u>FCS</u>:
                                     {{\Carbon\Carbon::parse($cursa_ora->ora)->format('H:i')}},
@@ -154,7 +154,7 @@
                     @php
                         ($nrcrt = 1);
                     @endphp
-                    @forelse ($trasee->curse_ore->sortByDesc('cursa.durata') as $cursa_ora)
+                    @forelse ($trasee->sortBy('numar')->curse_ore->sortByDesc('cursa.durata') as $cursa_ora)
                         @forelse ($cursa_ora->rezervari as $rezervare)
                             @if (in_array($rezervare->telefon, $telefoane_clienti_neseriosi))
                                 <tr style="background:#71f85f;">
