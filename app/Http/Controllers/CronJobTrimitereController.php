@@ -144,11 +144,6 @@ class CronJobTrimitereController extends Controller
                 // Trimitere alerta prin SMS
                     echo 'Mesajul cu diacritice este: ' . $mesaj_per_total . '<br><br>';
 
-                    // Referitor la diacritice, puteti face conversia unui string cu diacritice intr-unul fara diacritice, in mod automatizat cu aceasta functie PHP:
-                    $transliterator = \Transliterator::createFromRules(':: Any-Latin; :: Latin-ASCII; :: NFD; :: [:Nonspacing Mark:] Remove; :: NFC;', \Transliterator::FORWARD);
-                    // $textFaraDiacritice = $transliterator->transliterate($textCuDiacritice);
-                    $mesaj_per_total = $transliterator->transliterate($mesaj_per_total);
-
                     // Trait continand functie cu argumentele: categorie(string), subcategorie(string), referinta_id(integer), telefoane(array), mesaj(string)
                     $this->trimiteSms('alerte masini soferi', null, null, ['0765518668'], $mesaj_per_total);
                     // $this->trimiteSms('alerte masini soferi', null, null, ['0749262658'], $mesaj_per_total);

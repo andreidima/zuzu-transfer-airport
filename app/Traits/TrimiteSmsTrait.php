@@ -6,13 +6,33 @@ namespace App\Traits;
 trait TrimiteSmsTrait {
     public function trimiteSms($categorie = null, $subcategorie = null, $referinta_id = null, $telefoane = null, $mesaj = null)
     {
-        // foreach ($telefoane as $telefon) {
-        //     echo $telefon . '<br>';
-        // }
-        // dd($categorie, $subcategorie, $referinta_id, $telefoane, $mesaj);
-        // Setarea trimiterii live sau testarea sms-ului
         // $test = 1; // sms-ul nu se trimite
         $test = 0; // sms-ul se trimite
+
+        // New version to remove diacritics
+        // Step 1: Replace known diacritics (including both comma and cedilla variants)
+        $diacriticsMap = [
+            'ă' => 'a', 'â' => 'a', 'î' => 'i',
+            'ș' => 's', 'ş' => 's', // Both comma and cedilla variants of 'ș'
+            'ț' => 't', 'ţ' => 't', // Both comma and cedilla variants of 'ț'
+            'Ă' => 'A', 'Â' => 'A', 'Î' => 'I',
+            'Ș' => 'S', 'Ş' => 'S', // Both comma and cedilla variants of 'Ș'
+            'Ț' => 'T', 'Ţ' => 'T', // Both comma and cedilla variants of 'Ț'
+            'é' => 'e', 'è' => 'e', 'ê' => 'e', 'ë' => 'e',
+            'á' => 'a', 'à' => 'a', 'ä' => 'a', 'ã' => 'a',
+            'ó' => 'o', 'ò' => 'o', 'ö' => 'o', 'õ' => 'o',
+            'ú' => 'u', 'ù' => 'u', 'ü' => 'u', 'û' => 'u',
+            'É' => 'E', 'È' => 'E', 'Ê' => 'E', 'Ë' => 'E',
+            'Á' => 'A', 'À' => 'A', 'Ä' => 'A', 'Ã' => 'A',
+            'Ó' => 'O', 'Ò' => 'O', 'Ö' => 'O', 'Õ' => 'O',
+            'Ú' => 'U', 'Ù' => 'U', 'Ü' => 'U', 'Û' => 'U',
+            'ç' => 'c', 'Ç' => 'C', 'ñ' => 'n', 'Ñ' => 'N',
+            // Add more mappings if necessary
+        ];
+        // Replace known diacritics
+        $mesaj = strtr($mesaj, $diacriticsMap);
+        // Step 2: Replace any remaining non-ASCII characters with a question mark
+        $mesaj = preg_replace('/[^\x20-\x7E]/', '?', $mesaj);
 
         foreach ($telefoane as $telefon) {
 
