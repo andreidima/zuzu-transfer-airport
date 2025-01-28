@@ -65,21 +65,21 @@
                                         <a class=""
                                             href="#"
                                             role="button"
-                                            data-toggle="modal"
-                                            data-target="#activeazaAnuleazaNotificare{{ $notificare->id }}"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#activeazaAnuleazaNotificare{{ $notificare->id }}"
                                             title=""
                                             >
-                                            <span class="badge badge-success">Activă</span>
+                                            <span class="badge bg-success text-white">Activă</span>
                                         </a>
                                     @else
                                         <a class=""
                                             href="#"
                                             role="button"
-                                            data-toggle="modal"
-                                            data-target="#activeazaAnuleazaNotificare{{ $notificare->id }}"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#activeazaAnuleazaNotificare{{ $notificare->id }}"
                                             title=""
                                             >
-                                            <span class="badge badge-dark">Inactivă</span>
+                                            <span class="badge bg-dark text-white">Inactivă</span>
                                         </a>
                                     @endif
 
@@ -88,7 +88,7 @@
                                                 <div class="modal-content">
                                                 <div class="modal-header bg-warning">
                                                     <h5 class="modal-title" id="exampleModalLabel">Notificare: <b>{{ $notificare->text }}</b></h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
@@ -100,7 +100,7 @@
                                                     @endif
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Renunță</button>
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Renunță</button>
 
                                                     <form method="POST" action="{{ url('notificari/activeaza-dezactiveaza', $notificare->id) }}">
                                                         @method('PATCH')
@@ -133,8 +133,8 @@
                                                 {{-- class="btn btn-danger btn-sm"  --}}
                                                 href="#"
                                                 {{-- role="button" --}}
-                                                data-toggle="modal"
-                                                data-target="#stergeNotificare{{ $notificare->id }}"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#stergeNotificare{{ $notificare->id }}"
                                                 title="Șterge Notificare"
                                                 >
                                                 {{-- <i class="far fa-trash-alt"></i> --}}
@@ -145,7 +145,7 @@
                                                         <div class="modal-content">
                                                         <div class="modal-header bg-danger">
                                                             <h5 class="modal-title text-white" id="exampleModalLabel">Notificare: <b>{{ $notificare->text }}</b></h5>
-                                                            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                            <button type="button" class="close text-white" data-bs-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
@@ -153,7 +153,7 @@
                                                             Ești sigur ca vrei să ștergi Notificarea?
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Renunță</button>
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Renunță</button>
 
                                                             <form method="POST" action="{{ $notificare->path() }}">
                                                                 @method('DELETE')
